@@ -11,7 +11,8 @@
     "./seo": "./src/seo.ts",
     "./i18n": "./src/i18n/index.ts",
     "./styles.css": "./src/styles.css",
-    "./public/*": "./public/*"
+    "./public/*": "./public/*",
+    "./package.json": "./package.json"
   },
   "scripts": {
     "test": "vitest run",

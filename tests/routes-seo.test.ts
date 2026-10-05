@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { readFileSync } from 'node:fs';
 import {
   LANDING_PUBLIC_SEGMENTS,
   LANDING_SLUGS,
@@ -73,5 +74,14 @@ describe('seo', () => {
     expect(list.itemListElement).toHaveLength(6);
     const crumbs = ld['@graph'].find((n) => n['@type'] === 'BreadcrumbList') as { itemListElement: Array<{ item: string }> };
     expect(crumbs.itemListElement[0].item).toBe(`${SITE}/en/landing`);
+  });
+});
+
+describe('package manifest', () => {
+  it('mirrors the slugs for hosts that read package.json without a TS loader', async () => {
+    const pkg = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')) as {
+      doctiling: { slugs: string[] };
+    };
+    expect(pkg.doctiling.slugs).toEqual([...LANDING_SLUGS]);
   });
 });

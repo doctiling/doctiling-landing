@@ -1,0 +1,977 @@
+{
+  "landing": {
+    "cycle": {
+      "eyebrow": "the loop",
+      "title": "Four moves: convert, cite, stack, deliver.",
+      "lede": "This is not a chat with a PDF attached. It is the whole loop — from the raw file nobody can search to the deliverable you can actually defend.",
+      "scenarioLabel": "in practice",
+      "stages": {
+        "convert": {
+          "step": "convert",
+          "title": "From raw file to blocks you can search.",
+          "body": "Drop in a PDF, a scan or a table and Doctiling rebuilds it: page geometry so reading order survives, tables reassembled as tables, images pushed through OCR in the background, and cuts made at section boundaries — not every 8,000 characters. What comes out is an editable document, not an opaque attachment.",
+          "bullets": {
+            "p1": "PDF tables rebuilt from geometry, not flattened into prose",
+            "p2": "Images and scans OCR'd on a durable queue — keep working while it runs",
+            "p3": "Blocks cut at headings, so one block is one idea"
+          },
+          "scenario": "A firm loads a 60-page scanned contract their own search engine could not even open.",
+          "outcome": "It comes out as a document with readable blocks and tables — and from that moment it is citable material."
+        },
+        "cite": {
+          "step": "cite",
+          "title": "The block is the unit of the answer.",
+          "body": "Every block is embedded in 768 dimensions and indexed on its own. When you ask, the agent retrieves blocks — not whole documents — and answers with a citation to the exact one. If the answer is not in your sources, it says so.",
+          "bullets": {
+            "p1": "Block-level citations: one click lands you on the source paragraph",
+            "p2": "Meaning-based search across the whole knowledge base",
+            "p3": "Multi-turn chat that keeps the document in focus"
+          },
+          "scenario": "“Which contracts renew this quarter, and at what penalty?” — across forty agreements at once.",
+          "outcome": "Back comes a table where every row links to the clause it came from: verifying takes a click, not an afternoon."
+        },
+        "stack": {
+          "step": "stack",
+          "title": "Twelve analysis lenses, stacked beside the document.",
+          "body": "Mirror view splits the screen: your document on one side, the analyses on the other. Summary, entities, contradictions, comparison table, mind map, questions, critique — plus five lenses for table documents. Each one runs on the indexed content and stacks without erasing the last.",
+          "bullets": {
+            "p1": "Twelve one-click lenses — no prompt writing",
+            "p2": "Analyze, synthesize and dialogue modes; fast, balanced or deep tier",
+            "p3": "Diagrams and mind maps rendered inside the document"
+          },
+          "scenario": "A consultancy uploads three market reports and asks where they contradict each other before the client call.",
+          "outcome": "The mirror shows every disagreement next to the clashing paragraphs — ready to take into the deck."
+        },
+        "deliver": {
+          "step": "deliver",
+          "title": "The analysis becomes your document — or an endpoint.",
+          "body": "Save any analysis as a variant: an editable document that keeps its trail back to the sources, ready to keep working on and to share with roles. Or expose the knowledge base as an MCP endpoint with a scoped, revocable token, so it answers from the tools your team already works in.",
+          "bullets": {
+            "p1": "Editable variants with the trail to the source intact",
+            "p2": "Owner, admin, collaborator and reader roles — with per-user private analyses",
+            "p3": "Read-only MCP endpoint, scoped per token, revocable"
+          },
+          "scenario": "A research group shares its literature base and queries it from their own MCP-compatible client.",
+          "outcome": "One indexed corpus, many ways to work — and private analyses still belong to whoever made them."
+        }
+      }
+    },
+    "docTypes": {
+      "eyebrow": "document types",
+      "title": "A document is not always text. Your base holds all three shapes.",
+      "lede": "Your team's knowledge doesn't fit one format: there is prose, there are rows, and there are relationships. Doctiling stores all three in the same knowledge base, indexes them the same way, and the agent cites any of them.",
+      "items": {
+        "text": {
+          "kicker": "text",
+          "title": "Text document",
+          "body": "PDFs, scans, notes and pages land as an editable document split into blocks by section. Each block is embedded on its own, so the answer cites the exact paragraph — not “the file”.",
+          "bullets": {
+            "p1": "Blocks cut at headings, not every 8,000 characters",
+            "p2": "Background OCR for images and scanned pages",
+            "p3": "Block-level citations: one click and you are at the source"
+          },
+          "previewAlt": "Text document with blocks; one block highlighted with its citation marker."
+        },
+        "table": {
+          "kicker": "table",
+          "title": "Table document",
+          "body": "Upload a table or connect a read-only SQL engine. The agent queries the rows, aggregates and compares — and the table is indexed as readable rows, not raw JSON, so semantic search finds it too.",
+          "bullets": {
+            "p1": "PDF tables rebuilt from page geometry, never flattened to text",
+            "p2": "Read-only connections to SQL engines with TLS enforced",
+            "p3": "Five data-specific analysis lenses, over the real rows"
+          },
+          "previewAlt": "Table document: rows and columns filling in, with a read-only query underneath."
+        },
+        "graph": {
+          "kicker": "graph",
+          "title": "Graph document",
+          "body": "When what matters is the relationship rather than the paragraph — who depends on whom, what causes what — the document is stored as nodes and edges. The agent queries by neighbourhood: it pulls the part of the graph it needs, not the whole thing.",
+          "bullets": {
+            "p1": "Nodes and relationships with their properties, editable",
+            "p2": "Neighbourhood queries: only the relevant surroundings enter the context",
+            "p3": "Projected back to citable text, so the graph answers with a source too"
+          },
+          "previewAlt": "Graph document: connected nodes around a central node with its neighbourhood marked."
+        }
+      },
+      "footnote": "All three types live in the same knowledge base, share its permissions and leave through the same endpoint. You never pick a format up front — you add the one you need when you need it."
+    },
+    "connect": {
+      "eyebrow": "connect",
+      "title": "Your documents, answering from wherever you already work.",
+      "lede": "A knowledge base is exposed as a Model Context Protocol (MCP) endpoint with a scoped, revocable token. The mobile app, a team chat, a terminal agent or an internal system ask through it and get answers that cite your documents.",
+      "diagramAlt": "Animated diagram: a mobile app, a team chat, a terminal agent and internal systems query a Doctiling knowledge base over MCP, fed by text, table and graph documents.",
+      "core": "Knowledge base",
+      "coreSub": "indexed, permissioned, cited",
+      "protocol": "MCP",
+      "channels": {
+        "app": {
+          "short": "Mobile app",
+          "title": "The app in your pocket",
+          "body": "Install Doctiling as an app and query the base from your phone — or let the mobile agent talk to your documents, with history and without losing the thread."
+        },
+        "chat": {
+          "short": "Team chat",
+          "title": "The chat they already live in",
+          "body": "Your corporate chat bot consumes the MCP endpoint: people ask in their usual channel and the answer comes back citing the source document."
+        },
+        "code": {
+          "short": "Terminal agent",
+          "title": "Coding agents and editors",
+          "body": "MCP-compatible desktop clients and coding assistants query your bases as the source of truth. No more pasting half a wiki into a prompt."
+        },
+        "system": {
+          "short": "Internal system",
+          "title": "CRM, tickets, portals",
+          "body": "Anything that can call MCP pulls cited context. Read-only by default, scoped per token, revocable in one click."
+        }
+      },
+      "stores": {
+        "text": "Text",
+        "table": "Tables",
+        "graph": "Graphs"
+      },
+      "scrollHint": "Swipe the diagram to see all of it.",
+      "query": "query",
+      "answer": "cited answer",
+      "storesCaption": "indexed documents · text · tables · graphs"
+    },
+    "sharing": {
+      "eyebrow": "who shares with whom",
+      "title": "A knowledge base gets shared: with your team, your client or your own systems.",
+      "lede": "The value is not having a chat. It is one base answering several people and several systems, each with its own permission and its own trail back to the source.",
+      "cases": {
+        "clinical": {
+          "parties": "doctor · hospital · patient",
+          "title": "Shared clinical practice",
+          "body": "Guidelines, protocols and literature in one base. The hospital queries it over MCP from its own tools; the patient gets answers cited from their record, not opinions."
+        },
+        "hr": {
+          "parties": "people ops · employees",
+          "title": "The handbook people actually read",
+          "body": "Policies, agreements and manuals in a single base. Employees ask in the chat they already use and the answer cites the policy in force, down to the clause."
+        },
+        "sales": {
+          "parties": "committee · the whole sales floor",
+          "title": "One committee, one base",
+          "body": "Proposals, call notes and pipeline indexed together. The whole committee asks over the same corpus — and the analyses each person creates stay private."
+        },
+        "portfolio": {
+          "parties": "consultant · one client per base",
+          "title": "A portfolio of bases, not a chat",
+          "body": "One base per client or domain, isolated from each other, each with its own prompt and tools. Switch context without contaminating the last one."
+        }
+      }
+    },
+    "security": {
+      "eyebrow": "security & privacy",
+      "title": "Built from day one for controlled, private work.",
+      "lede": "Access, visibility and spending are governed by design — not bolted on later.",
+      "items": {
+        "access": {
+          "title": "Invitation-only access",
+          "body": "Sign-in is restricted to an approved allowlist. Nobody wanders in: every seat is granted explicitly — and can be revoked the same way."
+        },
+        "privacy": {
+          "title": "Private analyses in shared knowledge bases",
+          "body": "Share the corpus, not your drafts. Analyses and variants you create stay visible only to you unless you decide otherwise."
+        },
+        "guardrails": {
+          "title": "Guardrails on every connection",
+          "body": "Outbound tools run over HTTPS only, with private networks and metadata endpoints blocked — and each user's AI spend is capped by a budget you control."
+        },
+        "deploy": {
+          "title": "Runs where your data must live",
+          "body": "Use the managed cloud, or self-host the very same product on your own infrastructure with a local database — one configuration switch."
+        }
+      }
+    },
+    "nav": {
+      "brand": "Doctiling",
+      "links": {
+        "thesis": "Approach",
+        "product": "Product",
+        "sharing": "Sharing",
+        "workflow": "Workflow",
+        "verticals": "Solutions",
+        "stack": "Plans",
+        "selfHost": "Self-host",
+        "integrations": "Integrations",
+        "demo": "Demo",
+        "faq": "FAQ",
+        "docTypes": "Documents",
+        "connect": "Connect",
+        "agentOutput": "Agent output",
+        "knowledge": "What it is",
+        "evidence": "In action"
+      },
+      "more": "More",
+      "signin": "Sign in",
+      "openApp": "Open studio"
+    },
+    "sticky": {
+      "pitch": "Sponsored free access, by invitation. Leave your email and we'll send the invitation.",
+      "pitchShort": "Free access by invitation.",
+      "hint": "Jump to the access form — your email is all it takes.",
+      "dismiss": "Close this bar"
+    },
+    "hero": {
+      "eyebrow": "doctiling · knowledge management with experts and AI agents",
+      "titleLine1": "Your information, turned into knowledge.",
+      "titleAccent": "Curated by experts, worked by agents.",
+      "lede": "Doctiling is not another place to store files, nor another vector search. It is where your team gathers its sources, structures them into documents, tables and graphs, curates them with the people who know the domain and works them with AI agents that analyse, compare and draw — always citing the source. What you get is a living knowledge base you share with your team or connect over MCP.",
+      "freeBadge": "Sponsored free access · by invitation · no credit card",
+      "ctaPrimary": "Request free access",
+      "ctaSecondary": "See real captures",
+      "ctaDeck": "Download pitch deck",
+      "access": {
+        "emailLabel": "Your email",
+        "emailPlaceholder": "you@email.com",
+        "submit": "Get an invitation",
+        "submitHint": "We email the invitation to that address — one field, no credit card.",
+        "success": "Done — check your inbox. Your invitation is on its way.",
+        "details": "Tell us more about your case"
+      },
+      "previewEyebrow": "preview · knowledge base 03",
+      "previewTitle": "Q3 strategy review",
+      "previewLine1": "Cited from section 2 — Market signals (Vega report, p. 14).",
+      "previewLine2": "Agent suggests merging block 4 into block 7 for clarity.",
+      "previewLine3": "Tool · search_knowledge_base → 12 matches across 4 documents.",
+      "previewCaption": "real capture · every answer ships with its citation",
+      "previewAlt": "Doctiling: the agent answers with a risk table where each row links to the exact document block."
+    },
+    "showcase": {
+      "eyebrow": "the studio, live",
+      "title": "This is what working with your documents looks like.",
+      "lede": "Real captures of the studio — no filler mockups.",
+      "studioAlt": "Doctiling studio: the Analista Financiero knowledge base with its indexed documents in the sidebar.",
+      "studioCaption": "The studio: your knowledge bases and documents in one place, indexed and ready.",
+      "citationsAlt": "Agent chat in Doctiling: a risk table where each row links to the exact document block.",
+      "citationsCaption": "Ask, and every answer cites the exact block of your document — click the citation to jump to the source.",
+      "mirrorAlt": "Doctiling mirror view: the document on the left and the agent's summary on the right.",
+      "mirrorCaption": "Mirror view: the document on one side, the agent's analysis — grounded in its content — on the other.",
+      "extrasTitle": "And there's more in the studio.",
+      "presetsAlt": "Doctiling analysis menu: Summary, Entities, Mind map, Comparison table, Contradictions, Questions and Critique.",
+      "presetsCaption": "Ready-made analysis lenses: summary, entities, mind map, contradictions, questions and more — one click.",
+      "mobileAlt": "Doctiling on mobile: a quarterly report with Document and Mirror tabs.",
+      "mobileCaption": "The same studio in your pocket — install it as an app and query your documents anywhere."
+    },
+    "agentOutput": {
+      "eyebrow": "what the agent returns",
+      "title": "The agent does not just write: it draws what it found.",
+      "lede": "Answers render inside the document. Charts, diagrams, mind maps and comparison tables come out of the indexed content — with the trail back to the source intact — and save as an editable variant of your own.",
+      "items": {
+        "chart": {
+          "title": "Charts from your data",
+          "body": "Bars, lines and distributions computed over the real rows of your table documents, not over an invented summary.",
+          "previewAlt": "Animated bar chart generated by the agent."
+        },
+        "diagram": {
+          "title": "Flow and architecture diagrams",
+          "body": "The agent writes the diagram and it renders in the block: processes, architectures, sequences. Editable afterwards, like any other block.",
+          "previewAlt": "Animated flow diagram with connected boxes."
+        },
+        "mindmap": {
+          "title": "Mind maps",
+          "body": "A long document's structure unfolded as a navigable map, so you can see what it covers before reading all of it.",
+          "previewAlt": "Animated mind map with a root node and its branches."
+        },
+        "table": {
+          "title": "Comparison tables",
+          "body": "Several documents set against each other row by row, each cell linked to the block it came from: verifying takes one click.",
+          "previewAlt": "Animated comparison table with two document columns."
+        }
+      },
+      "footnote": "Plus summary, entities, contradictions, questions, critique and study cards — twelve one-click lenses, no prompt writing."
+    },
+    "context": {
+      "eyebrow": "in context",
+      "title": "The same knowledge, wherever the work happens.",
+      "lede": "From the office desk to the student's bed — one cited agent across cloud, desktop and mobile.",
+      "heroAlt": "Doctiling on a desk: mirror view with a document and its analysis side by side on an iMac and a tablet.",
+      "items": {
+        "collab": {
+          "kicker": "Collaboration",
+          "caption": "Analyze as a team, on the fly.",
+          "alt": "Two people review a financial report in Doctiling on a tablet."
+        },
+        "focus": {
+          "kicker": "Focus",
+          "caption": "From document to decision.",
+          "alt": "A professional reviews a financial report in Doctiling on a laptop."
+        },
+        "study": {
+          "kicker": "Study",
+          "caption": "Anywhere, anytime.",
+          "alt": "A student consults study material in Doctiling."
+        },
+        "sectors": {
+          "kicker": "Demanding sectors",
+          "caption": "Health, finance and legal.",
+          "alt": "Two professionals review analyses in Doctiling on dual monitors."
+        }
+      }
+    },
+    "trust": {
+      "eyebrow": "built on",
+      "items": {
+        "claude": "Frontier AI",
+        "rag": "Citations to the exact block",
+        "mcp": "MCP-ready",
+        "tools": "Custom tools"
+      }
+    },
+    "stats": {
+      "items": {
+        "lenses": {
+          "value": "17",
+          "label": "one-click analysis lenses — 7 for documents, 5 for tables, 5 for graphs"
+        },
+        "docTypes": {
+          "value": "3",
+          "label": "living document types — text, table and graph — that experts and agents edit over the same base"
+        },
+        "aiRuns": {
+          "value": "25",
+          "label": "AI runs a day on the sponsored free seat — no credit card"
+        },
+        "engines": {
+          "value": "4",
+          "label": "SQL engines you query in plain language — libSQL, ClickHouse, Postgres, MySQL"
+        }
+      }
+    },
+    "thesis": {
+      "eyebrow": "the market shift",
+      "title": "Don't implement a RAG. Operate knowledge bases.",
+      "lede": "Standing up retrieval used to be a project: a team, a pipeline, an eval harness and somebody maintaining it. That part is product now. What decides the outcome is how you govern your knowledge bases — who feeds them, who asks, and from which tool.",
+      "shifts": {
+        "project": {
+          "before": "A six-month RAG project",
+          "after": "A knowledge base that answers today",
+          "body": "Upload your sources and they arrive chunked, embedded and indexed without you writing a pipeline. Nobody on your team maintains retrieval infrastructure."
+        },
+        "scope": {
+          "before": "One index for the whole company",
+          "after": "One base per domain, with its own rules",
+          "body": "Each base carries its own system prompt, enabled tools, token limits and permissions. Sales does not inherit Legal's judgement, and one client never sees another's corpus."
+        },
+        "reach": {
+          "before": "Knowledge locked inside another app",
+          "after": "Knowledge leaves through MCP into the tools you use",
+          "body": "A knowledge base is exposed as a read-only MCP endpoint with a scoped, revocable token: your team chat, CRM or editor asks and gets cited answers back."
+        },
+        "ownership": {
+          "before": "Depending on whoever built the index",
+          "after": "You run the sources, the access and the agents",
+          "body": "Add documents, assign roles, switch tools on or off and revoke tokens from inside the product. Knowledge management goes back to whoever knows the domain."
+        }
+      }
+    },
+    "pillars": {
+      "eyebrow": "explore in parts",
+      "title": "Three paths, one at a time.",
+      "lede": "Each piece of the product has its own page, so you only read the one you care about today.",
+      "items": {
+        "documents": {
+          "title": "Documents and knowledge",
+          "body": "The three document types — text, table and graph —, how they become citable material, and what the agent draws with them.",
+          "cta": "See documents",
+          "previewAlt": "Document with blocks and a citation marker."
+        },
+        "connect": {
+          "title": "Connect over MCP",
+          "body": "How your base reaches the mobile app, the team chat, a terminal agent or an internal system — with a scoped, revocable token.",
+          "cta": "See connections",
+          "previewAlt": "Compact diagram: clients connected to a knowledge base."
+        },
+        "verticals": {
+          "title": "Your field",
+          "body": "Legal, healthcare, finance, accounting, research and consulting: the same engine, grounded in each team’s work.",
+          "cta": "See fields",
+          "previewAlt": "Grid of six sectors."
+        }
+      }
+    },
+    "audiences": {
+      "label": "made for people who live in documents",
+      "items": {
+        "researchers": "Researchers",
+        "legal": "Legal teams",
+        "consultants": "Consultants",
+        "students": "Grad students",
+        "product": "Product teams",
+        "analysts": "Analysts",
+        "writers": "Technical writers",
+        "ops": "Knowledge ops"
+      }
+    },
+    "verticals": {
+      "eyebrow": "for your field",
+      "title": "Your field already lives in documents. Doctiling makes them answer.",
+      "lede": "Not a generic chat that guesses: every knowledge base is grounded in your own sources and answers with the exact citation. We set up your space with knowledge bases, skills and starter documents tuned to your specialty.",
+      "edgeLabel": "your edge",
+      "more": "See solutions by field in detail",
+      "items": {
+        "legal": {
+          "title": "Legal teams",
+          "body": "Review contracts and draft matter briefs without losing the exact clause. Every conclusion cites the document and page.",
+          "edge": "Answers you can defend to a client or a judge. On Gold your matters live in a dedicated database — never mixed with another tenant."
+        },
+        "health": {
+          "title": "Healthcare",
+          "body": "Bring patient history, guidelines and literature into one knowledge base. Suggest differentials and summarize follow-ups, all cited.",
+          "edge": "Never invents a dose or a finding: if it isn't in your sources, it says so. End-to-end clinical traceability."
+        },
+        "finance": {
+          "title": "Finance",
+          "body": "Ratio analysis, filing summaries and portfolio tracking over your own filings and statements.",
+          "edge": "Every figure points to the statement it came from — audit-ready, with no fabricated numbers."
+        },
+        "accounting": {
+          "title": "Accounting",
+          "body": "Classify transactions, reconcile and query the general ledger by asking in plain language.",
+          "edge": "Full traceability: every answer links back to the original entry. Close stops being a hunt for receipts."
+        },
+        "research": {
+          "title": "Research & grad school",
+          "body": "Turn a stack of papers into a literature review: synthesize across sources, surface contradictions and draft.",
+          "edge": "Verifiable citations, never invented references. A bilingual studio (EN · ES) so you can publish in either language."
+        },
+        "consulting": {
+          "title": "Consulting",
+          "body": "Turn data rooms and interviews into grounded deliverables. Mirror view stacks summaries, entities and correlations beside the document.",
+          "edge": "Save each finding as a variant and expose it to your team chat over MCP — the client sees the trail, not a black box."
+        }
+      }
+    },
+    "workflow": {
+      "eyebrow": "how it runs",
+      "title": "From scattered information to knowledge your team trusts.",
+      "steps": {
+        "gather": {
+          "number": "01",
+          "title": "Gather your sources",
+          "body": "Create one base per client, team or case and bring PDFs, notes, tables, web pages or a SQL connection. Doctiling chunks, indexes and structures them in the background."
+        },
+        "curate": {
+          "number": "02",
+          "title": "Curate it with your experts",
+          "body": "Invite the people who know the domain: edit, comment, lock what is validated and retire what is stale. Each base keeps its own system prompt, tools and permissions."
+        },
+        "operate": {
+          "number": "03",
+          "title": "Work it with agents and share it",
+          "body": "Ask, apply analysis lenses or open Mirror view, and save results as variants. Then share it with roles, publish it or connect it over MCP."
+        }
+      }
+    },
+    "tiers": {
+      "eyebrow": "multitenancy",
+      "title": "Pick the isolation level that matches your risk.",
+      "body": "Doctiling runs as a multitenant studio. Free access is sponsored and invitation-only — request a demo and we activate your seat. Paid tiers move you to your own database; Platinum adds dedicated infra and a development team that can tailor the core to your workflow.",
+      "items": {
+        "free": {
+          "eyebrow": "tier 0",
+          "name": "Free · Sponsored seat",
+          "price": "$0",
+          "body": "Sponsored free access, by invitation. Request a demo and we activate your seat in the shared studio with a sponsored AI budget — no credit card. Your data stays logically scoped per user.",
+          "bullets": {
+            "p1": "By invitation — request a demo to activate your seat.",
+            "p2": "Sponsored AI budget · 25 AI calls/day · 100/week.",
+            "p3": "All Free-tier limits enforced server-side."
+          },
+          "cta": "Request access"
+        },
+        "gold": {
+          "eyebrow": "tier 1",
+          "name": "Gold · Private studio",
+          "price": "On request",
+          "body": "Your own dedicated database — isolated from every other tenant. Same hosted runtime, but no neighbour shares your rows or embeddings. White-label branding is included.",
+          "bullets": {
+            "p1": "Dedicated database, schema migrations on your timeline.",
+            "p2": "Custom domain + white-label branding.",
+            "p3": "Higher quotas, priority support, dedicated onboarding."
+          },
+          "cta": "Request a demo",
+          "badge": "Most popular with teams"
+        },
+        "platinum": {
+          "eyebrow": "tier 2",
+          "name": "Platinum · Sovereign studio",
+          "price": "On request",
+          "body": "Dedicated database AND dedicated infrastructure. Plus a development team that works alongside your stakeholders — humans and AI agents — to modify the Doctiling core: prompts, tools, integrations, UI surfaces. Built for organizations that need the engine, not just the wrapper.",
+          "bullets": {
+            "p1": "Dedicated database + dedicated runtime hosts.",
+            "p2": "Full white-label, customizable core (prompts, tools, UI).",
+            "p3": "Dedicated dev + AI-agent squad attached to your tenant."
+          },
+          "cta": "Talk to us"
+        }
+      }
+    },
+    "selfHost": {
+      "eyebrow": "free install",
+      "title": "Run it on your own machine. Free, no account, no invitation.",
+      "lede": "The installers and the binaries are public on GitHub: one command and the whole studio runs on 127.0.0.1 against your local SQLite database. Point it at a local model (LM Studio or Ollama) and work without a single document leaving your machine.",
+      "repoCta": "See releases on GitHub",
+      "repoHint": "Public distribution repo: installers and the standalone tarball for each version.",
+      "sourceNote": "Open distribution, not open source: we publish the installers and the binaries; the product code is private. What you pay for is the hosted studio.",
+      "copy": "Copy command",
+      "copyHint": "Copy this install command to your clipboard",
+      "channels": {
+        "mac": "macOS · homebrew",
+        "windows": "windows · scoop",
+        "linux": "linux / macOS · script"
+      },
+      "free": {
+        "price": "$0 · self-hosted",
+        "title": "Free to use on your machine",
+        "bullets": {
+          "p1": "The whole studio: knowledge bases, editor, cited agent and mirror view.",
+          "p2": "Single user, local login, no invitation list. Your own AI keys or a local model.",
+          "p3": "Team sharing and MCP endpoints ship switched off in the local profile."
+        }
+      },
+      "hosted": {
+        "price": "hosted · from $0 sponsored",
+        "title": "What you pay for is running it as a team",
+        "bullets": {
+          "p1": "Share bases with roles, per-person private analyses and comments.",
+          "p2": "Managed MCP endpoints with scoped, revocable tokens.",
+          "p3": "Dedicated database, your own domain and support on Gold and Platinum."
+        }
+      }
+    },
+    "integrations": {
+      "eyebrow": "mcp + integrations",
+      "title": "Plug Doctiling into the tools your company already uses.",
+      "body": "Every knowledge base can be exposed as a Model Context Protocol (MCP) endpoint with a scoped, revocable token. That same surface plugs into corporate chats, internal enterprise systems, and agentic developer tooling — Doctiling becomes the trusted, cited memory layer behind whatever interface your team already lives in.",
+      "items": {
+        "corp": {
+          "eyebrow": "team chat",
+          "title": "Corporate chat assistants",
+          "body": "Doctiling exposes the cited MCP endpoint; your Slack bot, Teams app or whatever you already run consumes it. Employees ask in their existing channel and answers come back with citations to your source documents."
+        },
+        "enterprise": {
+          "eyebrow": "internal systems",
+          "title": "Internal enterprise systems",
+          "body": "CRMs, ticketing, wikis, internal portals — anything that can call MCP can pull cited context from a Doctiling knowledge base. Read-only by default, scoped per token, revocable at any time."
+        },
+        "agents": {
+          "eyebrow": "dev + agents",
+          "title": "Agentic dev tooling",
+          "body": "Code copilots and agentic IDEs (Claude Code, Cursor, ChatGPT and other MCP-aware clients) can query your knowledge bases as a source of truth. Engineering teams stop pasting Confluence into prompts."
+        }
+      }
+    },
+    "demo": {
+      "eyebrow": "request access",
+      "title": "Request your free access.",
+      "body": "Tell us who you are and what you want to ground in cited documents. We'll review your request and email you an invitation — your sponsored free seat, no credit card. Teams can ask about Gold and Platinum here too.",
+      "fields": {
+        "name": "Name (optional)",
+        "namePlaceholder": "Your full name",
+        "company": "Company (optional)",
+        "companyPlaceholder": "Where you work",
+        "email": "Email",
+        "emailPlaceholder": "you@email.com",
+        "teamSize": "Team size (optional)",
+        "teamSizePlaceholder": "e.g. 10–50",
+        "message": "What do you want to do with Doctiling? (optional)",
+        "messagePlaceholder": "Documents, use case, timeline…"
+      },
+      "submit": "Request access",
+      "submitting": "Sending…",
+      "success": "Thanks — check your inbox, we've sent you a confirmation. We'll review your request and send your invitation shortly.",
+      "errors": {
+        "missingFields": "Please fill in name, company, email and message.",
+        "invalid_name": "Please enter a valid name.",
+        "invalid_company": "Please enter your company.",
+        "invalid_email": "Please enter a valid work email.",
+        "invalid_message": "Please tell us a bit about your use case.",
+        "mailer_unavailable": "We can't send your request right now. Email support@doctiling.app instead.",
+        "mailer_failed": "Something went wrong sending your request. Please try again.",
+        "unknown": "Something went wrong. Please try again.",
+        "rate_limited": "Too many requests from this address. Please try again in an hour.",
+        "captcha_failed": "We couldn't verify you're human. Please reload the page and try again.",
+        "consent_required": "You must authorize the processing of your data to request a demo."
+      }
+    },
+    "faq": {
+      "eyebrow": "questions",
+      "title": "Everything you'd ask before signing in.",
+      "items": {
+        "what": {
+          "q": "What exactly is Doctiling?",
+          "a": "A knowledge management system. Your information lives in knowledge bases you govern — one per client, team or case — with documents, tables and graphs, its own system prompt, its own tools and its own permissions. Your experts curate that content and AI agents analyse it, compare it and turn it into tables, charts, diagrams and code, always citing where each claim came from. The base is shared with your team, published or connected over MCP to the tools you already use."
+        },
+        "dms": {
+          "q": "Is it a document manager or a vector search engine?",
+          "a": "Neither, although it does what both do. It stores your sources with permissions and indexes them by meaning, but that is where its work starts: structuring them into documents, tables and graphs, letting your experts curate them — edit, validate, retire what is stale — and having AI agents analyse them with citations. What you get is not a file found, but verified knowledge you can reuse, share and query from other tools."
+        },
+        "grounded": {
+          "q": "How is this different from a generic AI chat?",
+          "a": "Generic chats answer from memory and sometimes invent. Doctiling indexes every block of your documents and retrieves the relevant passages before answering, so every claim ships with a citation back to your own content. If it's not in your sources, the agent says so instead of guessing."
+        },
+        "rag": {
+          "q": "Does this replace the RAG project we were going to build in-house?",
+          "a": "For most cases, yes. Chunking, embedding, the vector index and citation are already built and tested; you need no pipeline of your own and nobody to maintain it. What stays in your hands is what actually decides the outcome: which sources enter each base, who has access, which tools the agent may call and which systems query it. If your case demands full control of the stack, the self-hosted build runs the same product on your infrastructure."
+        },
+        "privacy": {
+          "q": "Who can see my documents?",
+          "a": "Only you and the people you explicitly invite, under roles (owner, admin, collaborator, reader). On the Free plan your data is logically isolated per user; Gold moves you to your own dedicated database, and Platinum adds dedicated infrastructure on top."
+        },
+        "free": {
+          "q": "How do I get free access?",
+          "a": "Free access is sponsored and invitation-only. Request a demo with your email; once we approve it you can sign in and use the full studio — knowledge bases, document editor, AI agent with citations, mirror view, custom tools — with a sponsored AI budget and a quota of 25 AI calls per day. No credit card, no trial clock. Upgrade only if you need isolation or higher volume."
+        },
+        "mcp": {
+          "q": "What is MCP and why should I care?",
+          "a": "Model Context Protocol is an open standard that lets external AI tools read from a data source. With Doctiling you can expose a knowledge base through a scoped, revocable, read-only token, so the desktop AI tools your team already uses can query your documents as a source of truth."
+        },
+        "langs": {
+          "q": "Does it work in Spanish?",
+          "a": "Yes — the whole studio is bilingual (Spanish and English) and you can switch at any moment. The agent reads and answers in the language of your documents and your questions."
+        }
+      }
+    },
+    "cta": {
+      "eyebrow": "ready when you are",
+      "title": "Your team already knows. Put that knowledge to work.",
+      "lede": "Request your free access with your email — we review it and send the invitation shortly. No credit card. Already invited? Sign in and your first knowledge base is one click away.",
+      "primary": "Request free access",
+      "secondary": "I already have an account"
+    },
+    "footer": {
+      "tagline": "knowledge curated by experts, worked by agents",
+      "rights": "© {year} Doctiling. All rights reserved.",
+      "links": {
+        "signin": "Sign in",
+        "product": "Product",
+        "workflow": "Workflow",
+        "privacy": "Privacy",
+        "terms": "Terms",
+        "support": "Support",
+        "deck": "Pitch deck",
+        "dataProcessing": "Data processing",
+        "cookies": "Cookies",
+        "security": "Security"
+      },
+      "support": {
+        "label": "Support",
+        "email": "support@doctiling.app"
+      },
+      "columns": {
+        "product": "Product",
+        "legal": "Legal",
+        "contact": "Contact"
+      }
+    },
+    "subnav": {
+      "requestAccess": "Request access",
+      "back": "Back to home"
+    },
+    "knowledge": {
+      "eyebrow": "what a knowledge base is",
+      "title": "It's not where you store documents. It's how your team knows.",
+      "lede": "Uploading files is the first minute. The value is in what happens next: deciding what goes in, organising it, correcting it, cross-checking it and turning it into answers someone can trust. Doctiling does that work with your team, not instead of it.",
+      "compare": {
+        "dms": {
+          "kicker": "A document manager",
+          "verb": "stores files",
+          "body": "Folders, versions and permissions. The file is safe, but understanding it, cross-checking it and drawing a conclusion is still someone’s manual work, every time."
+        },
+        "vector": {
+          "kicker": "A vector database",
+          "verb": "finds fragments",
+          "body": "It returns passages similar to the question. It does not know whether a source is current, whether it contradicts another or who validated it — and nobody on your team can fix it without an engineer."
+        },
+        "doctiling": {
+          "kicker": "A knowledge base in Doctiling",
+          "verb": "manages what your team knows",
+          "body": "Curated sources, their own structure (documents, tables and graphs), the expert’s judgement and agents that analyse on top of it. Every claim arrives cited and every change has an owner. Vector search is included; it is the starting point, not the product."
+        }
+      },
+      "lifecycleTitle": "The knowledge lifecycle, end to end",
+      "lifecycleLede": "Five stages that happen on the same base. Some the agent does, some only make sense with the expert, and the best ones they do together.",
+      "roles": {
+        "expert": "Expert",
+        "agent": "AI agent",
+        "both": "Expert + agent"
+      },
+      "stages": {
+        "gather": {
+          "title": "Gather",
+          "body": "PDFs, notes, spreadsheets, web pages and SQL connections land in one base per client, team or case. They are chunked and indexed on their own, with no pipeline to maintain."
+        },
+        "structure": {
+          "title": "Structure",
+          "body": "Content becomes citable blocks, tables with typed columns and graphs of entities and relations: a model of the domain, not a pile of files."
+        },
+        "curate": {
+          "title": "Curate",
+          "body": "The expert decides what is true: edits, comments, locks what is validated and retires what is stale. The judgement lives in the base, not in one person’s head."
+        },
+        "analyze": {
+          "title": "Analyse",
+          "body": "Agents apply one-click lenses — summary, contradictions, entities, comparisons — and produce tables, charts, diagrams and code that cite their source block."
+        },
+        "share": {
+          "title": "Share and connect",
+          "body": "The curated base is shared with roles, published for reading or exposed over MCP. The whole team, and its tools, ask the same source of truth."
+        }
+      }
+    },
+    "evidence": {
+      "eyebrow": "evidence, not promises",
+      "title": "What comes out of a curated base.",
+      "lede": "Real captures of the product. One set of sources, worked by experts and agents, becomes analyses, tables, charts, graphs and code — all traceable to their origin.",
+      "tablistLabel": "Kinds of output",
+      "footnote": "Captures taken from Doctiling’s published reader over a demo knowledge base with fictional data (Nortera Logística). The reader uses the same rendering engine as the studio: tables, charts, diagrams and code look the same in your documents.",
+      "tabs": {
+        "analysis": {
+          "label": "Analysis",
+          "title": "Analyses that cite their source",
+          "body": "The quarterly report and the routes table are cross-read to surface risks, evidence and a proposed action. Every [Block #N] reference jumps to the paragraph it came from.",
+          "bullets": {
+            "p1": "Prioritised risks with their evidence alongside",
+            "p2": "Impact–effort quadrant to decide what to do first",
+            "p3": "Saved as a variant under its source document"
+          },
+          "shots": {
+            "0": {
+              "alt": "Risk table with Risk, Evidence, Impact and Proposed action columns; the evidence links to report blocks.",
+              "caption": "Risks and decisions: every row points to the report block that backs it."
+            },
+            "1": {
+              "alt": "Impact versus effort prioritisation quadrant with four actions placed.",
+              "caption": "Impact vs. effort prioritisation, rendered inside the document."
+            }
+          }
+        },
+        "tables": {
+          "label": "Tables",
+          "title": "Typed tables, not loose cells",
+          "body": "A table is one more document in the base: currency, progress, category, date and checkbox columns that the agent reads row by row and the data lenses analyse.",
+          "bullets": {
+            "p1": "Typed columns: currency, percent, progress, date, yes/no",
+            "p2": "Indexed as readable rows so the agent can cite them",
+            "p3": "Five one-click data analysis lenses"
+          },
+          "shots": {
+            "0": {
+              "alt": "Table document with routes, region, deliveries, cost in dollars, on-time progress bar, target checkbox and review date.",
+              "caption": "Table document: every column knows the kind of data it holds."
+            },
+            "1": {
+              "alt": "Quarterly KPI table with deliveries, on-time rate, cost per delivery and complaints per month against target.",
+              "caption": "Tables inside a text document, with aligned, comparable figures."
+            }
+          }
+        },
+        "charts": {
+          "label": "Charts",
+          "title": "Charts straight from the data",
+          "body": "Bars, lines, pies and quadrants built from the base’s content and rendered in the document itself — with zoom, full screen and copyable source.",
+          "bullets": {
+            "p1": "Bars and lines for trends",
+            "p2": "Pies for the spread of causes",
+            "p3": "The chart source travels with the document, editable"
+          },
+          "shots": {
+            "0": {
+              "alt": "Bar and line chart with deliveries per month from July to September.",
+              "caption": "Deliveries per month: volume bars and an on-time line."
+            },
+            "1": {
+              "alt": "Pie chart of delay causes: urban traffic, incomplete address, inventory and weather.",
+              "caption": "The quarter’s delay causes, in percent."
+            }
+          }
+        },
+        "graphs": {
+          "label": "Graphs",
+          "title": "Entity graphs and mind maps",
+          "body": "Who relates to what: regions, routes, suppliers and indicators in a graph you read at a glance, or the shape of a decision as a mind map.",
+          "bullets": {
+            "p1": "Explicit relations and dependencies, risk ones included",
+            "p2": "Mind maps to organise a decision",
+            "p3": "Graph documents as their own type in the base"
+          },
+          "shots": {
+            "0": {
+              "alt": "Entity graph: company, regions, routes, fleet supplier and indicators connected by arrows.",
+              "caption": "The quarter’s entity map, with the risk dependency marked."
+            },
+            "1": {
+              "alt": "Mind map with a central Q3 Operations node and Cost, Quality, Risk and Decision branches.",
+              "caption": "Decision mind map: cost, quality, risk and actions."
+            }
+          }
+        },
+        "code": {
+          "label": "Flows and code",
+          "title": "Processes and code documented next to the business",
+          "body": "Process flowcharts, SQL queries and code rules with syntax highlighting and a copy button: technical documentation is curated in the same base as the business one.",
+          "bullets": {
+            "p1": "Flowcharts with decisions and branches",
+            "p2": "SQL, TypeScript and more with syntax highlighting",
+            "p3": "Natural-language questions over connected SQL databases"
+          },
+          "shots": {
+            "0": {
+              "alt": "Payment reconciliation flowchart with payment-received and paid-within-seven-days decisions.",
+              "caption": "Payment reconciliation flow, with its decision branches."
+            },
+            "1": {
+              "alt": "Code blocks with a SQL query for pending payments and a TypeScript reconciliation function.",
+              "caption": "The query and the rule that implement that flow, ready to copy."
+            }
+          }
+        },
+        "publish": {
+          "label": "Publishing",
+          "title": "The base, ready for others to read",
+          "body": "Once the base is curated, it is published on a read-only link: a document index, variants under their parent document and reading controls for anyone.",
+          "bullets": {
+            "p1": "Read-only link, no account needed",
+            "p2": "Analysis variants nested under their source",
+            "p3": "Or over MCP, so other tools can ask"
+          },
+          "shots": {
+            "0": {
+              "alt": "Published knowledge base: side index with documents and variants, and the risk analysis open.",
+              "caption": "Published base: the index shows each document and the analysis derived from it."
+            }
+          }
+        }
+      }
+    }
+  },
+  "verticalsPage": {
+    "nav": {
+      "back": "Home",
+      "signin": "Sign in",
+      "requestAccess": "Request access"
+    },
+    "hero": {
+      "eyebrow": "solutions by field",
+      "title": "An AI studio that speaks your profession's language.",
+      "lede": "Doctiling isn't a generic chat. It's a space where your own documents answer — with the exact citation, not a guess. We tune it for the real work of each field: contracts, patient records, financial statements, papers, data rooms. Here's what changes when your field stops pasting PDFs into a chat and starts asking its sources.",
+      "ctaPrimary": "Request free access",
+      "ctaSecondary": "See all features"
+    },
+    "intro": {
+      "title": "One promise, six ways to keep it.",
+      "body": "Every answer points to the page and document it came from. Every knowledge base is isolated from the rest. Every workflow fits your specialty from day one. Pick your field."
+    },
+    "shot": {
+      "alt": "Doctiling: the agent answers with a risk table where each row links to the exact document block.",
+      "caption": "A real capture: the agent analyzes a report and every conclusion cites the exact block — one click takes you to the source. The same engine for any field.",
+      "nicheAlt": "Real Doctiling capture for {field}: a sample document from the field."
+    },
+    "labels": {
+      "problem": "The usual problem",
+      "solution": "How Doctiling solves it",
+      "edge": "Your competitive edge",
+      "capabilities": "What you can do"
+    },
+    "items": {
+      "legal": {
+        "title": "Legal teams",
+        "tagline": "From the matter file to the brief, without losing the exact clause.",
+        "problem": "Reviewing contracts and building a case theory means re-reading hundreds of pages and praying you don't miss the clause that changes everything. Generic AI chats summarize well but invent citations — and a fabricated citation in a filing is a professional liability.",
+        "solution": "Upload the full matter file to a knowledge base. Ask in plain language and the agent answers citing the document and the exact page. Generate briefs, timelines and clause-comparison tables, every statement traceable to its source.",
+        "edge": "Answers you can defend to a client or a judge. On the Gold plan your matters live in a dedicated database — never mixed with another firm's. White-label so you deliver under your own brand.",
+        "capabilities": {
+          "c1": "Contract review with clause extraction and comparison.",
+          "c2": "Case briefs and case-law summaries with verbatim citations.",
+          "c3": "Contradiction detection across the matter file."
+        }
+      },
+      "health": {
+        "title": "Healthcare",
+        "tagline": "Patient history, guidelines and literature in one place — cited.",
+        "problem": "Patient information lives scattered across notes, labs and clinical guidelines. Finding a history or cross-checking a finding against the literature eats the time that should go to care. And an assistant that invents a dose is unacceptable.",
+        "solution": "Bring patient history, guidelines and papers into a knowledge base. The agent suggests differentials, summarizes follow-ups and answers clinical questions always citing the source. If something isn't in your documents, it says so — it doesn't invent it.",
+        "edge": "End-to-end clinical traceability: never a fabricated dose or finding. Your data is isolated per user, and paid plans move it to dedicated infrastructure for sensitive environments.",
+        "capabilities": {
+          "c1": "Differentials grounded in guidelines and literature.",
+          "c2": "Progress notes and patient follow-up summaries with citations.",
+          "c3": "Cross-checking patient history against evidence."
+        }
+      },
+      "finance": {
+        "title": "Finance",
+        "tagline": "Every figure points to the statement it came from.",
+        "problem": "Analyzing reports, computing ratios and tracking a portfolio means jumping between endless PDFs and spreadsheets. An untraced number is a number you can't audit — or defend to an investment committee.",
+        "solution": "Upload filings, statements and reports to a knowledge base. Ask for ratio analysis, executive summaries and period-over-period comparisons; every figure links to the exact statement it came from. Stack analyses beside the document in mirror view.",
+        "edge": "Audit-ready analysis from minute one: no fabricated numbers, everything traceable. Per-tenant data isolation for sensitive market information.",
+        "capabilities": {
+          "c1": "Ratio analysis and key metrics over your own filings.",
+          "c2": "Executive summaries of annual and quarterly reports.",
+          "c3": "Period-over-period comparisons and portfolio tracking."
+        }
+      },
+      "accounting": {
+        "title": "Accounting",
+        "tagline": "Close stops being a hunt for receipts.",
+        "problem": "Classifying transactions, reconciling accounts and tracing an entry in the general ledger is manual, error-prone work. When close or audit arrives, finding the support for each movement takes hours.",
+        "solution": "Load ledgers, receipts and policies into a knowledge base. Classify transactions, reconcile and query the ledger by asking in plain language. Every answer links back to the original entry.",
+        "edge": "Full audit traceability: every figure traces to its support. Fewer close hours, less risk of findings.",
+        "capabilities": {
+          "c1": "Transaction classification against your own policies.",
+          "c2": "Assisted reconciliation linked to the source entry.",
+          "c3": "General-ledger queries in plain language."
+        }
+      },
+      "research": {
+        "title": "Research & grad school",
+        "tagline": "From a stack of papers to a literature review with real citations.",
+        "problem": "A literature review is weeks of reading, annotating and cross-referencing. AI chats speed it up but fabricate references that don't exist — poison for a thesis or a paper.",
+        "solution": "Upload your paper corpus to a knowledge base. Synthesize across sources, surface contradictions, extract methods and results, and draft with verifiable citations to your own documents. A bilingual studio for writing in English or Spanish.",
+        "edge": "Verifiable citations, never invented references. Bilingual EN · ES so you can publish in either language. Save each synthesis as a variant and compare approaches without losing the trail.",
+        "capabilities": {
+          "c1": "Literature review with synthesis across multiple sources.",
+          "c2": "Contradiction and gap detection in the state of the art.",
+          "c3": "Extraction of methods, data and results with citations."
+        }
+      },
+      "consulting": {
+        "title": "Consulting",
+        "tagline": "Data rooms and interviews turned into grounded deliverables.",
+        "problem": "A project starts with hundreds of client documents, transcripts and data rooms. Turning all of that into a clear, defensible deliverable is where billable time goes — and the client wants to see the trail, not a black box.",
+        "solution": "Centralize the data room in a knowledge base. Mirror view stacks summaries, entity tables, mind maps and correlations beside the document. Save each finding as a variant and expose the knowledge base to your team chat over MCP.",
+        "edge": "Deliverables traceable to the source document: the client sees where each conclusion comes from. Expose the knowledge base to the tools your team already uses — Doctiling is the cited memory layer behind your workflow.",
+        "capabilities": {
+          "c1": "Synthesis of data rooms and interview transcripts.",
+          "c2": "Mirror view: summaries, entities and correlations per document.",
+          "c3": "Knowledge Base exposed to the team over MCP, read-only and revocable."
+        }
+      }
+    },
+    "cta": {
+      "eyebrow": "your field, your studio",
+      "title": "Start with a space built for your specialty.",
+      "lede": "Request your free access and, once in, pick your field: we'll set up knowledge bases, skills and starter documents tailored to you. No credit card, invitation-only.",
+      "primary": "Request free access",
+      "secondary": "Back to home"
+    }
+  },
+  "documentsPage": {
+    "hero": {
+      "eyebrow": "documents and knowledge management",
+      "title": "Text, tables and graphs in a single base.",
+      "lede": "What you upload stops being an opaque file: it becomes citable blocks, queryable rows or nodes with relationships. Here is the full path, from raw file to a deliverable you can defend."
+    }
+  },
+  "connectPage": {
+    "hero": {
+      "eyebrow": "connect and share",
+      "title": "Your knowledge, where your team already works.",
+      "lede": "A knowledge base is exposed over MCP with a scoped, revocable token — and shared with roles. Here is how the question travels, what gets shared with whom, and how to take it to your own infrastructure."
+    }
+  }
+}

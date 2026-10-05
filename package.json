@@ -1,0 +1,71 @@
+{
+  "name": "@doctiling/landing",
+  "version": "0.1.0",
+  "description": "Doctiling marketing surface (landing + documents, connect and verticals pages) as a host-agnostic Next.js package",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./host": "./src/host.tsx",
+    "./routes": "./src/routes.ts",
+    "./seo": "./src/seo.ts",
+    "./i18n": "./src/i18n/index.ts",
+    "./styles.css": "./src/styles.css",
+    "./public/*": "./public/*"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "guard:white-label": "node scripts/white-label-guard.mjs --all",
+    "gate": "sh scripts/gate.sh",
+    "hooks:install": "git config core.hooksPath .githooks"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doctiling/doctiling-landing.git"
+  },
+  "files": [
+    "src",
+    "public",
+    "README.md",
+    "LICENSE"
+  ],
+  "peerDependencies": {
+    "@doctiling/ui": "*",
+    "lucide-react": "*",
+    "next": ">=15",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "@doctiling/ui": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@radix-ui/react-accordion": "^1.2.3",
+    "@radix-ui/react-checkbox": "^1.1.4",
+    "@radix-ui/react-dropdown-menu": "^2.1.6",
+    "@radix-ui/react-label": "^2.1.2",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-tooltip": "^1.1.2",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^20.19.43",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@vitejs/plugin-react": "^6.0.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "jsdom": "^29.1.1",
+    "lucide-react": "^0.475.0",
+    "next": "^16.3.6",
+    "react": "^18",
+    "react-dom": "^18",
+    "tailwind-merge": "^3.0.1",
+    "typescript": "^5",
+    "vitest": "^4.1.5"
+  }
+}

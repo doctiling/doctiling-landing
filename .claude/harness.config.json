@@ -1,0 +1,59 @@
+{
+  "$comment": "Single source of repo-specific knowledge for the hooks in .claude/hooks (generic, byte-identical across doctiling repos; checked by doctiling-workspace scripts/harness-drift.sh). Docs: docs/agent-harness.md.",
+  "gate": {
+    "command": "npm run gate",
+    "marker": ".git/gate-dirty",
+    "codePathPattern": "^(src|tests|scripts)/.*\\.(ts|tsx|mjs|json)$",
+    "postEdit": {
+      "command": [
+        "npx",
+        "tsc",
+        "--noEmit"
+      ],
+      "appendFile": false
+    }
+  },
+  "docs": {
+    "harness": "docs/agent-harness.md",
+    "status": "STATUS.md",
+    "gotchas": "docs/gotchas.md"
+  },
+  "ci": {
+    "workflow": ".github/workflows/gate.yml"
+  },
+  "hooksPath": ".githooks",
+  "hooksInstallCommand": "npm run hooks:install",
+  "protectedPaths": [
+    {
+      "pattern": "(^|/)\\.env(\\.|$)",
+      "reason": ".env files are never edited by the agent (this repo is public: nothing secret belongs here at all)."
+    },
+    {
+      "pattern": "(^|/)package-lock\\.json$",
+      "agentOnly": true,
+      "reason": "package-lock.json is regenerated with `npx -y npm@10.8.2 install`, never edited by hand."
+    },
+    {
+      "pattern": "(^|/)\\.git/",
+      "reason": "git history is not edited file by file."
+    }
+  ],
+  "bashRules": [
+    {
+      "pattern": "--no-verify",
+      "reason": "Skipping the verification hooks is forbidden. If the gate is in the way, fix the gate."
+    },
+    {
+      "pattern": "git\\s+push\\s+[^\\n]*--force(?!-with-lease)",
+      "reason": "`git push --force` needs an explicit request from the human."
+    },
+    {
+      "pattern": "git\\s+reset\\s+--hard",
+      "reason": "`git reset --hard` destroys work: needs an explicit request from the human."
+    },
+    {
+      "pattern": "git\\s+add\\s+(\\.|-A|--all)(\\s|$)",
+      "reason": "`git add .` sweeps local state. Stage specific files."
+    }
+  ]
+}

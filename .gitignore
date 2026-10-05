@@ -1,0 +1,5 @@
+node_modules/
+coverage/
+.DS_Store
+# symlink to the doctiling-web design system (scripts/link-ui.sh)
+.ui

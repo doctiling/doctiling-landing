@@ -39,8 +39,10 @@ Static assets live in `public/` (screenshots, OG images, pitch decks); the host 
 
 ### Peer dependency on the design system
 
-The pages are built from `@doctiling/ui` (atoms, molecules, hooks), which is a raw-TS workspace package
-inside the private `doctiling-web` repo. The consumer resolves it from its workspace. This repo's own
+The pages are built from `@doctiling/ui` (atoms, molecules, hooks), a raw-TS workspace package inside the
+private `doctiling-web` repo. It is a **requirement of the host, not a declared peer**: an unpublished
+package in `peerDependencies` makes npm reshuffle the consumer's workspace link on every install, so the
+host (which owns `@doctiling/ui`) resolves it from its own workspace. This repo's own
 typecheck and tests resolve it through a `.ui` symlink to a web checkout (`scripts/link-ui.sh`,
 `../web/packages/ui` by default; `DOCTILING_UI_DIR` in CI, where a sparse checkout needs the
 `WEB_READ_TOKEN` secret).

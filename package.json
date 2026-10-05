@@ -33,16 +33,10 @@
     "LICENSE"
   ],
   "peerDependencies": {
-    "@doctiling/ui": "*",
     "lucide-react": "*",
     "next": ">=15",
     "react": ">=18",
     "react-dom": ">=18"
-  },
-  "peerDependenciesMeta": {
-    "@doctiling/ui": {
-      "optional": true
-    }
   },
   "devDependencies": {
     "@radix-ui/react-accordion": "^1.2.3",

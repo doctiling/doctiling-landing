@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import {
   LANDING_PUBLIC_SEGMENTS,
   LANDING_SLUGS,
@@ -79,7 +80,7 @@ describe('seo', () => {
 
 describe('package manifest', () => {
   it('mirrors the slugs for hosts that read package.json without a TS loader', async () => {
-    const pkg = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')) as {
+    const pkg = JSON.parse(readFileSync(resolve(process.cwd(), 'package.json'), 'utf8')) as {
       doctiling: { slugs: string[] };
     };
     expect(pkg.doctiling.slugs).toEqual([...LANDING_SLUGS]);

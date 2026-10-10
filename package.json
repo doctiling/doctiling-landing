@@ -18,8 +18,10 @@
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "guard:white-label": "node scripts/white-label-guard.mjs --all",
-    "gate": "sh scripts/gate.sh",
-    "hooks:install": "git config core.hooksPath .githooks"
+    "link:ui": "sh scripts/link-ui.sh",
+    "gate": "node scripts/gate.mjs",
+    "gate:fast": "node scripts/gate.mjs fast",
+    "hooks:install": "node scripts/hooks-install.mjs"
   },
   "license": "SEE LICENSE IN LICENSE",
   "repository": {

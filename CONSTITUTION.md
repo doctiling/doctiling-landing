@@ -1,15 +1,20 @@
 # Constitution — doctiling-landing
 
-**Version 1.0.0** · Principles of the marketing-surface package consumed by doctiling-web.
+**Version 2.0.0** · Principles of the marketing-surface package consumed by doctiling-web.
 Every principle states its strength: **BLOCKING** names the command that fails; otherwise it is
 **REVIEW** (judged by the `reviewer` subagent and the human). Amendments bump the version, in their own
 commit.
 
+2.0.0 — the harness is now the config-driven [agent-harness](https://github.com/raalzate/agent-harness)
+(`scripts/gate.mjs`, `repo-lint`, `cycle-check`, `commit-msg`/`pre-push`); P3 gains the `HOST-IMPORT`
+lint rule; P8 records work and enforces PRs.
+
 ## P1 — Nothing ships without a green gate · BLOCKING
 
-*Mechanism:* `npm run gate` (`scripts/gate.sh`: harness self-test · docs link-check · link @doctiling/ui ·
-white-label guard · typecheck · tests), the `Stop` hook, and `.github/workflows/gate.yml` on every
-push, PR and `v*` tag.
+*Mechanism:* `npm run gate` (`scripts/gate.mjs` over `gate.signals`: harness self-test · docs link-check ·
+convention lint · artifacts in place · link @doctiling/ui · white-label guard · typecheck · tests · code
+index · hook latency), the `Stop` hook (`.claude/hooks/gate-stop.mjs`), and `.github/workflows/ci.yml`
+on every push, PR and `v*` tag. An omitted signal is not green.
 
 ## P2 — Assertion integrity · REVIEW
 
@@ -21,7 +26,7 @@ Everything the landing needs from its host crosses `LandingHost` (`src/host.tsx`
 `next-auth`, no server action, no product i18n.
 
 *Mechanism:* `npm run typecheck` (no path alias for `@/` exists here, so such an import does not
-compile) and `tests/host.test.tsx`.
+compile), the `HOST-IMPORT` rule of `node scripts/repo-lint.mjs`, and `tests/host.test.tsx`.
 
 ## P4 — White label: the copy never names the AI vendor · BLOCKING
 
@@ -37,13 +42,18 @@ compile) and `tests/host.test.tsx`.
 The host mounts this package only in its SaaS edition; a self-host release carries no landing route,
 copy or asset.
 
-*Mechanism:* doctiling-web `scripts/self-host/assert-studio-build.mjs` (run by `release.yml` and
-`scripts/self-host/pack.sh`) and `tests/edition.test.ts`. Here: REVIEW.
+*Mechanism:* `doctiling-web/scripts/self-host/assert-studio-build.mjs` (run by `release.yml` and
+`doctiling-web/scripts/self-host/pack.sh`) and `doctiling-web/tests/edition.test.ts`. Here: REVIEW.
 
 ## P7 — Consumers pin tags · REVIEW
 
 Every change ships as a new `vX.Y.Z` tag with the `version` bumped; the host pins the HTTPS tarball.
 
-## P8 — Conduct on error · REVIEW
+## P8 — Work is recorded and enters by PR · BLOCKING
+
+*Mechanism:* `.githooks/commit-msg` (`#N` or `no-issue: <why>` on code commits) and `.githooks/pre-push`
+(`main` only by pull request) + `scripts/cycle-check.mjs` (branch names).
+
+## P9 — Conduct on error · REVIEW
 
 Read the real output before retrying; after 2 failed attempts on the same error, stop and escalate.

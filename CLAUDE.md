@@ -10,7 +10,10 @@ Marketing surface of Doctiling as a host-agnostic package (`@doctiling/landing`,
 - **Design system**: `@doctiling/ui` is a peer from the private doctiling-web checkout, resolved through the
   `.ui` symlink (`scripts/link-ui.sh`). Never copy an atom here; never import `@/`.
 - **Gate (BLOCKING)**: `npm run gate`. Every change ships as a new tag; the host pins tags.
-- **Agent harness**: `docs/agent-harness.md`; principles in `CONSTITUTION.md`; verified state in
-  `STATUS.md`; incidents in `docs/gotchas.md` via `/lesson`. Install the pre-commit once per clone:
-  `npm run hooks:install`.
+- **Agent harness**: [raalzate/agent-harness](https://github.com/raalzate/agent-harness) — this repo's
+  harness in `docs/arnes.md`, its only specific file `.claude/harness.config.json` (gate signals included);
+  principles in `CONSTITUTION.md`; verified state in `STATUS.md`; incidents in `docs/gotchas.md` via
+  `/lesson`. Install the git hooks once per clone: `npm run hooks:install`.
+- Commits that touch code reference an issue (`#N`) or carry a `no-issue: <why>` line (`commit-msg`);
+  branches are `type/what`; `main` only by PR (`pre-push`).
 - Public repo: nothing secret, no `.env`.

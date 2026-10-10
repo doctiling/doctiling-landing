@@ -14,5 +14,5 @@ Causa:   the landing lived in doctiling-web `src/components/organisms/landing` +
          `next build` could not leave it out and `proxy.ts` sent `/` there.
 Regla:   the landing is this package; the host mounts it only in the SaaS edition (`page.saas.tsx` via
          `pageExtensions`) and never reaches into it from product code.
-Mecanismo: doctiling-web `scripts/self-host/assert-studio-build.mjs` (fails the release when a landing
-         route or copy is in `.next`) and `tests/edition.test.ts`.
+Mecanismo: `doctiling-web/scripts/self-host/assert-studio-build.mjs` (fails the release when a landing
+         route or copy is in `.next`) and `doctiling-web/tests/edition.test.ts`.

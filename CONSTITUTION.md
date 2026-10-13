@@ -37,8 +37,8 @@ compile) and `tests/host.test.tsx`.
 The host mounts this package only in its SaaS edition; a self-host release carries no landing route,
 copy or asset.
 
-*Mechanism:* doctiling-web `scripts/self-host/assert-studio-build.mjs` (run by `release.yml` and
-`scripts/self-host/pack.sh`) and `tests/edition.test.ts`. Here: REVIEW.
+*Mechanism:* doctiling-web's self-host build assertion (assert-studio-build, run by its release workflow
+and its self-host pack script) and `tests/edition.test.ts`. Here: REVIEW.
 
 ## P7 — Consumers pin tags · REVIEW
 

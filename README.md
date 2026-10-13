@@ -43,7 +43,7 @@ The pages are built from `@doctiling/ui` (atoms, molecules, hooks), a raw-TS wor
 private `doctiling-web` repo. It is a **requirement of the host, not a declared peer**: an unpublished
 package in `peerDependencies` makes npm reshuffle the consumer's workspace link on every install, so the
 host (which owns `@doctiling/ui`) resolves it from its own workspace. This repo's own
-typecheck and tests resolve it through a `.ui` symlink to a web checkout (`scripts/link-ui.sh`,
+typecheck and tests resolve it through a `.ui` symlink to a web checkout (`scripts/link-ui.mjs`,
 `../web/packages/ui` by default; `DOCTILING_UI_DIR` in CI, where a sparse checkout needs the
 `WEB_READ_TOKEN` secret).
 

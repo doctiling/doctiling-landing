@@ -266,7 +266,8 @@
       ".git",
       "coverage",
       ".ui",
-      ".next"
+      ".next",
+      "web"
     ],
     "ignoreFiles": [
       "docs/buenas-practicas.md"
@@ -275,7 +276,8 @@
     "mentionSignals": [
       "docs/arnes.md"
     ],
-    "ignoreMarker": "linkcheck:ignore"
+    "ignoreMarker": "linkcheck:ignore",
+    "$commentWeb": "`web/` is the sparse checkout of doctiling-web that CI makes for @doctiling/ui (DOCTILING_UI_DIR); gitignored, never this repo's prose."
   },
   "status": {
     "file": "STATUS.md",

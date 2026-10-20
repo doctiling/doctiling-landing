@@ -241,16 +241,16 @@
       "eyebrow": "the studio, live",
       "title": "This is what working with your documents looks like.",
       "lede": "Real captures of the studio — no filler mockups.",
-      "studioAlt": "Doctiling studio: the Analista Financiero knowledge base with its indexed documents in the sidebar.",
+      "studioAlt": "Doctiling studio: the Nortera Logística base with twelve documents in the sidebar and the Andina Retail framework contract open.",
       "studioCaption": "The studio: your knowledge bases and documents in one place, indexed and ready.",
-      "citationsAlt": "Agent chat in Doctiling: a risk table where each row links to the exact document block.",
+      "citationsAlt": "Doctiling agent: answers which risk the committee flagged with figures, an owners table and citations to the minutes and the report.",
       "citationsCaption": "Ask, and every answer cites the exact block of your document — click the citation to jump to the source.",
-      "mirrorAlt": "Doctiling mirror view: the document on the left and the agent's summary on the right.",
+      "mirrorAlt": "Doctiling mirror view: the quarterly report on the left and its summary, cited by block, on the right.",
       "mirrorCaption": "Mirror view: the document on one side, the agent's analysis — grounded in its content — on the other.",
       "extrasTitle": "And there's more in the studio.",
-      "presetsAlt": "Doctiling analysis menu: Summary, Entities, Mind map, Comparison table, Contradictions, Questions and Critique.",
+      "presetsAlt": "Doctiling analysis menu on the framework contract: Summary, Entities, Mind map, Comparison table, Contradictions, Questions and Critique.",
       "presetsCaption": "Ready-made analysis lenses: summary, entities, mind map, contradictions, questions and more — one click.",
-      "mobileAlt": "Doctiling on mobile: a quarterly report with Document and Mirror tabs.",
+      "mobileAlt": "Doctiling on mobile: the Q3 quarterly report with Document and Mirror tabs.",
       "mobileCaption": "The same studio in your pocket — install it as an app and query your documents anywhere."
     },
     "agentOutput": {
@@ -544,11 +544,11 @@
           },
           "shots": {
             "0": {
-              "alt": "Risk table with Risk, Evidence, Impact and Proposed action columns; the evidence links to report blocks.",
+              "alt": "Q3 risk table with Risk, Evidence, Impact, Proposed action and Owner columns; the evidence links to blocks of the quarterly report.",
               "caption": "Risks and decisions: every row points to the report block that backs it."
             },
             "1": {
-              "alt": "Impact versus effort prioritisation quadrant with four actions placed.",
+              "alt": "Impact versus effort prioritisation quadrant with five actions: OTIF 96 programme, Andina renewal, diversification, fuel hedge and Barranquilla expansion.",
               "caption": "Impact vs. effort prioritisation, rendered inside the document."
             }
           }
@@ -564,11 +564,11 @@
           },
           "shots": {
             "0": {
-              "alt": "Table document with routes, region, deliveries, cost in dollars, on-time progress bar, target checkbox and review date.",
+              "alt": "Table document with the key-account portfolio: customer, sector, ARR, % of ARR bar, renewal date, risk and owner, each column with its type.",
               "caption": "Table document: every column knows the kind of data it holds."
             },
             "1": {
-              "alt": "Quarterly KPI table with deliveries, on-time rate, cost per delivery and complaints per month against target.",
+              "alt": "Per-hub KPI table with monthly shipments, OTIF, cost per shipment, incidents and status.",
               "caption": "Tables inside a text document, with aligned, comparable figures."
             }
           }
@@ -584,12 +584,12 @@
           },
           "shots": {
             "0": {
-              "alt": "Bar and line chart with deliveries per month from July to September.",
-              "caption": "Deliveries per month: volume bars and an on-time line."
+              "alt": "Bar chart of shipments per month from July to September, in thousands.",
+              "caption": "Shipments per month in the quarter, in thousands."
             },
             "1": {
-              "alt": "Pie chart of delay causes: urban traffic, incomplete address, inventory and weather.",
-              "caption": "The quarter’s delay causes, in percent."
+              "alt": "Pie chart of incident causes: Buenaventura–Cali route, incomplete address, delivery window, fleet breakdown and other.",
+              "caption": "Incident causes in the quarter, as percentages."
             }
           }
         },
@@ -604,12 +604,12 @@
           },
           "shots": {
             "0": {
-              "alt": "Entity graph: company, regions, routes, fleet supplier and indicators connected by arrows.",
+              "alt": "Entity map: Nortera, its hubs, carriers and customers; in red, the dependency on Andina Retail and Transportes Pacífico.",
               "caption": "The quarter’s entity map, with the risk dependency marked."
             },
             "1": {
-              "alt": "Mind map with a central Q3 Operations node and Cost, Quality, Risk and Decision branches.",
-              "caption": "Decision mind map: cost, quality, risk and actions."
+              "alt": "Customer-concentration mind map with Exposure, Impact, Actions and Targets branches.",
+              "caption": "Decision mind map: exposure, impact, actions and targets."
             }
           }
         },
@@ -624,11 +624,11 @@
           },
           "shots": {
             "0": {
-              "alt": "Payment reconciliation flowchart with payment-received and paid-within-seven-days decisions.",
-              "caption": "Payment reconciliation flow, with its decision branches."
+              "alt": "Flowchart of the OTIF penalty reconciliation with the target and cap decisions.",
+              "caption": "OTIF penalty reconciliation flow, with its decision branches."
             },
             "1": {
-              "alt": "Code blocks with a SQL query for pending payments and a TypeScript reconciliation function.",
+              "alt": "Code blocks with the monthly OTIF SQL query and the TypeScript function that computes the discount.",
               "caption": "The query and the rule that implement that flow, ready to copy."
             }
           }
@@ -644,7 +644,7 @@
           },
           "shots": {
             "0": {
-              "alt": "Published knowledge base: side index with documents and variants, and the risk analysis open.",
+              "alt": "Published knowledge base: side index with the Nortera documents and the Q3 quarterly report open.",
               "caption": "Published base: the index shows each document and the analysis derived from it."
             }
           }
@@ -877,8 +877,8 @@
       "body": "Every answer points to the page and document it came from. Every knowledge base is isolated from the rest. Every workflow fits your specialty from day one. Pick your field."
     },
     "shot": {
-      "alt": "Doctiling: the agent answers with a risk table where each row links to the exact document block.",
-      "caption": "A real capture: the agent analyzes a report and every conclusion cites the exact block — one click takes you to the source. The same engine for any field.",
+      "alt": "Doctiling: the agent answers which risk the committee flagged, with an owners table and every figure cited to its document.",
+      "caption": "A real capture: the agent cross-reads the minutes, the report and the plan, and every conclusion cites its source document and section. The same engine for any field.",
       "nicheAlt": "Real Doctiling capture for {field}: a sample document from the field."
     },
     "labels": {

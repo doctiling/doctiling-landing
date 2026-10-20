@@ -241,16 +241,16 @@
       "eyebrow": "el estudio en vivo",
       "title": "Así se ve trabajar con tus documentos.",
       "lede": "Capturas reales del estudio — sin maquetas de relleno.",
-      "studioAlt": "Estudio de Doctiling: base de conocimiento Analista Financiero con sus documentos indexados en la barra lateral.",
+      "studioAlt": "Estudio de Doctiling: la base Nortera Logística con doce documentos en la barra lateral y el contrato marco con Andina Retail abierto.",
       "studioCaption": "El estudio: tus bases de conocimiento y documentos en un solo lugar, indexados y listos.",
-      "citationsAlt": "Chat de agente en Doctiling: una tabla de riesgos donde cada fila enlaza al bloque exacto del documento.",
+      "citationsAlt": "Agente de Doctiling: responde qué riesgo señaló el comité con cifras, una tabla de responsables y citas al acta y al informe.",
       "citationsCaption": "Pregunta y cada respuesta cita el bloque exacto de tu documento — clic en la cita y saltas a la fuente.",
-      "mirrorAlt": "Vista espejo de Doctiling: el documento a la izquierda y el resumen del agente a la derecha.",
+      "mirrorAlt": "Vista espejo de Doctiling: el informe trimestral a la izquierda y su resumen, citado por bloque, a la derecha.",
       "mirrorCaption": "Vista espejo: el documento a un lado, el análisis del agente — fundamentado en su contenido — al otro.",
       "extrasTitle": "Y hay más en el estudio.",
-      "presetsAlt": "Menú de análisis de Doctiling: Resumen, Entidades, Mapa mental, Tabla comparativa, Contradicciones, Preguntas y Crítica.",
+      "presetsAlt": "Menú de análisis de Doctiling sobre el contrato marco: Resumen, Entidades, Mapa mental, Tabla comparativa, Contradicciones, Preguntas y Crítica.",
       "presetsCaption": "Lentes de análisis listos: resumen, entidades, mapa mental, contradicciones, preguntas y más — un clic.",
-      "mobileAlt": "Doctiling en móvil: un informe trimestral con pestañas Documento y Espejo.",
+      "mobileAlt": "Doctiling en móvil: el informe trimestral Q3 con pestañas Documento y Espejo.",
       "mobileCaption": "El mismo estudio en tu bolsillo — instálalo como app y consulta tus documentos donde estés."
     },
     "agentOutput": {
@@ -544,11 +544,11 @@
           },
           "shots": {
             "0": {
-              "alt": "Tabla de riesgos con columnas Riesgo, Evidencia, Impacto y Acción propuesta; la evidencia enlaza a bloques del informe.",
+              "alt": "Tabla de riesgos del Q3 con columnas Riesgo, Evidencia, Impacto, Acción propuesta y Responsable; la evidencia enlaza a bloques del informe trimestral.",
               "caption": "Riesgos y decisiones: cada fila remite al bloque del informe que la sostiene."
             },
             "1": {
-              "alt": "Cuadrante de priorización impacto contra esfuerzo con cuatro acciones ubicadas.",
+              "alt": "Cuadrante de priorización impacto contra esfuerzo con cinco acciones: programa OTIF 96, renovación Andina, diversificación, cobertura de combustible y ampliación Barranquilla.",
               "caption": "Priorización impacto vs. esfuerzo, renderizada dentro del documento."
             }
           }
@@ -564,11 +564,11 @@
           },
           "shots": {
             "0": {
-              "alt": "Documento de tabla con rutas, región, entregas, costo en dólares, barra de puntualidad, casilla de meta y fecha de revisión.",
+              "alt": "Documento de tabla con la cartera de clientes clave: cliente, sector, ARR, barra de % del ARR, fecha de renovación, riesgo y responsable, cada columna con su tipo.",
               "caption": "Documento de tabla: cada columna sabe qué tipo de dato guarda."
             },
             "1": {
-              "alt": "Tabla de indicadores trimestrales con entregas, puntualidad, costo por entrega y reclamos por mes frente a la meta.",
+              "alt": "Tabla de KPIs por hub con envíos al mes, OTIF, costo por envío, incidencias y estado.",
               "caption": "Tablas dentro de un documento de texto, con cifras alineadas y comparables."
             }
           }
@@ -584,12 +584,12 @@
           },
           "shots": {
             "0": {
-              "alt": "Gráfica de barras y línea con entregas por mes de julio a septiembre.",
-              "caption": "Entregas por mes: barras de volumen y línea de entregas a tiempo."
+              "alt": "Gráfica de barras con los envíos por mes de julio a septiembre, en miles.",
+              "caption": "Envíos por mes del trimestre, en miles."
             },
             "1": {
-              "alt": "Gráfica de torta con causas de retraso: tráfico urbano, dirección incompleta, inventario y clima.",
-              "caption": "Causas de retraso del trimestre, en porcentaje."
+              "alt": "Gráfica de torta con las causas de incidencias: ruta Buenaventura–Cali, dirección incompleta, ventana horaria, avería de flota y otros.",
+              "caption": "Causas de incidencias del trimestre, en porcentaje."
             }
           }
         },
@@ -604,12 +604,12 @@
           },
           "shots": {
             "0": {
-              "alt": "Grafo de entidades: empresa, regiones, rutas, proveedor de flota e indicadores conectados por flechas.",
+              "alt": "Mapa de entidades: Nortera, sus hubs, transportistas y clientes; en rojo, la dependencia de Andina Retail y de Transportes Pacífico.",
               "caption": "Mapa de entidades del trimestre, con la dependencia de riesgo marcada."
             },
             "1": {
-              "alt": "Mapa mental con nodo central T3 Operaciones y ramas Costo, Calidad, Riesgo y Decisión.",
-              "caption": "Mapa mental de la decisión: costo, calidad, riesgo y acciones."
+              "alt": "Mapa mental de la concentración de clientes con ramas Exposición, Impacto, Acciones y Metas.",
+              "caption": "Mapa mental de la decisión: exposición, impacto, acciones y metas."
             }
           }
         },
@@ -624,11 +624,11 @@
           },
           "shots": {
             "0": {
-              "alt": "Diagrama de flujo de conciliación de pagos con decisiones de pago recibido y pago en siete días.",
-              "caption": "Flujo de conciliación de pagos, con sus ramas de decisión."
+              "alt": "Diagrama de flujo de la conciliación de penalidades OTIF con las decisiones de meta y de tope.",
+              "caption": "Flujo de conciliación de penalidades OTIF, con sus ramas de decisión."
             },
             "1": {
-              "alt": "Bloques de código con una consulta SQL de pagos pendientes y una función TypeScript de conciliación.",
+              "alt": "Bloques de código con la consulta SQL del OTIF mensual y la función TypeScript que calcula el descuento.",
               "caption": "La consulta y la regla que implementan ese flujo, listas para copiar."
             }
           }
@@ -644,7 +644,7 @@
           },
           "shots": {
             "0": {
-              "alt": "Base de conocimiento publicada: índice lateral con documentos y variantes, y el análisis de riesgos abierto.",
+              "alt": "Base de conocimiento publicada: índice lateral con los documentos de Nortera y el informe trimestral Q3 abierto.",
               "caption": "Base publicada: el índice muestra cada documento y el análisis que se derivó de él."
             }
           }
@@ -877,8 +877,8 @@
       "body": "Cada respuesta apunta a la página y el documento de donde salió. Cada base de conocimiento se aísla del resto. Cada flujo se adapta a tu especialidad desde el primer día. Elige tu campo."
     },
     "shot": {
-      "alt": "Doctiling: el agente responde con una tabla de riesgos donde cada fila enlaza al bloque exacto del documento.",
-      "caption": "Captura real: el agente analiza un informe y cada conclusión cita el bloque exacto — un clic te lleva a la fuente. El mismo motor para cualquier sector.",
+      "alt": "Doctiling: el agente responde qué riesgo señaló el comité, con una tabla de responsables y cada dato citado a su documento.",
+      "caption": "Captura real: el agente cruza el acta, el informe y el plan, y cada conclusión cita el documento y la sección de origen. El mismo motor para cualquier sector.",
       "nicheAlt": "Captura real de Doctiling para {field}: documento de ejemplo del sector."
     },
     "labels": {

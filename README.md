@@ -16,7 +16,7 @@ It exists so that the product (`doctiling-web`, private) can ship in two edition
 Pin a tag through the HTTPS tarball (no git needed in Docker builders), like `@doctiling/brand`:
 
 ```json
-"@doctiling/landing": "https://codeload.github.com/doctiling/doctiling-landing/tar.gz/refs/tags/v0.1.0"
+"@doctiling/landing": "https://codeload.github.com/doctiling/doctiling-landing/tar.gz/refs/tags/v0.2.0"
 ```
 
 List it in `transpilePackages`, add `node_modules/@doctiling/landing/src/**/*.{ts,tsx}` to the Tailwind

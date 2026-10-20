@@ -69,12 +69,15 @@ describe('LandingClient', () => {
     expect(screen.getByText('landing.faq.items.grounded.a')).toBeInTheDocument();
   });
 
-  it('groups secondary nav links under a "more" menu to keep the header uncluttered', () => {
+  it('keeps the header to two menus and three anchors', () => {
     renderWithHost(<LandingClient />);
-    expect(screen.getByText('landing.nav.more')).toBeInTheDocument();
+    expect(screen.getByText('landing.nav.links.product')).toBeInTheDocument();
+    expect(screen.getByText('landing.nav.resources')).toBeInTheDocument();
     expect(screen.getAllByText('landing.nav.links.verticals').length).toBeGreaterThan(0);
     expect(screen.getByText('landing.nav.links.selfHost')).toBeInTheDocument();
     expect(screen.getByText('landing.nav.links.faq')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'landing.nav.links.benchmarks' })).toHaveAttribute('href', '#benchmarks');
+    expect(screen.getByRole('link', { name: 'landing.nav.links.control' })).toHaveAttribute('href', '#control');
   });
 
   it('no longer embeds the demo video; the hero points at the real captures instead', () => {
@@ -87,12 +90,20 @@ describe('LandingClient', () => {
     );
   });
 
-  it('explains what a knowledge base is before the thesis', () => {
+  it('leads with proof: comparison, then benchmarks, then real captures, then data control', () => {
     const { container } = renderWithHost(<LandingClient />);
     const ids = Array.from(container.querySelectorAll('section[id]')).map((s) => s.id);
-    expect(ids.indexOf('knowledge')).toBeGreaterThan(-1);
-    expect(ids.indexOf('knowledge')).toBeLessThan(ids.indexOf('evidence'));
-    expect(ids.indexOf('evidence')).toBeLessThan(ids.indexOf('thesis'));
+    const order = ['compare', 'benchmarks', 'evidence', 'control', 'platform', 'anywhere', 'stack', 'demo'];
+    for (const id of order) expect(ids).toContain(id);
+    expect(order.map((id) => ids.indexOf(id))).toEqual([...order.map((id) => ids.indexOf(id))].sort((a, b) => a - b));
+  });
+
+  it('shows measured outcomes, not a logo wall, right under the hero', () => {
+    renderWithHost(<LandingClient />);
+    for (const key of ['recall', 'tasks', 'language', 'latency']) {
+      expect(screen.getByText(`landing.proof.items.${key}.value`)).toBeInTheDocument();
+    }
+    expect(screen.getByRole('link', { name: /landing\.proof\.link/ })).toHaveAttribute('href', '#benchmarks');
   });
 
   it('keeps the header to the brand name so the tagline never collides with the nav links', () => {

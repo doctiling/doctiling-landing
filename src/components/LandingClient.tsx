@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowUpRight, Check, Download, Mail, Quote, Wrench } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Check, ChevronDown, Mail } from 'lucide-react';
 import { useLandingHost } from '../host';
 import { Button } from '@doctiling/ui/atoms/button';
 import { Display, H2, Lede, MiniTitle } from '@doctiling/ui/atoms/typography';
@@ -15,31 +15,23 @@ import { DemoRequestForm } from './DemoRequestForm';
 import { HeroAccessForm } from './HeroAccessForm';
 import { StickyCta } from './StickyCta';
 import { FaqSection } from './FaqSection';
-import { KnowledgeSection } from './KnowledgeSection';
+import { CompareSection } from './CompareSection';
+import { BenchmarkSection } from './BenchmarkSection';
 import { EvidenceSection } from './EvidenceSection';
-import { InContextSection } from './InContextSection';
-import { ThesisSection } from './ThesisSection';
-import { PillarsSection } from './PillarsSection';
+import { ControlSection } from './ControlSection';
+import { PlatformSection } from './PlatformSection';
+import { InterfacesSection } from './InterfacesSection';
+import { VerticalsSection } from './VerticalsSection';
 import { TiersSection } from './TiersSection';
 import { LandingFooter } from './LandingFooter';
-import { BrowserFrame } from '@doctiling/ui/molecules/browser-frame';
 import { Reveal } from './Reveal';
-import { WorkflowStepIllustration } from './illustrations';
+import { ConnectDiagram } from './landing-diagrams';
 
-const WORKFLOW_STEPS = ['gather', 'curate', 'operate'] as const;
 const INTEGRATION_KEYS = ['corp', 'enterprise', 'agents'] as const;
-const TRUST_ITEMS = ['claude', 'rag', 'mcp', 'tools'] as const;
-const STAT_KEYS = ['lenses', 'docTypes', 'aiRuns', 'engines'] as const;
-const AUDIENCE_KEYS = [
-  'researchers',
-  'legal',
-  'consultants',
-  'students',
-  'product',
-  'analysts',
-  'writers',
-  'ops',
-] as const;
+// Outcome numbers, all measured — the benchmarks section carries the method.
+const PROOF_KEYS = ['recall', 'tasks', 'language', 'latency'] as const;
+const HUB_CHANNELS = ['app', 'chat', 'code', 'system'] as const;
+const HUB_STORES = ['text', 'table', 'graph'] as const;
 
 const SECTION = 'mx-auto max-w-7xl px-5 sm:px-6 lg:px-10';
 const NAV_LINK =
@@ -51,6 +43,7 @@ export default function LandingClient() {
   const signinHref = href('signin');
   const appHref = href('app');
   const deckHref = `/Doctiling-Pitch-Deck-${locale === 'en' ? 'en' : 'es'}.pdf`;
+  const selfHostHref = `/${locale}/connect#self-host`;
   const supportEmail = t('landing.footer.support.email');
   const supportHref = `mailto:${supportEmail}`;
   // Invitation-only: anonymous visitors are funneled to the demo-request form
@@ -59,7 +52,7 @@ export default function LandingClient() {
 
   return (
     <main className="relative isolate overflow-hidden">
-      {/* NAV */}
+      {/* NAV — two menus, three anchors, one CTA */}
       <header className="sticky top-0 z-30 border-b border-border/70 bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70">
         <div className={`${SECTION} flex h-16 items-center justify-between gap-4`}>
           <Link href={`/${locale}/landing`} className="flex shrink-0 items-center gap-2.5">
@@ -73,49 +66,58 @@ export default function LandingClient() {
             <span className="font-display text-xl tracking-tight">{t('landing.nav.brand')}</span>
           </Link>
           <nav className="hidden items-center gap-1 lg:flex">
-            <a href="#knowledge" className={NAV_LINK}>
-              {t('landing.nav.links.knowledge')}
-            </a>
-            <a href="#evidence" className={NAV_LINK}>
-              {t('landing.nav.links.evidence')}
-            </a>
-            <Link href={`/${locale}/documents`} className={NAV_LINK}>
-              {t('landing.nav.links.docTypes')}
-            </Link>
-            <Link href={`/${locale}/connect`} className={NAV_LINK}>
-              {t('landing.nav.links.connect')}
-            </Link>
-            <a href="#stack" className={NAV_LINK}>
-              {t('landing.nav.links.stack')}
-            </a>
-            <a href="#demo" className={NAV_LINK}>
-              {t('landing.nav.links.demo')}
-            </a>
             <DropdownMenu>
-              <DropdownMenuTrigger className={`${NAV_LINK} outline-none`}>
-                {t('landing.nav.more')}
+              <DropdownMenuTrigger className={`${NAV_LINK} inline-flex items-center gap-1 outline-none`}>
+                {t('landing.nav.links.product')} <ChevronDown className="size-3.5" aria-hidden="true" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="rounded-xl">
+              <DropdownMenuContent align="start" className="rounded-xl">
                 <DropdownMenuItem asChild>
-                  <a href="#thesis">{t('landing.nav.links.thesis')}</a>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href={`/${locale}/verticals`}>{t('landing.nav.links.verticals')}</Link>
+                  <Link href={`/${locale}/documents`}>{t('landing.nav.links.docTypes')}</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href={`/${locale}/documents#agent-output`}>{t('landing.nav.links.agentOutput')}</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href={`/${locale}/connect#self-host`}>{t('landing.nav.links.selfHost')}</Link>
+                  <Link href={`/${locale}/connect`}>{t('landing.nav.links.connect')}</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <a href="#faq">{t('landing.nav.links.faq')}</a>
+                  <Link href={`/${locale}/verticals`}>{t('landing.nav.links.verticals')}</Link>
                 </DropdownMenuItem>
                 {INTEGRATIONS_ENABLED && (
                   <DropdownMenuItem asChild>
                     <a href="#integrations">{t('landing.nav.links.integrations')}</a>
                   </DropdownMenuItem>
                 )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <a href="#benchmarks" className={NAV_LINK}>
+              {t('landing.nav.links.benchmarks')}
+            </a>
+            <a href="#control" className={NAV_LINK}>
+              {t('landing.nav.links.control')}
+            </a>
+            <a href="#stack" className={NAV_LINK}>
+              {t('landing.nav.links.stack')}
+            </a>
+            <DropdownMenu>
+              <DropdownMenuTrigger className={`${NAV_LINK} inline-flex items-center gap-1 outline-none`}>
+                {t('landing.nav.resources')} <ChevronDown className="size-3.5" aria-hidden="true" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="rounded-xl">
+                <DropdownMenuItem asChild>
+                  <a href="#evidence">{t('landing.nav.links.evidence')}</a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href={selfHostHref}>{t('landing.nav.links.selfHost')}</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a href={deckHref} download>
+                    {t('landing.hero.ctaDeck')}
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a href="#faq">{t('landing.nav.links.faq')}</a>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </nav>
@@ -155,7 +157,7 @@ export default function LandingClient() {
               <>
                 <Link
                   href={signinHref}
-                  className="hidden whitespace-nowrap px-2 text-sm font-medium text-foreground/75 transition-colors hover:text-foreground md:inline"
+                  className="hidden whitespace-nowrap px-2 text-sm font-medium text-foreground/75 transition-colors hover:text-foreground md:inline lg:hidden xl:inline"
                 >
                   {t('landing.nav.signin')}
                 </Link>
@@ -168,21 +170,22 @@ export default function LandingClient() {
         </div>
       </header>
 
-      {/* HERO */}
+      {/* HERO — one claim, one line, one action; the hub shows where the knowledge goes */}
       <section className="relative">
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,hsl(var(--primary)/0.14),transparent_55%),radial-gradient(ellipse_at_bottom_left,hsl(var(--accent)/0.08),transparent_60%)]" />
-        <div className={`${SECTION} grid grid-cols-1 gap-12 py-14 sm:py-20 lg:grid-cols-12 lg:items-start lg:gap-10 lg:py-24`}>
-          <div className="lg:col-span-6">
+        <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,hsl(var(--primary)/0.10),transparent_55%)]" />
+        <div className={`${SECTION} grid grid-cols-1 gap-12 py-14 sm:py-20 lg:grid-cols-12 lg:items-center lg:gap-10 lg:py-24`}>
+          <div className="lg:col-span-7">
             <div className="landing-enter">
               <MiniTitle className="mb-7 text-accent">{t('landing.hero.eyebrow')}</MiniTitle>
             </div>
-            <Display as="h1" className="text-balance leading-[1.02] sm:text-6xl lg:text-7xl">
-              <span className="landing-enter relative block" style={{ animationDelay: '80ms' }}>
+            <Display as="h1" className="text-balance leading-[1.02] sm:text-6xl lg:text-[3.5rem] xl:text-7xl">
+              {/* One line from sm up, so the hand-drawn underline sits under the whole claim. */}
+              <span className="landing-enter relative inline-block sm:whitespace-nowrap" style={{ animationDelay: '80ms' }}>
                 {t('landing.hero.titleLine1')}
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 420 14"
-                  className="pointer-events-none absolute -bottom-2 left-0 h-3 w-[60%] max-w-[420px] text-destructive/80 lg:-bottom-3 lg:h-4"
+                  className="pointer-events-none absolute -bottom-2 left-0 h-3 w-full text-destructive/80 lg:-bottom-3 lg:h-4"
                   fill="none"
                   preserveAspectRatio="none"
                 >
@@ -228,155 +231,81 @@ export default function LandingClient() {
                 >
                   {t('landing.hero.ctaSecondary')}
                 </a>
-                <a
-                  href={deckHref}
-                  download
+                <Link
+                  href={selfHostHref}
                   className="inline-flex items-center gap-1.5 text-sm text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
                 >
-                  <Download className="size-3.5" /> {t('landing.hero.ctaDeck')}
-                </a>
-              </div>
-            </div>
-
-            <div className="landing-enter mt-14 flex flex-wrap items-center gap-x-6 gap-y-3" style={{ animationDelay: '640ms' }}>
-              <MiniTitle>{t('landing.trust.eyebrow')}</MiniTitle>
-              <div className="flex flex-wrap items-center gap-2 text-[13px] font-medium text-foreground/80">
-                {TRUST_ITEMS.map((key) => (
-                  <span key={key} className="rounded-full border border-border bg-card px-3 py-1">
-                    {t(`landing.trust.items.${key}`)}
-                  </span>
-                ))}
+                  {t('landing.hero.ctaSelfHost')} <ArrowRight className="size-3.5" />
+                </Link>
               </div>
             </div>
           </div>
 
-          {/* REAL PRODUCT PREVIEW — the capture plus two floating details lifted from it */}
-          <div className="landing-enter relative lg:col-span-6 lg:pt-16" style={{ animationDelay: '300ms' }}>
-            <div className="relative pb-10 pr-0 sm:pr-10 lg:pl-6">
-              <div className="landing-float">
-                <BrowserFrame src="/screenshots/real-citations.webp" alt={t('landing.hero.previewAlt')} priority />
-              </div>
-              <div
-                aria-hidden="true"
-                className="landing-card landing-card-in absolute -left-2 bottom-2 z-10 hidden w-[17rem] p-4 sm:block lg:-left-4"
-                style={{ animationDelay: '900ms' }}
-              >
-                <div className="flex items-center gap-2">
-                  <span className="flex size-7 items-center justify-center rounded-full bg-accent/10 text-accent">
-                    <Quote className="size-3.5" />
-                  </span>
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                    {t('landing.hero.previewEyebrow')}
-                  </span>
-                </div>
-                <p className="mt-2.5 font-display text-base leading-snug">{t('landing.hero.previewTitle')}</p>
-                <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{t('landing.hero.previewLine1')}</p>
-              </div>
-              <div
-                aria-hidden="true"
-                className="landing-card landing-card-in absolute -right-1 top-6 z-10 hidden w-[15rem] border-l-[3px] border-l-emerald-500 p-3.5 sm:block"
-                style={{ animationDelay: '1150ms' }}
-              >
-                <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-emerald-700">
-                  <Wrench className="size-3.5" />
-                  {t('landing.trust.items.tools')}
-                </div>
-                <p className="mt-1.5 text-xs leading-relaxed text-foreground/85">{t('landing.hero.previewLine3')}</p>
-              </div>
+          <div className="landing-enter hidden sm:block lg:col-span-5" style={{ animationDelay: '300ms' }}>
+            <div className="landing-card landing-grid overflow-hidden p-4 lg:p-6">
+              <ConnectDiagram
+                label={t('landing.connect.diagramAlt')}
+                labels={{
+                  core: t('landing.connect.core'),
+                  coreSub: t('landing.connect.coreSub'),
+                  protocol: t('landing.connect.protocol'),
+                  query: t('landing.connect.query'),
+                  answer: t('landing.connect.answer'),
+                  storesCaption: t('landing.connect.storesCaption'),
+                  channels: HUB_CHANNELS.map((c) => t(`landing.connect.channels.${c}.short`)),
+                  stores: HUB_STORES.map((s) => t(`landing.connect.stores.${s}`)),
+                }}
+                className="h-auto w-full text-foreground/75"
+              />
             </div>
-            <p className="text-center text-xs leading-relaxed text-muted-foreground">
-              {t('landing.hero.previewCaption')}
+          </div>
+        </div>
+      </section>
+
+      {/* PROOF STRIP — measured outcomes instead of a logo wall (no public customers yet) */}
+      <section aria-labelledby="proof-label" className="border-y border-border bg-card/60">
+        <div className={`${SECTION} py-8`}>
+          <div className="flex flex-wrap items-baseline justify-between gap-3">
+            <p id="proof-label" className="text-sm text-muted-foreground">
+              {t('landing.proof.label')}
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* STATS */}
-      <section className="border-y border-border bg-card/60">
-        <div className={`${SECTION} grid grid-cols-2 divide-border md:grid-cols-4 md:divide-x`}>
-          {STAT_KEYS.map((key, i) => (
-            <Reveal key={key} delay={i * 90}>
-              <div className="flex h-full flex-col gap-2 px-2 py-8 md:px-8 md:py-10">
-                <span className="font-display text-4xl tracking-tight text-accent sm:text-5xl">
-                  {t(`landing.stats.items.${key}.value`)}
-                </span>
-                <span className="max-w-[16rem] text-sm leading-relaxed text-muted-foreground">
-                  {t(`landing.stats.items.${key}.label`)}
-                </span>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <KnowledgeSection />
-
-      <EvidenceSection />
-
-      <ThesisSection />
-
-      <PillarsSection />
-
-      <InContextSection />
-
-      {/* AUDIENCES MARQUEE */}
-      <section aria-label={t('landing.audiences.label')} className="landing-marquee overflow-hidden border-y border-border bg-card/60 py-5">
-        <div className="landing-marquee-track flex w-max items-center">
-          {[0, 1].map((copy) => (
-            <div
-              key={copy}
-              aria-hidden={copy === 1 ? 'true' : undefined}
-              className="flex shrink-0 items-center"
+            <a
+              href="#benchmarks"
+              className="inline-flex items-center gap-1 text-sm font-medium text-accent underline-offset-4 hover:underline"
             >
-              <span className="mx-8 whitespace-nowrap text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
-                {t('landing.audiences.label')}
-              </span>
-              {AUDIENCE_KEYS.map((key) => (
-                <span key={key} className="flex shrink-0 items-center">
-                  <span aria-hidden="true" className="font-display text-lg italic text-primary">
-                    ✳
+              {t('landing.proof.link')} <ArrowRight className="size-3.5" />
+            </a>
+          </div>
+          <div className="mt-6 grid grid-cols-2 gap-y-6 md:grid-cols-4 md:divide-x md:divide-border">
+            {PROOF_KEYS.map((key, i) => (
+              <Reveal key={key} delay={i * 90}>
+                <div className="flex h-full flex-col gap-1.5 pr-4 md:px-6">
+                  <span className="font-display text-4xl tracking-tight text-accent sm:text-5xl">
+                    {t(`landing.proof.items.${key}.value`)}
                   </span>
-                  <span className="mx-8 whitespace-nowrap font-display text-xl text-foreground/80">
-                    {t(`landing.audiences.items.${key}`)}
+                  <span className="max-w-[16rem] text-sm leading-relaxed text-muted-foreground">
+                    {t(`landing.proof.items.${key}.label`)}
                   </span>
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* WORKFLOW */}
-      <section id="workflow">
-        <div className={`${SECTION} py-24`}>
-          <Reveal className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
-            <MiniTitle>{t('landing.workflow.eyebrow')}</MiniTitle>
-            <H2 className="text-balance text-4xl not-italic leading-tight sm:text-5xl">
-              {t('landing.workflow.title')}
-            </H2>
-          </Reveal>
-          <div className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-3 lg:gap-6">
-            {WORKFLOW_STEPS.map((step, i) => (
-              <Reveal key={step} delay={i * 140}>
-                <div className="landing-card landing-card-hover h-full p-8">
-                  <div className="flex items-start justify-between">
-                    <span className="flex size-12 items-center justify-center rounded-full bg-accent font-display text-xl text-accent-foreground">
-                      {t(`landing.workflow.steps.${step}.number`)}
-                    </span>
-                    <WorkflowStepIllustration step={step} className="size-12 text-primary" />
-                  </div>
-                  <h3 className="mt-8 font-display text-2xl leading-snug">
-                    {t(`landing.workflow.steps.${step}.title`)}
-                  </h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
-                    {t(`landing.workflow.steps.${step}.body`)}
-                  </p>
                 </div>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
+
+      <CompareSection />
+
+      <BenchmarkSection />
+
+      <EvidenceSection />
+
+      <ControlSection />
+
+      <PlatformSection />
+
+      <InterfacesSection />
+
+      <VerticalsSection />
 
       <TiersSection requestAccessHref={requestAccessHref} />
 

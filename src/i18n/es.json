@@ -833,13 +833,13 @@
       "tablistLabel": "Superficies de Doctiling",
       "studio": {
         "tab": "Estudio",
-        "alt": "Captura real del estudio: un contrato abierto y el menú de análisis de un clic.",
-        "body": "El estudio: donde reúnes fuentes, curas documentos y trabajas con el agente."
+        "alt": "Captura real del estudio: la base Nortera Logística con el informe trimestral Q3 abierto y su resumen con citas a cada bloque en la vista espejo.",
+        "body": "El estudio: tus documentos, tablas y grafos a la izquierda; el documento al centro; y a la derecha los análisis del agente, cada uno citando el bloque exacto."
       },
       "chat": {
         "tab": "Chat",
-        "alt": "Captura real de una respuesta del agente con citas a los bloques de origen.",
-        "body": "El chat de la base responde citando el bloque exacto de donde sale cada afirmación."
+        "alt": "Captura real del agente respondiendo qué riesgo de concentración señaló el comité, con cifras, una tabla de responsables y citas al acta y al informe.",
+        "body": "Pregunta en lenguaje natural y recibe cifras, tablas y decisiones, con la cita al documento y la sección de donde sale cada dato."
       },
       "mcp": {
         "tab": "MCP",
@@ -853,9 +853,9 @@
         "citations": "[Informe Q3 · §2] [Acta del comité · 14 sep]"
       },
       "mobile": {
-        "tab": "Móvil",
-        "alt": "Captura real de Doctiling instalado como app en un teléfono.",
-        "body": "Instálalo como app y consulta tus bases desde el teléfono."
+        "tab": "Chat móvil",
+        "alt": "Captura real del chat móvil: la penalidad por OTIF del contrato con Andina Retail, calculada y citada a la cláusula 7.",
+        "body": "El chat de tu base en el teléfono: pregunta en una reunión y la respuesta llega con la cláusula exacta citada."
       }
     }
   },

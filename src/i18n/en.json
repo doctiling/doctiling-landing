@@ -833,13 +833,13 @@
       "tablistLabel": "Doctiling surfaces",
       "studio": {
         "tab": "Studio",
-        "alt": "Real capture of the studio: a contract open next to the one-click analysis menu.",
-        "body": "The studio: where you gather sources, curate documents and work with the agent."
+        "alt": "Real capture of the studio: the Nortera Logística base with the Q3 quarterly report open and its summary citing each block in the mirror view.",
+        "body": "The studio: your documents, tables and graphs on the left; the document in the middle; and the agent's analyses on the right, each citing the exact block."
       },
       "chat": {
         "tab": "Chat",
-        "alt": "Real capture of an agent answer with citations to the source blocks.",
-        "body": "The base's chat answers citing the exact block each claim comes from."
+        "alt": "Real capture of the agent answering which customer-concentration risk the committee flagged, with figures, an owners table and citations to the minutes and the report.",
+        "body": "Ask in plain language and get figures, tables and decisions, cited to the document and section each one comes from."
       },
       "mcp": {
         "tab": "MCP",
@@ -853,9 +853,9 @@
         "citations": "[Q3 report · §2] [Committee minutes · Sep 14]"
       },
       "mobile": {
-        "tab": "Mobile",
-        "alt": "Real capture of Doctiling installed as an app on a phone.",
-        "body": "Install it as an app and query your bases from your phone."
+        "tab": "Mobile chat",
+        "alt": "Real capture of the mobile chat: the OTIF penalty in the Andina Retail contract, computed and cited to clause 7.",
+        "body": "Your base's chat on your phone: ask during a meeting and the answer arrives with the exact clause cited."
       }
     }
   },

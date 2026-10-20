@@ -8,13 +8,14 @@ import { useLandingText } from '../host';
 import { Reveal } from './Reveal';
 
 // One knowledge base, four surfaces. Studio, chat and mobile are real captures
-// (public/screenshots); the MCP tab is a terminal transcript drawn in HTML so
-// the tool call stays legible at any width.
+// of the fictional demo base "Nortera Logística · Comité ejecutivo" (local
+// dev.db, answers generated live by the agent); the MCP tab is a terminal
+// transcript drawn in HTML so the tool call stays legible at any width.
 const SURFACES = [
-  { key: 'studio', shot: '/screenshots/real-presets.webp' },
-  { key: 'chat', shot: '/screenshots/real-citations.webp' },
+  { key: 'studio', shot: '/screenshots/nortera-studio.webp' },
+  { key: 'chat', shot: '/screenshots/nortera-chat.webp' },
   { key: 'mcp', shot: null },
-  { key: 'mobile', shot: '/screenshots/real-mobile.webp' },
+  { key: 'mobile', shot: '/screenshots/nortera-mobile-chat.webp' },
 ] as const;
 
 type SurfaceKey = (typeof SURFACES)[number]['key'];
@@ -73,9 +74,14 @@ export function InterfacesSection() {
                 <McpTranscript />
               </div>
             ) : surface.key === 'mobile' ? (
-              <div className="landing-shot w-56 overflow-hidden rounded-[2rem] sm:w-64">
+              <div className="landing-shot w-64 overflow-hidden rounded-[2.75rem] border-[10px] border-[#141a21] bg-[#141a21] sm:w-72">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={surface.shot} alt={t('landing.anywhere.mobile.alt')} loading="lazy" className="block h-auto w-full" />
+                <img
+                  src={surface.shot}
+                  alt={t('landing.anywhere.mobile.alt')}
+                  loading="lazy"
+                  className="block h-auto w-full rounded-[2rem]"
+                />
               </div>
             ) : (
               <BrowserFrame src={surface.shot} alt={t(`landing.anywhere.${surface.key}.alt`)} width={1440} height={900} />

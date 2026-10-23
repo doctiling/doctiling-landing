@@ -33,7 +33,10 @@ export interface LandingNotice {
   variant?: 'default' | 'destructive';
 }
 
-/** Product routes the landing links to, without the locale prefix. */
+/**
+ * Product routes the landing links to, without the locale prefix. A host whose
+ * product lives on another origin passes an absolute URL, used as is.
+ */
 export interface LandingRoutes {
   app: string;
   signin: string;
@@ -102,7 +105,7 @@ export function LandingHostProvider({ host, children }: { host: LandingHost; chi
       features: { integrations: features?.integrations ?? false },
       routes,
       t,
-      href: (route) => `/${host.locale}${routes[route]}`,
+      href: (route) => (/^https?:\/\//.test(routes[route]) ? routes[route] : `/${host.locale}${routes[route]}`),
       landingHref: (slug = 'landing') => `/${host.locale}/${slug}`,
     };
   }, [host]);

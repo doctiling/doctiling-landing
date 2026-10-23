@@ -48,6 +48,16 @@ describe('LandingHostProvider', () => {
     expect(screen.getByTestId('docs')).toHaveTextContent('/en/documents');
   });
 
+  it('uses an absolute route as is, so a product on another origin is linked directly', () => {
+    render(
+      <LandingHostProvider host={{ ...baseHost, routes: { app: 'https://studio.example.com/es/kb' } }}>
+        <Probe />
+      </LandingHostProvider>,
+    );
+    expect(screen.getByTestId('app')).toHaveTextContent(/^https:\/\/studio\.example\.com\/es\/kb$/);
+    expect(screen.getByTestId('terms')).toHaveTextContent('/es/terms');
+  });
+
   it('defaults the optional feature switches to off', () => {
     render(
       <LandingHostProvider host={baseHost}>

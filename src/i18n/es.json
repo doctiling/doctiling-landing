@@ -220,6 +220,7 @@
     },
     "hero": {
       "videoTitle": "Video demo de Doctiling",
+      "videoPlay": "Ver el demo",
       "eyebrow": "doctiling · gestión del conocimiento con expertos y agentes de IA",
       "titleLine1": "Conocimiento curado",
       "titleAccent": "para tu equipo y tus agentes.",

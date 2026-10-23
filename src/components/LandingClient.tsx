@@ -25,6 +25,7 @@ import { VerticalsSection } from './VerticalsSection';
 import { TiersSection } from './TiersSection';
 import { LandingFooter } from './LandingFooter';
 import { Reveal } from './Reveal';
+import { HeroVideo } from './HeroVideo';
 
 const INTEGRATION_KEYS = ['corp', 'enterprise', 'agents'] as const;
 // Outcome numbers, all measured — the benchmarks section carries the method.
@@ -241,18 +242,7 @@ export default function LandingClient() {
           </div>
 
           <div className="landing-enter lg:col-span-5" style={{ animationDelay: '300ms' }}>
-            {/* Vertical short (9:16); youtube-nocookie is the host's allowed frame-src. */}
-            <div className="landing-card mx-auto aspect-[9/16] w-full max-w-[20rem] overflow-hidden">
-              <iframe
-                src={`https://www.youtube-nocookie.com/embed/${HERO_VIDEO_ID}?rel=0&playsinline=1`}
-                title={t('landing.hero.videoTitle')}
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-                className="h-full w-full border-0"
-              />
-            </div>
+            <HeroVideo videoId={HERO_VIDEO_ID} poster="/landing/video/hero-short.webp" />
           </div>
         </div>
       </section>

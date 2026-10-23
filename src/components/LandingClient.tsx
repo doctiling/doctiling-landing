@@ -25,13 +25,12 @@ import { VerticalsSection } from './VerticalsSection';
 import { TiersSection } from './TiersSection';
 import { LandingFooter } from './LandingFooter';
 import { Reveal } from './Reveal';
-import { ConnectDiagram } from './landing-diagrams';
 
 const INTEGRATION_KEYS = ['corp', 'enterprise', 'agents'] as const;
 // Outcome numbers, all measured — the benchmarks section carries the method.
 const PROOF_KEYS = ['recall', 'tasks', 'language', 'latency'] as const;
-const HUB_CHANNELS = ['app', 'chat', 'code', 'system'] as const;
-const HUB_STORES = ['text', 'table', 'graph'] as const;
+// Hero demo: https://www.youtube.com/shorts/-i3DmNClIZE
+const HERO_VIDEO_ID = '-i3DmNClIZE';
 
 const SECTION = 'mx-auto max-w-7xl px-5 sm:px-6 lg:px-10';
 const NAV_LINK =
@@ -241,21 +240,17 @@ export default function LandingClient() {
             </div>
           </div>
 
-          <div className="landing-enter hidden sm:block lg:col-span-5" style={{ animationDelay: '300ms' }}>
-            <div className="landing-card landing-grid overflow-hidden p-4 lg:p-6">
-              <ConnectDiagram
-                label={t('landing.connect.diagramAlt')}
-                labels={{
-                  core: t('landing.connect.core'),
-                  coreSub: t('landing.connect.coreSub'),
-                  protocol: t('landing.connect.protocol'),
-                  query: t('landing.connect.query'),
-                  answer: t('landing.connect.answer'),
-                  storesCaption: t('landing.connect.storesCaption'),
-                  channels: HUB_CHANNELS.map((c) => t(`landing.connect.channels.${c}.short`)),
-                  stores: HUB_STORES.map((s) => t(`landing.connect.stores.${s}`)),
-                }}
-                className="h-auto w-full text-foreground/75"
+          <div className="landing-enter lg:col-span-5" style={{ animationDelay: '300ms' }}>
+            {/* Vertical short (9:16); youtube-nocookie is the host's allowed frame-src. */}
+            <div className="landing-card mx-auto aspect-[9/16] w-full max-w-[20rem] overflow-hidden">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${HERO_VIDEO_ID}?rel=0&playsinline=1`}
+                title={t('landing.hero.videoTitle')}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                className="h-full w-full border-0"
               />
             </div>
           </div>

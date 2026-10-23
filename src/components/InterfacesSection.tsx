@@ -6,6 +6,7 @@ import { BrowserFrame } from '@doctiling/ui/molecules/browser-frame';
 import { cn } from '@doctiling/ui/cn';
 import { useLandingText } from '../host';
 import { Reveal } from './Reveal';
+import { ConnectDiagram } from './landing-diagrams';
 
 // One knowledge base, four surfaces. Studio, chat and mobile are real captures
 // of the fictional demo base "Nortera Logística · Comité ejecutivo" (local
@@ -19,6 +20,9 @@ const SURFACES = [
 ] as const;
 
 type SurfaceKey = (typeof SURFACES)[number]['key'];
+
+const HUB_CHANNELS = ['app', 'chat', 'code', 'system'] as const;
+const HUB_STORES = ['text', 'table', 'graph'] as const;
 
 function McpTranscript() {
   const { t } = useLandingText();
@@ -60,6 +64,26 @@ export function InterfacesSection() {
         <Reveal className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
           <MiniTitle>{t('landing.anywhere.eyebrow')}</MiniTitle>
           <H2 className="text-balance text-4xl not-italic leading-tight sm:text-5xl">{t('landing.anywhere.title')}</H2>
+        </Reveal>
+
+        {/* The MCP hub: the four surfaces below all query the same base. */}
+        <Reveal delay={120} className="mx-auto mt-12 hidden max-w-3xl sm:block">
+          <div className="landing-card landing-grid overflow-hidden p-4 lg:p-6">
+            <ConnectDiagram
+              label={t('landing.connect.diagramAlt')}
+              labels={{
+                core: t('landing.connect.core'),
+                coreSub: t('landing.connect.coreSub'),
+                protocol: t('landing.connect.protocol'),
+                query: t('landing.connect.query'),
+                answer: t('landing.connect.answer'),
+                storesCaption: t('landing.connect.storesCaption'),
+                channels: HUB_CHANNELS.map((c) => t(`landing.connect.channels.${c}.short`)),
+                stores: HUB_STORES.map((s) => t(`landing.connect.stores.${s}`)),
+              }}
+              className="h-auto w-full text-foreground/75"
+            />
+          </div>
         </Reveal>
 
         <div className="mx-auto mt-12 max-w-5xl">

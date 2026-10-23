@@ -80,10 +80,15 @@ describe('LandingClient', () => {
     expect(screen.getByRole('link', { name: 'landing.nav.links.control' })).toHaveAttribute('href', '#control');
   });
 
-  it('no longer embeds the demo video; the hero points at the real captures instead', () => {
+  it('the hero embeds the vertical demo short (privacy-enhanced) and still points at the real captures', () => {
     const { container } = renderWithHost(<LandingClient />);
-    expect(container.querySelector('iframe')).toBeNull();
+    const frames = container.querySelectorAll('iframe');
+    expect(frames).toHaveLength(1);
+    expect(frames[0]).toHaveAttribute('src', expect.stringMatching(/^https:\/\/www\.youtube-nocookie\.com\/embed\/-i3DmNClIZE\?/));
+    expect(frames[0]).toHaveAttribute('title', 'landing.hero.videoTitle');
     expect(container.querySelector('section#video')).toBeNull();
+    // The MCP hub diagram moved from the hero to the interfaces section.
+    expect(container.querySelector('#anywhere svg[aria-label="landing.connect.diagramAlt"]')).not.toBeNull();
     expect(screen.getByRole('link', { name: 'landing.hero.ctaSecondary' })).toHaveAttribute(
       'href',
       '#evidence',

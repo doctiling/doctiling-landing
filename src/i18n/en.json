@@ -250,7 +250,8 @@
         "success": "Done — check your inbox. Your invitation is on its way.",
         "details": "Tell us more about your case"
       },
-      "ctaSelfHost": "Install it free on your machine"
+      "ctaSelfHost": "Install it free on your machine",
+      "ctaParadigm": "What is a knowledge base?"
     },
     "showcase": {
       "eyebrow": "the studio, live",
@@ -687,6 +688,101 @@
           "label": "per query for hybrid keyword + semantic fusion, no GPU"
         }
       }
+    },
+    "paradigm": {
+      "eyebrow": "what is a knowledge base?",
+      "title": "A new paradigm: your data is built and queried by conversation.",
+      "lede": "A knowledge base is neither a folder of files nor a rigid database. Tables and documents live in one place, the structure grows as you need it, and an agent queries and updates it in plain language — no forms, no SQL, no migrations.",
+      "pillars": {
+        "mixed": {
+          "title": "Tables and prose, together",
+          "body": "Clients, opportunities and projects as table documents; contracts, minutes and history as text documents. All in the same base, all searchable at once."
+        },
+        "ask": {
+          "title": "Questions, not queries",
+          "body": "Ask the way you would ask a colleague. The agent crosses tables and text and answers with a citation to the exact block each fact comes from."
+        },
+        "write": {
+          "title": "The agent writes too",
+          "body": "“Register a client”, “move this opportunity to proposal”: the agent adds rows, updates cells and drafts documents. The base builds itself while you work."
+        }
+      },
+      "base": {
+        "name": "Base · Sales CRM",
+        "scope": "5 documents"
+      },
+      "kinds": {
+        "table": "table",
+        "prose": "text"
+      },
+      "docs": {
+        "clients": "Clients",
+        "opportunities": "Opportunities",
+        "projects": "Projects",
+        "contracts": "Signed contracts",
+        "history": "Meeting history"
+      },
+      "agent": {
+        "name": "Base agent",
+        "scope": "reads and writes",
+        "tryLabel": "Try an instruction"
+      },
+      "answerLabel": "answer",
+      "prompts": {
+        "contracts": {
+          "chip": "Which contracts are open today?",
+          "question": "Which contracts do we have open today?",
+          "tools": "search_knowledge_base · aggregate_rows(Clients) → 3 active contracts",
+          "answer": "3 open contracts: Andina Foods (ends Nov 30, renewal under review), Grupo Meridiano (annual support) and Lumen Salud (phase 2 in progress). [Andina contract · §4] [Clients · row 12]"
+        },
+        "funnel": {
+          "chip": "What does the sales funnel look like?",
+          "question": "What does this quarter’s sales funnel look like?",
+          "tools": "aggregate_rows(Opportunities, by stage) · search_knowledge_base(History)",
+          "answer": "Lead-to-won conversion: 8 %. The bottleneck is at proposal: 2 of the 9 have gone 30+ days without follow-up, per the meeting history. [Opportunities] [Meeting Oct 14]"
+        },
+        "register": {
+          "chip": "Register a new client",
+          "question": "Register Cóndor Energía as a new client, energy sector, owner Ana, stage lead.",
+          "tools": "append_table_rows(Clients) → 1 row added",
+          "answer": "Done: Cóndor Energía is now in Clients. It already shows in the funnel as a lead and every future question includes it."
+        }
+      },
+      "funnel": {
+        "lead": "Lead",
+        "qualified": "Qualified",
+        "proposal": "Proposal",
+        "won": "Won"
+      },
+      "table": {
+        "cols": {
+          "name": "Client",
+          "sector": "Sector",
+          "owner": "Owner",
+          "stage": "Stage"
+        },
+        "rows": {
+          "r1": {
+            "name": "Andina Foods",
+            "sector": "Food",
+            "owner": "Carlos",
+            "stage": "Won"
+          },
+          "r2": {
+            "name": "Lumen Salud",
+            "sector": "Health",
+            "owner": "Marta",
+            "stage": "Won"
+          },
+          "new": {
+            "name": "Cóndor Energía",
+            "sector": "Energy",
+            "owner": "Ana",
+            "stage": "Lead"
+          }
+        }
+      },
+      "footnote": "Illustrative example over a fictional CRM. The tools shown are the ones the Doctiling agent really uses on table and text documents."
     },
     "compare": {
       "eyebrow": "why a curated base",

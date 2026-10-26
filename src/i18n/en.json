@@ -185,7 +185,20 @@
           "title": "Runs where your data must live",
           "body": "Use the managed cloud, or self-host the very same product on your own infrastructure with a local database — one configuration switch."
         }
-      }
+      },
+      "frameworks": {
+        "nist": "NIST CSF 2.0",
+        "iso27001": "ISO/IEC 27001:2022 · Annex A",
+        "privacy": "Personal data (Ley 1581 · GDPR)",
+        "dpa": "Data Processing Agreement"
+      },
+      "statuses": {
+        "selfAssessed": "Self-assessed",
+        "mappingPublished": "Mapping published",
+        "notCertified": "Not certified",
+        "inForce": "In force"
+      },
+      "trustCenter": "Open the trust center: every claim linked to its evidence"
     },
     "nav": {
       "brand": "Doctiling",

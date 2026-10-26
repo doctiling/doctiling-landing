@@ -185,7 +185,20 @@
           "title": "Corre donde tus datos deben vivir",
           "body": "Usa la nube gestionada o autoaloja el mismo producto en tu propia infraestructura con base de datos local — un solo cambio de configuración."
         }
-      }
+      },
+      "frameworks": {
+        "nist": "NIST CSF 2.0",
+        "iso27001": "ISO/IEC 27001:2022 · Anexo A",
+        "privacy": "Datos personales (Ley 1581 · RGPD)",
+        "dpa": "Acuerdo de tratamiento (DPA)"
+      },
+      "statuses": {
+        "selfAssessed": "Autoevaluado",
+        "mappingPublished": "Correspondencia publicada",
+        "notCertified": "No certificado",
+        "inForce": "Vigente"
+      },
+      "trustCenter": "Abrir el centro de confianza: cada afirmación enlazada a su evidencia"
     },
     "nav": {
       "brand": "Doctiling",

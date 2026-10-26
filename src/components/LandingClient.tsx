@@ -19,6 +19,7 @@ import { CompareSection } from './CompareSection';
 import { BenchmarkSection } from './BenchmarkSection';
 import { EvidenceSection } from './EvidenceSection';
 import { ControlSection } from './ControlSection';
+import { SecuritySection } from './SecuritySection';
 import { PlatformSection } from './PlatformSection';
 import { InterfacesSection } from './InterfacesSection';
 import { VerticalsSection } from './VerticalsSection';
@@ -285,6 +286,8 @@ export default function LandingClient() {
       <EvidenceSection />
 
       <ControlSection />
+
+      <SecuritySection />
 
       <PlatformSection />
 

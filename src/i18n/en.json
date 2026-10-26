@@ -165,25 +165,25 @@
       }
     },
     "security": {
-      "eyebrow": "security & privacy",
-      "title": "Built from day one for controlled, private work.",
-      "lede": "Access, visibility and spending are governed by design — not bolted on later.",
+      "eyebrow": "security & governance",
+      "title": "AI your security team can sign off on.",
+      "lede": "Governance enforced by the product, not a policy PDF: you decide who gets in, what leaves and what the agent may do — and every action leaves evidence.",
       "items": {
         "access": {
-          "title": "Invitation-only access",
-          "body": "Sign-in is restricted to an approved allowlist. Nobody wanders in: every seat is granted explicitly — and can be revoked the same way."
+          "title": "Your directory, your access rules",
+          "body": "Sign-in through your corporate identity provider and its MFA, roles per workspace and per knowledge base, session limits, and signed access reviews ready for your audit."
         },
         "privacy": {
-          "title": "Private analyses in shared knowledge bases",
-          "body": "Share the corpus, not your drafts. Analyses and variants you create stay visible only to you unless you decide otherwise."
+          "title": "Confidential stays inside",
+          "body": "Classify knowledge bases and documents. Restricted content is never published, exported, served over MCP or sent to an external AI: the server blocks it, not good intentions."
         },
         "guardrails": {
-          "title": "Guardrails on every connection",
-          "body": "Outbound tools run over HTTPS only, with private networks and metadata endpoints blocked — and each user's AI spend is capped by a budget you control."
+          "title": "An audit trail nobody can edit",
+          "body": "Every sign-in, read, export, agent query and MCP call is recorded for at least a year, and the database refuses to alter it. Export it or forward it to your SIEM."
         },
         "deploy": {
-          "title": "Runs where your data must live",
-          "body": "Use the managed cloud, or self-host the very same product on your own infrastructure with a local database — one configuration switch."
+          "title": "Backed up, recoverable, inside your boundary",
+          "body": "Encrypted backups that restore and verify themselves every week. And when your data must stay home, self-host the very same product."
         }
       },
       "frameworks": {
@@ -198,7 +198,7 @@
         "notCertified": "Not certified",
         "inForce": "In force"
       },
-      "trustCenter": "Open the trust center: every claim linked to its evidence"
+      "trustCenter": "Open the trust center: every claim with its evidence"
     },
     "nav": {
       "brand": "Doctiling",

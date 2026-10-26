@@ -15,6 +15,7 @@ import { DemoRequestForm } from './DemoRequestForm';
 import { HeroAccessForm } from './HeroAccessForm';
 import { StickyCta } from './StickyCta';
 import { FaqSection } from './FaqSection';
+import { ParadigmSection } from './ParadigmSection';
 import { CompareSection } from './CompareSection';
 import { BenchmarkSection } from './BenchmarkSection';
 import { EvidenceSection } from './EvidenceSection';
@@ -227,6 +228,12 @@ export default function LandingClient() {
               </p>
               <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2">
                 <a
+                  href="#paradigm"
+                  className="text-sm font-medium text-accent underline-offset-4 hover:underline"
+                >
+                  {t('landing.hero.ctaParadigm')}
+                </a>
+                <a
                   href="#evidence"
                   className="text-sm text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
                 >
@@ -278,6 +285,8 @@ export default function LandingClient() {
           </div>
         </div>
       </section>
+
+      <ParadigmSection />
 
       <CompareSection />
 

@@ -250,7 +250,8 @@
         "success": "Listo — revisa tu correo. Te enviamos la invitación en breve.",
         "details": "Cuéntanos más sobre tu caso"
       },
-      "ctaSelfHost": "Instálalo gratis en tu máquina"
+      "ctaSelfHost": "Instálalo gratis en tu máquina",
+      "ctaParadigm": "¿Qué es una base de conocimiento?"
     },
     "showcase": {
       "eyebrow": "el estudio en vivo",
@@ -687,6 +688,101 @@
           "label": "por consulta en la fusión híbrida léxica + semántica, sin GPU"
         }
       }
+    },
+    "paradigm": {
+      "eyebrow": "¿qué es una base de conocimiento?",
+      "title": "Un nuevo paradigma: tus datos se construyen y se consultan conversando.",
+      "lede": "Una base de conocimiento no es una carpeta de archivos ni una base de datos rígida. Tablas y documentos conviven en un mismo lugar, la estructura crece a medida que la necesitas y un agente la consulta y la actualiza en lenguaje natural — sin formularios, sin SQL, sin migraciones.",
+      "pillars": {
+        "mixed": {
+          "title": "Tablas y prosa, juntas",
+          "body": "Clientes, oportunidades y proyectos como documentos tipo tabla; contratos, actas e históricos como documentos de texto. Todo en la misma base, todo buscable a la vez."
+        },
+        "ask": {
+          "title": "Preguntas, no consultas",
+          "body": "Preguntas como le preguntarías a un colega. El agente cruza tablas y textos y responde con la cita al bloque exacto de donde sale cada dato."
+        },
+        "write": {
+          "title": "El agente también escribe",
+          "body": "«Registra un cliente», «mueve esta oportunidad a propuesta»: el agente agrega filas, actualiza celdas y redacta documentos. La base se construye mientras trabajas."
+        }
+      },
+      "base": {
+        "name": "Base · CRM comercial",
+        "scope": "5 documentos"
+      },
+      "kinds": {
+        "table": "tabla",
+        "prose": "texto"
+      },
+      "docs": {
+        "clients": "Clientes",
+        "opportunities": "Oportunidades",
+        "projects": "Proyectos",
+        "contracts": "Contratos firmados",
+        "history": "Histórico de reuniones"
+      },
+      "agent": {
+        "name": "Agente de la base",
+        "scope": "lee y escribe",
+        "tryLabel": "Prueba una instrucción"
+      },
+      "answerLabel": "respuesta",
+      "prompts": {
+        "contracts": {
+          "chip": "¿Qué contratos abiertos tenemos hoy?",
+          "question": "¿Qué contratos abiertos tenemos hoy?",
+          "tools": "search_knowledge_base · aggregate_rows(Clientes) → 3 contratos vigentes",
+          "answer": "3 contratos abiertos: Andina Foods (vence 30 nov, renovación en revisión), Grupo Meridiano (soporte anual) y Lumen Salud (fase 2 en ejecución). [Contrato Andina · §4] [Clientes · fila 12]"
+        },
+        "funnel": {
+          "chip": "¿Cuál es el funnel de ventas?",
+          "question": "¿Cuál es el funnel de ventas de este trimestre?",
+          "tools": "aggregate_rows(Oportunidades, por etapa) · search_knowledge_base(Histórico)",
+          "answer": "Conversión de lead a ganada: 8 %. El cuello de botella está en propuesta: 2 de las 9 llevan más de 30 días sin seguimiento, según el histórico de reuniones. [Oportunidades] [Reunión 14 oct]"
+        },
+        "register": {
+          "chip": "Registra un nuevo cliente",
+          "question": "Registra a Cóndor Energía como cliente nuevo, sector energía, responsable Ana, etapa lead.",
+          "tools": "append_table_rows(Clientes) → 1 fila agregada",
+          "answer": "Listo: Cóndor Energía quedó registrado en Clientes. Ya aparece en el funnel como lead y cualquier pregunta futura lo incluye."
+        }
+      },
+      "funnel": {
+        "lead": "Lead",
+        "qualified": "Calificado",
+        "proposal": "Propuesta",
+        "won": "Ganado"
+      },
+      "table": {
+        "cols": {
+          "name": "Cliente",
+          "sector": "Sector",
+          "owner": "Responsable",
+          "stage": "Etapa"
+        },
+        "rows": {
+          "r1": {
+            "name": "Andina Foods",
+            "sector": "Alimentos",
+            "owner": "Carlos",
+            "stage": "Ganado"
+          },
+          "r2": {
+            "name": "Lumen Salud",
+            "sector": "Salud",
+            "owner": "Marta",
+            "stage": "Ganado"
+          },
+          "new": {
+            "name": "Cóndor Energía",
+            "sector": "Energía",
+            "owner": "Ana",
+            "stage": "Lead"
+          }
+        }
+      },
+      "footnote": "Ejemplo ilustrativo con un CRM ficticio. Las herramientas que aparecen son las que el agente de Doctiling usa de verdad sobre documentos tipo tabla y de texto."
     },
     "compare": {
       "eyebrow": "por qué una base curada",

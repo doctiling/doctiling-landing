@@ -165,25 +165,25 @@
       }
     },
     "security": {
-      "eyebrow": "seguridad y privacidad",
-      "title": "Construido desde el día uno para trabajo controlado y privado.",
-      "lede": "El acceso, la visibilidad y el gasto se gobiernan por diseño — no se parchan después.",
+      "eyebrow": "seguridad y gobierno",
+      "title": "IA que tu equipo de seguridad puede aprobar.",
+      "lede": "El gobierno lo aplica el producto, no un PDF de políticas: tú decides quién entra, qué sale y qué puede hacer el agente — y cada acción deja evidencia.",
       "items": {
         "access": {
-          "title": "Acceso solo por invitación",
-          "body": "El inicio de sesión se restringe a una lista aprobada. Nadie entra por accidente: cada cupo se otorga explícitamente — y se revoca igual."
+          "title": "Tu directorio, tus reglas de acceso",
+          "body": "Inicio con tu proveedor de identidad corporativo y su MFA, roles por espacio y por base, límites de sesión y revisiones de acceso firmadas, listas para tu auditoría."
         },
         "privacy": {
-          "title": "Análisis privados en bases de conocimiento compartidas",
-          "body": "Comparte el corpus, no tus borradores. Los análisis y variantes que creas solo los ves tú, salvo que decidas lo contrario."
+          "title": "Lo confidencial no sale",
+          "body": "Clasifica bases y documentos. Lo restringido no se publica, no se exporta, no sale por MCP ni llega a una IA externa: lo impide el servidor, no la buena voluntad."
         },
         "guardrails": {
-          "title": "Barandas en cada conexión",
-          "body": "Las herramientas salientes corren solo por HTTPS, con redes privadas y endpoints de metadata bloqueados — y el gasto de IA de cada usuario tiene un tope que tú controlas."
+          "title": "Un rastro que nadie puede editar",
+          "body": "Cada entrada, lectura, exportación, consulta al agente y llamada MCP queda registrada al menos un año, y la base rechaza modificarla. Expórtala o envíala a tu SIEM."
         },
         "deploy": {
-          "title": "Corre donde tus datos deben vivir",
-          "body": "Usa la nube gestionada o autoaloja el mismo producto en tu propia infraestructura con base de datos local — un solo cambio de configuración."
+          "title": "Respaldado, recuperable y en tu frontera",
+          "body": "Respaldos cifrados que se restauran y verifican solos cada semana. Y si tus datos deben quedarse en casa, autoaloja el mismo producto."
         }
       },
       "frameworks": {
@@ -198,7 +198,7 @@
         "notCertified": "No certificado",
         "inForce": "Vigente"
       },
-      "trustCenter": "Abrir el centro de confianza: cada afirmación enlazada a su evidencia"
+      "trustCenter": "Ver el centro de confianza: cada afirmación con su evidencia"
     },
     "nav": {
       "brand": "Doctiling",

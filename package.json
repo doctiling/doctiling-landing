@@ -1,6 +1,6 @@
 {
   "name": "@doctiling/landing",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "Doctiling marketing surface (landing + documents, connect and verticals pages) as a host-agnostic Next.js package",
   "main": "src/index.ts",
   "types": "src/index.ts",

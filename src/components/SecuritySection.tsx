@@ -1,9 +1,19 @@
 'use client';
 
 import { EyeOff, KeyRound, Server, ShieldCheck } from 'lucide-react';
-import { useLandingText } from '../host';
+import { useLandingHost } from '../host';
 import { H2, MiniTitle } from '@doctiling/ui/atoms/typography';
 import { Reveal } from './Reveal';
+
+// The frameworks row of the trust center, summarized: states from the same closed
+// vocabulary as the product's /security page, never a number and never a seal —
+// the numbers live there, computed from the security profile.
+export const FRAMEWORKS = [
+  { key: 'nist', statuses: ['selfAssessed'] },
+  { key: 'iso27001', statuses: ['mappingPublished', 'notCertified'] },
+  { key: 'privacy', statuses: ['inForce'] },
+  { key: 'dpa', statuses: ['inForce'] },
+] as const;
 
 const SECURITY_ITEMS = [
   { key: 'access', Icon: KeyRound },
@@ -13,7 +23,7 @@ const SECURITY_ITEMS = [
 ] as const;
 
 export function SecuritySection() {
-  const { t } = useLandingText();
+  const { t, href } = useLandingHost();
 
   return (
     <section id="security" className="border-t border-border bg-card/60">
@@ -44,6 +54,25 @@ export function SecuritySection() {
             </div>
           </Reveal>
         </div>
+        <Reveal delay={200} className="mt-16">
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {FRAMEWORKS.map(({ key, statuses }) => (
+              <li key={key} className="flex flex-col gap-3 border border-border bg-card p-5" data-testid="framework">
+                <p className="text-sm font-medium">{t(`landing.security.frameworks.${key}`)}</p>
+                <div className="flex flex-wrap gap-2">
+                  {statuses.map((s) => (
+                    <span key={s} className="border border-border px-2 py-0.5 text-[11px] uppercase tracking-widest text-muted-foreground">
+                      {t(`landing.security.statuses.${s}`)}
+                    </span>
+                  ))}
+                </div>
+              </li>
+            ))}
+          </ul>
+          <a href={href('security')} className="mt-6 inline-block text-sm underline-offset-4 hover:underline">
+            {t('landing.security.trustCenter')} →
+          </a>
+        </Reveal>
       </div>
     </section>
   );

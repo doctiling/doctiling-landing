@@ -16,6 +16,7 @@ import { Button } from '@doctiling/ui/atoms/button';
 import { Display, H2, MiniTitle } from '@doctiling/ui/atoms/typography';
 import { Reveal } from './Reveal';
 import { BrowserFrame } from '@doctiling/ui/molecules/browser-frame';
+import { ChatMock } from './ChatMock';
 
 const VERTICALS = [
   { key: 'legal', Icon: Scale },
@@ -181,7 +182,25 @@ export default function VerticalsPageClient() {
               </Reveal>
             </div>
 
-            <Reveal delay={160} className="mt-14">
+            <Reveal delay={140} className="mt-14">
+              <MiniTitle className="mb-3">{t('verticalsPage.labels.chat')}</MiniTitle>
+              <ChatMock
+                label={t('verticalsPage.labels.chat')}
+                className="max-w-3xl"
+                lines={[
+                  { kind: 'u', text: t(`verticalsPage.items.${key}.chat.u`) },
+                  { kind: 't', text: t(`verticalsPage.items.${key}.chat.t`) },
+                  {
+                    kind: 'a',
+                    text: t(`verticalsPage.items.${key}.chat.a`),
+                    cites: [t(`verticalsPage.items.${key}.chat.c1`), t(`verticalsPage.items.${key}.chat.c2`)],
+                  },
+                  { kind: 'x', text: t(`verticalsPage.items.${key}.chat.x`) },
+                ]}
+              />
+            </Reveal>
+
+            <Reveal delay={160} className="mt-10">
               <BrowserFrame
                 src={`/screenshots/niche-${key}.webp`}
                 alt={t('verticalsPage.shot.nicheAlt', { field: t(`verticalsPage.items.${key}.title`) })}

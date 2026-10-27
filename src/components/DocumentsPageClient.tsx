@@ -5,6 +5,7 @@ import { SubPageShell } from './SubPageShell';
 import { DocTypesSection } from './DocTypesSection';
 import { CycleSection } from './CycleSection';
 import { AgentOutputSection } from './AgentOutputSection';
+import { EvidenceSection } from './EvidenceSection';
 import { ProductShowcase } from './ProductShowcase';
 
 export default function DocumentsPageClient() {
@@ -23,6 +24,7 @@ export default function DocumentsPageClient() {
       <DocTypesSection hideHeader />
       <CycleSection />
       <AgentOutputSection />
+      <EvidenceSection />
       <ProductShowcase />
     </SubPageShell>
   );

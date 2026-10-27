@@ -77,26 +77,29 @@ describe('LandingClient', () => {
     expect(screen.getByText('landing.nav.links.selfHost')).toBeInTheDocument();
     expect(screen.getByText('landing.nav.links.faq')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'landing.nav.links.benchmarks' })).toHaveAttribute('href', '#benchmarks');
-    expect(screen.getByRole('link', { name: 'landing.nav.links.control' })).toHaveAttribute('href', '#control');
+    expect(screen.getByRole('link', { name: 'landing.nav.links.control' })).toHaveAttribute('href', '/es/connect#control');
   });
 
-  it('the hero shows the demo short behind a click-to-load poster and still points at the real captures', () => {
+  it('the hero shows the live chat demo (the video short moved out of the hero) and still points at the real captures', () => {
     const { container } = renderWithHost(<LandingClient />);
     expect(container.querySelector('iframe')).toBeNull();
-    expect(screen.getByRole('button', { name: 'landing.hero.videoPlay' })).toBeInTheDocument();
+    expect(screen.getByLabelText('landing.heroDemo.label')).toBeInTheDocument();
+    expect(screen.getByText('landing.heroDemo.scripts.legal.u1')).toBeInTheDocument();
+    expect(container.querySelector('section#differentiator')).not.toBeNull();
     expect(container.querySelector('section#video')).toBeNull();
     // The MCP hub diagram moved from the hero to the interfaces section.
     expect(container.querySelector('#anywhere svg[aria-label="landing.connect.diagramAlt"]')).not.toBeNull();
     expect(screen.getByRole('link', { name: 'landing.hero.ctaSecondary' })).toHaveAttribute(
       'href',
-      '#evidence',
+      '/es/documents#evidence',
     );
   });
 
-  it('leads with proof: comparison, then benchmarks, then real captures, then data control', () => {
+  it('leads with the differentiator, then benchmarks; captures and data control live on their own pages', () => {
     const { container } = renderWithHost(<LandingClient />);
     const ids = Array.from(container.querySelectorAll('section[id]')).map((s) => s.id);
-    const order = ['compare', 'benchmarks', 'evidence', 'control', 'platform', 'anywhere', 'stack', 'demo'];
+    for (const gone of ['paradigm', 'compare', 'evidence', 'control']) expect(ids).not.toContain(gone);
+    const order = ['differentiator', 'benchmarks', 'platform', 'anywhere', 'stack', 'demo'];
     for (const id of order) expect(ids).toContain(id);
     expect(order.map((id) => ids.indexOf(id))).toEqual([...order.map((id) => ids.indexOf(id))].sort((a, b) => a - b));
   });

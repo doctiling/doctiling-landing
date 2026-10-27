@@ -15,11 +15,7 @@ import { DemoRequestForm } from './DemoRequestForm';
 import { HeroAccessForm } from './HeroAccessForm';
 import { StickyCta } from './StickyCta';
 import { FaqSection } from './FaqSection';
-import { ParadigmSection } from './ParadigmSection';
-import { CompareSection } from './CompareSection';
 import { BenchmarkSection } from './BenchmarkSection';
-import { EvidenceSection } from './EvidenceSection';
-import { ControlSection } from './ControlSection';
 import { SecuritySection } from './SecuritySection';
 import { PlatformSection } from './PlatformSection';
 import { InterfacesSection } from './InterfacesSection';
@@ -27,20 +23,19 @@ import { VerticalsSection } from './VerticalsSection';
 import { TiersSection } from './TiersSection';
 import { LandingFooter } from './LandingFooter';
 import { Reveal } from './Reveal';
-import { HeroVideo } from './HeroVideo';
+import { HeroChatDemo } from './HeroChatDemo';
+import { DifferentiatorSection } from './DifferentiatorSection';
 
 const INTEGRATION_KEYS = ['corp', 'enterprise', 'agents'] as const;
 // Outcome numbers, all measured — the benchmarks section carries the method.
 const PROOF_KEYS = ['recall', 'tasks', 'language', 'latency'] as const;
-// Hero demo: https://www.youtube.com/shorts/-i3DmNClIZE
-const HERO_VIDEO_ID = '-i3DmNClIZE';
 
 const SECTION = 'mx-auto max-w-7xl px-5 sm:px-6 lg:px-10';
 const NAV_LINK =
   'whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-foreground/75 transition-colors hover:bg-card hover:text-foreground';
 
 export default function LandingClient() {
-  const { t, locale, isAuthenticated: isAuthed, features, href, slots } = useLandingHost();
+  const { t, locale, isAuthenticated: isAuthed, features, href } = useLandingHost();
   const INTEGRATIONS_ENABLED = features.integrations;
   const signinHref = href('signin');
   const appHref = href('app');
@@ -95,9 +90,9 @@ export default function LandingClient() {
             <a href="#benchmarks" className={NAV_LINK}>
               {t('landing.nav.links.benchmarks')}
             </a>
-            <a href="#control" className={NAV_LINK}>
+            <Link href={`/${locale}/connect#control`} className={NAV_LINK}>
               {t('landing.nav.links.control')}
-            </a>
+            </Link>
             <a href="#stack" className={NAV_LINK}>
               {t('landing.nav.links.stack')}
             </a>
@@ -107,7 +102,7 @@ export default function LandingClient() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="rounded-xl">
                 <DropdownMenuItem asChild>
-                  <a href="#evidence">{t('landing.nav.links.evidence')}</a>
+                  <Link href={`/${locale}/documents#evidence`}>{t('landing.nav.links.evidence')}</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href={selfHostHref}>{t('landing.nav.links.selfHost')}</Link>
@@ -148,7 +143,6 @@ export default function LandingClient() {
                 ES
               </Link>
             </div>
-            {slots?.navExtras}
             {isAuthed ? (
               <Button asChild variant="pill" size="pill-sm">
                 <Link href={appHref}>
@@ -180,38 +174,51 @@ export default function LandingClient() {
             <div className="landing-enter">
               <MiniTitle className="mb-7 text-accent">{t('landing.hero.eyebrow')}</MiniTitle>
             </div>
-            <Display as="h1" className="text-balance leading-[1.02] sm:text-6xl lg:text-[3.5rem] xl:text-7xl">
-              {/* One line from sm up, so the hand-drawn underline sits under the whole claim. */}
-              <span className="landing-enter relative inline-block sm:whitespace-nowrap" style={{ animationDelay: '80ms' }}>
-                {t('landing.hero.titleLine1')}
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 420 14"
-                  className="pointer-events-none absolute -bottom-2 left-0 h-3 w-full text-destructive/80 lg:-bottom-3 lg:h-4"
-                  fill="none"
-                  preserveAspectRatio="none"
-                >
-                  <path
-                    className="landing-underline"
-                    d="M3 10 C 70 2, 140 2, 210 7 S 350 12, 417 4"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </span>
-              <span
-                className="landing-enter mt-3 block font-display italic text-accent"
-                style={{ animationDelay: '220ms' }}
-              >
-                {t('landing.hero.titleAccent')}
+            <Display as="h1" className="text-balance leading-[1.04] sm:text-6xl lg:text-[3.4rem] xl:text-[4rem]">
+              <span className="landing-enter block" style={{ animationDelay: '80ms' }}>
+                {t('landing.hero.titleLine1')}{' '}
+                <span className="relative inline-block whitespace-nowrap">
+                  {t('landing.hero.titleMark')}
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 420 14"
+                    className="pointer-events-none absolute -bottom-1 left-0 h-3 w-full text-destructive/80 lg:-bottom-2 lg:h-4"
+                    fill="none"
+                    preserveAspectRatio="none"
+                  >
+                    <path
+                      className="landing-underline"
+                      d="M3 10 C 70 2, 140 2, 210 7 S 350 12, 417 4"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </span>
               </span>
             </Display>
-            <div className="landing-enter" style={{ animationDelay: '360ms' }}>
-              <Lede className="mt-8 max-w-xl text-balance font-body not-italic text-base leading-relaxed text-muted-foreground sm:text-lg lg:text-xl">
-                {t('landing.hero.lede')}
-              </Lede>
+            <p
+              className="landing-enter mt-5 max-w-xl font-display text-2xl italic leading-snug text-accent sm:text-3xl"
+              style={{ animationDelay: '220ms' }}
+            >
+              {t('landing.hero.titleAccent')}
+            </p>
+            <div className="landing-enter mt-9 grid max-w-2xl grid-cols-1 gap-6 sm:grid-cols-2" style={{ animationDelay: '360ms' }}>
+              <div className="border-t border-border pt-4">
+                <MiniTitle className="mb-2 text-muted-foreground">{t('landing.hero.todayLabel')}</MiniTitle>
+                <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">{t('landing.hero.lede')}</p>
+              </div>
+              <div className="border-t-2 border-primary pt-4">
+                <MiniTitle className="mb-2 text-primary">{t('landing.hero.withLabel')}</MiniTitle>
+                <p className="text-sm leading-relaxed text-foreground/85 sm:text-base">{t('landing.hero.lede2')}</p>
+              </div>
             </div>
+            <p
+              className="landing-enter mt-8 max-w-xl border-l-[3px] border-primary pl-4 font-display text-xl leading-snug text-foreground sm:text-2xl"
+              style={{ animationDelay: '420ms' }}
+            >
+              {t('landing.hero.ledeStrong')}
+            </p>
             <div className="landing-enter mt-10" style={{ animationDelay: '480ms' }}>
               {isAuthed ? (
                 <Button asChild variant="pill" size="pill">
@@ -228,17 +235,17 @@ export default function LandingClient() {
               </p>
               <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2">
                 <a
-                  href="#paradigm"
+                  href="#differentiator"
                   className="text-sm font-medium text-accent underline-offset-4 hover:underline"
                 >
                   {t('landing.hero.ctaParadigm')}
                 </a>
-                <a
-                  href="#evidence"
+                <Link
+                  href={`/${locale}/documents#evidence`}
                   className="text-sm text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
                 >
                   {t('landing.hero.ctaSecondary')}
-                </a>
+                </Link>
                 <Link
                   href={selfHostHref}
                   className="inline-flex items-center gap-1.5 text-sm text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
@@ -250,7 +257,7 @@ export default function LandingClient() {
           </div>
 
           <div className="landing-enter lg:col-span-5" style={{ animationDelay: '300ms' }}>
-            <HeroVideo videoId={HERO_VIDEO_ID} poster="/landing/video/hero-short.webp" />
+            <HeroChatDemo />
           </div>
         </div>
       </section>
@@ -286,15 +293,9 @@ export default function LandingClient() {
         </div>
       </section>
 
-      <ParadigmSection />
-
-      <CompareSection />
+      <DifferentiatorSection />
 
       <BenchmarkSection />
-
-      <EvidenceSection />
-
-      <ControlSection />
 
       <SecuritySection />
 

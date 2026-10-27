@@ -1,6 +1,6 @@
 'use client';
 
-import { EyeOff, KeyRound, Server, ShieldCheck } from 'lucide-react';
+import { EyeOff, FileCheck2, FileSignature, KeyRound, Server, ShieldCheck, UserRoundCheck } from 'lucide-react';
 import { useLandingHost } from '../host';
 import { H2, MiniTitle } from '@doctiling/ui/atoms/typography';
 import { Reveal } from './Reveal';
@@ -9,10 +9,10 @@ import { Reveal } from './Reveal';
 // vocabulary as the product's /security page, never a number and never a seal —
 // the numbers live there, computed from the security profile.
 export const FRAMEWORKS = [
-  { key: 'nist', statuses: ['selfAssessed'] },
-  { key: 'iso27001', statuses: ['mappingPublished', 'notCertified'] },
-  { key: 'privacy', statuses: ['inForce'] },
-  { key: 'dpa', statuses: ['inForce'] },
+  { key: 'nist', statuses: ['selfAssessed'], Icon: ShieldCheck },
+  { key: 'iso27001', statuses: ['mappingPublished', 'notCertified'], Icon: FileCheck2 },
+  { key: 'privacy', statuses: ['inForce'], Icon: UserRoundCheck },
+  { key: 'dpa', statuses: ['inForce'], Icon: FileSignature },
 ] as const;
 
 const SECURITY_ITEMS = [
@@ -56,9 +56,11 @@ export function SecuritySection() {
         </div>
         <Reveal delay={200} className="mt-16">
           <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {FRAMEWORKS.map(({ key, statuses }) => (
+            {FRAMEWORKS.map(({ key, statuses, Icon }) => (
               <li key={key} className="flex flex-col gap-3 border border-border bg-card p-5" data-testid="framework">
+                <Icon className="size-5 text-accent" aria-hidden="true" />
                 <p className="text-sm font-medium">{t(`landing.security.frameworks.${key}`)}</p>
+                <p className="text-xs leading-relaxed text-muted-foreground">{t(`landing.security.frameworkNotes.${key}`)}</p>
                 <div className="flex flex-wrap gap-2">
                   {statuses.map((s) => (
                     <span key={s} className="border border-border px-2 py-0.5 text-[11px] uppercase tracking-widest text-muted-foreground">

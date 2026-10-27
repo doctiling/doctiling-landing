@@ -6,6 +6,7 @@ import { ConnectSection } from './ConnectSection';
 import { SharingSection } from './SharingSection';
 import { SecuritySection } from './SecuritySection';
 import { SelfHostSection } from './SelfHostSection';
+import { ControlSection } from './ControlSection';
 
 export default function ConnectPageClient() {
   const { t, locale } = useLandingText();
@@ -23,6 +24,7 @@ export default function ConnectPageClient() {
       <ConnectSection hideHeader />
       <SharingSection />
       <SecuritySection />
+      <ControlSection />
       <SelfHostSection />
     </SubPageShell>
   );

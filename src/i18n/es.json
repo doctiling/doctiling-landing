@@ -117,7 +117,7 @@
           "body": "El bot de tu chat corporativo consume el endpoint MCP: la gente pregunta en su canal de siempre y la respuesta vuelve citando el documento fuente."
         },
         "code": {
-          "short": "Agente de terminal",
+          "short": "Agente",
           "title": "Agentes y editores de código",
           "body": "Los clientes MCP de escritorio y los asistentes de código consultan tus bases como fuente de verdad. Se acabó pegar media wiki dentro del prompt."
         },
@@ -198,7 +198,13 @@
         "notCertified": "No certificado",
         "inForce": "Vigente"
       },
-      "trustCenter": "Ver el centro de confianza: cada afirmación con su evidencia"
+      "trustCenter": "Ver el centro de confianza: cada afirmación con su evidencia",
+      "frameworkNotes": {
+        "nist": "Perfil de ciberseguridad del producto, función por función, publicado y autoevaluado.",
+        "iso27001": "Correspondencia control por control con el Anexo A; sin auditoría de certificación todavía.",
+        "privacy": "Tratamiento de datos personales conforme a la Ley 1581 y el RGPD, con derechos ejercibles.",
+        "dpa": "Acuerdo de tratamiento de datos disponible para cada tenant, con subencargados listados."
+      }
     },
     "nav": {
       "brand": "Doctiling",
@@ -234,10 +240,10 @@
     "hero": {
       "videoTitle": "Video demo de Doctiling",
       "videoPlay": "Ver el demo",
-      "eyebrow": "doctiling · gestión del conocimiento con expertos y agentes de IA",
-      "titleLine1": "Conocimiento curado",
-      "titleAccent": "para tu equipo y tus agentes.",
-      "lede": "Doctiling convierte tus fuentes en bases de conocimiento que tus expertos curan y tus agentes de IA trabajan. Cada respuesta llega con la cita al bloque exacto.",
+      "eyebrow": "doctiling · procesos inteligentes con bases de conocimiento y agentes de IA",
+      "titleLine1": "No necesitas un sistema para",
+      "titleAccent": "Necesitas conocimiento organizado y un agente que lo ponga en marcha.",
+      "lede": "Hoy, automatizar un proceso suele significar construir pantallas, modelos de datos, permisos, integraciones y mantener otro sistema. O depender de correos y hojas de cálculo.",
       "freeBadge": "Acceso gratis patrocinado · por invitación · sin tarjeta",
       "ctaPrimary": "Solicitar acceso gratis",
       "ctaSecondary": "Ver capturas reales",
@@ -251,7 +257,12 @@
         "details": "Cuéntanos más sobre tu caso"
       },
       "ctaSelfHost": "Instálalo gratis en tu máquina",
-      "ctaParadigm": "¿Qué es una base de conocimiento?"
+      "ctaParadigm": "¿Qué es una base de conocimiento?",
+      "lede2": "Doctiling propone otra forma: organiza la información en bases de conocimiento con sus propias reglas de acceso y conecta un agente de IA que puede consultarla, relacionar datos y ejecutar acciones autorizadas en lenguaje natural.",
+      "ledeStrong": "Menos sistemas que construir. Más procesos que resolver.",
+      "titleMark": "cada proceso.",
+      "todayLabel": "hoy",
+      "withLabel": "con doctiling"
     },
     "showcase": {
       "eyebrow": "el estudio en vivo",
@@ -968,6 +979,301 @@
         "alt": "Captura real del chat móvil: la penalidad por OTIF del contrato con Andina Retail, calculada y citada a la cláusula 7.",
         "body": "El chat de tu base en el teléfono: pregunta en una reunión y la respuesta llega con la cláusula exacta citada."
       }
+    },
+    "heroDemo": {
+      "label": "Demo: la misma capa semántica sobre cuatro bases de conocimiento",
+      "pickDomain": "Elige un dominio",
+      "replay": "Repetir",
+      "footnote": "Consulta · cruza · registra · crea. En lenguaje natural, con permisos, cita y rastro. Bases ficticias; las herramientas son las reales del agente.",
+      "domains": {
+        "legal": "Legal",
+        "clinic": "Medicina",
+        "ops": "Operaciones",
+        "research": "Investigación"
+      },
+      "bases": {
+        "legal": {
+          "name": "Base · Legal del despacho",
+          "meta": "procesos + contratos · texto + tabla"
+        },
+        "clinic": {
+          "name": "Base · Consulta médica",
+          "meta": "pacientes + guías · tabla + texto"
+        },
+        "ops": {
+          "name": "Base · Operación y bodega",
+          "meta": "inventario + manuales · tabla + texto"
+        },
+        "research": {
+          "name": "Base · Revisión de literatura",
+          "meta": "38 papers · texto + grafo"
+        }
+      },
+      "scripts": {
+        "legal": {
+          "u1": "¿Revisa si tenemos procesos pendientes?",
+          "t1": "search_knowledge_base(Procesos) · aggregate_rows(Procesos, estado = pendiente)",
+          "a1": {
+            "text": "Hay 3 procesos pendientes: dos con audiencia este mes (Andina Retail, 14 nov; Inmobiliaria Sur, 21 nov) y uno esperando respuesta del juzgado.",
+            "cites": {
+              "c1": "Procesos · filas 4, 9, 12",
+              "c2": "Agenda · nov"
+            }
+          },
+          "u2": "Prepárame el resumen del de Andina para la audiencia.",
+          "t2": "get_document(Expediente Andina) · search_knowledge_base(pruebas) · create_document",
+          "a2": {
+            "text": "Listo. Creé «Resumen audiencia · Andina Retail» con hechos, pretensiones y las 6 pruebas citadas por bloque. Solo lo ven quienes tienen rol en Legal."
+          },
+          "x1": "✓ documento creado · Legal / Audiencias · rastro #c21e"
+        },
+        "clinic": {
+          "u1": "Registra una cita para el paciente Juan Pedro el jueves a las 9, control de hipertensión.",
+          "t1": "search_knowledge_base(Pacientes: Juan Pedro) · append_table_rows(Agenda) · permisos: médico ✓",
+          "a1": {
+            "text": "Cita registrada: Juan Pedro, jueves 30 oct 09:00, control de hipertensión. Su último control fue el 3 oct con ajuste de dosis.",
+            "cites": {
+              "c1": "Historia · 3 oct",
+              "c2": "Agenda · fila 18"
+            }
+          },
+          "x1": "✓ fila agregada · Agenda · rastro #9b02",
+          "u2": "¿Qué meta de presión aplica para su edad según la guía?",
+          "t2": "search_knowledge_base(GPC hipertensión 2024)",
+          "a2": {
+            "text": "Meta < 140/90 en mayores de 65 sin fragilidad; individualizar si hay fragilidad. Si no estuviera en tus fuentes, te lo diría.",
+            "cites": {
+              "c1": "GPC 2024 · §6.3"
+            }
+          }
+        },
+        "ops": {
+          "u1": "¿Qué referencias están bajo mínimo y quién es el proveedor aprobado?",
+          "t1": "aggregate_rows(Inventario, stock < mínimo) · search_knowledge_base(Proveedores)",
+          "a1": {
+            "text": "Dos: válvula 2\" (14/20) y bomba 1.5 HP (4/5). Proveedor aprobado para ambas: Hidrotec.",
+            "cites": {
+              "c1": "Inventario · filas 1, 3",
+              "c2": "Proveedores · §2"
+            }
+          },
+          "u2": "Cada lunes a las 6 arma el pedido de lo que esté bajo mínimo y avísale a compras.",
+          "t2": "schedule_job(lun 06:00) · tools: aggregate_rows, create_document, webhook(compras) · política del tenant ✓",
+          "a2": {
+            "text": "Job creado. Cada lunes a las 6 genera «Pedido semanal» citando el inventario y llama al webhook de compras. Puedes verlo y pausarlo en Jobs."
+          },
+          "x1": "✓ job programado · lun 06:00 · rastro #f1a7"
+        },
+        "research": {
+          "u1": "Consulta los papers sobre el efecto en adultos mayores, sintetiza todo y crea un documento con el análisis.",
+          "t1": "search_knowledge_base(38 papers) · compare_blocks · graph_neighborhood(efecto) · create_document",
+          "a1": {
+            "text": "12 papers relevantes. Ortega 2023 reporta efecto significativo; Lin & Park 2022 no lo encuentran en mayores de 70. Creé «Análisis · efecto en adultos mayores» con la síntesis, la tabla comparativa de métodos y las contradicciones, cada celda enlazada a su bloque.",
+            "cites": {
+              "c1": "Ortega · §4.2",
+              "c2": "Lin & Park · tabla 3"
+            }
+          },
+          "x1": "✓ documento creado · Investigación / Síntesis · 14 citas",
+          "u2": "Incluye a Baier 2021 como revisión narrativa.",
+          "t2": "update_table_rows(Papers) · permisos: autora ✓",
+          "a2": {
+            "text": "Listo: Baier 2021 incluido como revisión narrativa. Entra en la próxima síntesis y en la lista de referencias.",
+            "cites": {
+              "c1": "Papers · fila 38"
+            }
+          }
+        }
+      }
+    },
+    "differentiator": {
+      "eyebrow": "el diferenciador",
+      "title": "Un proceso ya no necesita un sistema. Necesita una base de conocimiento y un agente.",
+      "lede": "Hoy cada proceso interno (vacaciones, certificados, citas, pedidos) exige construir un sistema: modelo de datos, pantallas, permisos, integraciones y mantenimiento. O vive en correos y hojas de cálculo. Doctiling cambia el punto de partida: la información ya está organizada en bases de conocimiento con su propia jerarquía de acceso. El tenant es la capa semántica agéntica que las consulta y gestiona. Un agente pequeño, conectado a la base correcta, es el proceso.",
+      "before": {
+        "title": "Un sistema con pantallas",
+        "tag": "por cada proceso",
+        "nav": {
+          "home": "Inicio",
+          "vac": "Vacaciones",
+          "cert": "Certificados",
+          "appt": "Citas",
+          "reports": "Reportes"
+        },
+        "form": {
+          "type": "Tipo de solicitud",
+          "typeVal": "Vacaciones ▾",
+          "start": "Fecha inicio",
+          "end": "Fecha fin",
+          "dateHint": "dd/mm/aaaa",
+          "approver": "Aprobador",
+          "approverVal": "Seleccionar… ▾",
+          "cancel": "Cancelar",
+          "submit": "Enviar solicitud"
+        },
+        "step": "modelo de datos · formularios · estados · aprobaciones · integraciones",
+        "cost": "meses de trabajo · mantenimiento permanente · un sistema más que aprender"
+      },
+      "after": {
+        "title": "Un agente sobre la base",
+        "tag": "doctiling",
+        "chat": {
+          "u": "Quiero 5 días de vacaciones desde el 18 de noviembre.",
+          "t": "search_knowledge_base(Política) · aggregate_rows(Vacaciones) · append_table_rows",
+          "a": "Tienes 14 días disponibles y no cruza con el cierre contable. Registré la solicitud del 18 al 22 de noviembre en estado pendiente y avisé a tu jefa.",
+          "c1": "Política · §3",
+          "c2": "Vacaciones · fila 12",
+          "x": "✓ fila agregada · Gestión humana / Vacaciones · rastro #a41f"
+        },
+        "step": "la base ya existe, con sus permisos · el agente entra por MCP con token acotado",
+        "win": "Horas, no meses. Sin modelo de datos nuevo, sin pantalla nueva, sin consulta escrita."
+      },
+      "tree": {
+        "label": "Arquitectura: agentes y sistemas se conectan por MCP al tenant, que es la capa semántica agéntica de la empresa. Debajo del tenant están las bases de conocimiento. Cada base tiene su propia jerarquía: roles propietario, administrador, colaborador y lector, y por documento quién puede ver y quién puede escribir.",
+        "agents": {
+          "vac": {
+            "title": "Agente de vacaciones",
+            "sub": "chat del equipo",
+            "edge": "MCP · token acotado a una base"
+          },
+          "cert": {
+            "title": "Agente de certificados",
+            "sub": "chat del tenant",
+            "edge": "MCP · token acotado a una base"
+          },
+          "sys": {
+            "title": "Sistema interno",
+            "sub": "cliente MCP · sólo lectura",
+            "edge": "MCP · token de lectura"
+          }
+        },
+        "tenant": {
+          "title": "Tenant · Empresa = capa semántica agéntica",
+          "line1": "consulta · cruza · registra · actualiza · crea documentos · cita el bloque · aplica el rol de quien pregunta · deja rastro",
+          "line2": "identidad corporativa · modelo de IA por base · tope de gasto · auditoría · aquí no hay datos, sólo criterio"
+        },
+        "start": "bases de conocimiento: aquí empieza la jerarquía",
+        "rolesTitle": "roles de la base",
+        "docsTitle": "documentos · ve / escribe",
+        "bases": {
+          "hr": {
+            "name": "Gestión humana",
+            "roles": {
+              "owner": "propietaria · Ana (RR. HH.)",
+              "admin": "admin · Luis",
+              "collab": "colaboradores · equipo RR. HH.",
+              "reader": "lectores · toda la empresa"
+            },
+            "docs": {
+              "d1": {
+                "name": "Políticas",
+                "kind": "texto · interno",
+                "access": "ve: todos · escribe: admin"
+              },
+              "d2": {
+                "name": "Vacaciones",
+                "kind": "tabla · interno",
+                "access": "ve: RR. HH. · escribe: colaborador"
+              },
+              "d3": {
+                "name": "Empleados",
+                "kind": "tabla · restringido",
+                "access": "ve: admin · no sale por MCP ni IA"
+              },
+              "d4": {
+                "name": "Certificados",
+                "kind": "docs · restringido",
+                "access": "ve: admin · escribe: agente admin"
+              }
+            }
+          },
+          "legal": {
+            "name": "Legal",
+            "roles": {
+              "owner": "propietario · socio director",
+              "admin": "admin · abogada senior",
+              "collab": "colaboradores · abogados",
+              "reader": "lectores · nadie fuera de Legal"
+            },
+            "docs": {
+              "d1": {
+                "name": "Contratos",
+                "kind": "texto+tabla · interno",
+                "access": "ve: Legal · escribe: colaborador"
+              },
+              "d2": {
+                "name": "Procesos",
+                "kind": "tabla · restringido",
+                "access": "ve: abogados · escribe: admin"
+              },
+              "d3": {
+                "name": "Plantillas",
+                "kind": "texto · interno",
+                "access": "ve: Legal · escribe: admin"
+              }
+            }
+          },
+          "ops": {
+            "name": "Operaciones",
+            "roles": {
+              "owner": "propietario · jefe de planta",
+              "admin": "admin · bodega",
+              "collab": "colaboradores · compras",
+              "reader": "lectores · operarios"
+            },
+            "docs": {
+              "d1": {
+                "name": "Inventario",
+                "kind": "tabla · interno",
+                "access": "ve: Ops · escribe: bodega"
+              },
+              "d2": {
+                "name": "Manuales",
+                "kind": "texto · interno",
+                "access": "ve: Ops · escribe: admin"
+              },
+              "d3": {
+                "name": "Proveedores",
+                "kind": "grafo · interno",
+                "access": "ve: compras · escribe: compras"
+              }
+            }
+          },
+          "research": {
+            "name": "Investigación",
+            "roles": {
+              "owner": "propietaria · investigadora ppal.",
+              "admin": "admin · coautor",
+              "collab": "colaboradores · asistentes",
+              "reader": "lectores · público (wiki externa)"
+            },
+            "docs": {
+              "d1": {
+                "name": "Papers",
+                "kind": "texto · interno",
+                "access": "ve: equipo · escribe: colaborador"
+              },
+              "d2": {
+                "name": "Síntesis",
+                "kind": "docs · público",
+                "access": "ve: wiki externa · escribe: admin"
+              },
+              "d3": {
+                "name": "Datos crudos",
+                "kind": "tabla · privado",
+                "access": "ve: sólo la autora"
+              }
+            }
+          }
+        },
+        "foot": {
+          "private": "análisis privados por persona",
+          "endpoint": "endpoint MCP · modelo propio"
+        },
+        "caption": "El tenant no guarda datos: es la capa semántica que entiende, aplica permisos y actúa. La jerarquía empieza en cada base de conocimiento: roles propios (propietario, administrador, colaborador, lector) y, por documento, quién ve y quién escribe, más la clasificación (público, interno, restringido, privado) que el servidor hace cumplir. Agregar un proceso es agregar una base; el agente sólo se conecta a ella.",
+        "legend1": "Bases que toca el agente de vacaciones.",
+        "legend2": "El de certificados entra a Empleados y Certificados con un token de rol admin y entrega sólo el certificado de quien pregunta."
+      }
     }
   },
   "verticalsPage": {
@@ -996,7 +1302,8 @@
       "problem": "El problema de siempre",
       "solution": "Cómo lo resuelve Doctiling",
       "edge": "Tu ventaja competitiva",
-      "capabilities": "Qué puedes hacer"
+      "capabilities": "Qué puedes hacer",
+      "chat": "Así lo ve quien pregunta"
     },
     "items": {
       "legal": {
@@ -1009,6 +1316,14 @@
           "c1": "Revisión de contratos con extracción y comparación de cláusulas.",
           "c2": "Memos de caso y resúmenes de jurisprudencia con cita textual.",
           "c3": "Detección de contradicciones entre documentos del expediente."
+        },
+        "chat": {
+          "u": "¿Qué contratos vencen este trimestre y con qué penalidad?",
+          "t": "search_knowledge_base(Contratos) · aggregate_rows(Contratos, vence < 31 dic)",
+          "a": "Dos: el marco con Andina Retail (penalidad 2 % mensual por preaviso tardío) y el arrendamiento de la sede (sin penalidad con 60 días de aviso). Te dejé el memo con las dos cláusulas citadas.",
+          "c1": "Marco · cl. 14",
+          "c2": "Arrendamiento · cl. 7",
+          "x": "✓ documento creado · Legal / Memos · rastro #c21e"
         }
       },
       "health": {
@@ -1021,6 +1336,14 @@
           "c1": "Diagnósticos diferenciales fundamentados en guías y literatura.",
           "c2": "Resúmenes de evolución y seguimiento de pacientes con cita.",
           "c3": "Consulta cruzada entre historia clínica y evidencia."
+        },
+        "chat": {
+          "u": "Registra el control de hoy de Juan Pedro y dime qué meta de presión aplica según la guía.",
+          "t": "update_table_rows(Seguimientos) · search_knowledge_base(GPC hipertensión 2024) · permisos: médico ✓",
+          "a": "Control registrado, próximo en 4 semanas. Meta < 140/90 en mayores de 65 sin fragilidad; individualizar si hay fragilidad. Si no estuviera en tus fuentes, te lo diría.",
+          "c1": "GPC 2024 · §6.3",
+          "c2": "Seguimientos · fila 12",
+          "x": "✓ fila actualizada · Seguimientos · rastro #9b02"
         }
       },
       "finance": {
@@ -1033,6 +1356,14 @@
           "c1": "Análisis de ratios y métricas clave sobre tus propios filings.",
           "c2": "Resúmenes ejecutivos de reportes anuales y trimestrales.",
           "c3": "Comparativas entre periodos y seguimiento de portafolio."
+        },
+        "chat": {
+          "u": "¿Cómo cambió el margen operativo frente al trimestre anterior y de dónde sale cada cifra?",
+          "t": "aggregate_rows(Estados, Q3 vs Q2) · search_knowledge_base(Notas a los estados)",
+          "a": "Bajó de 18,4 % a 16,9 %. El efecto principal es el costo logístico (+2,1 pp); la nota 7 lo atribuye al nuevo contrato de transporte.",
+          "c1": "Estado de resultados · Q3",
+          "c2": "Notas · nota 7",
+          "x": "✓ tabla comparativa creada · Finanzas / Q3 · 6 citas"
         }
       },
       "accounting": {
@@ -1045,6 +1376,14 @@
           "c1": "Clasificación de transacciones según tus propias políticas.",
           "c2": "Conciliación asistida con enlace al asiento de origen.",
           "c3": "Consulta del libro mayor en lenguaje natural."
+        },
+        "chat": {
+          "u": "Clasifica las 14 transacciones de ayer y márcame las que no cuadren con el comprobante.",
+          "t": "get_document(Movimientos 26 oct) · search_knowledge_base(Comprobantes) · update_table_rows(Libro)",
+          "a": "12 clasificadas y registradas. Dos sin comprobante que coincida: la transferencia de $2.340.000 y el pago a Hidrotec; quedan en revisión con el asiento enlazado.",
+          "c1": "Libro · filas 201–214",
+          "c2": "Comprobantes · 26 oct",
+          "x": "✓ 12 filas registradas · 2 en revisión · rastro #e114"
         }
       },
       "research": {
@@ -1057,6 +1396,14 @@
           "c1": "Revisión de literatura con síntesis entre múltiples fuentes.",
           "c2": "Detección de contradicciones y brechas en el estado del arte.",
           "c3": "Extracción de métodos, datos y resultados citados."
+        },
+        "chat": {
+          "u": "Sintetiza los papers sobre el efecto en adultos mayores y crea el documento con la revisión.",
+          "t": "search_knowledge_base(38 papers) · compare_blocks · create_document",
+          "a": "12 papers relevantes. Ortega 2023 reporta efecto significativo; Lin & Park 2022 no lo encuentran en mayores de 70. La revisión incluye la tabla de métodos y las contradicciones, cada celda enlazada a su bloque.",
+          "c1": "Ortega · §4.2",
+          "c2": "Lin & Park · tabla 3",
+          "x": "✓ documento creado · Revisión / Síntesis · 14 citas"
         }
       },
       "consulting": {
@@ -1069,6 +1416,14 @@
           "c1": "Síntesis de data rooms y transcripciones de entrevistas.",
           "c2": "Vista espejo: resúmenes, entidades y correlaciones por documento.",
           "c3": "Base de conocimiento expuesta al equipo vía MCP, solo lectura y revocable."
+        },
+        "chat": {
+          "u": "¿Qué contradicciones hay entre los tres informes de mercado antes de la reunión de mañana?",
+          "t": "search_knowledge_base(Informes) · compare_blocks · create_document",
+          "a": "Tres desacuerdos: tamaño del mercado (USD 1,2 vs 1,8 mil millones), crecimiento 2027 y el peso del canal digital. Cada uno con los párrafos que chocan, listo como variante para la presentación.",
+          "c1": "Informe A · §2",
+          "c2": "Informe C · tabla 4",
+          "x": "✓ variante creada · Cliente Andina / Mercado · rastro #77b0"
         }
       }
     },

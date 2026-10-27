@@ -117,7 +117,7 @@
           "body": "Your corporate chat bot consumes the MCP endpoint: people ask in their usual channel and the answer comes back citing the source document."
         },
         "code": {
-          "short": "Terminal agent",
+          "short": "Agent",
           "title": "Coding agents and editors",
           "body": "MCP-compatible desktop clients and coding assistants query your bases as the source of truth. No more pasting half a wiki into a prompt."
         },
@@ -198,7 +198,13 @@
         "notCertified": "Not certified",
         "inForce": "In force"
       },
-      "trustCenter": "Open the trust center: every claim with its evidence"
+      "trustCenter": "Open the trust center: every claim with its evidence",
+      "frameworkNotes": {
+        "nist": "The product's cybersecurity profile, function by function, published and self-assessed.",
+        "iso27001": "Control-by-control mapping to Annex A; no certification audit yet.",
+        "privacy": "Personal-data processing under Law 1581 and the GDPR, with exercisable rights.",
+        "dpa": "Data processing agreement available to every tenant, sub-processors listed."
+      }
     },
     "nav": {
       "brand": "Doctiling",
@@ -234,10 +240,10 @@
     "hero": {
       "videoTitle": "Doctiling demo video",
       "videoPlay": "Watch the demo",
-      "eyebrow": "doctiling · knowledge management with experts and AI agents",
-      "titleLine1": "Curated knowledge",
-      "titleAccent": "for your team and your agents.",
-      "lede": "Doctiling turns your sources into knowledge bases your experts curate and your AI agents work on. Every answer comes cited to the exact block.",
+      "eyebrow": "doctiling · intelligent processes with knowledge bases and AI agents",
+      "titleLine1": "You don't need a system for",
+      "titleAccent": "You need organised knowledge and an agent that sets it in motion.",
+      "lede": "Today, automating a process usually means building screens, data models, permissions and integrations, and maintaining one more system. Or relying on email and spreadsheets.",
       "freeBadge": "Sponsored free access · by invitation · no credit card",
       "ctaPrimary": "Request free access",
       "ctaSecondary": "See real captures",
@@ -251,7 +257,12 @@
         "details": "Tell us more about your case"
       },
       "ctaSelfHost": "Install it free on your machine",
-      "ctaParadigm": "What is a knowledge base?"
+      "ctaParadigm": "What is a knowledge base?",
+      "lede2": "Doctiling proposes another way: organise the information in knowledge bases with their own access rules and connect an AI agent that can query it, relate data and run authorised actions in plain language.",
+      "ledeStrong": "Fewer systems to build. More processes solved.",
+      "titleMark": "every process.",
+      "todayLabel": "today",
+      "withLabel": "with doctiling"
     },
     "showcase": {
       "eyebrow": "the studio, live",
@@ -968,6 +979,301 @@
         "alt": "Real capture of the mobile chat: the OTIF penalty in the Andina Retail contract, computed and cited to clause 7.",
         "body": "Your base's chat on your phone: ask during a meeting and the answer arrives with the exact clause cited."
       }
+    },
+    "heroDemo": {
+      "label": "Demo: the same semantic layer over four knowledge bases",
+      "pickDomain": "Pick a domain",
+      "replay": "Replay",
+      "footnote": "Ask · cross · record · create. In plain language, with permissions, citations and an audit trail. Fictional bases; the tools are the agent's real ones.",
+      "domains": {
+        "legal": "Legal",
+        "clinic": "Medicine",
+        "ops": "Operations",
+        "research": "Research"
+      },
+      "bases": {
+        "legal": {
+          "name": "Base · Law firm",
+          "meta": "cases + contracts · text + table"
+        },
+        "clinic": {
+          "name": "Base · Medical practice",
+          "meta": "patients + guidelines · table + text"
+        },
+        "ops": {
+          "name": "Base · Operations & warehouse",
+          "meta": "inventory + manuals · table + text"
+        },
+        "research": {
+          "name": "Base · Literature review",
+          "meta": "38 papers · text + graph"
+        }
+      },
+      "scripts": {
+        "legal": {
+          "u1": "Check whether we have pending cases.",
+          "t1": "search_knowledge_base(Cases) · aggregate_rows(Cases, status = pending)",
+          "a1": {
+            "text": "3 pending cases: two with a hearing this month (Andina Retail, Nov 14; Inmobiliaria Sur, Nov 21) and one waiting for the court's reply.",
+            "cites": {
+              "c1": "Cases · rows 4, 9, 12",
+              "c2": "Agenda · Nov"
+            }
+          },
+          "u2": "Prepare the hearing brief for the Andina case.",
+          "t2": "get_document(Andina file) · search_knowledge_base(evidence) · create_document",
+          "a2": {
+            "text": "Done. I created “Hearing brief · Andina Retail” with the facts, the claims and the 6 exhibits cited by block. Only people with a role in Legal can see it."
+          },
+          "x1": "✓ document created · Legal / Hearings · trail #c21e"
+        },
+        "clinic": {
+          "u1": "Book an appointment for patient Juan Pedro on Thursday at 9, hypertension follow-up.",
+          "t1": "search_knowledge_base(Patients: Juan Pedro) · append_table_rows(Agenda) · permissions: physician ✓",
+          "a1": {
+            "text": "Appointment booked: Juan Pedro, Thursday Oct 30 09:00, hypertension follow-up. His last visit was Oct 3 with a dose adjustment.",
+            "cites": {
+              "c1": "Record · Oct 3",
+              "c2": "Agenda · row 18"
+            }
+          },
+          "x1": "✓ row added · Agenda · trail #9b02",
+          "u2": "What blood-pressure target applies for his age according to the guideline?",
+          "t2": "search_knowledge_base(Hypertension guideline 2024)",
+          "a2": {
+            "text": "Target < 140/90 over 65 without frailty; individualise if frail. If it were not in your sources, I would say so.",
+            "cites": {
+              "c1": "Guideline 2024 · §6.3"
+            }
+          }
+        },
+        "ops": {
+          "u1": "Which items are below minimum stock and who is the approved supplier?",
+          "t1": "aggregate_rows(Inventory, stock < minimum) · search_knowledge_base(Suppliers)",
+          "a1": {
+            "text": "Two: 2\" valve (14/20) and 1.5 HP pump (4/5). Approved supplier for both: Hidrotec.",
+            "cites": {
+              "c1": "Inventory · rows 1, 3",
+              "c2": "Suppliers · §2"
+            }
+          },
+          "u2": "Every Monday at 6, build the order for whatever is below minimum and notify purchasing.",
+          "t2": "schedule_job(Mon 06:00) · tools: aggregate_rows, create_document, webhook(purchasing) · tenant policy ✓",
+          "a2": {
+            "text": "Job created. Every Monday at 6 it generates “Weekly order” citing the inventory and calls the purchasing webhook. You can see and pause it under Jobs."
+          },
+          "x1": "✓ job scheduled · Mon 06:00 · trail #f1a7"
+        },
+        "research": {
+          "u1": "Go through the papers on the effect in older adults, synthesise everything and create a document with the analysis.",
+          "t1": "search_knowledge_base(38 papers) · compare_blocks · graph_neighborhood(effect) · create_document",
+          "a1": {
+            "text": "12 relevant papers. Ortega 2023 reports a significant effect; Lin & Park 2022 do not find it over 70. I created “Analysis · effect in older adults” with the synthesis, the methods comparison table and the contradictions, every cell linked to its block.",
+            "cites": {
+              "c1": "Ortega · §4.2",
+              "c2": "Lin & Park · table 3"
+            }
+          },
+          "x1": "✓ document created · Research / Syntheses · 14 citations",
+          "u2": "Include Baier 2021 as a narrative review.",
+          "t2": "update_table_rows(Papers) · permissions: author ✓",
+          "a2": {
+            "text": "Done: Baier 2021 included as a narrative review. It joins the next synthesis and the reference list.",
+            "cites": {
+              "c1": "Papers · row 38"
+            }
+          }
+        }
+      }
+    },
+    "differentiator": {
+      "eyebrow": "the differentiator",
+      "title": "A process no longer needs a system. It needs a knowledge base and an agent.",
+      "lede": "Today every internal process (leave, certificates, appointments, orders) means building a system: data model, screens, permissions, integrations and maintenance. Or it lives in email and spreadsheets. Doctiling changes the starting point: the information is already organised in knowledge bases with their own access hierarchy. The tenant is the agentic semantic layer that queries and manages them. A small agent, connected to the right base, is the process.",
+      "before": {
+        "title": "A system of screens",
+        "tag": "per process",
+        "nav": {
+          "home": "Home",
+          "vac": "Leave",
+          "cert": "Certificates",
+          "appt": "Appointments",
+          "reports": "Reports"
+        },
+        "form": {
+          "type": "Request type",
+          "typeVal": "Leave ▾",
+          "start": "Start date",
+          "end": "End date",
+          "dateHint": "dd/mm/yyyy",
+          "approver": "Approver",
+          "approverVal": "Select… ▾",
+          "cancel": "Cancel",
+          "submit": "Submit request"
+        },
+        "step": "data model · forms · states · approvals · integrations",
+        "cost": "months of work · permanent maintenance · one more system to learn"
+      },
+      "after": {
+        "title": "An agent over the base",
+        "tag": "doctiling",
+        "chat": {
+          "u": "I want 5 days of leave starting November 18.",
+          "t": "search_knowledge_base(Policy) · aggregate_rows(Leave) · append_table_rows",
+          "a": "You have 14 days available and it does not overlap the accounting close. I recorded the request for Nov 18–22 as pending and notified your manager.",
+          "c1": "Policy · §3",
+          "c2": "Leave · row 12",
+          "x": "✓ row added · People / Leave · trail #a41f"
+        },
+        "step": "the base already exists, with its permissions · the agent connects over MCP with a scoped token",
+        "win": "Hours, not months. No new data model, no new screen, no hand-written query."
+      },
+      "tree": {
+        "label": "Architecture: agents and systems connect over MCP to the tenant, the company's agentic semantic layer. Below the tenant sit the knowledge bases. Each base has its own hierarchy: owner, admin, collaborator and reader roles, and per document who can see and who can write.",
+        "agents": {
+          "vac": {
+            "title": "Leave agent",
+            "sub": "team chat",
+            "edge": "MCP · token scoped to one base"
+          },
+          "cert": {
+            "title": "Certificates agent",
+            "sub": "tenant chat",
+            "edge": "MCP · token scoped to one base"
+          },
+          "sys": {
+            "title": "Internal system",
+            "sub": "MCP client · read-only",
+            "edge": "MCP · read token"
+          }
+        },
+        "tenant": {
+          "title": "Tenant · Company = agentic semantic layer",
+          "line1": "queries · crosses · records · updates · creates documents · cites the block · applies the asker's role · leaves a trail",
+          "line2": "corporate identity · AI model per base · spend cap · audit · no data here, only judgement"
+        },
+        "start": "knowledge bases: the hierarchy starts here",
+        "rolesTitle": "roles of the base",
+        "docsTitle": "documents · sees / writes",
+        "bases": {
+          "hr": {
+            "name": "People",
+            "roles": {
+              "owner": "owner · Ana (HR)",
+              "admin": "admin · Luis",
+              "collab": "collaborators · HR team",
+              "reader": "readers · whole company"
+            },
+            "docs": {
+              "d1": {
+                "name": "Policies",
+                "kind": "text · internal",
+                "access": "sees: everyone · writes: admin"
+              },
+              "d2": {
+                "name": "Leave",
+                "kind": "table · internal",
+                "access": "sees: HR · writes: collaborator"
+              },
+              "d3": {
+                "name": "Employees",
+                "kind": "table · restricted",
+                "access": "sees: admin · never via MCP or AI"
+              },
+              "d4": {
+                "name": "Certificates",
+                "kind": "docs · restricted",
+                "access": "sees: admin · writes: admin agent"
+              }
+            }
+          },
+          "legal": {
+            "name": "Legal",
+            "roles": {
+              "owner": "owner · managing partner",
+              "admin": "admin · senior lawyer",
+              "collab": "collaborators · lawyers",
+              "reader": "readers · nobody outside Legal"
+            },
+            "docs": {
+              "d1": {
+                "name": "Contracts",
+                "kind": "text+table · internal",
+                "access": "sees: Legal · writes: collaborator"
+              },
+              "d2": {
+                "name": "Cases",
+                "kind": "table · restricted",
+                "access": "sees: lawyers · writes: admin"
+              },
+              "d3": {
+                "name": "Templates",
+                "kind": "text · internal",
+                "access": "sees: Legal · writes: admin"
+              }
+            }
+          },
+          "ops": {
+            "name": "Operations",
+            "roles": {
+              "owner": "owner · plant manager",
+              "admin": "admin · warehouse",
+              "collab": "collaborators · purchasing",
+              "reader": "readers · operators"
+            },
+            "docs": {
+              "d1": {
+                "name": "Inventory",
+                "kind": "table · internal",
+                "access": "sees: Ops · writes: warehouse"
+              },
+              "d2": {
+                "name": "Manuals",
+                "kind": "text · internal",
+                "access": "sees: Ops · writes: admin"
+              },
+              "d3": {
+                "name": "Suppliers",
+                "kind": "graph · internal",
+                "access": "sees: purchasing · writes: purchasing"
+              }
+            }
+          },
+          "research": {
+            "name": "Research",
+            "roles": {
+              "owner": "owner · principal investigator",
+              "admin": "admin · co-author",
+              "collab": "collaborators · assistants",
+              "reader": "readers · public (external wiki)"
+            },
+            "docs": {
+              "d1": {
+                "name": "Papers",
+                "kind": "text · internal",
+                "access": "sees: team · writes: collaborator"
+              },
+              "d2": {
+                "name": "Syntheses",
+                "kind": "docs · public",
+                "access": "sees: external wiki · writes: admin"
+              },
+              "d3": {
+                "name": "Raw data",
+                "kind": "table · private",
+                "access": "sees: the author only"
+              }
+            }
+          }
+        },
+        "foot": {
+          "private": "private analyses per person",
+          "endpoint": "MCP endpoint · own model"
+        },
+        "caption": "The tenant stores no data: it is the semantic layer that understands, applies permissions and acts. The hierarchy starts in each knowledge base: its own roles (owner, admin, collaborator, reader) and, per document, who sees and who writes, plus the classification (public, internal, restricted, private) the server enforces. Adding a process is adding a base; the agent only connects to it.",
+        "legend1": "Bases the leave agent touches.",
+        "legend2": "The certificates agent reaches Employees and Certificates with an admin-role token and hands over only the asker's certificate."
+      }
     }
   },
   "verticalsPage": {
@@ -996,7 +1302,8 @@
       "problem": "The usual problem",
       "solution": "How Doctiling solves it",
       "edge": "Your competitive edge",
-      "capabilities": "What you can do"
+      "capabilities": "What you can do",
+      "chat": "What the person asking sees"
     },
     "items": {
       "legal": {
@@ -1009,6 +1316,14 @@
           "c1": "Contract review with clause extraction and comparison.",
           "c2": "Case briefs and case-law summaries with verbatim citations.",
           "c3": "Contradiction detection across the matter file."
+        },
+        "chat": {
+          "u": "Which contracts expire this quarter and with what penalty?",
+          "t": "search_knowledge_base(Contracts) · aggregate_rows(Contracts, expires < Dec 31)",
+          "a": "Two: the Andina Retail framework (2 % monthly penalty for late notice) and the office lease (no penalty with 60 days' notice). I left you the memo with both clauses cited.",
+          "c1": "Framework · cl. 14",
+          "c2": "Lease · cl. 7",
+          "x": "✓ document created · Legal / Memos · trail #c21e"
         }
       },
       "health": {
@@ -1021,6 +1336,14 @@
           "c1": "Differentials grounded in guidelines and literature.",
           "c2": "Progress notes and patient follow-up summaries with citations.",
           "c3": "Cross-checking patient history against evidence."
+        },
+        "chat": {
+          "u": "Record today's visit for Juan Pedro and tell me which blood-pressure target applies per the guideline.",
+          "t": "update_table_rows(Follow-ups) · search_knowledge_base(Hypertension guideline 2024) · permissions: physician ✓",
+          "a": "Visit recorded, next one in 4 weeks. Target < 140/90 over 65 without frailty; individualise if frail. If it were not in your sources, I would say so.",
+          "c1": "Guideline 2024 · §6.3",
+          "c2": "Follow-ups · row 12",
+          "x": "✓ row updated · Follow-ups · trail #9b02"
         }
       },
       "finance": {
@@ -1033,6 +1356,14 @@
           "c1": "Ratio analysis and key metrics over your own filings.",
           "c2": "Executive summaries of annual and quarterly reports.",
           "c3": "Period-over-period comparisons and portfolio tracking."
+        },
+        "chat": {
+          "u": "How did operating margin move versus last quarter, and where does each figure come from?",
+          "t": "aggregate_rows(Statements, Q3 vs Q2) · search_knowledge_base(Notes to the statements)",
+          "a": "Down from 18.4 % to 16.9 %. The main driver is logistics cost (+2.1 pp); note 7 attributes it to the new transport contract.",
+          "c1": "Income statement · Q3",
+          "c2": "Notes · note 7",
+          "x": "✓ comparison table created · Finance / Q3 · 6 citations"
         }
       },
       "accounting": {
@@ -1045,6 +1376,14 @@
           "c1": "Transaction classification against your own policies.",
           "c2": "Assisted reconciliation linked to the source entry.",
           "c3": "General-ledger queries in plain language."
+        },
+        "chat": {
+          "u": "Classify yesterday's 14 transactions and flag the ones that don't match a voucher.",
+          "t": "get_document(Movements Oct 26) · search_knowledge_base(Vouchers) · update_table_rows(Ledger)",
+          "a": "12 classified and posted. Two without a matching voucher: the $2,340,000 transfer and the Hidrotec payment; they stay under review with the entry linked.",
+          "c1": "Ledger · rows 201–214",
+          "c2": "Vouchers · Oct 26",
+          "x": "✓ 12 rows posted · 2 under review · trail #e114"
         }
       },
       "research": {
@@ -1057,6 +1396,14 @@
           "c1": "Literature review with synthesis across multiple sources.",
           "c2": "Contradiction and gap detection in the state of the art.",
           "c3": "Extraction of methods, data and results with citations."
+        },
+        "chat": {
+          "u": "Synthesise the papers on the effect in older adults and create the review document.",
+          "t": "search_knowledge_base(38 papers) · compare_blocks · create_document",
+          "a": "12 relevant papers. Ortega 2023 reports a significant effect; Lin & Park 2022 do not find it over 70. The review includes the methods table and the contradictions, every cell linked to its block.",
+          "c1": "Ortega · §4.2",
+          "c2": "Lin & Park · table 3",
+          "x": "✓ document created · Review / Syntheses · 14 citations"
         }
       },
       "consulting": {
@@ -1069,6 +1416,14 @@
           "c1": "Synthesis of data rooms and interview transcripts.",
           "c2": "Mirror view: summaries, entities and correlations per document.",
           "c3": "Knowledge Base exposed to the team over MCP, read-only and revocable."
+        },
+        "chat": {
+          "u": "What contradictions are there between the three market reports before tomorrow's meeting?",
+          "t": "search_knowledge_base(Reports) · compare_blocks · create_document",
+          "a": "Three disagreements: market size (USD 1.2 vs 1.8 billion), 2027 growth and the weight of the digital channel. Each with the clashing paragraphs, ready as a variant for the deck.",
+          "c1": "Report A · §2",
+          "c2": "Report C · table 4",
+          "x": "✓ variant created · Client Andina / Market · trail #77b0"
         }
       }
     },

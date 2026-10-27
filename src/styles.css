@@ -286,3 +286,40 @@
     opacity: 0;
   }
 }
+
+/* Hero chat demo: each line pops in from a visible resting state; the typing
+   indicator blinks. Both stop under prefers-reduced-motion (the demo then
+   renders the whole script at once). */
+@keyframes landing-pop {
+  from {
+    opacity: 0.25;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes landing-blink {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .landing-pop {
+    animation: landing-pop 0.35s ease-out both;
+  }
+  .landing-typing i {
+    animation: landing-blink 1s infinite;
+  }
+  .landing-typing i:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .landing-typing i:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+}

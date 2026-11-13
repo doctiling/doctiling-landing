@@ -22,18 +22,27 @@ export { default as LandingPage } from './components/LandingClient';
 export { default as DocumentsPage } from './components/DocumentsPageClient';
 export { default as ConnectPage } from './components/ConnectPageClient';
 export { default as VerticalsPage } from './components/VerticalsPageClient';
+export { default as UseCasePage, USE_CASE_CTA } from './components/UseCasePageClient';
 
 export {
   LANDING_HOME_SLUG,
   LANDING_SUBPAGE_SLUGS,
   LANDING_SLUGS,
   LANDING_PUBLIC_SEGMENTS,
+  LANDING_SEGMENTS,
+  LANDING_USE_CASES_SEGMENT,
+  LANDING_PAGE_PATHS,
+  useCasePath,
   landingSitemapEntries,
   landingRobotsAllow,
   type LandingSlug,
+  type LandingPagePath,
+  type UseCasePath,
 } from './routes';
 
-export { landingMetadata, landingHomeJsonLd, verticalsJsonLd, LANDING_SEO_COPY } from './seo';
+export { USE_CASE_SLUGS, USE_CASES, isUseCaseSlug, type UseCaseSlug } from './use-cases';
+
+export { landingMetadata, landingHomeJsonLd, verticalsJsonLd, useCaseJsonLd, LANDING_SEO_COPY } from './seo';
 
 export {
   LANDING_LOCALES,

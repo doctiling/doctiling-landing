@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { FAQ_KEYS } from './components/faq-keys';
 import { LANDING_MESSAGES, toLandingLocale, type LandingLocale } from './i18n';
-import { LANDING_HOME_SLUG, type LandingSlug } from './routes';
+import { LANDING_HOME_SLUG, useCasePath, type LandingPagePath, type LandingSlug } from './routes';
+import { USE_CASE_FAQ_KEYS, USE_CASE_SLUGS, type UseCaseSlug } from './use-cases';
 
 // Search-engine surface of every landing page: metadata (title, description,
 // canonical + hreflang, Open Graph, Twitter) and the JSON-LD graphs. Server
@@ -17,7 +18,7 @@ interface PageCopy {
 
 type LocalizedCopy = Record<LandingLocale, PageCopy>;
 
-export const LANDING_SEO_COPY: Record<LandingSlug, LocalizedCopy> = {
+const STATIC_SEO_COPY: Record<LandingSlug, LocalizedCopy> = {
   landing: {
     en: {
       title: 'Doctiling — Knowledge curated by experts, worked by AI agents',
@@ -180,6 +181,46 @@ export const LANDING_SEO_COPY: Record<LandingSlug, LocalizedCopy> = {
 
 export const VERTICAL_KEYS = ['legal', 'health', 'finance', 'accounting', 'research', 'consulting'] as const;
 
+interface UseCaseCopy {
+  card: string;
+  h1: string;
+  answer: string;
+  seo: { title: string; description: string; ogAlt: string; keywords: string };
+  faq: Record<string, { q: string; a: string }>;
+}
+
+/** The `useCasesPage.items.{slug}` block of a dictionary — the copy the page renders. */
+export function useCaseCopy(slug: UseCaseSlug, locale: LandingLocale): UseCaseCopy {
+  const page = (LANDING_MESSAGES[locale] as unknown as { useCasesPage: { items: Record<string, UseCaseCopy> } }).useCasesPage;
+  return page.items[slug];
+}
+
+function useCaseSeoCopy(slug: UseCaseSlug): LocalizedCopy {
+  const of = (locale: LandingLocale): PageCopy => {
+    const { seo } = useCaseCopy(slug, locale);
+    return {
+      title: seo.title,
+      description: seo.description,
+      ogAlt: seo.ogAlt,
+      keywords: seo.keywords.split(',').map((k) => k.trim()).filter(Boolean),
+    };
+  };
+  return { en: of('en'), es: of('es') };
+}
+
+/**
+ * Search copy of every page. Static pages keep theirs here; catalogue pages
+ * read it from the dictionaries (`useCasesPage.items.{slug}.seo`), so the page
+ * and its metadata can never disagree.
+ */
+export const LANDING_SEO_COPY: Record<LandingPagePath, LocalizedCopy> = {
+  ...STATIC_SEO_COPY,
+  ...(Object.fromEntries(USE_CASE_SLUGS.map((slug) => [useCasePath(slug), useCaseSeoCopy(slug)])) as Record<
+    ReturnType<typeof useCasePath>,
+    LocalizedCopy
+  >),
+};
+
 export interface LandingSeoContext {
   /** Canonical origin, no trailing slash (`https://www.doctiling.app`). */
   siteUrl: string;
@@ -187,9 +228,9 @@ export interface LandingSeoContext {
 }
 
 const ogImage = (siteUrl: string, locale: LandingLocale) => `${siteUrl}/og/og-${locale}.png`;
-const pageUrl = (siteUrl: string, locale: string, slug: LandingSlug) => `${siteUrl}/${locale}/${slug}`;
+const pageUrl = (siteUrl: string, locale: string, path: LandingPagePath) => `${siteUrl}/${locale}/${path}`;
 
-export function landingMetadata(slug: LandingSlug, { siteUrl, locale }: LandingSeoContext): Metadata {
+export function landingMetadata(slug: LandingPagePath, { siteUrl, locale }: LandingSeoContext): Metadata {
   const lang = toLandingLocale(locale);
   const copy = LANDING_SEO_COPY[slug][lang];
   const canonical = pageUrl(siteUrl, lang, slug);
@@ -316,6 +357,51 @@ export function verticalsJsonLd({ siteUrl, locale }: LandingSeoContext): Record<
           name: items[key].title,
           description: items[key].solution,
         })),
+      },
+    ],
+  };
+}
+
+/** BreadcrumbList + FAQPage + SoftwareApplication of a use-case page, from the copy it renders. */
+export function useCaseJsonLd(slug: UseCaseSlug, { siteUrl, locale }: LandingSeoContext): Record<string, unknown> {
+  const lang = toLandingLocale(locale);
+  const path = useCasePath(slug);
+  const url = pageUrl(siteUrl, lang, path);
+  const copy = useCaseCopy(slug, lang);
+  const seo = LANDING_SEO_COPY[path][lang];
+  const breadcrumb = (LANDING_MESSAGES[lang] as { useCasesPage: { labels: { breadcrumb: string } } }).useCasesPage
+    .labels.breadcrumb;
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Doctiling', item: pageUrl(siteUrl, lang, LANDING_HOME_SLUG) },
+          { '@type': 'ListItem', position: 2, name: breadcrumb, item: pageUrl(siteUrl, lang, 'verticals') },
+          { '@type': 'ListItem', position: 3, name: copy.h1, item: url },
+        ],
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${url}#faq`,
+        inLanguage: lang,
+        mainEntity: USE_CASE_FAQ_KEYS.map((key) => ({
+          '@type': 'Question',
+          name: copy.faq[key].q,
+          acceptedAnswer: { '@type': 'Answer', text: copy.faq[key].a },
+        })),
+      },
+      {
+        '@type': 'SoftwareApplication',
+        '@id': `${siteUrl}#app`,
+        name: 'Doctiling',
+        applicationCategory: 'BusinessApplication',
+        operatingSystem: 'Web, iOS, macOS, Windows, Android',
+        description: seo.description,
+        url,
+        image: ogImage(siteUrl, lang),
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       },
     ],
   };

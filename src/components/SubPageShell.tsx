@@ -17,12 +17,18 @@ export function SubPageShell({
   title,
   lede,
   siblings,
+  heroAction,
+  ctaAnalytics,
   children,
 }: {
   eyebrow: string;
   title: string;
-  lede: string;
+  lede: React.ReactNode;
   siblings: SiblingLink[];
+  /** Rendered under the lede (e.g. the email capture on a use-case page). */
+  heroAction?: React.ReactNode;
+  /** `data-analytics` name of the closing CTA, so LandingAnalytics reports it as `cta_click`. */
+  ctaAnalytics?: string;
   children: React.ReactNode;
 }) {
   const { t, isAuthenticated: isAuthed, href, landingHref } = useLandingHost();
@@ -68,9 +74,12 @@ export function SubPageShell({
           <Reveal className="flex max-w-3xl flex-col gap-6">
             <MiniTitle>{eyebrow}</MiniTitle>
             <Display className="text-balance text-5xl leading-[1.05] sm:text-6xl">{title}</Display>
-            <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              {lede}
-            </p>
+            {typeof lede === 'string' ? (
+              <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">{lede}</p>
+            ) : (
+              lede
+            )}
+            {heroAction}
           </Reveal>
         </div>
       </section>
@@ -89,7 +98,7 @@ export function SubPageShell({
           </Reveal>
           <Reveal delay={120} className="flex flex-wrap items-center gap-3">
             <Button asChild variant="pill" size="pill">
-              <Link href={requestAccessHref}>
+              <Link href={requestAccessHref} data-analytics={ctaAnalytics}>
                 {isAuthed ? t('landing.nav.openApp') : t('landing.cta.primary')}
                 <ArrowUpRight className="size-4" />
               </Link>

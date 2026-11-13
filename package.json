@@ -1,7 +1,7 @@
 {
   "name": "@doctiling/landing",
-  "version": "0.6.3",
-  "description": "Doctiling marketing surface (landing + documents, connect and verticals pages) as a host-agnostic Next.js package",
+  "version": "0.7.0",
+  "description": "Doctiling marketing surface (landing + documents, connect, verticals and use-case pages) as a host-agnostic Next.js package",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "exports": {
@@ -66,12 +66,27 @@
     "vitest": "^4.1.5"
   },
   "doctiling": {
-    "$comment": "Mirror of src/routes.ts for hosts that read the package without a TS loader (plain-Node build scripts). tests/routes-seo.test.ts fails if the two drift.",
+    "$comment": "Mirror of src/routes.ts and src/use-cases.ts for hosts that read the package without a TS loader (plain-Node build scripts). `slugs` = one static route each; `segments` = every top-level path segment the package owns (the studio-edition leak check must scan these); `useCases` = the pages under /{locale}/use-cases/. tests/routes-seo.test.ts fails if they drift.",
     "slugs": [
       "landing",
       "documents",
       "connect",
       "verticals"
+    ],
+    "segments": [
+      "landing",
+      "documents",
+      "connect",
+      "verticals",
+      "use-cases"
+    ],
+    "useCases": [
+      "legal",
+      "consulting",
+      "healthcare",
+      "finance",
+      "research",
+      "engineering-teams"
     ]
   }
 }

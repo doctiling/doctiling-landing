@@ -47,6 +47,21 @@ typecheck and tests resolve it through a `.ui` symlink to a web checkout (`scrip
 `../web/packages/ui` by default; `DOCTILING_UI_DIR` in CI, where a sparse checkout needs the
 `WEB_READ_TOKEN` secret).
 
+## Analytics and consent
+
+`LandingAnalytics` loads the Google tag behind Consent Mode v2 (ads denied everywhere until the visitor
+accepts; analytics opt-in in the EEA/UK/CH), shows the cookie banner (copy under `landing.cookies.*`)
+and measures CTA clicks with one delegated listener (`/signin`, `/kb`, downloads, or any element with
+`data-analytics="name"`). The host mounts it once in its root layout, SaaS edition only:
+
+```tsx
+<LandingAnalytics tagId={process.env.NEXT_PUBLIC_GOOGLE_TAG_ID} locale={locale} cookiesHref={`/${locale}/cookies`} />
+```
+
+Sections report through `useLandingHost().track` (default: the dataLayer, GA4 event shape):
+`generate_lead` (hero / demo form), `cta_click`, `video_play`. A host that measures elsewhere passes
+`track` in `LandingHost`.
+
 ## Develop
 
 ```

@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useMemo, type ReactNode } from 'react';
 import { landingMessages, translate, type LandingLocale, type TranslateFn } from './i18n';
+import { dataLayerTrack, type LandingTrackFn } from './analytics';
 
 // Everything the marketing surface needs from the product that hosts it. The
 // landing never imports the host: auth state, the lead action, the toaster and
@@ -80,10 +81,13 @@ export interface LandingHost {
   };
   /** Overrides the dictionary lookup (tests echo the key back). */
   t?: TranslateFn;
+  /** Where landing events go; defaults to the dataLayer (read by the Google tag `LandingAnalytics` loads). */
+  track?: LandingTrackFn;
 }
 
-export interface ResolvedLandingHost extends Omit<LandingHost, 'routes' | 't' | 'features'> {
+export interface ResolvedLandingHost extends Omit<LandingHost, 'routes' | 't' | 'features' | 'track'> {
   features: { integrations: boolean };
+  track: LandingTrackFn;
   routes: LandingRoutes;
   t: TranslateFn;
   /** `/{locale}{route}` for a product route. */
@@ -99,12 +103,13 @@ export function LandingHostProvider({ host, children }: { host: LandingHost; chi
     const routes = { ...DEFAULT_LANDING_ROUTES, ...host.routes };
     const messages = landingMessages(host.locale);
     const t: TranslateFn = host.t ?? ((key, values) => translate(messages, key, values));
-    const { routes: _routes, t: _t, features, ...rest } = host;
+    const { routes: _routes, t: _t, features, track, ...rest } = host;
     return {
       ...rest,
       features: { integrations: features?.integrations ?? false },
       routes,
       t,
+      track: track ?? dataLayerTrack,
       href: (route) => (/^https?:\/\//.test(routes[route]) ? routes[route] : `/${host.locale}${routes[route]}`),
       landingHref: (slug = 'landing') => `/${host.locale}/${slug}`,
     };

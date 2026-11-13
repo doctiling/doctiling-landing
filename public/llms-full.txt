@@ -86,6 +86,18 @@ Only you and the people you explicitly invite, under roles (owner, admin, collab
 
 Free access is sponsored and invitation-only. Request a demo with your email; once we approve it you can sign in and use the full studio — knowledge bases, document editor, AI agent with citations, mirror view, custom tools — with a sponsored AI budget and a quota of 25 AI calls per day. No credit card, no trial clock. Upgrade only if you need isolation or higher volume.
 
+**How much does Doctiling cost?**
+
+There is free access by invitation and a free local install. If you pay, it is a base —COP 13,100 a month in the shared studio or COP 49,000 a month for a private studio— plus each person’s plan: Basic COP 14,900, Advanced COP 44,900 or Max COP 119,900 a month. Prices are fixed in Colombian pesos.
+
+**What is a query, and what happens when they run out?**
+
+A query is one request to the AI: a question to the agent, a generated document or a scheduled task. Every plan includes its queries for the month. When they run out, AI pauses until next month or you top up a pack from COP 9,800; the rest of the studio keeps working.
+
+**How do I pay, and can I cancel?**
+
+You are invoiced every month in pesos and charged automatically to the payment method you register. You can pay the year up front and get two months free, and cancel whenever you want, with no penalty; we keep your information for 60 days.
+
 **What is MCP and why should I care?**
 
 Model Context Protocol is an open standard that lets external AI tools read from a data source. With Doctiling you can expose a knowledge base through a scoped, revocable, read-only token, so the desktop AI tools your team already uses can query your documents as a source of truth.
@@ -279,7 +291,7 @@ Both answer with citations and both connect over MCP; the difference is where th
 | MCP | Yes: each knowledge base can be exposed with a scoped, revocable, read-only token. | Yes: Notion MCP connects AI apps to the workspace. ([source](https://www.notion.com/help/notion-mcp)) |
 | Self-hosting | Yes: free local install with public installers (the code is private), or the same product on your infrastructure. | Not stated on its official site. ([source](https://www.notion.com/pricing)) |
 | Free plan | Yes: sponsored seat by invitation with AI included (25 AI calls per day), no credit card. | Free plan with a limited AI trial; full AI from the Business plan. ([source](https://www.notion.com/pricing)) |
-| Pricing | Free and self-hosted at $0; Gold and Platinum on request. | Published: Free, Plus, Business and Enterprise plans. ([source](https://www.notion.com/pricing)) |
+| Pricing | Free by invitation and self-hosted at $0. Personal from COP 28,000 a month; private studio from COP 49,000 a month plus each person’s plan. | Published: Free, Plus, Business and Enterprise plans. ([source](https://www.notion.com/pricing)) |
 
 Notion AI data comes only from its official pages, linked next to each cell and checked on 2026-11-13. If something has changed, write to support@doctiling.app and we will correct it.
 
@@ -312,7 +324,7 @@ Both cite every answer and expose knowledge over MCP; Guru connects to where kno
 | MCP | Yes: each knowledge base can be exposed with a scoped, revocable, read-only token. | Yes: a Guru MCP server for AI tools. ([source](https://help.getguru.com/docs/connecting-gurus-mcp-server)) |
 | Self-hosting | Yes: free local install with public installers (the code is private), or the same product on your infrastructure. | Not stated on its official site. ([source](https://www.getguru.com/)) |
 | Free plan | Yes: sponsored seat by invitation with AI included (25 AI calls per day), no credit card. | Not stated; reduced cost for eligible nonprofits. ([source](https://www.getguru.com/pricing)) |
-| Pricing | Free and self-hosted at $0; Gold and Platinum on request. | Not published: custom package through sales. ([source](https://www.getguru.com/pricing)) |
+| Pricing | Free by invitation and self-hosted at $0. Personal from COP 28,000 a month; private studio from COP 49,000 a month plus each person’s plan. | Not published: custom package through sales. ([source](https://www.getguru.com/pricing)) |
 
 Guru data comes only from its official pages, linked next to each cell and checked on 2026-11-13. If something has changed, write to support@doctiling.app and we will correct it.
 
@@ -345,7 +357,7 @@ Both cite their answers and offer MCP; Glean indexes the company's existing tool
 | MCP | Yes: each knowledge base can be exposed with a scoped, revocable, read-only token. | Yes: MCP servers that an admin enables. ([source](https://docs.glean.com/administration/platform/mcp/about)) |
 | Self-hosting | Yes: free local install with public installers (the code is private), or the same product on your infrastructure. | Partial: managed deployment inside your own GCP or AWS account; not a traditional self-hosted model. ([source](https://docs.glean.com/get-started/prepare/about-deployment)) |
 | Free plan | Yes: sponsored seat by invitation with AI included (25 AI calls per day), no credit card. | Not stated; demo on request. ([source](https://www.glean.com/)) |
-| Pricing | Free and self-hosted at $0; Gold and Platinum on request. | Not published: demo on request. ([source](https://www.glean.com/)) |
+| Pricing | Free by invitation and self-hosted at $0. Personal from COP 28,000 a month; private studio from COP 49,000 a month plus each person’s plan. | Not published: demo on request. ([source](https://www.glean.com/)) |
 
 Glean data comes only from its official pages, linked next to each cell and checked on 2026-11-13. If something has changed, write to support@doctiling.app and we will correct it.
 
@@ -392,6 +404,18 @@ Solo tú y las personas que invites explícitamente, con roles (propietario, adm
 **¿Cómo obtengo el acceso gratis?**
 
 El acceso gratis es patrocinado y por invitación. Solicita una demo con tu correo; cuando lo aprobemos podrás iniciar sesión y usar el estudio completo — bases de conocimiento, editor de documentos, agente IA con citas, vista espejo, herramientas propias — con un presupuesto de IA patrocinado y una cuota de 25 llamadas IA al día. Sin tarjeta, sin reloj de prueba. Pasa a un plan pago solo si necesitas aislamiento o más volumen.
+
+**¿Cuánto cuesta Doctiling?**
+
+Hay acceso gratis por invitación y una instalación local gratuita. Si pagas, es una base —$13.100 al mes en el estudio compartido o $49.000 al mes por un estudio privado— más el plan de cada persona: Básico $14.900, Avanzado $44.900 o Máximo $119.900 al mes. Son precios fijos en pesos colombianos.
+
+**¿Qué es una consulta y qué pasa si se acaban?**
+
+Una consulta es una petición a la IA: una pregunta al agente, un documento generado o una tarea programada. Cada plan incluye sus consultas del mes. Si se acaban, la IA se pausa hasta el mes siguiente o recargas un paquete desde $9.800; el resto del estudio sigue funcionando.
+
+**¿Cómo se paga y puedo cancelar?**
+
+Se factura cada mes en pesos y se cobra automáticamente al medio de pago que registres. Puedes pagar el año por adelantado y recibir dos meses gratis, y cancelar cuando quieras, sin multa; conservamos tu información 60 días.
 
 **¿Qué es MCP y por qué debería importarme?**
 
@@ -586,7 +610,7 @@ Los dos responden con citas y los dos se conectan por MCP; la diferencia es dón
 | MCP | Sí: cada base de conocimiento se puede exponer con un token acotado, revocable y de solo lectura. | Sí: Notion MCP conecta apps de IA al espacio de trabajo. ([fuente](https://www.notion.com/help/notion-mcp)) |
 | Self-hosting | Sí: instalación local gratuita con instaladores públicos (el código es privado), o el mismo producto en tu infraestructura. | No se indica en su sitio oficial. ([fuente](https://www.notion.com/pricing)) |
 | Plan gratuito | Sí: puesto patrocinado por invitación con IA incluida (25 llamadas de IA por día), sin tarjeta. | Plan gratuito con una prueba limitada de IA; IA completa desde el plan Business. ([fuente](https://www.notion.com/pricing)) |
-| Precios | Free y self-hosted a $0; Gold y Platinum bajo solicitud. | Publicados: planes Free, Plus, Business y Enterprise. ([fuente](https://www.notion.com/pricing)) |
+| Precios | Gratis por invitación y self-hosted a $0. Personal desde $28.000 COP al mes; estudio privado desde $49.000 COP al mes más el plan de cada persona. | Publicados: planes Free, Plus, Business y Enterprise. ([fuente](https://www.notion.com/pricing)) |
 
 Los datos de Notion AI salen solo de sus páginas oficiales, enlazadas junto a cada celda y revisadas el 2026-11-13. Si algo cambió, escríbenos a support@doctiling.app y lo corregimos.
 
@@ -619,7 +643,7 @@ Los dos citan cada respuesta y exponen el conocimiento por MCP; Guru se conecta 
 | MCP | Sí: cada base de conocimiento se puede exponer con un token acotado, revocable y de solo lectura. | Sí: un servidor MCP de Guru para herramientas de IA. ([fuente](https://help.getguru.com/docs/connecting-gurus-mcp-server)) |
 | Self-hosting | Sí: instalación local gratuita con instaladores públicos (el código es privado), o el mismo producto en tu infraestructura. | No se indica en su sitio oficial. ([fuente](https://www.getguru.com/)) |
 | Plan gratuito | Sí: puesto patrocinado por invitación con IA incluida (25 llamadas de IA por día), sin tarjeta. | No se indica; costo reducido para organizaciones sin ánimo de lucro elegibles. ([fuente](https://www.getguru.com/pricing)) |
-| Precios | Free y self-hosted a $0; Gold y Platinum bajo solicitud. | No publicados: paquete a medida con ventas. ([fuente](https://www.getguru.com/pricing)) |
+| Precios | Gratis por invitación y self-hosted a $0. Personal desde $28.000 COP al mes; estudio privado desde $49.000 COP al mes más el plan de cada persona. | No publicados: paquete a medida con ventas. ([fuente](https://www.getguru.com/pricing)) |
 
 Los datos de Guru salen solo de sus páginas oficiales, enlazadas junto a cada celda y revisadas el 2026-11-13. Si algo cambió, escríbenos a support@doctiling.app y lo corregimos.
 
@@ -652,7 +676,7 @@ Los dos citan sus respuestas y ofrecen MCP; Glean indexa las herramientas que la
 | MCP | Sí: cada base de conocimiento se puede exponer con un token acotado, revocable y de solo lectura. | Sí: servidores MCP que habilita un administrador. ([fuente](https://docs.glean.com/administration/platform/mcp/about)) |
 | Self-hosting | Sí: instalación local gratuita con instaladores públicos (el código es privado), o el mismo producto en tu infraestructura. | Parcial: despliegue administrado dentro de tu propia cuenta de GCP o AWS; no es un modelo self-hosted tradicional. ([fuente](https://docs.glean.com/get-started/prepare/about-deployment)) |
 | Plan gratuito | Sí: puesto patrocinado por invitación con IA incluida (25 llamadas de IA por día), sin tarjeta. | No se indica; demo bajo solicitud. ([fuente](https://www.glean.com/)) |
-| Precios | Free y self-hosted a $0; Gold y Platinum bajo solicitud. | No publicados: demo bajo solicitud. ([fuente](https://www.glean.com/)) |
+| Precios | Gratis por invitación y self-hosted a $0. Personal desde $28.000 COP al mes; estudio privado desde $49.000 COP al mes más el plan de cada persona. | No publicados: demo bajo solicitud. ([fuente](https://www.glean.com/)) |
 
 Los datos de Glean salen solo de sus páginas oficiales, enlazadas junto a cada celda y revisadas el 2026-11-13. Si algo cambió, escríbenos a support@doctiling.app y lo corregimos.
 

@@ -348,12 +348,12 @@
       }
     },
     "tiers": {
-      "eyebrow": "multitenancy",
-      "title": "Pick the isolation level that matches your risk.",
-      "body": "Doctiling runs as a multitenant studio. Free access is sponsored and invitation-only — request a demo and we activate your seat. Paid tiers move you to your own database; Platinum adds dedicated infra and a development team that can tailor the core to your workflow.",
+      "eyebrow": "plans",
+      "title": "One base per studio and one plan per person.",
+      "body": "First choose where your studio lives: shared, private or sovereign. Then pick each person’s plan by how much AI they need. Fixed prices in Colombian pesos, no surprises.",
       "items": {
         "free": {
-          "eyebrow": "tier 0",
+          "eyebrow": "by invitation",
           "name": "Free · Sponsored seat",
           "price": "$0",
           "body": "Sponsored free access, by invitation. Request a demo and we activate your seat in the shared studio with a sponsored AI budget — no credit card. Your data stays logically scoped per user.",
@@ -364,23 +364,37 @@
           },
           "cta": "Request access"
         },
+        "personal": {
+          "eyebrow": "for you",
+          "name": "Personal · Shared studio",
+          "price": "COP 13,100",
+          "priceNote": "base per month, plus your plan",
+          "body": "Your own account in the shared studio, without waiting for an invitation. You pay, with your own payment method. Your data stays logically isolated per user.",
+          "bullets": {
+            "p1": "From COP 28,000 a month on the Basic plan.",
+            "p2": "No lock-in: cancel whenever you want.",
+            "p3": "Move to a private studio when your team grows."
+          },
+          "cta": "Request access"
+        },
         "gold": {
-          "eyebrow": "tier 1",
+          "eyebrow": "for your team",
           "name": "Gold · Private studio",
-          "price": "On request",
+          "price": "COP 49,000",
+          "priceNote": "per studio per month, plus each person’s plan",
           "body": "Your own dedicated database — isolated from every other tenant. Same hosted runtime, but no neighbour shares your rows or embeddings. White-label branding is included.",
           "bullets": {
             "p1": "Dedicated database, schema migrations on your timeline.",
             "p2": "Custom domain + white-label branding.",
-            "p3": "Higher quotas, priority support, dedicated onboarding."
+            "p3": "One owner pays for the whole team: a single invoice per month."
           },
           "cta": "Request a demo",
           "badge": "Most popular with teams"
         },
         "platinum": {
-          "eyebrow": "tier 2",
+          "eyebrow": "custom",
           "name": "Platinum · Sovereign studio",
-          "price": "On request",
+          "price": "Custom",
           "body": "Dedicated database AND dedicated infrastructure. Plus a development team that works alongside your stakeholders — humans and AI agents — to modify the Doctiling core: prompts, tools, integrations, UI surfaces. Built for organizations that need the engine, not just the wrapper.",
           "bullets": {
             "p1": "Dedicated database + dedicated runtime hosts.",
@@ -389,6 +403,69 @@
           },
           "cta": "Talk to us"
         }
+      },
+      "plans": {
+        "title": "Each person’s plan",
+        "body": "Every plan includes its AI queries and its space for information. You can mix plans within one studio: not everyone uses AI the same way.",
+        "perPerson": "per person per month",
+        "badge": "Recommended",
+        "items": {
+          "basic": {
+            "name": "Basic",
+            "price": "COP 14,900",
+            "queries": "150 AI queries a month",
+            "daily": "About 7 a day",
+            "info": "100 MB of information"
+          },
+          "advanced": {
+            "name": "Advanced",
+            "price": "COP 44,900",
+            "queries": "500 AI queries a month",
+            "daily": "About 25 a day",
+            "info": "5 GB of information"
+          },
+          "max": {
+            "name": "Max",
+            "price": "COP 119,900",
+            "queries": "1,500 AI queries a month",
+            "daily": "About 70 a day",
+            "info": "15 GB of information"
+          }
+        },
+        "examples": {
+          "personal": "One person in the shared studio on the Advanced plan: COP 13,100 + COP 44,900 = COP 58,000 a month.",
+          "team": "A team of 5 in a private studio, 4 on Basic and 1 on Advanced: COP 49,000 + COP 59,600 + COP 44,900 = COP 153,500 a month."
+        }
+      },
+      "billing": {
+        "title": "How billing works",
+        "items": {
+          "fixed": {
+            "title": "Fixed price in pesos",
+            "body": "You know what you pay every month. It does not follow the dollar."
+          },
+          "monthly": {
+            "title": "Automatic monthly charge",
+            "body": "Invoiced on the 1st and charged to your card, wallet or bank account."
+          },
+          "topup": {
+            "title": "Top-ups",
+            "body": "If the month’s queries run out, top up from COP 9,800. Nobody charges you more unless you decide to."
+          },
+          "annual": {
+            "title": "Annual payment",
+            "body": "Pay the year up front and get 12 months for the price of 10."
+          },
+          "ownAi": {
+            "title": "Your own AI",
+            "body": "Connect your own AI provider and the plan drops to COP 9,800, COP 29,400 or COP 71,900 per person."
+          },
+          "cancel": {
+            "title": "No lock-in",
+            "body": "Cancel whenever you want, no penalty. We keep your information for 60 days in case you come back."
+          }
+        },
+        "note": "Prices in Colombian pesos (COP), before taxes. A query is one request to the AI: a question to the agent, a generated document or a scheduled task."
       }
     },
     "selfHost": {
@@ -514,6 +591,18 @@
         "langs": {
           "q": "Does it work in Spanish?",
           "a": "Yes — the whole studio is bilingual (Spanish and English) and you can switch at any moment. The agent reads and answers in the language of your documents and your questions."
+        },
+        "pricing": {
+          "q": "How much does Doctiling cost?",
+          "a": "There is free access by invitation and a free local install. If you pay, it is a base —COP 13,100 a month in the shared studio or COP 49,000 a month for a private studio— plus each person’s plan: Basic COP 14,900, Advanced COP 44,900 or Max COP 119,900 a month. Prices are fixed in Colombian pesos."
+        },
+        "queries": {
+          "q": "What is a query, and what happens when they run out?",
+          "a": "A query is one request to the AI: a question to the agent, a generated document or a scheduled task. Every plan includes its queries for the month. When they run out, AI pauses until next month or you top up a pack from COP 9,800; the rest of the studio keeps working."
+        },
+        "billing": {
+          "q": "How do I pay, and can I cancel?",
+          "a": "You are invoiced every month in pesos and charged automatically to the payment method you register. You can pay the year up front and get two months free, and cancel whenever you want, with no penalty; we keep your information for 60 days."
         }
       }
     },
@@ -1734,7 +1823,7 @@
       "mcp": "Yes: each knowledge base can be exposed with a scoped, revocable, read-only token.",
       "selfHost": "Yes: free local install with public installers (the code is private), or the same product on your infrastructure.",
       "freePlan": "Yes: sponsored seat by invitation with AI included (25 AI calls per day), no credit card.",
-      "pricing": "Free and self-hosted at $0; Gold and Platinum on request."
+      "pricing": "Free by invitation and self-hosted at $0. Personal from COP 28,000 a month; private studio from COP 49,000 a month plus each person’s plan."
     },
     "items": {
       "notion-ai": {

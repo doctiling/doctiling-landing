@@ -46,10 +46,22 @@ describe('LandingClient', () => {
 
   it('routes every tier CTA to the demo request when signed out', () => {
     renderWithHost(<LandingClient />);
-    for (const tier of ['free', 'gold', 'platinum']) {
+    for (const tier of ['free', 'personal', 'gold', 'platinum']) {
       expect(
         screen.getByRole('link', { name: new RegExp(`landing\\.tiers\\.items\\.${tier}\\.cta`) }),
       ).toHaveAttribute('href', '#demo');
+    }
+  });
+
+  it('shows the three per-person plans with their price and what the base adds up to', () => {
+    renderWithHost(<LandingClient />);
+    for (const plan of ['basic', 'advanced', 'max']) {
+      expect(screen.getByText(`landing.tiers.plans.items.${plan}.queries`)).toBeInTheDocument();
+      expect(screen.getByText(`landing.tiers.plans.items.${plan}.price`)).toBeInTheDocument();
+    }
+    expect(screen.getByText('landing.tiers.plans.examples.team')).toBeInTheDocument();
+    for (const fact of ['fixed', 'monthly', 'topup', 'annual', 'ownAi', 'cancel']) {
+      expect(screen.getByText(`landing.tiers.billing.items.${fact}.title`)).toBeInTheDocument();
     }
   });
 

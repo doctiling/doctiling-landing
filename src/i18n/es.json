@@ -348,13 +348,13 @@
       }
     },
     "tiers": {
-      "eyebrow": "multitenancy",
-      "title": "Elige el nivel de aislamiento que tu riesgo necesita.",
-      "body": "Doctiling es un estudio multitenant. El acceso gratis es patrocinado y por invitación — solicita una demo y activamos tu cupo. Los planes pagos te llevan a tu propia base de datos; Platinum suma infraestructura dedicada y un equipo de desarrollo que adapta el core a tu flujo.",
+      "eyebrow": "planes",
+      "title": "Una base por estudio y un plan por persona.",
+      "body": "Primero eliges dónde vive tu estudio: compartido, privado o soberano. Después, el plan de cada persona según cuánta IA necesita. Precios fijos en pesos colombianos, sin sorpresas.",
       "items": {
         "free": {
-          "eyebrow": "nivel 0",
-          "name": "Free · Cupo patrocinado",
+          "eyebrow": "por invitación",
+          "name": "Gratis · Cupo patrocinado",
           "price": "$0",
           "body": "Acceso gratis patrocinado, por invitación. Solicita una demo y activamos tu cupo en el estudio compartido con un presupuesto de IA patrocinado — sin tarjeta. Tus datos quedan aislados lógicamente por usuario.",
           "bullets": {
@@ -364,23 +364,37 @@
           },
           "cta": "Solicitar acceso"
         },
+        "personal": {
+          "eyebrow": "para ti",
+          "name": "Personal · Estudio compartido",
+          "price": "$13.100",
+          "priceNote": "al mes de base, más tu plan",
+          "body": "Tu cuenta propia en el estudio compartido, sin esperar invitación. Pagas tú, con tu medio de pago. Tus datos quedan aislados lógicamente por usuario.",
+          "bullets": {
+            "p1": "Desde $28.000 al mes con el plan Básico.",
+            "p2": "Sin permanencia: cancelas cuando quieras.",
+            "p3": "Pasas a un estudio privado cuando tu equipo crezca."
+          },
+          "cta": "Solicitar acceso"
+        },
         "gold": {
-          "eyebrow": "nivel 1",
+          "eyebrow": "para tu equipo",
           "name": "Gold · Estudio privado",
-          "price": "Bajo petición",
+          "price": "$49.000",
+          "priceNote": "al mes por estudio, más el plan de cada persona",
           "body": "Tu propia base de datos dedicada — aislada de cualquier otro tenant. Mismo runtime hosteado, pero ningún vecino comparte tus filas ni tus embeddings. Marca blanca incluida.",
           "bullets": {
             "p1": "Base de datos dedicada, migraciones de esquema a tu ritmo.",
             "p2": "Dominio propio + marca blanca personalizada.",
-            "p3": "Cuotas mayores, soporte prioritario, onboarding dedicado."
+            "p3": "Un responsable paga por todo el equipo: una sola factura al mes."
           },
           "cta": "Solicitar demo",
           "badge": "El preferido de los equipos"
         },
         "platinum": {
-          "eyebrow": "nivel 2",
+          "eyebrow": "a medida",
           "name": "Platinum · Estudio soberano",
-          "price": "Bajo petición",
+          "price": "A medida",
           "body": "Base de datos dedicada Y infraestructura dedicada. Más un equipo de desarrollo que trabaja con tus stakeholders — humanos y agentes IA — para modificar el core de Doctiling: prompts, herramientas, integraciones, superficies de UI. Para organizaciones que necesitan el motor, no solo el wrapper.",
           "bullets": {
             "p1": "Base de datos dedicada + hosts de runtime dedicados.",
@@ -389,6 +403,69 @@
           },
           "cta": "Hablemos"
         }
+      },
+      "plans": {
+        "title": "El plan de cada persona",
+        "body": "Cada plan incluye sus consultas de IA y su espacio para información. En un mismo estudio puedes mezclar planes: no todos usan la IA igual.",
+        "perPerson": "por persona al mes",
+        "badge": "Recomendado",
+        "items": {
+          "basic": {
+            "name": "Básico",
+            "price": "$14.900",
+            "queries": "150 consultas de IA al mes",
+            "daily": "Unas 7 por día",
+            "info": "100 MB de información"
+          },
+          "advanced": {
+            "name": "Avanzado",
+            "price": "$44.900",
+            "queries": "500 consultas de IA al mes",
+            "daily": "Unas 25 por día",
+            "info": "5 GB de información"
+          },
+          "max": {
+            "name": "Máximo",
+            "price": "$119.900",
+            "queries": "1.500 consultas de IA al mes",
+            "daily": "Unas 70 por día",
+            "info": "15 GB de información"
+          }
+        },
+        "examples": {
+          "personal": "Una persona en el estudio compartido con plan Avanzado: $13.100 + $44.900 = $58.000 al mes.",
+          "team": "Un equipo de 5 en un estudio privado, 4 en Básico y 1 en Avanzado: $49.000 + $59.600 + $44.900 = $153.500 al mes."
+        }
+      },
+      "billing": {
+        "title": "Cómo se cobra",
+        "items": {
+          "fixed": {
+            "title": "Precio fijo en pesos",
+            "body": "Sabes cuánto pagas cada mes. No depende del dólar."
+          },
+          "monthly": {
+            "title": "Cobro mensual automático",
+            "body": "Se factura el día 1 y se cobra a tu tarjeta, billetera o cuenta bancaria."
+          },
+          "topup": {
+            "title": "Recargas",
+            "body": "Si se acaban las consultas del mes, recargas desde $9.800. Nadie te cobra de más sin que lo decidas."
+          },
+          "annual": {
+            "title": "Pago anual",
+            "body": "Paga el año por adelantado y recibe 12 meses por el precio de 10."
+          },
+          "ownAi": {
+            "title": "Tu propia IA",
+            "body": "Si conectas tu propio proveedor de IA, el plan baja a $9.800, $29.400 o $71.900 por persona."
+          },
+          "cancel": {
+            "title": "Sin permanencia",
+            "body": "Cancelas cuando quieras, sin multa. Conservamos tu información 60 días por si vuelves."
+          }
+        },
+        "note": "Precios en pesos colombianos (COP), sin impuestos. Una consulta es una petición a la IA: una pregunta al agente, un documento generado o una tarea programada."
       }
     },
     "selfHost": {
@@ -514,6 +591,18 @@
         "langs": {
           "q": "¿Funciona en español?",
           "a": "Sí — todo el estudio es bilingüe (español e inglés) y puedes cambiar de idioma en cualquier momento. El agente lee y responde en el idioma de tus documentos y de tus preguntas."
+        },
+        "pricing": {
+          "q": "¿Cuánto cuesta Doctiling?",
+          "a": "Hay acceso gratis por invitación y una instalación local gratuita. Si pagas, es una base —$13.100 al mes en el estudio compartido o $49.000 al mes por un estudio privado— más el plan de cada persona: Básico $14.900, Avanzado $44.900 o Máximo $119.900 al mes. Son precios fijos en pesos colombianos."
+        },
+        "queries": {
+          "q": "¿Qué es una consulta y qué pasa si se acaban?",
+          "a": "Una consulta es una petición a la IA: una pregunta al agente, un documento generado o una tarea programada. Cada plan incluye sus consultas del mes. Si se acaban, la IA se pausa hasta el mes siguiente o recargas un paquete desde $9.800; el resto del estudio sigue funcionando."
+        },
+        "billing": {
+          "q": "¿Cómo se paga y puedo cancelar?",
+          "a": "Se factura cada mes en pesos y se cobra automáticamente al medio de pago que registres. Puedes pagar el año por adelantado y recibir dos meses gratis, y cancelar cuando quieras, sin multa; conservamos tu información 60 días."
         }
       }
     },
@@ -1734,7 +1823,7 @@
       "mcp": "Sí: cada base de conocimiento se puede exponer con un token acotado, revocable y de solo lectura.",
       "selfHost": "Sí: instalación local gratuita con instaladores públicos (el código es privado), o el mismo producto en tu infraestructura.",
       "freePlan": "Sí: puesto patrocinado por invitación con IA incluida (25 llamadas de IA por día), sin tarjeta.",
-      "pricing": "Free y self-hosted a $0; Gold y Platinum bajo solicitud."
+      "pricing": "Gratis por invitación y self-hosted a $0. Personal desde $28.000 COP al mes; estudio privado desde $49.000 COP al mes más el plan de cada persona."
     },
     "items": {
       "notion-ai": {

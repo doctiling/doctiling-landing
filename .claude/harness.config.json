@@ -488,6 +488,14 @@
       "ci-investigator": {
         "mustMatch": "VEREDICTO:\\W*(ROJO|VERDE|OMITIDO|EN CURSO)",
         "reason": "el agente principal decide si CI bloquea el merge con esa línea; sin ella, «CI anda raro» es una opinión, y OMITIDO tiene que decirse: no es verde."
+      },
+      "librarian": {
+        "mustMatch": "COBERTURA:\\W*(COMPLETA|PARCIAL|SIN RESULTADOS)",
+        "reason": "una respuesta de la biblioteca sin cobertura declarada no distingue lo citado de lo recordado."
+      },
+      "coder": {
+        "mustMatch": "ENTREGA:\\W*(LISTA|CON PREGUNTAS|BLOQUEADA)",
+        "reason": "el orquestador decide con esa línea si la rama va a review, las preguntas van al humano o el trabajo se escala."
       }
     }
   },
@@ -671,6 +679,16 @@
         "direction": "sensor",
         "kind": "inferencial",
         "stage": "integración"
+      },
+      "librarian": {
+        "direction": "guía",
+        "kind": "inferencial",
+        "stage": "pedido"
+      },
+      "coder": {
+        "direction": "guía",
+        "kind": "inferencial",
+        "stage": "acción decidida"
       }
     },
     "guides": {

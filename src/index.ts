@@ -44,3 +44,13 @@ export {
   type LandingLocale,
   type TranslateFn,
 } from './i18n';
+
+export { LandingAnalytics, type LandingAnalyticsProps } from './components/LandingAnalytics';
+export {
+  LANDING_EVENTS,
+  dataLayerTrack,
+  CONSENT_STORAGE_KEY,
+  type LandingEventName,
+  type LandingEventParams,
+  type LandingTrackFn,
+} from './analytics';

@@ -1274,6 +1274,13 @@
         "legend1": "Bases que toca el agente de vacaciones.",
         "legend2": "El de certificados entra a Empleados y Certificados con un token de rol admin y entrega sólo el certificado de quien pregunta."
       }
+    },
+    "cookies": {
+      "title": "Preferencias de cookies",
+      "message": "Usamos cookies de medición para entender cómo se usa el sitio y mejorarlo. Tú decides si las aceptas.",
+      "policy": "Política de cookies",
+      "accept": "Aceptar",
+      "reject": "Rechazar"
     }
   },
   "verticalsPage": {

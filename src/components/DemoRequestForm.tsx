@@ -11,11 +11,12 @@ import { Textarea } from '@doctiling/ui/atoms/textarea';
 import { useAsyncAction } from '@doctiling/ui/hooks/use-async-action';
 import { useRecaptchaV3 } from '@doctiling/ui/hooks/use-recaptcha-v3';
 import { useLandingHost } from '../host';
+import { LANDING_EVENTS } from '../analytics';
 
 const labelClass = 'text-[10px] font-medium uppercase tracking-widest text-muted-foreground';
 
 export function DemoRequestForm() {
-  const { t, locale, notify, submitDemoRequest, recaptchaSiteKey, consent: consentCopy, href } = useLandingHost();
+  const { t, locale, notify, submitDemoRequest, recaptchaSiteKey, consent: consentCopy, href, track } = useLandingHost();
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
@@ -63,6 +64,7 @@ export function DemoRequestForm() {
         locale: locale,
       });
       if (res.ok) {
+        track(LANDING_EVENTS.lead, { form: 'demo', team_size: teamSize || undefined });
         notify({ title: t('landing.demo.success') });
         reset();
       } else {

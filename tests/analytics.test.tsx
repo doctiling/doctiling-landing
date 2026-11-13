@@ -93,6 +93,7 @@ describe('LandingAnalytics', () => {
     window.localStorage.setItem(CONSENT_STORAGE_KEY, 'accepted');
     expect(readConsentChoice()).toBe('accepted');
     expect(document.cookie).toContain(`${CONSENT_COOKIE}=accepted`);
+    expect(window.localStorage.getItem(CONSENT_STORAGE_KEY)).toBeNull();
   });
 
   it('measures CTA clicks through one delegated listener', () => {

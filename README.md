@@ -52,7 +52,7 @@ typecheck and tests resolve it through a `.ui` symlink to a web checkout (`scrip
 `LandingAnalytics` loads the Google tag behind Consent Mode v2 (ads denied everywhere until the visitor
 accepts; analytics opt-in in the EEA/UK/CH), shows the cookie banner (copy under `landing.cookies.*`)
 and measures CTA clicks with one delegated listener (`/signin`, `/kb`, downloads, or any element with
-`data-analytics="name"`). The host mounts it once in its root layout, SaaS edition only:
+`data-analytics="name"`). The host mounts it once in the layout of its marketing routes, SaaS edition only:
 
 ```tsx
 <LandingAnalytics

@@ -71,6 +71,14 @@ include them, so **mount the route in the same change that bumps the pin**, or t
 Plain-Node scripts read `package.json` → `doctiling.segments` (every top-level segment, for the
 studio-edition leak check), `doctiling.useCases` and `doctiling.compare`.
 
+### llms.txt
+
+`public/llms.txt` (index: what Doctiling is, for whom, every public page in en/es) and `public/llms-full.txt`
+(plus the home FAQ, every use case and every comparison with its sources) follow https://llmstxt.org. They are
+**generated** by `src/llms.ts` from the same catalogue and dictionaries the pages render; `tests/llms.test.ts`
+fails when they drift — regenerate with `UPDATE_LLMS=1 npx vitest run tests/llms.test.ts`. The host serves
+them at its web root through the usual asset copy (`/llms.txt`, `/llms-full.txt`), SaaS edition only.
+
 Static assets live in `public/` (screenshots, OG images, pitch decks); the host copies them into its own
 `public/` at build time in the SaaS edition (`doctiling-web/scripts/landing-assets.mjs`).
 

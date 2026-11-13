@@ -1447,14 +1447,14 @@
     "hero": {
       "eyebrow": "documentos y gestión del conocimiento",
       "title": "Texto, tablas y grafos en una sola base.",
-      "lede": "Lo que subes deja de ser un archivo opaco: se convierte en bloques citables, filas consultables o nodos con relaciones. Aquí está el recorrido completo, del archivo crudo al entregable que puedes defender."
+      "lede": "En Doctiling, lo que subes deja de ser un archivo opaco: se convierte en bloques citables, filas consultables o nodos con relaciones. Aquí está el recorrido completo, del archivo crudo al entregable que puedes defender."
     }
   },
   "connectPage": {
     "hero": {
       "eyebrow": "conectar y compartir",
       "title": "Tu conocimiento, donde ya trabaja tu equipo.",
-      "lede": "Una base de conocimiento se expone por MCP con token acotado y revocable — y se comparte con roles. Aquí está cómo viaja la pregunta, qué se comparte con quién, y cómo llevártelo a tu propia infraestructura."
+      "lede": "En Doctiling, una base de conocimiento se expone por MCP con token acotado y revocable — y se comparte con roles. Aquí está cómo viaja la pregunta, qué se comparte con quién, y cómo llevártelo a tu propia infraestructura."
     }
   },
   "useCasesPage": {

@@ -1447,14 +1447,14 @@
     "hero": {
       "eyebrow": "documents and knowledge management",
       "title": "Text, tables and graphs in a single base.",
-      "lede": "What you upload stops being an opaque file: it becomes citable blocks, queryable rows or nodes with relationships. Here is the full path, from raw file to a deliverable you can defend."
+      "lede": "In Doctiling, what you upload stops being an opaque file: it becomes citable blocks, queryable rows or nodes with relationships. Here is the full path, from raw file to a deliverable you can defend."
     }
   },
   "connectPage": {
     "hero": {
       "eyebrow": "connect and share",
       "title": "Your knowledge, where your team already works.",
-      "lede": "A knowledge base is exposed over MCP with a scoped, revocable token — and shared with roles. Here is how the question travels, what gets shared with whom, and how to take it to your own infrastructure."
+      "lede": "In Doctiling, a knowledge base is exposed over MCP with a scoped, revocable token — and shared with roles. Here is how the question travels, what gets shared with whom, and how to take it to your own infrastructure."
     }
   },
   "useCasesPage": {

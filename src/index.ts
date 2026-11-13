@@ -47,6 +47,8 @@ export {
 export { USE_CASE_SLUGS, USE_CASES, isUseCaseSlug, type UseCaseSlug } from './use-cases';
 export { COMPARE_SLUGS, COMPARE, isCompareSlug, type CompareSlug } from './compare';
 
+export { llmsTxt, llmsFullTxt, LLMS_SITE_URL } from './llms';
+
 export { landingMetadata, landingHomeJsonLd, verticalsJsonLd, useCaseJsonLd, compareJsonLd, LANDING_SEO_COPY } from './seo';
 
 export {

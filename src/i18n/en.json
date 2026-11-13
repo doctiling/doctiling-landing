@@ -1752,7 +1752,7 @@
           "focus": "AI built into the Notion workspace: pages, docs, tasks and databases.",
           "citations": "Yes: answers with citations.",
           "structure": "Databases with AI autofill; graphs not stated.",
-          "sources": "Search across Slack, Google Drive, GitHub and more; full Enterprise Search from the Business plan.",
+          "sources": "Search across Slack, Google Drive, GitHub and more; full Enterprise Search (beta) from the Business plan.",
           "mcp": "Yes: Notion MCP connects AI apps to the workspace.",
           "selfHost": "Not stated on its official site.",
           "freePlan": "Free plan with a limited AI trial; full AI from the Business plan.",

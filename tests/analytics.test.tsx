@@ -41,11 +41,16 @@ describe('analytics', () => {
     expect(ctaFromHref('/es/documents')).toBeNull();
   });
 
-  it('bootstraps Consent Mode v2: ads denied everywhere, analytics opt-in in the EEA', () => {
+  it('bootstraps Consent Mode v2 opt-in everywhere: analytics and ads denied until the visitor accepts', () => {
     const js = consentBootstrapScript();
     expect(js).toContain("gtag('consent','default'");
     expect(js).toMatch(/"ad_user_data":"denied"/);
-    expect(js).toContain('"DE"');
+    const defaults = js.match(/gtag\('consent','default',(\{[^}]*\})\)/g) ?? [];
+    expect(defaults).toHaveLength(1);
+    expect(defaults[0]).toMatch(/"analytics_storage":"denied"/);
+    expect(defaults[0]).not.toContain('granted');
+    expect(js).not.toContain('region');
+    expect(js).not.toContain('url_passthrough');
     expect(js).toContain(CONSENT_COOKIE);
     expect(js).toContain(CONSENT_STORAGE_KEY);
   });

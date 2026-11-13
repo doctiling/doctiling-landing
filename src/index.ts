@@ -50,6 +50,8 @@ export {
   LANDING_EVENTS,
   dataLayerTrack,
   CONSENT_STORAGE_KEY,
+  CONSENT_COOKIE,
+  CONSENT_COOKIE_MAX_AGE,
   type LandingEventName,
   type LandingEventParams,
   type LandingTrackFn,

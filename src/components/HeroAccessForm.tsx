@@ -9,13 +9,14 @@ import { SimpleTooltip } from '@doctiling/ui/molecules/tooltip';
 import { useAsyncAction } from '@doctiling/ui/hooks/use-async-action';
 import { useRecaptchaV3 } from '@doctiling/ui/hooks/use-recaptcha-v3';
 import { useLandingHost } from '../host';
+import { LANDING_EVENTS } from '../analytics';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // One field is the whole ask: the invitation flow only needs an address to
 // write to. Name, company and use case are collected later, in the full form.
 export function HeroAccessForm({ detailsHref }: { detailsHref: string }) {
-  const { t, notify, submitDemoRequest, recaptchaSiteKey } = useLandingHost();
+  const { t, notify, submitDemoRequest, recaptchaSiteKey, track } = useLandingHost();
   const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
   const { execute: executeCaptcha } = useRecaptchaV3(recaptchaSiteKey);
@@ -30,6 +31,7 @@ export function HeroAccessForm({ detailsHref }: { detailsHref: string }) {
       const captchaToken = (await executeCaptcha('demo_request')) ?? undefined;
       const res = await submitDemoRequest({ email: value, captchaToken });
       if (res.ok) {
+        track(LANDING_EVENTS.lead, { form: 'hero' });
         setSent(true);
         return;
       }

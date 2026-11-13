@@ -2,14 +2,15 @@
 
 import { useState } from 'react';
 import { Play } from 'lucide-react';
-import { useLandingText } from '../host';
+import { useLandingHost } from '../host';
+import { LANDING_EVENTS } from '../analytics';
 
 // A click-to-load facade over the vertical demo short: the poster is a local
 // asset, so nothing reaches YouTube until the visitor presses play. Then the
 // privacy-enhanced embed (youtube-nocookie, the host's allowed frame-src)
 // replaces it and starts playing.
 export function HeroVideo({ videoId, poster }: { videoId: string; poster: string }) {
-  const { t } = useLandingText();
+  const { t, track } = useLandingHost();
   const [playing, setPlaying] = useState(false);
 
   return (
@@ -26,7 +27,10 @@ export function HeroVideo({ videoId, poster }: { videoId: string; poster: string
       ) : (
         <button
           type="button"
-          onClick={() => setPlaying(true)}
+          onClick={() => {
+            track(LANDING_EVENTS.videoPlay, { video_id: videoId });
+            setPlaying(true);
+          }}
           aria-label={t('landing.hero.videoPlay')}
           className="group absolute inset-0 h-full w-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
         >

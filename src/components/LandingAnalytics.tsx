@@ -26,8 +26,8 @@ export interface LandingAnalyticsProps {
   consentCookieDomain?: string;
 }
 
-// Mounted once by the host, in its root layout, so every page — landing and
-// product — is measured with the same tag and the same consent. Lives outside
+// Mounted once by the host, in the layout of its marketing routes (the studio
+// has its own tag; both share the consent cookie). Lives outside
 // LandingHostProvider on purpose: it only needs the locale and one link.
 export function LandingAnalytics({ tagId, locale, cookiesHref, consentCookieDomain }: LandingAnalyticsProps) {
   const t = (key: string) => translate(landingMessages(locale), key);

@@ -105,6 +105,8 @@ export function readConsentChoice(cookieDomain?: string): ConsentChoice | null {
     const legacy = window.localStorage.getItem(CONSENT_STORAGE_KEY);
     if (isChoice(legacy)) {
       writeCookie(legacy, cookieDomain);
+      // Drop the legacy key so it cannot resurrect the choice once the cookie expires.
+      window.localStorage.removeItem(CONSENT_STORAGE_KEY);
       return legacy;
     }
   } catch {

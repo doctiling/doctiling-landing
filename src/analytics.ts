@@ -40,15 +40,6 @@ export const CONSENT_COOKIE = 'doctiling_consent';
 export const CONSENT_COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // 12 months
 export type ConsentChoice = 'accepted' | 'rejected';
 
-/**
- * Regions where analytics needs opt-in before any cookie (EEA, UK, Switzerland).
- * Everywhere else analytics starts granted and ads start denied until the
- * visitor accepts (Consent Mode v2 "advanced" — cookieless pings fill the gap).
- */
-export const OPT_IN_REGIONS = [
-  'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT',
-  'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'IS', 'LI', 'NO', 'GB', 'CH',
-] as const;
 
 export function consentFor(choice: ConsentChoice): ConsentState {
   const v: ConsentValue = choice === 'accepted' ? 'granted' : 'denied';
@@ -129,13 +120,14 @@ export function saveConsentChoice(choice: ConsentChoice, cookieDomain?: string):
  * and the stored choice, so the very first hit already respects it.
  */
 export function consentBootstrapScript(): string {
+  // Opt-in everywhere: analytics and ads stay denied, in every region, until
+  // the visitor accepts (prior authorization, Ley 1581; GDPR in the EEA). No
+  // url_passthrough: no ad click data travels without consent either.
   const denied = consentFor('rejected');
-  const defaultsWorld = { ...denied, analytics_storage: 'granted' as const };
   return [
     'window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}',
-    `gtag('consent','default',${JSON.stringify({ ...defaultsWorld, wait_for_update: 500 })});`,
-    `gtag('consent','default',${JSON.stringify({ ...denied, region: OPT_IN_REGIONS })});`,
-    "gtag('set','ads_data_redaction',true);gtag('set','url_passthrough',true);",
+    `gtag('consent','default',${JSON.stringify({ ...denied, wait_for_update: 500 })});`,
+    "gtag('set','ads_data_redaction',true);",
     `try{var m=document.cookie.match(/(?:^|;\\s*)${CONSENT_COOKIE}=([^;]*)/);var c=m?m[1]:localStorage.getItem(${JSON.stringify(CONSENT_STORAGE_KEY)});`,
     `if(c==='accepted')gtag('consent','update',${JSON.stringify(consentFor('accepted'))});`,
     `else if(c==='rejected')gtag('consent','update',${JSON.stringify(denied)});}catch(e){}`,

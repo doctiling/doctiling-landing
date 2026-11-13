@@ -9,6 +9,7 @@ import { BrowserFrame } from '@doctiling/ui/molecules/browser-frame';
 import { Reveal } from './Reveal';
 import { SubPageShell } from './SubPageShell';
 import { HeroAccessForm } from './HeroAccessForm';
+import { FaqList } from './FaqList';
 import { useCasePath } from '../routes';
 import {
   USE_CASES,
@@ -107,20 +108,10 @@ export default function UseCasePageClient({ slug }: { slug: UseCaseSlug }) {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section id="faq" className="border-b border-border bg-card/60">
-        <div className="mx-auto max-w-4xl px-6 py-20 lg:px-10">
-          <H2 className="text-balance text-3xl not-italic leading-tight">{t('useCasesPage.labels.faq')}</H2>
-          <dl className="mt-10 flex flex-col divide-y divide-border">
-            {USE_CASE_FAQ_KEYS.map((q) => (
-              <div key={q} className="py-6">
-                <dt className="font-display text-xl leading-snug">{t(k(`faq.${q}.q`))}</dt>
-                <dd className="mt-3 text-base leading-relaxed text-muted-foreground">{t(k(`faq.${q}.a`))}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
+      <FaqList
+        title={t('useCasesPage.labels.faq')}
+        items={USE_CASE_FAQ_KEYS.map((q) => ({ id: q, q: t(k(`faq.${q}.q`)), a: t(k(`faq.${q}.a`)) }))}
+      />
 
       {/* INTERNAL LINKS */}
       <section id="related" className="border-b border-border">

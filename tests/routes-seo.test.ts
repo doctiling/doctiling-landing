@@ -8,16 +8,19 @@ import {
   LANDING_SLUGS,
   landingRobotsAllow,
   landingSitemapEntries,
+  comparePath,
   useCasePath,
 } from '../src/routes';
 import {
   landingHomeJsonLd,
   landingMetadata,
   useCaseJsonLd,
+  compareJsonLd,
   verticalsJsonLd,
   LANDING_SEO_COPY,
 } from '../src/seo';
 import { USE_CASE_FAQ_KEYS, USE_CASE_SLUGS, USE_CASES } from '../src/use-cases';
+import { COMPARE, COMPARE_FAQ_KEYS, COMPARE_ROW_KEYS, COMPARE_SLUGS } from '../src/compare';
 import { LANDING_MESSAGES } from '../src/i18n';
 import { FAQ_KEYS } from '../src/components/faq-keys';
 
@@ -27,12 +30,23 @@ const LOCALES = ['en', 'es'] as const;
 describe('routes', () => {
   it('exposes the home plus the three deep-dive pages', () => {
     expect(LANDING_SLUGS).toEqual(['landing', 'documents', 'connect', 'verticals']);
-    expect(LANDING_PUBLIC_SEGMENTS).toEqual(['/landing', '/documents', '/connect', '/verticals', '/use-cases']);
+    expect(LANDING_PUBLIC_SEGMENTS).toEqual(['/landing', '/documents', '/connect', '/verticals', '/use-cases', '/compare']);
   });
 
   it('generates one use-case page per catalogue entry', () => {
     expect(USE_CASE_SLUGS).toEqual(['legal', 'consulting', 'healthcare', 'finance', 'research', 'engineering-teams']);
-    expect(LANDING_PAGE_PATHS).toEqual([...LANDING_SLUGS, ...USE_CASE_SLUGS.map((s) => `use-cases/${s}`)]);
+    expect(LANDING_PAGE_PATHS).toEqual([
+      ...LANDING_SLUGS,
+      ...USE_CASE_SLUGS.map((s) => `use-cases/${s}`),
+      ...COMPARE_SLUGS.map((s) => `compare/${s}`),
+    ]);
+  });
+
+  it('generates one comparison page per catalogue entry, in the sitemap and robots', () => {
+    expect(COMPARE_SLUGS).toEqual(['notion-ai', 'guru', 'glean']);
+    const entries = landingSitemapEntries(SITE, LOCALES, new Date('2026-11-13T00:00:00Z'));
+    expect(entries.find((e) => e.url === `${SITE}/es/compare/glean`)?.priority).toBe(0.7);
+    expect(landingRobotsAllow(LOCALES)).toContain('/en/compare/notion-ai');
   });
 
   it('builds one sitemap entry per page and locale, the home first in priority', () => {
@@ -77,6 +91,43 @@ describe('seo', () => {
         expect(copy.description.length).toBeGreaterThan(80);
       }
     }
+  });
+
+  it('keeps every comparison title within 60 characters and description within 155', () => {
+    for (const slug of COMPARE_SLUGS) {
+      for (const locale of LOCALES) {
+        const copy = LANDING_SEO_COPY[comparePath(slug)][locale];
+        expect(copy.title.length, `${locale}/${slug} title`).toBeLessThanOrEqual(60);
+        expect(copy.description.length, `${locale}/${slug} description`).toBeLessThanOrEqual(155);
+      }
+    }
+  });
+
+  it('backs every competitor cell with an official https source and a check date', () => {
+    for (const slug of COMPARE_SLUGS) {
+      const entry = COMPARE[slug];
+      expect(entry.verifiedOn).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      const host = new URL(entry.site).hostname.replace(/^www\./, '');
+      for (const row of COMPARE_ROW_KEYS) {
+        const url = new URL(entry.sources[row]);
+        expect(url.protocol, `${slug}.${row}`).toBe('https:');
+        // the competitor's own domain (or a subdomain of it: help., docs.)
+        expect(url.hostname.endsWith(host), `${slug}.${row} → ${url.hostname}`).toBe(true);
+      }
+    }
+  });
+
+  it('describes a comparison with breadcrumb, FAQ and application schemas', () => {
+    const ld = compareJsonLd('guru', { siteUrl: SITE, locale: 'es' }) as { '@graph': Array<Record<string, unknown>> };
+    expect(ld['@graph'].map((n) => n['@type'])).toEqual(['BreadcrumbList', 'FAQPage', 'SoftwareApplication']);
+    const crumbs = ld['@graph'][0] as { itemListElement: Array<{ item: string; name: string }> };
+    expect(crumbs.itemListElement.map((c) => c.item)).toEqual([`${SITE}/es/landing`, `${SITE}/es/compare/guru`]);
+    expect(crumbs.itemListElement[1].name).toBe('Doctiling vs Guru');
+    const faq = ld['@graph'][1] as { mainEntity: unknown[] };
+    expect(faq.mainEntity).toHaveLength(COMPARE_FAQ_KEYS.length);
+    const meta = landingMetadata('compare/guru', { siteUrl: SITE, locale: 'en' });
+    expect(meta.alternates?.canonical).toBe(`${SITE}/en/compare/guru`);
+    expect(meta.alternates?.languages).toMatchObject({ 'x-default': `${SITE}/es/compare/guru` });
   });
 
   it('builds canonical, hreflang and Open Graph metadata for a use-case page', () => {
@@ -146,10 +197,11 @@ describe('seo', () => {
 describe('package manifest', () => {
   it('mirrors the slugs for hosts that read package.json without a TS loader', async () => {
     const pkg = JSON.parse(readFileSync(resolve(process.cwd(), 'package.json'), 'utf8')) as {
-      doctiling: { slugs: string[]; segments: string[]; useCases: string[] };
+      doctiling: { slugs: string[]; segments: string[]; useCases: string[]; compare: string[] };
     };
     expect(pkg.doctiling.slugs).toEqual([...LANDING_SLUGS]);
     expect(pkg.doctiling.segments).toEqual([...LANDING_SEGMENTS]);
     expect(pkg.doctiling.useCases).toEqual([...USE_CASE_SLUGS]);
+    expect(pkg.doctiling.compare).toEqual([...COMPARE_SLUGS]);
   });
 });

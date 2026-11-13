@@ -1,3 +1,4 @@
+import { COMPARE_SLUGS, type CompareSlug } from './compare';
 import { USE_CASE_SLUGS, type UseCaseSlug } from './use-cases';
 
 // The public pages this package renders, as locale-less paths. The host mounts
@@ -14,19 +15,25 @@ export type LandingSlug = (typeof LANDING_SLUGS)[number];
 /** Segment of the catalogue-generated use-case pages: `/{locale}/use-cases/{slug}`. */
 export const LANDING_USE_CASES_SEGMENT = 'use-cases';
 
+/** Segment of the catalogue-generated comparison pages: `/{locale}/compare/{slug}`. */
+export const LANDING_COMPARE_SEGMENT = 'compare';
+
 /** Every top-level path segment the package owns (static pages + catalogue segments). */
-export const LANDING_SEGMENTS = [...LANDING_SLUGS, LANDING_USE_CASES_SEGMENT] as const;
+export const LANDING_SEGMENTS = [...LANDING_SLUGS, LANDING_USE_CASES_SEGMENT, LANDING_COMPARE_SEGMENT] as const;
 
 export type UseCasePath = `use-cases/${UseCaseSlug}`;
+export type ComparePath = `compare/${CompareSlug}`;
 /** Any page this package renders, without the locale. */
-export type LandingPagePath = LandingSlug | UseCasePath;
+export type LandingPagePath = LandingSlug | UseCasePath | ComparePath;
 
 export const useCasePath = (slug: UseCaseSlug): UseCasePath => `${LANDING_USE_CASES_SEGMENT}/${slug}`;
+export const comparePath = (slug: CompareSlug): ComparePath => `${LANDING_COMPARE_SEGMENT}/${slug}`;
 
-/** Every page, static ones first, then the catalogue. */
+/** Every page, static ones first, then the catalogues. */
 export const LANDING_PAGE_PATHS: readonly LandingPagePath[] = [
   ...LANDING_SLUGS,
   ...USE_CASE_SLUGS.map(useCasePath),
+  ...COMPARE_SLUGS.map(comparePath),
 ];
 
 /** Path segments the host must leave reachable without a session (prefixes). */
@@ -42,7 +49,7 @@ export interface LandingSitemapEntry {
 
 function priorityOf(path: LandingPagePath): number {
   if (path === LANDING_HOME_SLUG) return 1;
-  return path.startsWith(`${LANDING_USE_CASES_SEGMENT}/`) ? 0.7 : 0.8;
+  return path.includes('/') ? 0.7 : 0.8;
 }
 
 /** One sitemap entry per page and locale, with hreflang alternates. */

@@ -1752,7 +1752,7 @@
           "focus": "IA integrada en el espacio de trabajo de Notion: páginas, documentos, tareas y bases de datos.",
           "citations": "Sí: respuestas con citas.",
           "structure": "Bases de datos con autocompletado por IA; grafos no indicados.",
-          "sources": "Búsqueda en Slack, Google Drive, GitHub y más; Enterprise Search completo desde el plan Business.",
+          "sources": "Búsqueda en Slack, Google Drive, GitHub y más; Enterprise Search completo (beta) desde el plan Business.",
           "mcp": "Sí: Notion MCP conecta apps de IA al espacio de trabajo.",
           "selfHost": "No se indica en su sitio oficial.",
           "freePlan": "Plan gratuito con una prueba limitada de IA; IA completa desde el plan Business.",

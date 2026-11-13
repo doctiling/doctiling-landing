@@ -75,8 +75,8 @@ export const COMPARE: Record<CompareSlug, CompareEntry> = {
       sources: 'https://www.glean.com/connectors',
       mcp: 'https://docs.glean.com/administration/platform/mcp/about',
       selfHost: 'https://docs.glean.com/get-started/prepare/about-deployment',
-      freePlan: 'https://www.glean.com/pricing',
-      pricing: 'https://www.glean.com/pricing',
+      freePlan: 'https://www.glean.com/',
+      pricing: 'https://www.glean.com/',
     },
   },
 };

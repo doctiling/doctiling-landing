@@ -19,16 +19,21 @@ export interface LandingAnalyticsProps {
   locale: LandingLocale;
   /** Absolute or root-relative link to the cookie policy (the host owns that page). */
   cookiesHref: string;
+  /**
+   * Parent domain for the consent cookie (e.g. `.doctiling.app`) so the choice
+   * made on the landing also holds on the studio subdomain. Absent = this host only.
+   */
+  consentCookieDomain?: string;
 }
 
 // Mounted once by the host, in its root layout, so every page — landing and
 // product — is measured with the same tag and the same consent. Lives outside
 // LandingHostProvider on purpose: it only needs the locale and one link.
-export function LandingAnalytics({ tagId, locale, cookiesHref }: LandingAnalyticsProps) {
+export function LandingAnalytics({ tagId, locale, cookiesHref, consentCookieDomain }: LandingAnalyticsProps) {
   const t = (key: string) => translate(landingMessages(locale), key);
   const [choice, setChoice] = useState<ConsentChoice | null | 'unknown'>('unknown');
 
-  useEffect(() => setChoice(readConsentChoice()), []);
+  useEffect(() => setChoice(readConsentChoice(consentCookieDomain)), [consentCookieDomain]);
 
   // One delegated listener measures every CTA without touching the sections:
   // product links (sign in / open the app), downloads, and any element that
@@ -56,7 +61,7 @@ export function LandingAnalytics({ tagId, locale, cookiesHref }: LandingAnalytic
   if (!tagId) return null;
 
   const decide = (c: ConsentChoice) => {
-    saveConsentChoice(c);
+    saveConsentChoice(c, consentCookieDomain);
     setChoice(c);
   };
 

@@ -1,7 +1,9 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import {
+  CONSENT_COOKIE,
   CONSENT_STORAGE_KEY,
+  readConsentChoice,
   LANDING_EVENTS,
   consentBootstrapScript,
   ctaFromHref,
@@ -16,9 +18,14 @@ vi.mock('next/script', () => ({ default: () => null }));
 type DL = { dataLayer?: unknown[] };
 const pushed = () => ((window as unknown as DL).dataLayer ?? []).map((a) => Array.from(a as ArrayLike<unknown>));
 
+const clearCookie = () => {
+  document.cookie = `${CONSENT_COOKIE}=; Path=/; Max-Age=0`;
+};
+
 beforeEach(() => {
   (window as unknown as DL).dataLayer = [];
   window.localStorage.clear();
+  clearCookie();
 });
 
 describe('analytics', () => {
@@ -39,6 +46,7 @@ describe('analytics', () => {
     expect(js).toContain("gtag('consent','default'");
     expect(js).toMatch(/"ad_user_data":"denied"/);
     expect(js).toContain('"DE"');
+    expect(js).toContain(CONSENT_COOKIE);
     expect(js).toContain(CONSENT_STORAGE_KEY);
   });
 
@@ -67,12 +75,24 @@ describe('LandingAnalytics', () => {
   it('asks for consent once and stores the choice', () => {
     const { unmount } = render(<LandingAnalytics tagId="GTM-TEST" locale="es" cookiesHref="/es/cookies" />);
     fireEvent.click(screen.getByRole('button', { name: 'Aceptar' }));
-    expect(window.localStorage.getItem(CONSENT_STORAGE_KEY)).toBe('accepted');
+    expect(document.cookie).toContain(`${CONSENT_COOKIE}=accepted`);
     expect(pushed().some((a) => a[0] === 'consent' && a[1] === 'update')).toBe(true);
     expect(screen.queryByRole('dialog')).toBeNull();
     unmount();
     render(<LandingAnalytics tagId="GTM-TEST" locale="es" cookiesHref="/es/cookies" />);
     expect(screen.queryByRole('dialog')).toBeNull();
+  });
+
+  it('honours a choice made on another subdomain (shared cookie) without asking again', () => {
+    document.cookie = `${CONSENT_COOKIE}=rejected; Path=/`;
+    render(<LandingAnalytics tagId="GTM-TEST" locale="es" cookiesHref="/es/cookies" />);
+    expect(screen.queryByRole('dialog')).toBeNull();
+  });
+
+  it('migrates the v0.6.0 localStorage choice to the shared cookie', () => {
+    window.localStorage.setItem(CONSENT_STORAGE_KEY, 'accepted');
+    expect(readConsentChoice()).toBe('accepted');
+    expect(document.cookie).toContain(`${CONSENT_COOKIE}=accepted`);
   });
 
   it('measures CTA clicks through one delegated listener', () => {

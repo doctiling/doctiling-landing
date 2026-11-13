@@ -55,8 +55,19 @@ and measures CTA clicks with one delegated listener (`/signin`, `/kb`, downloads
 `data-analytics="name"`). The host mounts it once in its root layout, SaaS edition only:
 
 ```tsx
-<LandingAnalytics tagId={process.env.NEXT_PUBLIC_GOOGLE_TAG_ID} locale={locale} cookiesHref={`/${locale}/cookies`} />
+<LandingAnalytics
+  tagId={process.env.NEXT_PUBLIC_GOOGLE_TAG_ID}
+  locale={locale}
+  cookiesHref={`/${locale}/cookies`}
+  consentCookieDomain=".doctiling.app"
+/>
 ```
+
+Mount it in the layout of the marketing routes only: the studio has its own tag. The choice lives in
+the first-party cookie `doctiling_consent` (`accepted` | `rejected`, `Path=/`, 12 months, `SameSite=Lax`,
+`Domain` = `consentCookieDomain`). That name and format are a **contract with the studio**: it reads the
+same cookie for its Consent Mode defaults and writes it from its own banner, so a visitor answers once
+across `www` and `studio`. The v0.6.0 `localStorage` key is read once and migrated to the cookie.
 
 Sections report through `useLandingHost().track` (default: the dataLayer, GA4 event shape):
 `generate_lead` (hero / demo form), `cta_click`, `video_play`. A host that measures elsewhere passes

@@ -28,8 +28,16 @@ export interface ConsentState {
   analytics_storage: ConsentValue;
 }
 
-/** Where the visitor's choice is remembered (first-party, this origin only). */
+/** Legacy v0.6.0 store (localStorage, one origin only); still read once and migrated to the cookie. */
 export const CONSENT_STORAGE_KEY = 'doctiling.consent.v1';
+/**
+ * The visitor's choice, shared by every subdomain (landing on www, the app on
+ * studio): a first-party cookie, value `accepted` | `rejected`, set on the
+ * parent domain when the host passes one. This name and format are a contract:
+ * the studio reads and writes the same cookie so the banner shows only once.
+ */
+export const CONSENT_COOKIE = 'doctiling_consent';
+export const CONSENT_COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // 12 months
 export type ConsentChoice = 'accepted' | 'rejected';
 
 /**
@@ -70,20 +78,46 @@ export const dataLayerTrack: LandingTrackFn = (event, params) => {
   }
 };
 
-export function readConsentChoice(): ConsentChoice | null {
-  try {
-    const v = window.localStorage.getItem(CONSENT_STORAGE_KEY);
-    return v === 'accepted' || v === 'rejected' ? v : null;
-  } catch {
-    return null;
-  }
+const isChoice = (v: unknown): v is ConsentChoice => v === 'accepted' || v === 'rejected';
+
+function readCookie(): string | null {
+  const m = document.cookie.match(new RegExp(`(?:^|;\\s*)${CONSENT_COOKIE}=([^;]*)`));
+  return m ? decodeURIComponent(m[1]) : null;
 }
 
-export function saveConsentChoice(choice: ConsentChoice): void {
+function writeCookie(choice: ConsentChoice, domain?: string): void {
+  const parts = [
+    `${CONSENT_COOKIE}=${choice}`,
+    'Path=/',
+    `Max-Age=${CONSENT_COOKIE_MAX_AGE}`,
+    'SameSite=Lax',
+  ];
+  if (domain) parts.push(`Domain=${domain}`);
+  if (window.location.protocol === 'https:') parts.push('Secure');
+  document.cookie = parts.join('; ');
+}
+
+/** The stored choice: the shared cookie first, then the v0.6.0 localStorage key (migrated on read). */
+export function readConsentChoice(cookieDomain?: string): ConsentChoice | null {
   try {
-    window.localStorage.setItem(CONSENT_STORAGE_KEY, choice);
+    const fromCookie = readCookie();
+    if (isChoice(fromCookie)) return fromCookie;
+    const legacy = window.localStorage.getItem(CONSENT_STORAGE_KEY);
+    if (isChoice(legacy)) {
+      writeCookie(legacy, cookieDomain);
+      return legacy;
+    }
   } catch {
-    // Private mode / blocked storage: the choice still applies to this page view.
+    // Blocked storage: ask again.
+  }
+  return null;
+}
+
+export function saveConsentChoice(choice: ConsentChoice, cookieDomain?: string): void {
+  try {
+    writeCookie(choice, cookieDomain);
+  } catch {
+    // Blocked cookies: the choice still applies to this page view.
   }
   gtag('consent', 'update', consentFor(choice));
 }
@@ -100,7 +134,7 @@ export function consentBootstrapScript(): string {
     `gtag('consent','default',${JSON.stringify({ ...defaultsWorld, wait_for_update: 500 })});`,
     `gtag('consent','default',${JSON.stringify({ ...denied, region: OPT_IN_REGIONS })});`,
     "gtag('set','ads_data_redaction',true);gtag('set','url_passthrough',true);",
-    `try{var c=localStorage.getItem(${JSON.stringify(CONSENT_STORAGE_KEY)});`,
+    `try{var m=document.cookie.match(/(?:^|;\\s*)${CONSENT_COOKIE}=([^;]*)/);var c=m?m[1]:localStorage.getItem(${JSON.stringify(CONSENT_STORAGE_KEY)});`,
     `if(c==='accepted')gtag('consent','update',${JSON.stringify(consentFor('accepted'))});`,
     `else if(c==='rejected')gtag('consent','update',${JSON.stringify(denied)});}catch(e){}`,
     "gtag('js',new Date());",

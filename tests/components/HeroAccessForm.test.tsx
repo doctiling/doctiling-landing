@@ -8,7 +8,8 @@ import { HeroAccessForm } from '../../src/components/HeroAccessForm';
 const submitDemoRequest = vi.fn();
 const toast = vi.fn();
 
-const renderWithHost = (ui: ReactElement) => renderWithHostBase(ui, { submitDemoRequest, notify: toast });
+const track = vi.fn();
+const renderWithHost = (ui: ReactElement) => renderWithHostBase(ui, { submitDemoRequest, notify: toast, track });
 
 beforeEach(() => {
   submitDemoRequest.mockReset();
@@ -29,6 +30,33 @@ describe('HeroAccessForm', () => {
 
     await waitFor(() => expect(submitDemoRequest).toHaveBeenCalledTimes(1));
     expect(submitDemoRequest.mock.calls[0][0]).toMatchObject({ email: 'ada@engines.example' });
+  });
+
+  it('reports the lead as the hero form when no page is given', async () => {
+    submitDemoRequest.mockResolvedValue({ ok: true });
+    const user = userEvent.setup();
+    renderWithHost(<HeroAccessForm detailsHref="#demo" />);
+
+    await user.type(emailField(), 'ada@engines.example');
+    await user.click(submitBtn());
+
+    await waitFor(() => expect(track).toHaveBeenCalledWith('generate_lead', { form: 'hero', page: undefined }));
+  });
+
+  it('attributes the lead to the page that produced it and tags the submit as a named CTA', async () => {
+    submitDemoRequest.mockResolvedValue({ ok: true });
+    const user = userEvent.setup();
+    renderWithHost(
+      <HeroAccessForm detailsHref="#demo" form="use_case" page="use-cases/legal" analytics="use_case_cta" />,
+    );
+
+    expect(submitBtn()).toHaveAttribute('data-analytics', 'use_case_cta');
+    await user.type(emailField(), 'ada@engines.example');
+    await user.click(submitBtn());
+
+    await waitFor(() =>
+      expect(track).toHaveBeenCalledWith('generate_lead', { form: 'use_case', page: 'use-cases/legal' }),
+    );
   });
 
   it('replaces the field with a confirmation that points at the full form', async () => {

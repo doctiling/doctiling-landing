@@ -1310,7 +1310,8 @@
       "solution": "Cómo lo resuelve Doctiling",
       "edge": "Tu ventaja competitiva",
       "capabilities": "Qué puedes hacer",
-      "chat": "Así lo ve quien pregunta"
+      "chat": "Así lo ve quien pregunta",
+      "useCase": "Ver el caso de uso completo"
     },
     "items": {
       "legal": {
@@ -1446,14 +1447,434 @@
     "hero": {
       "eyebrow": "documentos y gestión del conocimiento",
       "title": "Texto, tablas y grafos en una sola base.",
-      "lede": "Lo que subes deja de ser un archivo opaco: se convierte en bloques citables, filas consultables o nodos con relaciones. Aquí está el recorrido completo, del archivo crudo al entregable que puedes defender."
+      "lede": "En Doctiling, lo que subes deja de ser un archivo opaco: se convierte en bloques citables, filas consultables o nodos con relaciones. Aquí está el recorrido completo, del archivo crudo al entregable que puedes defender."
     }
   },
   "connectPage": {
     "hero": {
       "eyebrow": "conectar y compartir",
       "title": "Tu conocimiento, donde ya trabaja tu equipo.",
-      "lede": "Una base de conocimiento se expone por MCP con token acotado y revocable — y se comparte con roles. Aquí está cómo viaja la pregunta, qué se comparte con quién, y cómo llevártelo a tu propia infraestructura."
+      "lede": "En Doctiling, una base de conocimiento se expone por MCP con token acotado y revocable — y se comparte con roles. Aquí está cómo viaja la pregunta, qué se comparte con quién, y cómo llevártelo a tu propia infraestructura."
+    }
+  },
+  "useCasesPage": {
+    "labels": {
+      "eyebrow": "caso de uso",
+      "problem": "El problema",
+      "solution": "Cómo lo resuelve Doctiling",
+      "steps": "Cómo funciona",
+      "faq": "Preguntas frecuentes",
+      "related": "Otros casos de uso",
+      "explore": "Profundiza",
+      "documentsLink": "Tipos de documento: texto, tablas y grafos",
+      "connectLink": "Conecta una base de conocimiento por MCP",
+      "verticalsLink": "Todas las soluciones por sector",
+      "breadcrumb": "Soluciones por sector",
+      "shotCaption": "Captura real de Doctiling: cada respuesta cita el documento y la sección de donde salió."
+    },
+    "items": {
+      "legal": {
+        "seo": {
+          "title": "IA para equipos legales con citas verificables — Doctiling",
+          "description": "Pregunta a tus expedientes en lenguaje natural y recibe respuestas con documento y página. Memos, líneas de tiempo y cuadros de cláusulas trazables.",
+          "ogAlt": "Doctiling para equipos legales — respuestas que citan la cláusula exacta",
+          "keywords": "IA para abogados, IA legal con citas, revisión de contratos IA, base de conocimiento legal, comparación de cláusulas, memo de caso IA"
+        },
+        "card": "Contratos y expedientes que responden con la cláusula exacta.",
+        "h1": "IA para equipos legales que cita la cláusula exacta",
+        "answer": "Doctiling es una base de conocimiento para equipos legales: subes el expediente, preguntas en lenguaje natural y el agente de IA responde citando el documento y la página de donde sale cada afirmación. Si algo no está en tus documentos, lo dice en lugar de inventarlo.",
+        "answer2": "Con esas respuestas redacta memos, líneas de tiempo y cuadros comparativos de cláusulas, cada línea trazable a su fuente, para que el trabajo se pueda defender ante un cliente o un juez.",
+        "problem": "Revisar contratos y armar la teoría de un caso significa releer cientos de páginas sin pasar por alto la cláusula que lo cambia todo. Los chats de IA genéricos resumen bien pero pueden inventar citas — y una cita inventada en un escrito es un riesgo profesional.",
+        "solution": "Cada expediente tiene su propia base de conocimiento con sus propios permisos. El agente recupera los pasajes relevantes antes de responder y adjunta la cita, así verificas la cláusula con un clic en lugar de confiar en un resumen.",
+        "steps": {
+          "s1": "Sube el expediente — contratos, escritos, correspondencia — a una base de conocimiento para ese caso.",
+          "s2": "Pregunta en lenguaje natural: plazos, penalidades, contradicciones entre documentos.",
+          "s3": "Guarda la respuesta como memo o cuadro de cláusulas, con todas sus citas."
+        },
+        "shotAlt": "Captura real de Doctiling para equipos legales: documento de ejemplo del sector.",
+        "faq": {
+          "q1": {
+            "q": "¿La IA puede inventar una cita legal?",
+            "a": "Doctiling recupera pasajes de tus propios documentos antes de responder y adjunta la cita a cada afirmación. Si la respuesta no está en tus fuentes, el agente lo dice en lugar de conjeturar."
+          },
+          "q2": {
+            "q": "¿Los expedientes de mis clientes se mezclan con datos de otros despachos?",
+            "a": "No. Solo las personas que invitas ven una base de conocimiento, con roles (propietario, administrador, colaborador, lector). En el plan Gold tus datos viven en su propia base de datos dedicada."
+          },
+          "q3": {
+            "q": "¿Podemos entregar el trabajo con nuestra propia marca?",
+            "a": "Sí. El plan Gold incluye dominio propio y marca blanca."
+          },
+          "q4": {
+            "q": "¿Funciona con documentos en español?",
+            "a": "Sí. El estudio es bilingüe (español e inglés) y el agente responde en el idioma de tus documentos y tus preguntas."
+          }
+        }
+      },
+      "consulting": {
+        "seo": {
+          "title": "Base de conocimiento con IA para consultoras — Doctiling",
+          "description": "Convierte data rooms, entrevistas y documentos del cliente en entregables donde cada conclusión cita su fuente. Compártela con tu equipo por MCP.",
+          "ogAlt": "Doctiling para consultoría — data rooms convertidos en entregables citados",
+          "keywords": "IA para consultores, base de conocimiento consultoría, data room IA, síntesis de entrevistas IA, entregables citados, gestión del conocimiento consultor"
+        },
+        "card": "Data rooms y entrevistas convertidos en entregables citados.",
+        "h1": "Base de conocimiento con IA para firmas de consultoría",
+        "answer": "Doctiling le da a cada proyecto su propia base de conocimiento: centralizas el data room, las transcripciones de entrevistas y los documentos del cliente, y un agente de IA los sintetiza en entregables donde cada conclusión cita el documento de donde salió.",
+        "answer2": "El cliente ve el rastro detrás de cada hallazgo, y tu equipo puede consultar la misma base desde las herramientas que ya usa, por MCP.",
+        "problem": "Un proyecto empieza con cientos de documentos del cliente, transcripciones y data rooms. Convertir todo eso en un entregable claro y defendible es donde se va el tiempo facturable — y el cliente quiere ver el rastro, no una caja negra.",
+        "solution": "La vista espejo apila resúmenes, tablas de entidades, mapas mentales y correlaciones junto a cada documento. Cada hallazgo se guarda como variante, así comparas enfoques sin perder de dónde salió cada uno.",
+        "steps": {
+          "s1": "Crea una base de conocimiento por cliente o proyecto y carga el data room.",
+          "s2": "Pide síntesis, tablas de entidades y contradicciones entre entrevistas.",
+          "s3": "Comparte la base con tu equipo o conéctala a sus herramientas por MCP, de solo lectura y revocable."
+        },
+        "shotAlt": "Captura real de Doctiling para consultoría: documento de ejemplo del sector.",
+        "faq": {
+          "q1": {
+            "q": "¿Puedo mantener separada la información de cada cliente?",
+            "a": "Sí. Cada base de conocimiento tiene sus propios documentos, permisos, prompt de sistema y herramientas; creas una por cliente, equipo o caso."
+          },
+          "q2": {
+            "q": "¿Cómo sabe el cliente de dónde sale una conclusión?",
+            "a": "Cada afirmación del agente lleva una cita al documento y la sección de la base de conocimiento, así el rastro queda visible en el entregable."
+          },
+          "q3": {
+            "q": "¿Mi equipo puede usarla desde las herramientas que ya tiene?",
+            "a": "Sí. Una base de conocimiento se puede exponer por MCP con un token acotado, revocable y de solo lectura, para que otras herramientas de IA de tu equipo la consulten como fuente de verdad."
+          },
+          "q4": {
+            "q": "¿Esto reemplaza construir nuestro propio RAG?",
+            "a": "En la mayoría de los casos, sí: el troceado, los embeddings, el índice vectorial y las citas ya están construidos. Tú decides qué fuentes entran a cada base y quién tiene acceso."
+          }
+        }
+      },
+      "healthcare": {
+        "seo": {
+          "title": "IA para salud basada en tus propias fuentes — Doctiling",
+          "description": "Guías, literatura y notas clínicas en una base de conocimiento. El agente de IA responde citando la fuente y avisa cuando la respuesta no está ahí.",
+          "ogAlt": "Doctiling para salud — respuestas basadas en guías y literatura",
+          "keywords": "IA para salud, base de conocimiento clínica, guías clínicas IA, IA con citas salud, revisión de literatura medicina, IA documental salud"
+        },
+        "card": "Guías, literatura y notas que responden con la fuente.",
+        "h1": "IA para salud que responde desde tus propias fuentes",
+        "answer": "Doctiling es una base de conocimiento para equipos de salud: reúnes guías clínicas, literatura y notas, y el agente de IA responde preguntas clínicas citando la fuente de cada afirmación. Si algo no está en tus documentos, lo dice — no inventa una dosis ni un hallazgo.",
+        "answer2": "Resume seguimientos y cruza un hallazgo con la evidencia que cargaste, para que el tiempo vaya a la atención y no a buscar.",
+        "problem": "La información del paciente vive dispersa entre notas, exámenes y guías clínicas. Buscar un antecedente o cruzar un hallazgo con la literatura consume el tiempo que debería ir a la atención, y un asistente que inventa una dosis es inaceptable.",
+        "solution": "El agente trabaja solo con las fuentes de la base de conocimiento y muestra de dónde sale cada respuesta. El acceso se limita a las personas que invitas, con roles, y los planes pagos llevan tus datos a una base de datos o una infraestructura dedicadas.",
+        "steps": {
+          "s1": "Carga las guías, protocolos y papers con los que trabaja tu equipo.",
+          "s2": "Haz preguntas clínicas y recibe la respuesta con la sección de la guía citada.",
+          "s3": "Mantén tablas de seguimiento y resúmenes junto a la evidencia en la que se apoyan."
+        },
+        "shotAlt": "Captura real de Doctiling para salud: documento de ejemplo del sector.",
+        "faq": {
+          "q1": {
+            "q": "¿Qué pasa si la respuesta no está en nuestros documentos?",
+            "a": "El agente lo dice en lugar de conjeturar. Cada afirmación que hace lleva una cita a tu propio contenido."
+          },
+          "q2": {
+            "q": "¿Quién puede ver la información?",
+            "a": "Solo las personas que invitas explícitamente, con roles. En el plan Free los datos se aíslan lógicamente por usuario; Gold te lleva a una base de datos dedicada y Platinum suma infraestructura dedicada."
+          },
+          "q3": {
+            "q": "¿Podemos correrlo en nuestra propia infraestructura?",
+            "a": "Sí. La versión self-hosted corre el mismo producto en tu infraestructura."
+          },
+          "q4": {
+            "q": "¿Reemplaza el criterio clínico?",
+            "a": "No. Doctiling recupera y cita lo que dicen tus fuentes; la decisión sigue siendo del profesional, que puede verificar cada cita."
+          }
+        }
+      },
+      "finance": {
+        "seo": {
+          "title": "IA para finanzas: cada cifra con su fuente — Doctiling",
+          "description": "Análisis de ratios, resúmenes ejecutivos y comparativas entre periodos sobre tus propios estados, con cada cifra enlazada al documento de origen.",
+          "ogAlt": "Doctiling para finanzas — cada cifra enlazada a su estado financiero",
+          "keywords": "IA para finanzas, análisis de estados financieros IA, análisis de ratios IA, IA lista para auditoría, reportes financieros IA, IA con citas finanzas"
+        },
+        "card": "Estados y reportes donde cada cifra es trazable.",
+        "h1": "IA para finanzas donde cada cifra tiene su fuente",
+        "answer": "Doctiling es una base de conocimiento para equipos de finanzas: subes filings, estados y reportes, y el agente de IA produce análisis de ratios, resúmenes ejecutivos y comparativas entre periodos donde cada cifra enlaza al estado financiero exacto del que proviene.",
+        "answer2": "Un número sin trazar no se puede auditar; aquí cada uno conserva su fuente, junto al documento en la vista espejo.",
+        "problem": "Analizar reportes, calcular ratios y seguir un portafolio implica saltar entre PDFs interminables y hojas de cálculo. Un número sin trazar es un número que no puedes auditar — ni defender ante un comité de inversión.",
+        "solution": "Las tablas de los PDF se reconstruyen como documentos de tabla que el agente puede agregar y comparar, y cada resultado cita la fuente. Los análisis se apilan junto al documento en la vista espejo, y cada base de conocimiento conserva sus propios permisos.",
+        "steps": {
+          "s1": "Sube filings, estados financieros y reportes trimestrales.",
+          "s2": "Pide ratios, variaciones y resúmenes entre periodos.",
+          "s3": "Guarda la comparativa como documento de tabla con cada cifra citada."
+        },
+        "shotAlt": "Captura real de Doctiling para finanzas: documento de ejemplo del sector.",
+        "faq": {
+          "q1": {
+            "q": "¿El agente puede trabajar con tablas de PDF?",
+            "a": "Sí. Doctiling reconstruye las tablas de los PDF como documentos de tabla, que el agente puede consultar y agregar con citas."
+          },
+          "q2": {
+            "q": "¿Cómo verifico una cifra?",
+            "a": "Cada cifra de una respuesta enlaza al estado y la sección de donde salió en tu base de conocimiento."
+          },
+          "q3": {
+            "q": "¿La información financiera sensible queda aislada?",
+            "a": "Solo las personas invitadas ven una base de conocimiento, con roles. Gold te da una base de datos dedicada y Platinum suma infraestructura dedicada."
+          },
+          "q4": {
+            "q": "¿Cómo obtengo acceso?",
+            "a": "El acceso gratuito es patrocinado y por invitación: lo solicitas con tu correo y, una vez aprobado, usas el estudio completo sin tarjeta."
+          }
+        }
+      },
+      "research": {
+        "seo": {
+          "title": "IA para revisión de literatura con citas reales — Doctiling",
+          "description": "Sintetiza entre tus propios papers, detecta contradicciones y redacta con citas verificables. Estudio bilingüe para escribir en español o inglés.",
+          "ogAlt": "Doctiling para investigación — revisiones de literatura con citas reales",
+          "keywords": "IA revisión de literatura, IA para investigadores, IA con citas reales, IA para tesis, síntesis de papers IA, base de conocimiento académica"
+        },
+        "card": "De una pila de papers a una revisión con citas reales.",
+        "h1": "IA para revisiones de literatura con citas verificables",
+        "answer": "Doctiling convierte tu corpus de papers en una base de conocimiento que un agente de IA puede sintetizar: compara fuentes, detecta contradicciones y extrae métodos y resultados, citando tus propios documentos en lugar de producir referencias que no existen.",
+        "answer2": "Redactas en español o inglés y guardas cada síntesis como variante, para comparar enfoques sin perder el rastro.",
+        "problem": "Una revisión de literatura es semanas de leer, anotar y cruzar fuentes. Los chats de IA aceleran el proceso pero pueden fabricar referencias que no existen — veneno para una tesis o un paper.",
+        "solution": "El agente responde solo desde los papers que cargaste y cita cada uno. Los documentos de grafo mapean cómo se relacionan conceptos y autores, y el agente puede dibujar diagramas y mapas mentales a partir de ellos.",
+        "steps": {
+          "s1": "Sube tu corpus de papers a una base de conocimiento del proyecto.",
+          "s2": "Pide síntesis, contradicciones y brechas entre fuentes.",
+          "s3": "Redacta con citas verificables y guarda cada versión como variante."
+        },
+        "shotAlt": "Captura real de Doctiling para investigación: documento de ejemplo del sector.",
+        "faq": {
+          "q1": {
+            "q": "¿Inventa referencias?",
+            "a": "El agente responde desde los papers de tu base de conocimiento y los cita. Si la respuesta no está en tus fuentes, lo dice en lugar de conjeturar."
+          },
+          "q2": {
+            "q": "¿Puedo escribir en español a partir de papers en inglés?",
+            "a": "Sí. El estudio es bilingüe y el agente lee y responde en el idioma de tus documentos y tus preguntas."
+          },
+          "q3": {
+            "q": "¿Puedo comparar distintas síntesis?",
+            "a": "Sí. Cada síntesis se guarda como variante junto al documento, así los enfoques quedan lado a lado con su rastro."
+          },
+          "q4": {
+            "q": "¿Hay una opción gratuita?",
+            "a": "El acceso gratuito es patrocinado y por invitación, con una cuota diaria de IA y sin tarjeta."
+          }
+        }
+      },
+      "engineering-teams": {
+        "seo": {
+          "title": "Base de conocimiento para equipos de ingeniería — Doctiling",
+          "description": "Specs, ADRs y runbooks en una base de conocimiento que tu equipo y sus agentes de código consultan por MCP, con respuestas citadas y token revocable.",
+          "ogAlt": "Doctiling para equipos de ingeniería — conocimiento citado para personas y agentes de código",
+          "keywords": "base de conocimiento ingeniería, base de conocimiento MCP, documentación para agentes de código, IA para equipos de ingeniería, documentación interna IA, base de conocimiento self-hosted"
+        },
+        "card": "Specs, decisiones y runbooks para personas y agentes de código.",
+        "h1": "Base de conocimiento compartida para equipos de ingeniería y sus agentes de código",
+        "answer": "Doctiling reúne las specs, decisiones de arquitectura y runbooks de tu equipo en una base de conocimiento que las personas consultan en el estudio y los agentes de código consultan por MCP. Cada respuesta cita el documento de donde salió, así un agente trabaja con tus decisiones en lugar de adivinarlas.",
+        "answer2": "El acceso pasa por un token acotado, revocable y de solo lectura, y la versión self-hosted corre el mismo producto en tu infraestructura.",
+        "problem": "El conocimiento de ingeniería está repartido entre wikis, repositorios e hilos. Las personas nuevas hacen las mismas preguntas, y los agentes de código llenan los vacíos con supuestos que contradicen decisiones que el equipo ya tomó.",
+        "solution": "Cura en una base de conocimiento los documentos que definen cómo construyen y exponla por MCP. Un agente de terminal, un chat de equipo o un sistema interno la consultan y reciben respuestas citadas; los documentos de grafo describen cómo se relacionan los componentes.",
+        "steps": {
+          "s1": "Carga specs, decisiones de arquitectura, runbooks y postmortems.",
+          "s2": "Expón la base por MCP con un token acotado, revocable y de solo lectura.",
+          "s3": "Tus agentes de código y tu equipo la consultan y reciben respuestas con citas."
+        },
+        "shotAlt": "Captura real de Doctiling: el agente responde con una tabla y cada dato citado a su documento.",
+        "faq": {
+          "q1": {
+            "q": "¿Qué es MCP y por qué importa para los agentes de código?",
+            "a": "Model Context Protocol es un estándar abierto que permite a herramientas de IA externas leer de una fuente de datos. Doctiling expone una base de conocimiento por ahí, así tus agentes consultan tus documentos como fuente de verdad."
+          },
+          "q2": {
+            "q": "¿Podemos revocar el acceso de un agente?",
+            "a": "Sí. El acceso pasa por un token acotado, revocable y de solo lectura por base de conocimiento."
+          },
+          "q3": {
+            "q": "¿Podemos alojarlo nosotros mismos?",
+            "a": "Sí. La versión self-hosted corre el mismo producto en tu propia infraestructura."
+          },
+          "q4": {
+            "q": "¿El agente puede producir diagramas o código a partir de nuestros documentos?",
+            "a": "Sí. Además de respuestas citadas, el agente produce tablas, gráficas, diagramas y código a partir del contenido de la base de conocimiento."
+          }
+        }
+      }
+    }
+  },
+  "comparePage": {
+    "labels": {
+      "eyebrow": "comparativa",
+      "tableTitle": "Doctiling vs {name} de un vistazo",
+      "criterion": "Criterio",
+      "source": "fuente",
+      "sourcesNote": "Los datos de {name} salen solo de sus páginas oficiales, enlazadas junto a cada celda y revisadas el {date}. Si algo cambió, escríbenos a support@doctiling.app y lo corregimos.",
+      "chooseDoctiling": "Elige Doctiling si…",
+      "chooseOther": "Elige {name} si…",
+      "faq": "Preguntas frecuentes",
+      "otherComparisons": "Otras comparativas",
+      "useCases": "Casos de uso"
+    },
+    "rows": {
+      "focus": "Qué es",
+      "citations": "Respuestas citadas",
+      "structure": "Tablas y grafos",
+      "sources": "De dónde sale el conocimiento",
+      "mcp": "MCP",
+      "selfHost": "Self-hosting",
+      "freePlan": "Plan gratuito",
+      "pricing": "Precios"
+    },
+    "doctiling": {
+      "focus": "Bases de conocimiento que tú gobiernas — una por cliente, equipo o caso — construidas con tus fuentes, curadas por expertos y trabajadas por agentes de IA.",
+      "citations": "Sí: cada afirmación cita el bloque del documento fuente; si no está en tus fuentes, el agente lo dice.",
+      "structure": "Documentos de texto, tabla y grafo; el agente dibuja gráficas, diagramas y mapas mentales a partir de ellos.",
+      "sources": "Subida de archivos y motores SQL de solo lectura. Sin sincronización nativa con Google Drive, Slack o Confluence.",
+      "mcp": "Sí: cada base de conocimiento se puede exponer con un token acotado, revocable y de solo lectura.",
+      "selfHost": "Sí: instalación local gratuita con instaladores públicos (el código es privado), o el mismo producto en tu infraestructura.",
+      "freePlan": "Sí: puesto patrocinado por invitación con IA incluida (25 llamadas de IA por día), sin tarjeta.",
+      "pricing": "Free y self-hosted a $0; Gold y Platinum bajo solicitud."
+    },
+    "items": {
+      "notion-ai": {
+        "name": "Notion AI",
+        "seo": {
+          "title": "Doctiling vs Notion AI: comparativa de bases de conocimiento",
+          "description": "Doctiling vs Notion AI: respuestas citadas, MCP, tablas y grafos, self-hosting y planes gratuitos, con fuentes de cada sitio oficial.",
+          "ogAlt": "Comparativa Doctiling vs Notion AI",
+          "keywords": "Doctiling vs Notion AI, alternativa a Notion AI, comparativa base de conocimiento IA, Notion AI vs, base de conocimiento con citas, alternativa self-hosted a Notion AI"
+        },
+        "h1": "Doctiling vs Notion AI",
+        "verdict": "Elige Notion AI si tu equipo ya escribe y planifica en Notion y quiere IA dentro de esas páginas. Elige Doctiling si necesitas una base de conocimiento dedicada, construida con tus propias fuentes — documentos, tablas y grafos —, que curan expertos y que también puedes correr gratis en tu propia máquina.",
+        "verdict2": "Los dos responden con citas y los dos se conectan por MCP; la diferencia es dónde vive el conocimiento y quién lo gobierna.",
+        "rows": {
+          "focus": "IA integrada en el espacio de trabajo de Notion: páginas, documentos, tareas y bases de datos.",
+          "citations": "Sí: respuestas con citas.",
+          "structure": "Bases de datos con autocompletado por IA; grafos no indicados.",
+          "sources": "Búsqueda en Slack, Google Drive, GitHub y más; Enterprise Search completo (beta) desde el plan Business.",
+          "mcp": "Sí: Notion MCP conecta apps de IA al espacio de trabajo.",
+          "selfHost": "No se indica en su sitio oficial.",
+          "freePlan": "Plan gratuito con una prueba limitada de IA; IA completa desde el plan Business.",
+          "pricing": "Publicados: planes Free, Plus, Business y Enterprise."
+        },
+        "chooseDoctiling": {
+          "c1": "Quieres una base de conocimiento por cliente, equipo o caso, con sus propios permisos, prompt y herramientas.",
+          "c2": "Tus fuentes incluyen tablas de PDF o relaciones que quieres consultar como documentos de tabla y grafo.",
+          "c3": "Necesitas correr el mismo producto en tu máquina o tu infraestructura, gratis para empezar."
+        },
+        "chooseOther": {
+          "c1": "Tu equipo ya escribe, planifica y sigue tareas en Notion.",
+          "c2": "Quieres IA dentro de las páginas y bases de datos que ya usas a diario.",
+          "c3": "Quieres buscar en Slack, Google Drive y GitHub desde el mismo espacio de trabajo."
+        },
+        "faq": {
+          "q1": {
+            "q": "¿Doctiling es una alternativa a Notion AI?",
+            "a": "Para una base de conocimiento construida con tus propias fuentes y curada por expertos, sí. Para escribir y planificar dentro de páginas de Notion, Notion AI está hecho para eso y los dos pueden convivir."
+          },
+          "q2": {
+            "q": "¿Los dos citan sus fuentes?",
+            "a": "Sí. Notion AI indica que sus respuestas vienen con citas; Doctiling cita el bloque del documento fuente detrás de cada afirmación y lo dice cuando la respuesta no está en tus fuentes."
+          },
+          "q3": {
+            "q": "¿Puedo probar Doctiling gratis?",
+            "a": "Sí. El puesto alojado es patrocinado y por invitación, con IA incluida y sin tarjeta, y la instalación local es gratuita y sin cuenta."
+          }
+        }
+      },
+      "guru": {
+        "name": "Guru",
+        "seo": {
+          "title": "Doctiling vs Guru: comparativa de bases de conocimiento IA",
+          "description": "Doctiling vs Guru: respuestas citadas, MCP, conectores, tablas y grafos, self-hosting y precios, con fuentes de cada sitio oficial.",
+          "ogAlt": "Comparativa Doctiling vs Guru",
+          "keywords": "Doctiling vs Guru, alternativa a Guru, comparativa base de conocimiento IA, Guru vs, base de conocimiento gobernada, base de conocimiento self-hosted"
+        },
+        "h1": "Doctiling vs Guru",
+        "verdict": "Elige Guru si quieres una capa de conocimiento gobernada para toda la empresa, con conectores listos a herramientas como Slack, Google Drive o Confluence, bajo un contrato con ventas. Elige Doctiling si quieres bases de conocimiento por cliente, equipo o caso construidas con los documentos que traes, con documentos de tabla y grafo y una forma gratuita de empezar, alojada o self-hosted.",
+        "verdict2": "Los dos citan cada respuesta y exponen el conocimiento por MCP; Guru se conecta a donde ya vive el conocimiento, Doctiling estructura lo que traes.",
+        "rows": {
+          "focus": "Una capa de conocimiento gobernada que estructura y mejora el conocimiento de la empresa para IA empresarial.",
+          "citations": "Sí: citas en cada respuesta.",
+          "structure": "No se indica en su sitio oficial.",
+          "sources": "Sí: integraciones con Google Drive, Confluence, Slack, Notion y más.",
+          "mcp": "Sí: un servidor MCP de Guru para herramientas de IA.",
+          "selfHost": "No se indica en su sitio oficial.",
+          "freePlan": "No se indica; costo reducido para organizaciones sin ánimo de lucro elegibles.",
+          "pricing": "No publicados: paquete a medida con ventas."
+        },
+        "chooseDoctiling": {
+          "c1": "Trabajas por cliente, equipo o caso y quieres cada base de conocimiento aislada con sus propios permisos.",
+          "c2": "Necesitas tablas y grafos construidos con tus documentos, no solo texto.",
+          "c3": "Quieres empezar gratis, o correrlo en tu propia máquina o infraestructura."
+        },
+        "chooseOther": {
+          "c1": "Quieres conocimiento sincronizado desde las herramientas donde ya vive, como Slack, Google Drive o Confluence.",
+          "c2": "Vas a desplegar una sola capa de conocimiento gobernada en toda la empresa.",
+          "c3": "Un paquete a medida, negociado con ventas, encaja con cómo compras software."
+        },
+        "faq": {
+          "q1": {
+            "q": "¿Cuál es la diferencia principal entre Doctiling y Guru?",
+            "a": "Guru se conecta a las herramientas donde ya vive el conocimiento de la empresa y lo gobierna como una sola capa. Doctiling construye bases de conocimiento curadas con las fuentes que traes — una por cliente, equipo o caso — con documentos de texto, tabla y grafo."
+          },
+          "q2": {
+            "q": "¿Doctiling se conecta a Slack o Google Drive?",
+            "a": "No como sincronización nativa de fuentes: subes archivos o conectas un motor SQL de solo lectura. En la otra dirección, un bot de Slack o una app de Teams pueden consumir la base de conocimiento por su endpoint MCP."
+          },
+          "q3": {
+            "q": "¿Hay una forma gratuita de probar Doctiling?",
+            "a": "Sí. El puesto alojado es patrocinado y por invitación, con IA incluida y sin tarjeta, y la instalación local es gratuita y sin cuenta."
+          }
+        }
+      },
+      "glean": {
+        "name": "Glean",
+        "seo": {
+          "title": "Doctiling vs Glean: comparativa de IA para el conocimiento",
+          "description": "Doctiling vs Glean: respuestas citadas, MCP, conectores, self-hosting, planes gratuitos y precios, con fuentes de cada sitio oficial.",
+          "ogAlt": "Comparativa Doctiling vs Glean",
+          "keywords": "Doctiling vs Glean, alternativa a Glean, comparativa búsqueda empresarial IA, Glean vs, base de conocimiento IA para equipos, alternativa self-hosted a Glean"
+        },
+        "h1": "Doctiling vs Glean",
+        "verdict": "Elige Glean si necesitas búsqueda e IA empresarial sobre cientos de apps conectadas de la empresa y puedes hacer un despliegue guiado por ventas. Elige Doctiling si quieres bases de conocimiento curadas a partir de fuentes seleccionadas, con documentos de tabla y grafo, empezando gratis — alojado o en tu propia máquina.",
+        "verdict2": "Los dos citan sus respuestas y ofrecen MCP; Glean indexa las herramientas que la empresa ya usa, Doctiling convierte fuentes seleccionadas en conocimiento curado.",
+        "rows": {
+          "focus": "Plataforma de IA empresarial conectada a los datos de la empresa.",
+          "citations": "Sí: hallazgos citados.",
+          "structure": "No se indica (analiza datos en data warehouses y herramientas de BI).",
+          "sources": "Sí: más de 275 conectores de apps.",
+          "mcp": "Sí: servidores MCP que habilita un administrador.",
+          "selfHost": "Parcial: despliegue administrado dentro de tu propia cuenta de GCP o AWS; no es un modelo self-hosted tradicional.",
+          "freePlan": "No se indica; demo bajo solicitud.",
+          "pricing": "No publicados: demo bajo solicitud."
+        },
+        "chooseDoctiling": {
+          "c1": "Quieres una base de conocimiento curada por cliente, equipo o caso en lugar de buscar en todas las apps de la empresa.",
+          "c2": "Tus fuentes incluyen tablas o relaciones que quieres consultar como documentos de tabla y grafo.",
+          "c3": "Quieres empezar gratis, o correr el mismo producto por completo en tu propia máquina."
+        },
+        "chooseOther": {
+          "c1": "Necesitas búsqueda e IA sobre cientos de apps que la empresa ya usa.",
+          "c2": "Prefieres un despliegue administrado dentro de tu propia cuenta de GCP o AWS.",
+          "c3": "Un despliegue empresarial que empieza con una demo encaja con cómo compras software."
+        },
+        "faq": {
+          "q1": {
+            "q": "¿Doctiling es un buscador empresarial como Glean?",
+            "a": "No. Glean se conecta a las apps que la empresa ya usa para buscar en todas. Doctiling construye bases de conocimiento curadas con las fuentes que eliges, que mantienen expertos y que los agentes de IA trabajan con citas."
+          },
+          "q2": {
+            "q": "¿Doctiling puede correr en nuestra propia infraestructura?",
+            "a": "Sí. El mismo producto se instala gratis en una máquina local, y la versión self-hosted corre en tu infraestructura."
+          },
+          "q3": {
+            "q": "¿Hay una opción gratuita?",
+            "a": "Sí. El puesto alojado es patrocinado y por invitación, con IA incluida y sin tarjeta, y la instalación local es gratuita y sin cuenta."
+          }
+        }
+      }
     }
   }
 }

@@ -1,7 +1,8 @@
 # @doctiling/landing
 
-The marketing surface of Doctiling — the landing page and its three deep-dive pages (`/documents`,
-`/connect`, `/verticals`) with their copy (en/es), SEO metadata, JSON-LD and static assets — as a
+The marketing surface of Doctiling — the landing page, its three deep-dive pages (`/documents`,
+`/connect`, `/verticals`) and the catalogue-generated use-case and comparison pages (`/use-cases/{slug}`, `/compare/{slug}`) with their
+copy (en/es), SEO metadata, JSON-LD and static assets — as a
 **host-agnostic Next.js package**. Raw TypeScript, no build step; the host transpiles it.
 
 It exists so that the product (`doctiling-web`, private) can ship in two editions from one codebase:
@@ -33,6 +34,50 @@ import { LandingHostProvider, LandingPage, landingMetadata, landingHomeJsonLd } 
 `LandingHost` (see `src/host.tsx`) is the whole contract: the landing never imports the host. It gets
 auth state, the lead action, the toaster, the legal consent copy, the feature switches and optional nav
 slots; it gives back `href()` for product routes and the dictionary-backed `t()`.
+
+### Catalogue pages (`/{locale}/use-cases/{slug}`)
+
+Use cases are one entry in `src/use-cases.ts` plus one `useCasesPage.items.{slug}` block per dictionary;
+the host mounts **one dynamic route** for all of them and never a page per case:
+
+```tsx
+// app/[locale]/(landing)/use-cases/[slug]/page.tsx
+import { notFound } from 'next/navigation';
+import { UseCasePage, USE_CASE_SLUGS, isUseCaseSlug, landingMetadata, useCaseJsonLd, useCasePath } from '@doctiling/landing';
+
+export const dynamicParams = false;
+export const generateStaticParams = () => USE_CASE_SLUGS.map((slug) => ({ slug }));
+export async function generateMetadata({ params }) {
+  const { locale, slug } = await params;
+  return isUseCaseSlug(slug) ? landingMetadata(useCasePath(slug), { siteUrl, locale }) : {};
+}
+export default async function Page({ params }) {
+  const { locale, slug } = await params;
+  if (!isUseCaseSlug(slug)) notFound();
+  return (<>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(useCaseJsonLd(slug, { siteUrl, locale })) }} />
+    <UseCasePage slug={slug} />
+  </>);
+}
+```
+
+Comparisons (`/{locale}/compare/{slug}`, `src/compare.ts` + `comparePage.items.{slug}`) mount the same way
+with `ComparePage`, `COMPARE_SLUGS`, `isCompareSlug`, `comparePath` and `compareJsonLd`. Every competitor cell
+carries the URL of the competitor's own page that supports it and the date it was checked; re-check them
+before each release that touches the copy.
+
+`landingSitemapEntries`, `landingRobotsAllow` and `LANDING_PUBLIC_SEGMENTS` (now `/use-cases` and `/compare` too) already
+include them, so **mount the route in the same change that bumps the pin**, or the sitemap lists 404s.
+Plain-Node scripts read `package.json` → `doctiling.segments` (every top-level segment, for the
+studio-edition leak check), `doctiling.useCases` and `doctiling.compare`.
+
+### llms.txt
+
+`public/llms.txt` (index: what Doctiling is, for whom, every public page in en/es) and `public/llms-full.txt`
+(plus the home FAQ, every use case and every comparison with its sources) follow https://llmstxt.org. They are
+**generated** by `src/llms.ts` from the same catalogue and dictionaries the pages render; `tests/llms.test.ts`
+fails when they drift — regenerate with `UPDATE_LLMS=1 npx vitest run tests/llms.test.ts`. The host serves
+them at its web root through the usual asset copy (`/llms.txt`, `/llms-full.txt`), SaaS edition only.
 
 Static assets live in `public/` (screenshots, OG images, pitch decks); the host copies them into its own
 `public/` at build time in the SaaS edition (`doctiling-web/scripts/landing-assets.mjs`).
@@ -70,7 +115,8 @@ same cookie for its Consent Mode defaults and writes it from its own banner, so 
 across `www` and `studio`. The v0.6.0 `localStorage` key is read once and migrated to the cookie.
 
 Sections report through `useLandingHost().track` (default: the dataLayer, GA4 event shape):
-`generate_lead` (hero / demo form), `cta_click`, `video_play`. A host that measures elsewhere passes
+`generate_lead` (`form`: `hero` / `use_case` / `compare` / demo form; `page`: the page path, e.g. `use-cases/legal`),
+`cta_click` (use-case CTAs carry `data-analytics="use_case_cta"`, comparison CTAs `compare_cta`), `video_play`. A host that measures elsewhere passes
 `track` in `LandingHost`.
 
 ## Develop

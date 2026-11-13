@@ -17,6 +17,8 @@ import { Display, H2, MiniTitle } from '@doctiling/ui/atoms/typography';
 import { Reveal } from './Reveal';
 import { BrowserFrame } from '@doctiling/ui/molecules/browser-frame';
 import { ChatMock } from './ChatMock';
+import { useCasePath } from '../routes';
+import { useCaseForVertical } from '../use-cases';
 
 const VERTICALS = [
   { key: 'legal', Icon: Scale },
@@ -179,6 +181,15 @@ export default function VerticalsPageClient() {
                     ))}
                   </ul>
                 </div>
+                {useCaseForVertical(key) && (
+                  <Link
+                    href={`/${locale}/${useCasePath(useCaseForVertical(key)!)}`}
+                    className="inline-flex items-center gap-2 font-display text-lg text-accent transition-colors hover:text-foreground"
+                  >
+                    {t('verticalsPage.labels.useCase')}
+                    <ArrowUpRight className="size-4" aria-hidden="true" />
+                  </Link>
+                )}
               </Reveal>
             </div>
 

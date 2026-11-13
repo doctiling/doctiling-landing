@@ -15,7 +15,19 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // One field is the whole ask: the invitation flow only needs an address to
 // write to. Name, company and use case are collected later, in the full form.
-export function HeroAccessForm({ detailsHref }: { detailsHref: string }) {
+// `form` and `page` travel with `generate_lead` so a lead can be attributed to
+// the page that produced it; `analytics` tags the submit as a named CTA.
+export function HeroAccessForm({
+  detailsHref,
+  form = 'hero',
+  page,
+  analytics,
+}: {
+  detailsHref: string;
+  form?: string;
+  page?: string;
+  analytics?: string;
+}) {
   const { t, notify, submitDemoRequest, recaptchaSiteKey, track } = useLandingHost();
   const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
@@ -31,7 +43,7 @@ export function HeroAccessForm({ detailsHref }: { detailsHref: string }) {
       const captchaToken = (await executeCaptcha('demo_request')) ?? undefined;
       const res = await submitDemoRequest({ email: value, captchaToken });
       if (res.ok) {
-        track(LANDING_EVENTS.lead, { form: 'hero' });
+        track(LANDING_EVENTS.lead, { form, page });
         setSent(true);
         return;
       }
@@ -85,7 +97,7 @@ export function HeroAccessForm({ detailsHref }: { detailsHref: string }) {
         />
       </div>
       <SimpleTooltip label={t('landing.hero.access.submitHint')}>
-        <Button type="submit" variant="pill" size="pill" disabled={pending}>
+        <Button type="submit" variant="pill" size="pill" disabled={pending} data-analytics={analytics}>
           {pending ? t('landing.demo.submitting') : t('landing.hero.access.submit')}
           <ArrowUpRight className="size-4" />
         </Button>

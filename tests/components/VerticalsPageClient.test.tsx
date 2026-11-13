@@ -44,4 +44,16 @@ describe('VerticalsPageClient', () => {
     const secondary = screen.getByRole('link', { name: /verticalsPage\.hero\.ctaSecondary/ });
     expect(secondary).toHaveAttribute('href', '/en/documents#cycle');
   });
+
+  it('links each sector that has a use-case page to it, and only those', () => {
+    const { container } = renderWithHost(<VerticalsPageClient />);
+    const links = [...container.querySelectorAll('a')].filter((a) => a.textContent === 'verticalsPage.labels.useCase');
+    expect(links.map((a) => a.getAttribute('href'))).toEqual([
+      '/en/use-cases/legal',
+      '/en/use-cases/healthcare',
+      '/en/use-cases/finance',
+      '/en/use-cases/research',
+      '/en/use-cases/consulting',
+    ]);
+  });
 });

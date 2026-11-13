@@ -1,0 +1,55 @@
+# Doctiling
+
+> More than document storage or vector search: Doctiling is where your team gathers sources, structures them into documents, tables and graphs, curates them with domain experts and works them with AI agents that produce cited analyses, charts, diagrams and code. Share it or connect it over MCP. Free to start, no credit card.
+
+What Doctiling is: A knowledge management system. Your information lives in knowledge bases you govern — one per client, team or case — with documents, tables and graphs, its own system prompt, its own tools and its own permissions. Your experts curate that content and AI agents analyse it, compare it and turn it into tables, charts, diagrams and code, always citing where each claim came from. The base is shared with your team, published or connected over MCP to the tools you already use.
+
+Who it is for: AI for legal teams that cites the exact clause; An AI knowledge base for consulting firms; Healthcare AI that answers from your own sources; AI for finance teams where every figure is cited; AI for literature reviews with citations you can verify; A shared knowledge base for engineering teams and their coding agents.
+
+Access: Free access is sponsored and invitation-only. Request a demo with your email; once we approve it you can sign in and use the full studio — knowledge bases, document editor, AI agent with citations, mirror view, custom tools — with a sponsored AI budget and a quota of 25 AI calls per day. No credit card, no trial clock. Upgrade only if you need isolation or higher volume. Self-hosting: One command installs the full studio on your machine, free, with no account and no invitation. Point it at a local model and work without third parties.
+
+Every page exists in English (/en/) and Spanish (/es/).
+
+## Pages (English)
+
+- [Doctiling — Knowledge curated by experts, worked by AI agents](https://www.doctiling.app/en/landing): More than document storage or vector search: Doctiling is where your team gathers sources, structures them into documents, tables and graphs, curates them with domain experts and works them with AI agents that produce cited analyses, charts, diagrams and code. Share it or connect it over MCP. Free to start, no credit card.
+- [Document types in Doctiling — text, tables and graphs](https://www.doctiling.app/en/documents): Text, table and graph documents in one knowledge base: blocks cut at headings, PDF tables rebuilt by geometry, graphs queried by neighbourhood — and charts, diagrams and mind maps the agent draws from them.
+- [Connect Doctiling over MCP — apps, chats and coding agents](https://www.doctiling.app/en/connect): Expose a knowledge base as an MCP endpoint with a scoped, revocable token: the mobile app, a team chat, a terminal agent or an internal system query it and get cited answers. Roles, security and self-hosting included.
+- [Doctiling for your field — solutions by sector with cited answers](https://www.doctiling.app/en/verticals): How Doctiling grounds AI in your own documents for legal, healthcare, finance, accounting, research and consulting teams. Every answer cites the source — never guesses.
+
+## Use cases (English)
+
+- [AI for legal teams with verifiable citations — Doctiling](https://www.doctiling.app/en/use-cases/legal): Ask your matter files in plain language and get answers citing document and page. Briefs, timelines and clause tables traceable to the source.
+- [AI knowledge base for consulting firms — Doctiling](https://www.doctiling.app/en/use-cases/consulting): Turn data rooms, interviews and client documents into deliverables where every conclusion cites its source. Share it with your team over MCP.
+- [Healthcare AI grounded in your own sources — Doctiling](https://www.doctiling.app/en/use-cases/healthcare): Guidelines, literature and clinical notes in one knowledge base. The AI agent answers citing the source and says so when the answer is not there.
+- [AI for finance teams: every figure cited — Doctiling](https://www.doctiling.app/en/use-cases/finance): Ratio analysis, executive summaries and period comparisons over your own filings, with every figure linked to the statement it came from.
+- [AI for literature reviews with real citations — Doctiling](https://www.doctiling.app/en/use-cases/research): Synthesize across your own papers, surface contradictions and draft with citations you can verify. Bilingual studio for English and Spanish.
+- [Knowledge base for engineering teams over MCP — Doctiling](https://www.doctiling.app/en/use-cases/engineering-teams): Specs, ADRs and runbooks in one knowledge base your team and its coding agents query over MCP, with cited answers and a revocable token.
+
+## Comparisons (English)
+
+- [Doctiling vs Notion AI: compare AI knowledge bases](https://www.doctiling.app/en/compare/notion-ai): Doctiling vs Notion AI: cited answers, MCP, tables and graphs, self-hosting and free plans, compared with sources from each official site.
+- [Doctiling vs Guru: compare AI knowledge bases](https://www.doctiling.app/en/compare/guru): Doctiling vs Guru: cited answers, MCP, connectors, tables and graphs, self-hosting and pricing, compared with sources from each official site.
+- [Doctiling vs Glean: compare AI knowledge for teams](https://www.doctiling.app/en/compare/glean): Doctiling vs Glean: cited answers, MCP, connectors, self-hosting, free plans and pricing, compared with sources from each official site.
+
+## Páginas (Español)
+
+- [Doctiling — Conocimiento curado por expertos, trabajado por agentes de IA](https://www.doctiling.app/es/landing): Más que guardar documentos o buscar vectores: Doctiling es donde tu equipo reúne sus fuentes, las estructura en documentos, tablas y grafos, las cura con expertos del dominio y las trabaja con agentes de IA que producen análisis citados, gráficas, diagramas y código. Compártela o conéctala por MCP. Gratis para empezar, sin tarjeta.
+- [Tipos de documento en Doctiling — texto, tablas y grafos](https://www.doctiling.app/es/documents): Documentos de texto, tabla y grafo en una sola base de conocimiento: bloques por encabezado, tablas de PDF reconstruidas por geometría, grafos consultados por vecindad — y los gráficos, diagramas y mapas mentales que el agente dibuja con ellos.
+- [Conecta Doctiling por MCP — apps, chats y agentes de código](https://www.doctiling.app/es/connect): Expón una base de conocimiento como endpoint MCP con token acotado y revocable: la app móvil, un chat de equipo, un agente de terminal o un sistema interno la consultan y reciben respuestas citadas. Roles, seguridad y self-hosting incluidos.
+- [Doctiling para tu sector — soluciones con respuestas citadas](https://www.doctiling.app/es/verticals): Cómo Doctiling fundamenta la IA en tus propios documentos para equipos legales, de salud, finanzas, contabilidad, investigación y consultoría. Cada respuesta cita la fuente — nunca conjetura.
+
+## Casos de uso (Español)
+
+- [IA para equipos legales con citas verificables — Doctiling](https://www.doctiling.app/es/use-cases/legal): Pregunta a tus expedientes en lenguaje natural y recibe respuestas con documento y página. Memos, líneas de tiempo y cuadros de cláusulas trazables.
+- [Base de conocimiento con IA para consultoras — Doctiling](https://www.doctiling.app/es/use-cases/consulting): Convierte data rooms, entrevistas y documentos del cliente en entregables donde cada conclusión cita su fuente. Compártela con tu equipo por MCP.
+- [IA para salud basada en tus propias fuentes — Doctiling](https://www.doctiling.app/es/use-cases/healthcare): Guías, literatura y notas clínicas en una base de conocimiento. El agente de IA responde citando la fuente y avisa cuando la respuesta no está ahí.
+- [IA para finanzas: cada cifra con su fuente — Doctiling](https://www.doctiling.app/es/use-cases/finance): Análisis de ratios, resúmenes ejecutivos y comparativas entre periodos sobre tus propios estados, con cada cifra enlazada al documento de origen.
+- [IA para revisión de literatura con citas reales — Doctiling](https://www.doctiling.app/es/use-cases/research): Sintetiza entre tus propios papers, detecta contradicciones y redacta con citas verificables. Estudio bilingüe para escribir en español o inglés.
+- [Base de conocimiento para equipos de ingeniería — Doctiling](https://www.doctiling.app/es/use-cases/engineering-teams): Specs, ADRs y runbooks en una base de conocimiento que tu equipo y sus agentes de código consultan por MCP, con respuestas citadas y token revocable.
+
+## Comparativas (Español)
+
+- [Doctiling vs Notion AI: comparativa de bases de conocimiento](https://www.doctiling.app/es/compare/notion-ai): Doctiling vs Notion AI: respuestas citadas, MCP, tablas y grafos, self-hosting y planes gratuitos, con fuentes de cada sitio oficial.
+- [Doctiling vs Guru: comparativa de bases de conocimiento IA](https://www.doctiling.app/es/compare/guru): Doctiling vs Guru: respuestas citadas, MCP, conectores, tablas y grafos, self-hosting y precios, con fuentes de cada sitio oficial.
+- [Doctiling vs Glean: comparativa de IA para el conocimiento](https://www.doctiling.app/es/compare/glean): Doctiling vs Glean: respuestas citadas, MCP, conectores, self-hosting, planes gratuitos y precios, con fuentes de cada sitio oficial.

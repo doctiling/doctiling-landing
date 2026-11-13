@@ -1310,7 +1310,8 @@
       "solution": "How Doctiling solves it",
       "edge": "Your competitive edge",
       "capabilities": "What you can do",
-      "chat": "What the person asking sees"
+      "chat": "What the person asking sees",
+      "useCase": "Full use case"
     },
     "items": {
       "legal": {
@@ -1446,14 +1447,434 @@
     "hero": {
       "eyebrow": "documents and knowledge management",
       "title": "Text, tables and graphs in a single base.",
-      "lede": "What you upload stops being an opaque file: it becomes citable blocks, queryable rows or nodes with relationships. Here is the full path, from raw file to a deliverable you can defend."
+      "lede": "In Doctiling, what you upload stops being an opaque file: it becomes citable blocks, queryable rows or nodes with relationships. Here is the full path, from raw file to a deliverable you can defend."
     }
   },
   "connectPage": {
     "hero": {
       "eyebrow": "connect and share",
       "title": "Your knowledge, where your team already works.",
-      "lede": "A knowledge base is exposed over MCP with a scoped, revocable token — and shared with roles. Here is how the question travels, what gets shared with whom, and how to take it to your own infrastructure."
+      "lede": "In Doctiling, a knowledge base is exposed over MCP with a scoped, revocable token — and shared with roles. Here is how the question travels, what gets shared with whom, and how to take it to your own infrastructure."
+    }
+  },
+  "useCasesPage": {
+    "labels": {
+      "eyebrow": "use case",
+      "problem": "The problem",
+      "solution": "How Doctiling solves it",
+      "steps": "How it works",
+      "faq": "Frequently asked questions",
+      "related": "Other use cases",
+      "explore": "Go deeper",
+      "documentsLink": "Document types: text, tables and graphs",
+      "connectLink": "Connect a knowledge base over MCP",
+      "verticalsLink": "All solutions by sector",
+      "breadcrumb": "Solutions by sector",
+      "shotCaption": "Real Doctiling capture: every answer cites the document and section it came from."
+    },
+    "items": {
+      "legal": {
+        "seo": {
+          "title": "AI for legal teams with verifiable citations — Doctiling",
+          "description": "Ask your matter files in plain language and get answers citing document and page. Briefs, timelines and clause tables traceable to the source.",
+          "ogAlt": "Doctiling for legal teams — answers that cite the exact clause",
+          "keywords": "AI for lawyers, legal AI with citations, contract review AI, legal knowledge base, clause comparison, case brief AI"
+        },
+        "card": "Contracts and matter files that answer with the exact clause.",
+        "h1": "AI for legal teams that cites the exact clause",
+        "answer": "Doctiling is a knowledge base for legal teams: you upload the matter file, ask in plain language and the AI agent answers citing the document and the page each statement comes from. If something is not in your documents, it says so instead of inventing it.",
+        "answer2": "From those answers it drafts briefs, timelines and clause-comparison tables, every line traceable to its source, so the work can be defended to a client or a judge.",
+        "problem": "Reviewing contracts and building a case theory means re-reading hundreds of pages without missing the clause that changes everything. Generic AI chats summarize well but can invent citations — and a fabricated citation in a filing is a professional liability.",
+        "solution": "Each matter gets its own knowledge base with its own permissions. The agent retrieves the relevant passages before answering and attaches the citation, so you check the clause in one click instead of trusting a summary.",
+        "steps": {
+          "s1": "Upload the matter file — contracts, pleadings, correspondence — to a knowledge base for that matter.",
+          "s2": "Ask in plain language: deadlines, penalties, contradictions between documents.",
+          "s3": "Save the answer as a brief or a clause table, with every citation kept."
+        },
+        "shotAlt": "Real Doctiling capture for legal teams: sample document of the sector.",
+        "faq": {
+          "q1": {
+            "q": "Can the AI invent a legal citation?",
+            "a": "Doctiling retrieves passages from your own documents before answering and attaches the citation to each claim. If the answer is not in your sources, the agent says so instead of guessing."
+          },
+          "q2": {
+            "q": "Are my clients' files mixed with other firms' data?",
+            "a": "No. Only the people you invite can see a knowledge base, under roles (owner, admin, collaborator, reader). On the Gold plan your data lives in its own dedicated database."
+          },
+          "q3": {
+            "q": "Can we deliver the work under our own brand?",
+            "a": "Yes. The Gold plan includes custom domain and white-label branding."
+          },
+          "q4": {
+            "q": "Does it work with documents in Spanish?",
+            "a": "Yes. The studio is bilingual (Spanish and English) and the agent answers in the language of your documents and your questions."
+          }
+        }
+      },
+      "consulting": {
+        "seo": {
+          "title": "AI knowledge base for consulting firms — Doctiling",
+          "description": "Turn data rooms, interviews and client documents into deliverables where every conclusion cites its source. Share it with your team over MCP.",
+          "ogAlt": "Doctiling for consulting — data rooms turned into cited deliverables",
+          "keywords": "AI for consultants, consulting knowledge base, data room AI, interview synthesis AI, cited deliverables, consultant knowledge management"
+        },
+        "card": "Data rooms and interviews turned into cited deliverables.",
+        "h1": "An AI knowledge base for consulting firms",
+        "answer": "Doctiling gives each engagement its own knowledge base: you centralize the data room, interview transcripts and client documents, and an AI agent synthesizes them into deliverables where every conclusion cites the document it came from.",
+        "answer2": "The client sees the trail behind each finding, and your team can query the same knowledge base from the tools it already uses, over MCP.",
+        "problem": "A project starts with hundreds of client documents, transcripts and data rooms. Turning all of that into a clear, defensible deliverable is where billable time goes — and the client wants to see the trail, not a black box.",
+        "solution": "Mirror view stacks summaries, entity tables, mind maps and correlations beside each document. Every finding can be saved as a variant, so you compare approaches without losing where each one came from.",
+        "steps": {
+          "s1": "Create one knowledge base per client or engagement and load the data room.",
+          "s2": "Ask for syntheses, entity tables and contradictions across interviews.",
+          "s3": "Share the base with your team or connect it to its tools over MCP, read-only and revocable."
+        },
+        "shotAlt": "Real Doctiling capture for consulting: sample document of the sector.",
+        "faq": {
+          "q1": {
+            "q": "Can I keep each client's information separate?",
+            "a": "Yes. Each knowledge base has its own documents, permissions, system prompt and tools; you create one per client, team or case."
+          },
+          "q2": {
+            "q": "How does the client know where a conclusion comes from?",
+            "a": "Every claim the agent makes ships with a citation to the document and section in the knowledge base, so the trail is visible in the deliverable."
+          },
+          "q3": {
+            "q": "Can my team use it from the tools they already have?",
+            "a": "Yes. A knowledge base can be exposed through MCP with a scoped, revocable, read-only token, so other AI tools your team uses can query it as a source of truth."
+          },
+          "q4": {
+            "q": "Does this replace building our own RAG?",
+            "a": "For most cases, yes: chunking, embedding, the vector index and citation are already built. You decide which sources enter each base and who has access."
+          }
+        }
+      },
+      "healthcare": {
+        "seo": {
+          "title": "Healthcare AI grounded in your own sources — Doctiling",
+          "description": "Guidelines, literature and clinical notes in one knowledge base. The AI agent answers citing the source and says so when the answer is not there.",
+          "ogAlt": "Doctiling for healthcare — answers grounded in guidelines and literature",
+          "keywords": "AI for healthcare, clinical knowledge base, medical guidelines AI, AI with citations healthcare, literature review medicine, healthcare document AI"
+        },
+        "card": "Guidelines, literature and notes that answer with the source.",
+        "h1": "Healthcare AI that answers from your own sources",
+        "answer": "Doctiling is a knowledge base for healthcare teams: you bring together clinical guidelines, literature and notes, and the AI agent answers clinical questions citing the source of each statement. If something is not in your documents, it says so — it does not invent a dose or a finding.",
+        "answer2": "It summarizes follow-ups and cross-checks a finding against the evidence you loaded, so the time goes to care instead of searching.",
+        "problem": "Patient information lives scattered across notes, labs and clinical guidelines. Finding a history or cross-checking a finding against the literature eats the time that should go to care, and an assistant that invents a dose is unacceptable.",
+        "solution": "The agent works only from the sources in the knowledge base and shows where each answer comes from. Access is limited to the people you invite, with roles, and paid plans move your data to a dedicated database or dedicated infrastructure.",
+        "steps": {
+          "s1": "Load the guidelines, protocols and papers your team works with.",
+          "s2": "Ask clinical questions and get the answer with the guideline section cited.",
+          "s3": "Keep follow-up tables and summaries next to the evidence they rely on."
+        },
+        "shotAlt": "Real Doctiling capture for healthcare: sample document of the sector.",
+        "faq": {
+          "q1": {
+            "q": "What happens if the answer is not in our documents?",
+            "a": "The agent says so instead of guessing. Every claim it makes ships with a citation back to your own content."
+          },
+          "q2": {
+            "q": "Who can see the information?",
+            "a": "Only the people you explicitly invite, under roles. On the Free plan data is logically isolated per user; Gold moves you to a dedicated database and Platinum adds dedicated infrastructure."
+          },
+          "q3": {
+            "q": "Can we run it on our own infrastructure?",
+            "a": "Yes. The self-hosted build runs the same product on your infrastructure."
+          },
+          "q4": {
+            "q": "Does it replace clinical judgement?",
+            "a": "No. Doctiling retrieves and cites what your sources say; the decision stays with the professional, who can check every citation."
+          }
+        }
+      },
+      "finance": {
+        "seo": {
+          "title": "AI for finance teams: every figure cited — Doctiling",
+          "description": "Ratio analysis, executive summaries and period comparisons over your own filings, with every figure linked to the statement it came from.",
+          "ogAlt": "Doctiling for finance — every figure linked to its statement",
+          "keywords": "AI for finance, financial statement analysis AI, ratio analysis AI, audit-ready AI, financial reports AI, AI with citations finance"
+        },
+        "card": "Filings and statements where every figure is traceable.",
+        "h1": "AI for finance teams where every figure is cited",
+        "answer": "Doctiling is a knowledge base for finance teams: you upload filings, statements and reports, and the AI agent produces ratio analysis, executive summaries and period-over-period comparisons where every figure links to the exact statement it came from.",
+        "answer2": "An untraced number cannot be audited; here each one keeps its source, beside the document in mirror view.",
+        "problem": "Analyzing reports, computing ratios and tracking a portfolio means jumping between endless PDFs and spreadsheets. An untraced number is a number you can't audit — or defend to an investment committee.",
+        "solution": "PDF tables are rebuilt as table documents the agent can aggregate and compare, and every result cites the source. Analyses stack beside the document in mirror view, and each knowledge base keeps its own permissions.",
+        "steps": {
+          "s1": "Upload filings, statements and quarterly reports.",
+          "s2": "Ask for ratios, variances and summaries between periods.",
+          "s3": "Keep the comparison as a table document with every figure cited."
+        },
+        "shotAlt": "Real Doctiling capture for finance: sample document of the sector.",
+        "faq": {
+          "q1": {
+            "q": "Can the agent work with tables from PDFs?",
+            "a": "Yes. Doctiling rebuilds PDF tables into table documents, which the agent can query and aggregate with citations."
+          },
+          "q2": {
+            "q": "How do I verify a figure?",
+            "a": "Every figure in an answer links to the statement and section it came from in your knowledge base."
+          },
+          "q3": {
+            "q": "Is sensitive financial information isolated?",
+            "a": "Only invited people see a knowledge base, under roles. Gold gives you a dedicated database and Platinum adds dedicated infrastructure."
+          },
+          "q4": {
+            "q": "How do I get access?",
+            "a": "Free access is sponsored and invitation-only: request it with your email and, once approved, you use the full studio with no credit card."
+          }
+        }
+      },
+      "research": {
+        "seo": {
+          "title": "AI for literature reviews with real citations — Doctiling",
+          "description": "Synthesize across your own papers, surface contradictions and draft with citations you can verify. Bilingual studio for English and Spanish.",
+          "ogAlt": "Doctiling for research — literature reviews with real citations",
+          "keywords": "AI literature review, AI for researchers, AI with real citations, thesis AI, paper synthesis AI, academic knowledge base"
+        },
+        "card": "From a stack of papers to a review with real citations.",
+        "h1": "AI for literature reviews with citations you can verify",
+        "answer": "Doctiling turns your corpus of papers into a knowledge base an AI agent can synthesize: it compares sources, surfaces contradictions and extracts methods and results, citing your own documents instead of producing references that do not exist.",
+        "answer2": "You draft in English or Spanish and save each synthesis as a variant, so you can compare approaches without losing the trail.",
+        "problem": "A literature review is weeks of reading, annotating and cross-referencing. AI chats speed it up but can fabricate references that don't exist — poison for a thesis or a paper.",
+        "solution": "The agent answers only from the papers you loaded and cites each one. Graph documents map how concepts and authors relate, and the agent can draw diagrams and mind maps from them.",
+        "steps": {
+          "s1": "Upload your corpus of papers to a knowledge base for the project.",
+          "s2": "Ask for syntheses, contradictions and gaps across sources.",
+          "s3": "Draft with verifiable citations and keep each version as a variant."
+        },
+        "shotAlt": "Real Doctiling capture for research: sample document of the sector.",
+        "faq": {
+          "q1": {
+            "q": "Does it make up references?",
+            "a": "The agent answers from the papers in your knowledge base and cites them. If the answer is not in your sources, it says so instead of guessing."
+          },
+          "q2": {
+            "q": "Can I write in Spanish from papers in English?",
+            "a": "Yes. The studio is bilingual and the agent reads and answers in the language of your documents and your questions."
+          },
+          "q3": {
+            "q": "Can I compare different syntheses?",
+            "a": "Yes. Each synthesis can be saved as a variant beside the document, so approaches stay side by side with their trail."
+          },
+          "q4": {
+            "q": "Is there a free option?",
+            "a": "Free access is sponsored and invitation-only, with a daily AI quota and no credit card."
+          }
+        }
+      },
+      "engineering-teams": {
+        "seo": {
+          "title": "Knowledge base for engineering teams over MCP — Doctiling",
+          "description": "Specs, ADRs and runbooks in one knowledge base your team and its coding agents query over MCP, with cited answers and a revocable token.",
+          "ogAlt": "Doctiling for engineering teams — cited knowledge for people and coding agents",
+          "keywords": "engineering knowledge base, MCP knowledge base, documentation for coding agents, AI for engineering teams, internal docs AI, self-hosted knowledge base"
+        },
+        "card": "Specs, decisions and runbooks for people and coding agents.",
+        "h1": "A shared knowledge base for engineering teams and their coding agents",
+        "answer": "Doctiling gathers your team's specs, architecture decisions and runbooks in a knowledge base that people ask in the studio and coding agents query over MCP. Every answer cites the document it came from, so an agent works from your decisions instead of guessing them.",
+        "answer2": "Access goes through a scoped, revocable, read-only token, and the self-hosted build runs the same product on your infrastructure.",
+        "problem": "Engineering knowledge is spread across wikis, repositories and threads. New people ask the same questions, and coding agents fill the gaps with assumptions that contradict decisions the team already made.",
+        "solution": "Curate the documents that define how you build into one knowledge base and expose it over MCP. A terminal agent, a team chat or an internal system query it and get cited answers; graph documents describe how components relate.",
+        "steps": {
+          "s1": "Load specs, architecture decisions, runbooks and postmortems.",
+          "s2": "Expose the base over MCP with a scoped, revocable, read-only token.",
+          "s3": "Your coding agents and your team query it and get answers with citations."
+        },
+        "shotAlt": "Real Doctiling capture: the agent answers with a table and every data point cited to its document.",
+        "faq": {
+          "q1": {
+            "q": "What is MCP and why does it matter for coding agents?",
+            "a": "Model Context Protocol is an open standard that lets external AI tools read from a data source. Doctiling exposes a knowledge base through it, so your agents query your documents as a source of truth."
+          },
+          "q2": {
+            "q": "Can we revoke an agent's access?",
+            "a": "Yes. Access goes through a scoped, revocable, read-only token per knowledge base."
+          },
+          "q3": {
+            "q": "Can we self-host it?",
+            "a": "Yes. The self-hosted build runs the same product on your own infrastructure."
+          },
+          "q4": {
+            "q": "Can the agent produce diagrams or code from our documents?",
+            "a": "Yes. Beyond cited answers, the agent produces tables, charts, diagrams and code from the content of the knowledge base."
+          }
+        }
+      }
+    }
+  },
+  "comparePage": {
+    "labels": {
+      "eyebrow": "comparison",
+      "tableTitle": "Doctiling vs {name} at a glance",
+      "criterion": "Criterion",
+      "source": "source",
+      "sourcesNote": "{name} data comes only from its official pages, linked next to each cell and checked on {date}. If something has changed, write to support@doctiling.app and we will correct it.",
+      "chooseDoctiling": "Choose Doctiling if…",
+      "chooseOther": "Choose {name} if…",
+      "faq": "Frequently asked questions",
+      "otherComparisons": "Other comparisons",
+      "useCases": "Use cases"
+    },
+    "rows": {
+      "focus": "What it is",
+      "citations": "Cited answers",
+      "structure": "Tables and graphs",
+      "sources": "Where knowledge comes from",
+      "mcp": "MCP",
+      "selfHost": "Self-hosting",
+      "freePlan": "Free plan",
+      "pricing": "Pricing"
+    },
+    "doctiling": {
+      "focus": "Knowledge bases you govern — one per client, team or case — built from your sources, curated by experts and worked by AI agents.",
+      "citations": "Yes: every claim cites the block of the source document; if it is not in your sources, the agent says so.",
+      "structure": "Text, table and graph documents; the agent draws charts, diagrams and mind maps from them.",
+      "sources": "File uploads and read-only SQL engines. No native sync with Google Drive, Slack or Confluence.",
+      "mcp": "Yes: each knowledge base can be exposed with a scoped, revocable, read-only token.",
+      "selfHost": "Yes: free local install with public installers (the code is private), or the same product on your infrastructure.",
+      "freePlan": "Yes: sponsored seat by invitation with AI included (25 AI calls per day), no credit card.",
+      "pricing": "Free and self-hosted at $0; Gold and Platinum on request."
+    },
+    "items": {
+      "notion-ai": {
+        "name": "Notion AI",
+        "seo": {
+          "title": "Doctiling vs Notion AI: compare AI knowledge bases",
+          "description": "Doctiling vs Notion AI: cited answers, MCP, tables and graphs, self-hosting and free plans, compared with sources from each official site.",
+          "ogAlt": "Doctiling vs Notion AI comparison",
+          "keywords": "Doctiling vs Notion AI, Notion AI alternative, AI knowledge base comparison, Notion AI vs, knowledge base with citations, self-hosted Notion AI alternative"
+        },
+        "h1": "Doctiling vs Notion AI",
+        "verdict": "Choose Notion AI if your team already writes and plans in Notion and wants AI inside those pages. Choose Doctiling if you need a dedicated knowledge base built from your own sources — documents, tables and graphs — that experts curate and you can also run free on your own machine.",
+        "verdict2": "Both answer with citations and both connect over MCP; the difference is where the knowledge lives and who governs it.",
+        "rows": {
+          "focus": "AI built into the Notion workspace: pages, docs, tasks and databases.",
+          "citations": "Yes: answers with citations.",
+          "structure": "Databases with AI autofill; graphs not stated.",
+          "sources": "Search across Slack, Google Drive, GitHub and more; full Enterprise Search (beta) from the Business plan.",
+          "mcp": "Yes: Notion MCP connects AI apps to the workspace.",
+          "selfHost": "Not stated on its official site.",
+          "freePlan": "Free plan with a limited AI trial; full AI from the Business plan.",
+          "pricing": "Published: Free, Plus, Business and Enterprise plans."
+        },
+        "chooseDoctiling": {
+          "c1": "You want one knowledge base per client, team or case, with its own permissions, prompt and tools.",
+          "c2": "Your sources include PDF tables or relationships you want to query as table and graph documents.",
+          "c3": "You need to run the same product on your own machine or infrastructure, for free to start."
+        },
+        "chooseOther": {
+          "c1": "Your team already writes, plans and tracks tasks in Notion.",
+          "c2": "You want AI inside the pages and databases you already use every day.",
+          "c3": "You want to search Slack, Google Drive and GitHub from the same workspace."
+        },
+        "faq": {
+          "q1": {
+            "q": "Is Doctiling an alternative to Notion AI?",
+            "a": "For a knowledge base built from your own sources and curated by experts, yes. For writing and planning inside Notion pages, Notion AI is designed for that and the two can coexist."
+          },
+          "q2": {
+            "q": "Do both cite their sources?",
+            "a": "Yes. Notion AI states that its answers come with citations; Doctiling cites the block of the source document behind each claim and says so when the answer is not in your sources."
+          },
+          "q3": {
+            "q": "Can I try Doctiling for free?",
+            "a": "Yes. The hosted seat is sponsored and invitation-only, with AI included and no credit card, and the local install is free with no account."
+          }
+        }
+      },
+      "guru": {
+        "name": "Guru",
+        "seo": {
+          "title": "Doctiling vs Guru: compare AI knowledge bases",
+          "description": "Doctiling vs Guru: cited answers, MCP, connectors, tables and graphs, self-hosting and pricing, compared with sources from each official site.",
+          "ogAlt": "Doctiling vs Guru comparison",
+          "keywords": "Doctiling vs Guru, Guru alternative, AI knowledge base comparison, Guru vs, governed knowledge base, self-hosted knowledge base"
+        },
+        "h1": "Doctiling vs Guru",
+        "verdict": "Choose Guru if you want a governed, company-wide knowledge layer with ready connectors to tools like Slack, Google Drive or Confluence, under a sales-led contract. Choose Doctiling if you want knowledge bases per client, team or case built from documents you bring, with table and graph documents and a free way to start, hosted or self-hosted.",
+        "verdict2": "Both cite every answer and expose knowledge over MCP; Guru connects to where knowledge already lives, Doctiling structures what you bring into it.",
+        "rows": {
+          "focus": "A governed knowledge layer that structures and improves company knowledge for enterprise AI.",
+          "citations": "Yes: citations on every answer.",
+          "structure": "Not stated on its official site.",
+          "sources": "Yes: integrations with Google Drive, Confluence, Slack, Notion and more.",
+          "mcp": "Yes: a Guru MCP server for AI tools.",
+          "selfHost": "Not stated on its official site.",
+          "freePlan": "Not stated; reduced cost for eligible nonprofits.",
+          "pricing": "Not published: custom package through sales."
+        },
+        "chooseDoctiling": {
+          "c1": "You work by client, team or case and want each knowledge base isolated with its own permissions.",
+          "c2": "You need tables and graphs built from your documents, not only text.",
+          "c3": "You want to start free, or run it on your own machine or infrastructure."
+        },
+        "chooseOther": {
+          "c1": "You want knowledge synced from the tools where it already lives, such as Slack, Google Drive or Confluence.",
+          "c2": "You are rolling out one governed knowledge layer across the whole company.",
+          "c3": "A custom, sales-led package fits how you buy software."
+        },
+        "faq": {
+          "q1": {
+            "q": "What is the main difference between Doctiling and Guru?",
+            "a": "Guru connects to the tools where company knowledge already lives and governs it as one layer. Doctiling builds curated knowledge bases from the sources you bring — one per client, team or case — with text, table and graph documents."
+          },
+          "q2": {
+            "q": "Does Doctiling connect to Slack or Google Drive?",
+            "a": "Not as a native source sync: you upload files or connect a read-only SQL engine. In the other direction, a Slack bot or Teams app can consume the knowledge base through its MCP endpoint."
+          },
+          "q3": {
+            "q": "Is there a free way to try Doctiling?",
+            "a": "Yes. The hosted seat is sponsored and invitation-only, with AI included and no credit card, and the local install is free with no account."
+          }
+        }
+      },
+      "glean": {
+        "name": "Glean",
+        "seo": {
+          "title": "Doctiling vs Glean: compare AI knowledge for teams",
+          "description": "Doctiling vs Glean: cited answers, MCP, connectors, self-hosting, free plans and pricing, compared with sources from each official site.",
+          "ogAlt": "Doctiling vs Glean comparison",
+          "keywords": "Doctiling vs Glean, Glean alternative, enterprise AI search comparison, Glean vs, AI knowledge base for teams, self-hosted Glean alternative"
+        },
+        "h1": "Doctiling vs Glean",
+        "verdict": "Choose Glean if you need enterprise search and AI across hundreds of connected company apps and can run a sales-led rollout. Choose Doctiling if you want curated knowledge bases built from selected sources, with table and graph documents, starting free — hosted or on your own machine.",
+        "verdict2": "Both cite their answers and offer MCP; Glean indexes the company's existing tools, Doctiling turns selected sources into curated knowledge.",
+        "rows": {
+          "focus": "Enterprise AI platform connected to the company's data.",
+          "citations": "Yes: cited insights.",
+          "structure": "Not stated (it analyzes data across warehouses and BI tools).",
+          "sources": "Yes: 275+ app connectors.",
+          "mcp": "Yes: MCP servers that an admin enables.",
+          "selfHost": "Partial: managed deployment inside your own GCP or AWS account; not a traditional self-hosted model.",
+          "freePlan": "Not stated; demo on request.",
+          "pricing": "Not published: demo on request."
+        },
+        "chooseDoctiling": {
+          "c1": "You want a curated knowledge base per client, team or case rather than search over every company app.",
+          "c2": "Your sources include tables or relationships you want to query as table and graph documents.",
+          "c3": "You want to start free, or run the same product fully on your own machine."
+        },
+        "chooseOther": {
+          "c1": "You need search and AI across hundreds of the company's existing apps.",
+          "c2": "You prefer a managed deployment inside your own GCP or AWS account.",
+          "c3": "A demo-led enterprise rollout fits how you buy software."
+        },
+        "faq": {
+          "q1": {
+            "q": "Is Doctiling an enterprise search engine like Glean?",
+            "a": "No. Glean connects to the company's existing apps to search across them. Doctiling builds curated knowledge bases from the sources you choose, which experts maintain and AI agents work with citations."
+          },
+          "q2": {
+            "q": "Can Doctiling run on our own infrastructure?",
+            "a": "Yes. The same product installs free on a local machine, and the self-hosted build runs on your infrastructure."
+          },
+          "q3": {
+            "q": "Is there a free option?",
+            "a": "Yes. The hosted seat is sponsored and invitation-only, with AI included and no credit card, and the local install is free with no account."
+          }
+        }
+      }
     }
   }
 }

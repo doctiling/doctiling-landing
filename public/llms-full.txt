@@ -275,7 +275,7 @@ Both answer with citations and both connect over MCP; the difference is where th
 | What it is | Knowledge bases you govern — one per client, team or case — built from your sources, curated by experts and worked by AI agents. | AI built into the Notion workspace: pages, docs, tasks and databases. ([source](https://www.notion.com/product/ai)) |
 | Cited answers | Yes: every claim cites the block of the source document; if it is not in your sources, the agent says so. | Yes: answers with citations. ([source](https://www.notion.com/product/ai)) |
 | Tables and graphs | Text, table and graph documents; the agent draws charts, diagrams and mind maps from them. | Databases with AI autofill; graphs not stated. ([source](https://www.notion.com/product/ai)) |
-| Where knowledge comes from | File uploads and read-only SQL engines. No native sync with Google Drive, Slack or Confluence. | Search across Slack, Google Drive, GitHub and more; full Enterprise Search from the Business plan. ([source](https://www.notion.com/product/ai)) |
+| Where knowledge comes from | File uploads and read-only SQL engines. No native sync with Google Drive, Slack or Confluence. | Search across Slack, Google Drive, GitHub and more; full Enterprise Search (beta) from the Business plan. ([source](https://www.notion.com/product/ai)) |
 | MCP | Yes: each knowledge base can be exposed with a scoped, revocable, read-only token. | Yes: Notion MCP connects AI apps to the workspace. ([source](https://www.notion.com/help/notion-mcp)) |
 | Self-hosting | Yes: free local install with public installers (the code is private), or the same product on your infrastructure. | Not stated on its official site. ([source](https://www.notion.com/pricing)) |
 | Free plan | Yes: sponsored seat by invitation with AI included (25 AI calls per day), no credit card. | Free plan with a limited AI trial; full AI from the Business plan. ([source](https://www.notion.com/pricing)) |
@@ -344,8 +344,8 @@ Both cite their answers and offer MCP; Glean indexes the company's existing tool
 | Where knowledge comes from | File uploads and read-only SQL engines. No native sync with Google Drive, Slack or Confluence. | Yes: 275+ app connectors. ([source](https://www.glean.com/connectors)) |
 | MCP | Yes: each knowledge base can be exposed with a scoped, revocable, read-only token. | Yes: MCP servers that an admin enables. ([source](https://docs.glean.com/administration/platform/mcp/about)) |
 | Self-hosting | Yes: free local install with public installers (the code is private), or the same product on your infrastructure. | Partial: managed deployment inside your own GCP or AWS account; not a traditional self-hosted model. ([source](https://docs.glean.com/get-started/prepare/about-deployment)) |
-| Free plan | Yes: sponsored seat by invitation with AI included (25 AI calls per day), no credit card. | Not stated; demo on request. ([source](https://www.glean.com/pricing)) |
-| Pricing | Free and self-hosted at $0; Gold and Platinum on request. | Not published: demo on request. ([source](https://www.glean.com/pricing)) |
+| Free plan | Yes: sponsored seat by invitation with AI included (25 AI calls per day), no credit card. | Not stated; demo on request. ([source](https://www.glean.com/)) |
+| Pricing | Free and self-hosted at $0; Gold and Platinum on request. | Not published: demo on request. ([source](https://www.glean.com/)) |
 
 Glean data comes only from its official pages, linked next to each cell and checked on 2026-11-13. If something has changed, write to support@doctiling.app and we will correct it.
 
@@ -582,7 +582,7 @@ Los dos responden con citas y los dos se conectan por MCP; la diferencia es dón
 | Qué es | Bases de conocimiento que tú gobiernas — una por cliente, equipo o caso — construidas con tus fuentes, curadas por expertos y trabajadas por agentes de IA. | IA integrada en el espacio de trabajo de Notion: páginas, documentos, tareas y bases de datos. ([fuente](https://www.notion.com/product/ai)) |
 | Respuestas citadas | Sí: cada afirmación cita el bloque del documento fuente; si no está en tus fuentes, el agente lo dice. | Sí: respuestas con citas. ([fuente](https://www.notion.com/product/ai)) |
 | Tablas y grafos | Documentos de texto, tabla y grafo; el agente dibuja gráficas, diagramas y mapas mentales a partir de ellos. | Bases de datos con autocompletado por IA; grafos no indicados. ([fuente](https://www.notion.com/product/ai)) |
-| De dónde sale el conocimiento | Subida de archivos y motores SQL de solo lectura. Sin sincronización nativa con Google Drive, Slack o Confluence. | Búsqueda en Slack, Google Drive, GitHub y más; Enterprise Search completo desde el plan Business. ([fuente](https://www.notion.com/product/ai)) |
+| De dónde sale el conocimiento | Subida de archivos y motores SQL de solo lectura. Sin sincronización nativa con Google Drive, Slack o Confluence. | Búsqueda en Slack, Google Drive, GitHub y más; Enterprise Search completo (beta) desde el plan Business. ([fuente](https://www.notion.com/product/ai)) |
 | MCP | Sí: cada base de conocimiento se puede exponer con un token acotado, revocable y de solo lectura. | Sí: Notion MCP conecta apps de IA al espacio de trabajo. ([fuente](https://www.notion.com/help/notion-mcp)) |
 | Self-hosting | Sí: instalación local gratuita con instaladores públicos (el código es privado), o el mismo producto en tu infraestructura. | No se indica en su sitio oficial. ([fuente](https://www.notion.com/pricing)) |
 | Plan gratuito | Sí: puesto patrocinado por invitación con IA incluida (25 llamadas de IA por día), sin tarjeta. | Plan gratuito con una prueba limitada de IA; IA completa desde el plan Business. ([fuente](https://www.notion.com/pricing)) |
@@ -651,8 +651,8 @@ Los dos citan sus respuestas y ofrecen MCP; Glean indexa las herramientas que la
 | De dónde sale el conocimiento | Subida de archivos y motores SQL de solo lectura. Sin sincronización nativa con Google Drive, Slack o Confluence. | Sí: más de 275 conectores de apps. ([fuente](https://www.glean.com/connectors)) |
 | MCP | Sí: cada base de conocimiento se puede exponer con un token acotado, revocable y de solo lectura. | Sí: servidores MCP que habilita un administrador. ([fuente](https://docs.glean.com/administration/platform/mcp/about)) |
 | Self-hosting | Sí: instalación local gratuita con instaladores públicos (el código es privado), o el mismo producto en tu infraestructura. | Parcial: despliegue administrado dentro de tu propia cuenta de GCP o AWS; no es un modelo self-hosted tradicional. ([fuente](https://docs.glean.com/get-started/prepare/about-deployment)) |
-| Plan gratuito | Sí: puesto patrocinado por invitación con IA incluida (25 llamadas de IA por día), sin tarjeta. | No se indica; demo bajo solicitud. ([fuente](https://www.glean.com/pricing)) |
-| Precios | Free y self-hosted a $0; Gold y Platinum bajo solicitud. | No publicados: demo bajo solicitud. ([fuente](https://www.glean.com/pricing)) |
+| Plan gratuito | Sí: puesto patrocinado por invitación con IA incluida (25 llamadas de IA por día), sin tarjeta. | No se indica; demo bajo solicitud. ([fuente](https://www.glean.com/)) |
+| Precios | Free y self-hosted a $0; Gold y Platinum bajo solicitud. | No publicados: demo bajo solicitud. ([fuente](https://www.glean.com/)) |
 
 Los datos de Glean salen solo de sus páginas oficiales, enlazadas junto a cada celda y revisadas el 2026-11-13. Si algo cambió, escríbenos a support@doctiling.app y lo corregimos.
 

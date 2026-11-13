@@ -1274,6 +1274,13 @@
         "legend1": "Bases the leave agent touches.",
         "legend2": "The certificates agent reaches Employees and Certificates with an admin-role token and hands over only the asker's certificate."
       }
+    },
+    "cookies": {
+      "title": "Cookie preferences",
+      "message": "We use measurement cookies to understand how the site is used and improve it. It's your choice.",
+      "policy": "Cookie policy",
+      "accept": "Accept",
+      "reject": "Reject"
     }
   },
   "verticalsPage": {

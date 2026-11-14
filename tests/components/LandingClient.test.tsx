@@ -88,6 +88,34 @@ describe('LandingClient', () => {
     expect(container.querySelector('[data-audience="personal"]')).not.toHaveTextContent('landing.tiers.items.gold.prices');
   });
 
+  it('reads in dollars in English, with the peso charge under each plan price', () => {
+    const { container } = renderWithHost(<LandingClient />, { locale: 'en', t: undefined });
+    for (const audience of ['personal', 'gold']) {
+      for (const plan of ['basic', 'advanced', 'max']) {
+        const card = container.querySelector(`[data-audience="${audience}"] [data-plan="${plan}"]`);
+        expect(card!.querySelector('[data-price]')).toHaveTextContent(/^≈ USD \d+$/);
+        expect(card!.querySelector('[data-billed]')).toHaveTextContent(/^billed as COP [\d,]+$/);
+      }
+    }
+    for (const pack of ['p200', 'p500', 'p1000']) {
+      expect(container.querySelector(`[data-pack="${pack}"]`)).toHaveTextContent(/≈ USD \d+.*≈ USD 0\.14/);
+    }
+    // The table stays in one currency; the peso charge of the three packs sits in its note.
+    expect(container.querySelector('section#stack table + p')).toHaveTextContent(
+      /COP 90,000, COP 225,000 or COP 450,000: COP 450 per query/,
+    );
+    // The reference rate is stated once, in the fine print.
+    expect(container.querySelector('[data-disclaimer="d1"]')).toHaveTextContent(/USD.*COP 3,270/);
+  });
+
+  it('keeps Spanish in pesos alone: no dollar figure and no second price line', () => {
+    const { container } = renderWithHost(<LandingClient />, { locale: 'es', t: undefined });
+    const section = container.querySelector('section#stack');
+    expect(section).not.toHaveTextContent('USD');
+    expect(section!.querySelectorAll('[data-billed]')).toHaveLength(0);
+    expect(section!.querySelector('[data-audience="gold"] [data-plan="basic"] [data-price]')).toHaveTextContent('$77.900');
+  });
+
   it('opens on the company tab and keeps the other panel in the document, hidden', () => {
     const { container } = renderWithHost(<LandingClient />);
     expect(screen.getByRole('tablist', { name: 'landing.tiers.tabs.label' })).toBeInTheDocument();

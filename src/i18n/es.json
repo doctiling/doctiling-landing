@@ -417,6 +417,11 @@
             "basic": "$91.000",
             "advanced": "$268.000",
             "max": "$763.000"
+          },
+          "billed": {
+            "basic": "",
+            "advanced": "",
+            "max": ""
           }
         },
         "gold": {
@@ -456,6 +461,11 @@
             "basic": "$77.900",
             "advanced": "$254.900",
             "max": "$749.900"
+          },
+          "billed": {
+            "basic": "",
+            "advanced": "",
+            "max": ""
           }
         }
       },

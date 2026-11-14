@@ -135,6 +135,9 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
             <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-3 lg:gap-6">
               {PLAN_KEYS.map((plan) => {
                 const recommended = plan === 'advanced';
+                // The charge in pesos, where the price above is a reference in another currency;
+                // empty in the locale that already prices in pesos.
+                const billed = t(`landing.tiers.items.${key}.billed.${plan}`);
                 return (
                   <article
                     key={plan}
@@ -168,9 +171,14 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
                     </ul>
                     <div className="mt-auto border-t border-border px-7 py-5">
                       <p className="text-xs text-muted-foreground">{t(`landing.tiers.items.${key}.priceLabel`)}</p>
-                      <p className="mt-1 font-display text-3xl tracking-tight">
+                      <p data-price className="mt-1 font-display text-3xl tracking-tight">
                         {t(`landing.tiers.items.${key}.prices.${plan}`)}
                       </p>
+                      {billed && (
+                        <p data-billed className="mt-1 text-xs text-muted-foreground">
+                          {billed}
+                        </p>
+                      )}
                     </div>
                   </article>
                 );

@@ -384,11 +384,11 @@
         "personal": {
           "eyebrow": "for a person",
           "name": "Your account in the shared studio",
-          "price": "From COP 91,000",
-          "priceNote": "a month, all included",
+          "price": "From ≈ USD 28",
+          "priceNote": "a month, all included; billed as COP 91,000",
           "body": "You get in without waiting for an invitation and you pay with your own payment method. You need no server of your own: you use the studio Doctiling already runs, and your data stays isolated per user.",
           "priceLabel": "A month, all included",
-          "note": "Each price already adds your account base (COP 13,100) and the plan. No extra charges.",
+          "note": "Each price already adds your account base (≈ USD 4, COP 13,100) and the plan. No extra charges.",
           "benefitsTitle": "What you get",
           "benefits": {
             "b1": "Knowledge bases with text documents, tables and graphs.",
@@ -414,19 +414,24 @@
           },
           "cta": "Request access",
           "prices": {
-            "basic": "COP 91,000",
-            "advanced": "COP 268,000",
-            "max": "COP 763,000"
+            "basic": "≈ USD 28",
+            "advanced": "≈ USD 82",
+            "max": "≈ USD 233"
+          },
+          "billed": {
+            "basic": "billed as COP 91,000",
+            "advanced": "billed as COP 268,000",
+            "max": "billed as COP 763,000"
           }
         },
         "gold": {
           "eyebrow": "for a company",
           "name": "A private studio for your team",
-          "price": "COP 49,000",
-          "priceNote": "a month per studio, plus each person’s plan",
+          "price": "≈ USD 15",
+          "priceNote": "a month per studio (billed as COP 49,000), plus each person’s plan",
           "body": "Your own server and your own database, isolated from every other customer, with your own domain and white-label. One person in charge pays for the whole team.",
           "priceLabel": "Per person, a month",
-          "note": "Example: a team of 5, with 4 on Basic and 1 on Advanced, pays COP 49,000 + COP 311,600 + COP 254,900 = COP 615,500 a month. Everyone’s queries add up into one pool for the team.",
+          "note": "Example: a team of 5, with 4 on Basic and 1 on Advanced, pays COP 49,000 + COP 311,600 + COP 254,900 = COP 615,500 a month (≈ USD 188). Everyone’s queries add up into one pool for the team.",
           "benefitsTitle": "What the company gets",
           "benefits": {
             "b1": "Dedicated server and database, isolated from every other customer.",
@@ -453,9 +458,14 @@
           "cta": "Request a demo",
           "badge": "The teams’ favorite",
           "prices": {
-            "basic": "COP 77,900",
-            "advanced": "COP 254,900",
-            "max": "COP 749,900"
+            "basic": "≈ USD 24",
+            "advanced": "≈ USD 78",
+            "max": "≈ USD 229"
+          },
+          "billed": {
+            "basic": "billed as COP 77,900",
+            "advanced": "billed as COP 254,900",
+            "max": "billed as COP 749,900"
           }
         }
       },
@@ -514,21 +524,21 @@
         "packs": {
           "p200": {
             "name": "200 queries",
-            "price": "COP 90,000",
-            "each": "COP 450"
+            "price": "≈ USD 28",
+            "each": "≈ USD 0.14"
           },
           "p500": {
             "name": "500 queries",
-            "price": "COP 225,000",
-            "each": "COP 450"
+            "price": "≈ USD 69",
+            "each": "≈ USD 0.14"
           },
           "p1000": {
             "name": "1,000 queries",
-            "price": "COP 450,000",
-            "each": "COP 450"
+            "price": "≈ USD 138",
+            "each": "≈ USD 0.14"
           }
         },
-        "note": "A top-up is optional: without one, AI comes back on the 1st. In a company the person in charge of payment buys it and it serves the whole team. There are no top-ups for an overdue account or when the company uses its own AI."
+        "note": "Billed as COP 90,000, COP 225,000 or COP 450,000: COP 450 per query. A top-up is optional: without one, AI comes back on the 1st. In a company the person in charge of payment buys it and it serves the whole team. There are no top-ups for an overdue account or when the company uses its own AI."
       },
       "parts": {
         "title": "What you are paying for",
@@ -558,7 +568,7 @@
         "items": {
           "fixed": {
             "title": "Fixed price in pesos",
-            "body": "You know what you pay every month. It does not follow the dollar."
+            "body": "You are charged in Colombian pesos and know what you pay every month: the peso price does not follow the dollar. The USD figures are a reference."
           },
           "monthly": {
             "title": "Automatic monthly charge",
@@ -570,7 +580,7 @@
           },
           "ownAi": {
             "title": "Your own AI",
-            "body": "If your company connects its own AI provider, the plan drops to COP 9,800, COP 29,400 or COP 71,900 per person and you pay the queries to your provider."
+            "body": "If your company connects its own AI provider, the plan drops to about USD 3, USD 9 or USD 22 per person (COP 9,800, COP 29,400 or COP 71,900) and you pay the queries to your provider."
           },
           "overdue": {
             "title": "If a payment fails",
@@ -585,11 +595,11 @@
       "disclaimers": {
         "title": "The fine print, in plain words",
         "items": {
-          "d1": "Prices in Colombian pesos (COP), before taxes. If VAT applies, it is added to the published price.",
+          "d1": "You are charged in Colombian pesos (COP), before taxes; if VAT applies, it is added to the published price. USD figures are a rounded reference at COP 3,270 per USD and move with the exchange rate.",
           "d2": "A query is one request to the AI: a question to the agent, a generated document or a scheduled task. It counts once, no matter how many steps the AI takes inside.",
           "d3": "Included queries do not accumulate: what you do not use in the month does not carry over. Top-ups expire on the last day of the month they are bought in.",
           "d4": "“Per working day” is a reference: you can use your queries whenever you want within the month.",
-          "d5": "For a company, COP 49,000 is the minimum base. A studio under heavier load pays a higher base, stated before you sign up.",
+          "d5": "For a company, COP 49,000 (≈ USD 15) is the minimum base. A studio under heavier load pays a higher base, stated before you sign up.",
           "d6": "With annual payment there is no refund on cancelling; the service runs until the paid year ends.",
           "d7": "The price list is reviewed every six months.",
           "d8": "Automatic charging and top-ups are being switched on in stages. Today you sign up with our team: request a demo and we walk you through it."
@@ -722,11 +732,11 @@
         },
         "pricing": {
           "q": "How much does Doctiling cost?",
-          "a": "It depends on whether you are a person or a company. A person pays for their account in the shared studio: COP 91,000 a month on Basic, COP 268,000 on Advanced or COP 763,000 on Max, all included. A company pays from COP 49,000 a month for its private studio, plus each person’s plan: Basic COP 77,900, Advanced COP 254,900 or Max COP 749,900. Plans include 150, 500 or 1,500 AI queries a month; if they run out, top-ups cost COP 450 per query. If the company connects its own AI, the plan drops to COP 9,800, COP 29,400 or COP 71,900. There is also free access by invitation and a free local install. Prices are fixed in Colombian pesos, before taxes."
+          "a": "It depends on whether you are a person or a company. A person pays for their account in the shared studio: about USD 28 a month on Basic, USD 82 on Advanced or USD 233 on Max, all included (COP 91,000, COP 268,000 or COP 763,000). A company pays from about USD 15 a month (COP 49,000) for its private studio, plus each person’s plan: Basic about USD 24, Advanced USD 78 or Max USD 229 (COP 77,900, COP 254,900 or COP 749,900). Plans include 150, 500 or 1,500 AI queries a month; if they run out, top-ups cost about USD 0.14 per query (COP 450). If the company connects its own AI, the plan drops to about USD 3, USD 9 or USD 22 (COP 9,800, COP 29,400 or COP 71,900). There is also free access by invitation and a free local install. You are charged in Colombian pesos, at fixed prices, before taxes; USD figures are a reference."
         },
         "queries": {
           "q": "What is a query, and what happens when they run out?",
-          "a": "A query is one request to the AI: a question to the agent, a generated document or a scheduled task. Every plan includes its queries for the month. When they run out, AI pauses until next month or you top up a pack from COP 90,000; the rest of the studio keeps working."
+          "a": "A query is one request to the AI: a question to the agent, a generated document or a scheduled task. Every plan includes its queries for the month. When they run out, AI pauses until next month or you top up a pack from about USD 28 (COP 90,000); the rest of the studio keeps working."
         },
         "billing": {
           "q": "How do I pay, and can I cancel?",
@@ -1951,7 +1961,7 @@
       "mcp": "Yes: each knowledge base can be exposed with a scoped, revocable, read-only token.",
       "selfHost": "Yes: free local install with public installers (the code is private), or the same product on your infrastructure.",
       "freePlan": "Yes: sponsored seat by invitation with AI included (25 AI calls per day), no credit card.",
-      "pricing": "Free by invitation and self-hosted at $0. One person, from COP 91,000 a month all included; a company, from COP 49,000 a month for its private studio plus each person’s plan, from COP 77,900 with AI included or COP 9,800 with its own AI."
+      "pricing": "Free by invitation and self-hosted at $0. One person, from about USD 28 a month all included (COP 91,000); a company, from about USD 15 a month (COP 49,000) for its private studio plus each person’s plan, from about USD 24 (COP 77,900) with AI included or USD 3 (COP 9,800) with its own AI. Charged in Colombian pesos."
     },
     "items": {
       "notion-ai": {

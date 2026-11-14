@@ -7,12 +7,15 @@ import { Button } from '@doctiling/ui/atoms/button';
 import { H2, MiniTitle } from '@doctiling/ui/atoms/typography';
 import { Reveal } from './Reveal';
 
-// Where the studio lives: sponsored seat, personal account in the shared studio,
-// private studio (dedicated database) or sovereign (dedicated infrastructure).
-const TIER_KEYS = ['free', 'personal', 'gold', 'platinum'] as const;
-// What each person pays on top of the base: the plan sets the AI queries and the space.
+// Who pays: a person (their own account in the shared studio) or a company (a private
+// studio plus each member's plan). The two never share a price, so each gets its own card.
+const AUDIENCE_KEYS = ['personal', 'gold'] as const;
+// The other two ways in: a sponsored seat by invitation and a sovereign, custom studio.
+const OTHER_KEYS = ['free', 'platinum'] as const;
+// Same plans for both audiences: the plan sets the AI queries and the space, not who pays.
 const PLAN_KEYS = ['basic', 'advanced', 'max'] as const;
 const BILLING_KEYS = ['fixed', 'monthly', 'topup', 'annual', 'ownAi', 'cancel'] as const;
+const BULLET_KEYS = ['p1', 'p2', 'p3'] as const;
 
 export function TiersSection({ requestAccessHref }: { requestAccessHref: string }) {
   const { t } = useLandingText();
@@ -33,14 +36,15 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
           <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">{t('landing.tiers.body')}</p>
         </Reveal>
 
-        <div className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4 xl:gap-6">
-          {TIER_KEYS.map((tier, i) => {
+        <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-2">
+          {AUDIENCE_KEYS.map((tier, i) => {
             const highlighted = tier === 'gold';
-            const priceNote = optional(`landing.tiers.items.${tier}.priceNote`);
+            const muted = highlighted ? 'text-accent-foreground/75' : 'text-muted-foreground';
             return (
               <Reveal key={tier} delay={i * 120}>
                 <article
-                  className={`landing-card landing-card-hover relative flex h-full flex-col p-7 ${
+                  data-audience={tier}
+                  className={`landing-card landing-card-hover relative flex h-full flex-col p-8 ${
                     highlighted ? '!border-accent !bg-accent text-accent-foreground' : ''
                   }`}
                 >
@@ -49,33 +53,37 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
                       {t('landing.tiers.items.gold.badge')}
                     </span>
                   )}
-                  <span
-                    className={`font-mono text-[10px] uppercase tracking-widest ${
-                      highlighted ? 'text-accent-foreground/60' : 'text-muted-foreground'
-                    }`}
-                  >
+                  <span className={`font-mono text-[11px] uppercase tracking-widest ${muted}`}>
                     {t(`landing.tiers.items.${tier}.eyebrow`)}
                   </span>
                   <h3 className="mt-3 font-display text-2xl leading-snug">{t(`landing.tiers.items.${tier}.name`)}</h3>
-                  <p className="mt-2 font-display text-4xl tracking-tight">{t(`landing.tiers.items.${tier}.price`)}</p>
-                  {priceNote && (
-                    <p
-                      className={`mt-1 text-xs leading-relaxed ${
-                        highlighted ? 'text-accent-foreground/70' : 'text-muted-foreground'
-                      }`}
-                    >
-                      {priceNote}
-                    </p>
-                  )}
-                  <p
-                    className={`mt-4 text-sm leading-relaxed ${
-                      highlighted ? 'text-accent-foreground/80' : 'text-muted-foreground'
+                  <p className="mt-3 font-display text-4xl tracking-tight">{t(`landing.tiers.items.${tier}.price`)}</p>
+                  <p className={`mt-1 text-xs leading-relaxed ${muted}`}>{t(`landing.tiers.items.${tier}.priceNote`)}</p>
+                  <p className={`mt-4 text-sm leading-relaxed ${muted}`}>{t(`landing.tiers.items.${tier}.body`)}</p>
+
+                  <div
+                    className={`mt-6 rounded-lg border p-5 ${
+                      highlighted ? 'border-accent-foreground/25' : 'border-border bg-background'
                     }`}
                   >
-                    {t(`landing.tiers.items.${tier}.body`)}
-                  </p>
+                    <p className={`font-mono text-[10px] uppercase tracking-widest ${muted}`}>
+                      {t(`landing.tiers.items.${tier}.plansTitle`)}
+                    </p>
+                    <dl className="mt-3 space-y-2">
+                      {PLAN_KEYS.map((plan) => (
+                        <div key={plan} className="flex items-baseline justify-between gap-4">
+                          <dt className="text-sm">{t(`landing.tiers.items.${tier}.plans.${plan}`)}</dt>
+                          <dd className="font-display text-xl tracking-tight">
+                            {t(`landing.tiers.items.${tier}.prices.${plan}`)}
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+                    <p className={`mt-4 text-xs leading-relaxed ${muted}`}>{t(`landing.tiers.items.${tier}.note`)}</p>
+                  </div>
+
                   <ul className="mt-6 space-y-2.5">
-                    {(['p1', 'p2', 'p3'] as const).map((p) => {
+                    {BULLET_KEYS.map((p) => {
                       const text = optional(`landing.tiers.items.${tier}.bullets.${p}`);
                       if (!text) return null;
                       return (
@@ -100,7 +108,7 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
                           : 'w-full'
                       }
                     >
-                      <Link href={tier === 'free' ? requestAccessHref : '#demo'}>
+                      <Link href="#demo">
                         {t(`landing.tiers.items.${tier}.cta`)} <ArrowUpRight className="size-4" />
                       </Link>
                     </Button>
@@ -149,20 +157,47 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-auto border-t border-border px-7 py-5">
-                    <p className="font-display text-3xl tracking-tight">
-                      {t(`landing.tiers.plans.items.${plan}.price`)}
-                    </p>
-                    <p className="mt-1 text-xs text-muted-foreground">{t('landing.tiers.plans.perPerson')}</p>
-                  </div>
+                  <dl className="mt-auto space-y-2 border-t border-border px-7 py-5">
+                    {(['personal', 'team'] as const).map((who) => (
+                      <div key={who} className="flex items-baseline justify-between gap-4">
+                        <dt className="text-xs text-muted-foreground">{t(`landing.tiers.plans.${who}Label`)}</dt>
+                        <dd className="font-display text-xl tracking-tight">
+                          {t(`landing.tiers.plans.items.${plan}.${who}Price`)}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
                 </article>
               </Reveal>
             );
           })}
         </div>
-        <Reveal className="mx-auto mt-8 max-w-4xl space-y-2 text-center text-sm leading-relaxed text-muted-foreground">
-          <p>{t('landing.tiers.plans.examples.personal')}</p>
-          <p>{t('landing.tiers.plans.examples.team')}</p>
+
+        <Reveal className="mt-20">
+          <h3 className="text-center font-display text-2xl leading-tight sm:text-3xl">{t('landing.tiers.other')}</h3>
+          <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:gap-6">
+            {OTHER_KEYS.map((tier) => (
+              <article key={tier} className="landing-card landing-card-hover flex h-full flex-col p-7">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                  {t(`landing.tiers.items.${tier}.eyebrow`)}
+                </span>
+                <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  <h4 className="font-display text-xl leading-snug">{t(`landing.tiers.items.${tier}.name`)}</h4>
+                  <p className="font-display text-2xl tracking-tight">{t(`landing.tiers.items.${tier}.price`)}</p>
+                </div>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {t(`landing.tiers.items.${tier}.body`)}
+                </p>
+                <div className="mt-auto pt-6">
+                  <Button asChild variant="pill" size="pill">
+                    <Link href={tier === 'free' ? requestAccessHref : '#demo'}>
+                      {t(`landing.tiers.items.${tier}.cta`)} <ArrowUpRight className="size-4" />
+                    </Link>
+                  </Button>
+                </div>
+              </article>
+            ))}
+          </div>
         </Reveal>
 
         <Reveal className="mt-20">

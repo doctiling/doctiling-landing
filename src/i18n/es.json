@@ -349,8 +349,8 @@
     },
     "tiers": {
       "eyebrow": "planes",
-      "title": "Una base por estudio y un plan por persona.",
-      "body": "Primero eliges dónde vive tu estudio: compartido, privado o soberano. Después, el plan de cada persona según cuánta IA necesita. Precios fijos en pesos colombianos, sin sorpresas.",
+      "title": "Precios distintos para una persona y para una empresa.",
+      "body": "Una persona paga su cuenta en el estudio compartido. Una empresa paga un estudio privado y el plan de cada integrante. En los dos casos el precio es fijo, en pesos colombianos, y ya incluye la IA.",
       "items": {
         "free": {
           "eyebrow": "por invitación",
@@ -365,28 +365,52 @@
           "cta": "Solicitar acceso"
         },
         "personal": {
-          "eyebrow": "para ti",
-          "name": "Personal · Estudio compartido",
-          "price": "$13.100",
-          "priceNote": "al mes de base, más tu plan",
-          "body": "Tu cuenta propia en el estudio compartido, sin esperar invitación. Pagas tú, con tu medio de pago. Tus datos quedan aislados lógicamente por usuario.",
+          "eyebrow": "para una persona",
+          "name": "Tu cuenta en el estudio compartido",
+          "price": "Desde $28.000",
+          "priceNote": "al mes, todo incluido",
+          "body": "Entras sin esperar invitación y pagas tú, con tu medio de pago. Tus datos quedan aislados por usuario.",
+          "plansTitle": "Lo que pagas al mes, según tu plan",
+          "plans": {
+            "basic": "Básico",
+            "advanced": "Avanzado",
+            "max": "Máximo"
+          },
+          "prices": {
+            "basic": "$28.000",
+            "advanced": "$58.000",
+            "max": "$133.000"
+          },
+          "note": "Cada precio ya suma la base de la cuenta ($13.100) y el plan.",
           "bullets": {
-            "p1": "Desde $28.000 al mes con el plan Básico.",
+            "p1": "Un solo valor al mes, sin cobros aparte.",
             "p2": "Sin permanencia: cancelas cuando quieras.",
             "p3": "Pasas a un estudio privado cuando tu equipo crezca."
           },
           "cta": "Solicitar acceso"
         },
         "gold": {
-          "eyebrow": "para tu equipo",
-          "name": "Gold · Estudio privado",
+          "eyebrow": "para una empresa",
+          "name": "Un estudio privado para tu equipo",
           "price": "$49.000",
           "priceNote": "al mes por estudio, más el plan de cada persona",
-          "body": "Tu propia base de datos dedicada — aislada de cualquier otro tenant. Mismo runtime hosteado, pero ningún vecino comparte tus filas ni tus embeddings. Marca blanca incluida.",
+          "body": "Tu propia base de datos dedicada, aislada de cualquier otro cliente, con dominio propio y marca blanca. Un responsable paga por todo el equipo.",
+          "plansTitle": "Más, por cada persona al mes",
+          "plans": {
+            "basic": "Básico",
+            "advanced": "Avanzado",
+            "max": "Máximo"
+          },
+          "prices": {
+            "basic": "$14.900",
+            "advanced": "$44.900",
+            "max": "$119.900"
+          },
+          "note": "Ejemplo: un equipo de 5, con 4 en Básico y 1 en Avanzado, paga $49.000 + $59.600 + $44.900 = $153.500 al mes.",
           "bullets": {
             "p1": "Base de datos dedicada, migraciones de esquema a tu ritmo.",
-            "p2": "Dominio propio + marca blanca personalizada.",
-            "p3": "Un responsable paga por todo el equipo: una sola factura al mes."
+            "p2": "Dominio propio y marca blanca personalizada.",
+            "p3": "Una sola factura al mes para toda la empresa."
           },
           "cta": "Solicitar demo",
           "badge": "El preferido de los equipos"
@@ -404,37 +428,38 @@
           "cta": "Hablemos"
         }
       },
+      "other": "Otras formas de usar Doctiling",
       "plans": {
-        "title": "El plan de cada persona",
-        "body": "Cada plan incluye sus consultas de IA y su espacio para información. En un mismo estudio puedes mezclar planes: no todos usan la IA igual.",
-        "perPerson": "por persona al mes",
+        "title": "Qué incluye cada plan",
+        "body": "Los planes son los mismos para una persona y para una empresa: cambia solo cuánto se paga. Cada uno incluye sus consultas de IA y su espacio para información.",
+        "personalLabel": "Una persona",
+        "teamLabel": "En una empresa, por persona",
         "badge": "Recomendado",
         "items": {
           "basic": {
             "name": "Básico",
-            "price": "$14.900",
             "queries": "150 consultas de IA al mes",
             "daily": "Unas 7 por día",
-            "info": "100 MB de información"
+            "info": "100 MB de información",
+            "personalPrice": "$28.000",
+            "teamPrice": "$14.900"
           },
           "advanced": {
             "name": "Avanzado",
-            "price": "$44.900",
             "queries": "500 consultas de IA al mes",
             "daily": "Unas 25 por día",
-            "info": "5 GB de información"
+            "info": "5 GB de información",
+            "personalPrice": "$58.000",
+            "teamPrice": "$44.900"
           },
           "max": {
             "name": "Máximo",
-            "price": "$119.900",
             "queries": "1.500 consultas de IA al mes",
             "daily": "Unas 70 por día",
-            "info": "15 GB de información"
+            "info": "15 GB de información",
+            "personalPrice": "$133.000",
+            "teamPrice": "$119.900"
           }
-        },
-        "examples": {
-          "personal": "Una persona en el estudio compartido con plan Avanzado: $13.100 + $44.900 = $58.000 al mes.",
-          "team": "Un equipo de 5 en un estudio privado, 4 en Básico y 1 en Avanzado: $49.000 + $59.600 + $44.900 = $153.500 al mes."
         }
       },
       "billing": {
@@ -594,7 +619,7 @@
         },
         "pricing": {
           "q": "¿Cuánto cuesta Doctiling?",
-          "a": "Hay acceso gratis por invitación y una instalación local gratuita. Si pagas, es una base —$13.100 al mes en el estudio compartido o $49.000 al mes por un estudio privado— más el plan de cada persona: Básico $14.900, Avanzado $44.900 o Máximo $119.900 al mes. Son precios fijos en pesos colombianos."
+          "a": "Depende de si eres una persona o una empresa. Una persona paga su cuenta en el estudio compartido: $28.000 al mes en el plan Básico, $58.000 en Avanzado o $133.000 en Máximo, todo incluido. Una empresa paga $49.000 al mes por su estudio privado, más el plan de cada persona: Básico $14.900, Avanzado $44.900 o Máximo $119.900. También hay acceso gratis por invitación y una instalación local gratuita. Son precios fijos en pesos colombianos."
         },
         "queries": {
           "q": "¿Qué es una consulta y qué pasa si se acaban?",
@@ -1823,7 +1848,7 @@
       "mcp": "Sí: cada base de conocimiento se puede exponer con un token acotado, revocable y de solo lectura.",
       "selfHost": "Sí: instalación local gratuita con instaladores públicos (el código es privado), o el mismo producto en tu infraestructura.",
       "freePlan": "Sí: puesto patrocinado por invitación con IA incluida (25 llamadas de IA por día), sin tarjeta.",
-      "pricing": "Gratis por invitación y self-hosted a $0. Personal desde $28.000 COP al mes; estudio privado desde $49.000 COP al mes más el plan de cada persona."
+      "pricing": "Gratis por invitación y self-hosted a $0. Una persona, desde $28.000 COP al mes todo incluido; una empresa, $49.000 COP al mes por su estudio privado más el plan de cada persona, desde $14.900 COP."
     },
     "items": {
       "notion-ai": {

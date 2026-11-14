@@ -477,6 +477,7 @@
             "queries": "150 consultas de IA al mes",
             "daily": "Unas 7 por día hábil",
             "info": "100 MB de información",
+            "ext": "+ 300 consultas de chat externo",
             "fit": "Para quien consulta de vez en cuando."
           },
           "advanced": {
@@ -484,6 +485,7 @@
             "queries": "500 consultas de IA al mes",
             "daily": "Unas 23 por día hábil",
             "info": "5 GB de información",
+            "ext": "+ 1.000 consultas de chat externo",
             "fit": "Para quien trabaja con la IA todos los días."
           },
           "max": {
@@ -491,6 +493,7 @@
             "queries": "1.500 consultas de IA al mes",
             "daily": "Unas 70 por día hábil",
             "info": "15 GB de información",
+            "ext": "+ 3.000 consultas de chat externo",
             "fit": "Para uso intensivo y automatizaciones."
           }
         }
@@ -562,6 +565,24 @@
           }
         }
       },
+      "byo": {
+        "eyebrow": "opcional, para empresas",
+        "title": "¿Ya tienes IA o base de datos? Úsalas",
+        "body": "No estás obligado a usar las nuestras. Tu empresa puede conectar su propio proveedor de IA y guardar la información en su propia base de datos. Pagas solo lo que usas de Doctiling.",
+        "items": {
+          "ai": {
+            "title": "Con tu propia IA",
+            "price": "$9.800 · $29.400 · $71.900",
+            "body": "Por persona al mes, según el plan. Las consultas se las pagas a tu proveedor, sin cuota nuestra."
+          },
+          "db": {
+            "title": "Con tu propia IA y tu base de datos",
+            "price": "$9.800",
+            "body": "Por persona al mes. Tu información vive en tu base de datos, sin tope de espacio nuestro."
+          }
+        },
+        "note": "En los dos casos se paga además la base del estudio, desde $49.000. Solo para empresas."
+      },
       "other": "Otras formas de usar Doctiling",
       "billing": {
         "title": "Cómo se cobra",
@@ -602,6 +623,7 @@
           "d5": "En una empresa, $49.000 es la base mínima. Un estudio con más carga paga una base mayor, que se informa antes de contratar.",
           "d6": "En pago anual no hay devolución al cancelar; el servicio sigue hasta terminar el año pagado.",
           "d7": "La lista de precios se revisa cada seis meses.",
+          "d9": "El chat externo son las preguntas de visitantes por el chat público y el widget. Tiene su propia cuota, no gasta las consultas del plan y lo responde un modelo más liviano. Se está activando por etapas.",
           "d8": "El cobro automático y las recargas se están activando por etapas. Hoy la contratación se hace con nuestro equipo: solicita una demo y te acompañamos."
         }
       }

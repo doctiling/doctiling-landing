@@ -477,6 +477,7 @@
             "queries": "150 AI queries a month",
             "daily": "About 7 per working day",
             "info": "100 MB of information",
+            "ext": "+ 300 external chat queries",
             "fit": "For occasional questions."
           },
           "advanced": {
@@ -484,6 +485,7 @@
             "queries": "500 AI queries a month",
             "daily": "About 23 per working day",
             "info": "5 GB of information",
+            "ext": "+ 1,000 external chat queries",
             "fit": "For working with AI every day."
           },
           "max": {
@@ -491,6 +493,7 @@
             "queries": "1,500 AI queries a month",
             "daily": "About 70 per working day",
             "info": "15 GB of information",
+            "ext": "+ 3,000 external chat queries",
             "fit": "For heavy use and automations."
           }
         }
@@ -562,6 +565,24 @@
           }
         }
       },
+      "byo": {
+        "eyebrow": "optional, for companies",
+        "title": "Already have AI or a database? Use them",
+        "body": "You are not tied to ours. Your company can connect its own AI provider and store its information in its own database. You pay only for what you use of Doctiling.",
+        "items": {
+          "ai": {
+            "title": "With your own AI",
+            "price": "≈ USD 3 · 9 · 22",
+            "body": "Per person a month, by plan (COP 9,800, COP 29,400 or COP 71,900). You pay the queries to your provider, with no quota from us."
+          },
+          "db": {
+            "title": "With your own AI and your database",
+            "price": "≈ USD 3",
+            "body": "Per person a month (COP 9,800). Your information lives in your database, with no space cap from us."
+          }
+        },
+        "note": "Either way the studio base is paid too, from ≈ USD 15 (COP 49,000). For companies only."
+      },
       "other": "Other ways to use Doctiling",
       "billing": {
         "title": "How billing works",
@@ -602,6 +623,7 @@
           "d5": "For a company, COP 49,000 (≈ USD 15) is the minimum base. A studio under heavier load pays a higher base, stated before you sign up.",
           "d6": "With annual payment there is no refund on cancelling; the service runs until the paid year ends.",
           "d7": "The price list is reviewed every six months.",
+          "d9": "External chat is the questions visitors ask through the public chat and the widget. It has its own quota, does not use the plan’s queries and is answered by a lighter model. It is being switched on in stages.",
           "d8": "Automatic charging and top-ups are being switched on in stages. Today you sign up with our team: request a demo and we walk you through it."
         }
       }

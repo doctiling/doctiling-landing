@@ -112,6 +112,7 @@ describe('LandingClient', () => {
     const { container } = renderWithHost(<LandingClient />, { locale: 'es', t: undefined });
     const section = container.querySelector('section#stack');
     expect(section).not.toHaveTextContent('USD');
+    expect(section!.querySelector('[data-byo]')).toHaveTextContent('$9.800 · $29.400 · $71.900');
     expect(section!.querySelectorAll('[data-billed]')).toHaveLength(0);
     expect(section!.querySelector('[data-audience="gold"] [data-plan="basic"] [data-price]')).toHaveTextContent('$77.900');
   });
@@ -169,15 +170,65 @@ describe('LandingClient', () => {
     expect(screen.queryByText('landing.tiers.billing.items.topup.title')).not.toBeInTheDocument();
   });
 
-  it('prints the eight plain-words notices', () => {
+  it('prints the nine plain-words notices, the staged-rollout one last', () => {
     const { container } = renderWithHost(<LandingClient />);
     expect(screen.getByText('landing.tiers.disclaimers.title')).toBeInTheDocument();
-    expect(container.querySelectorAll('[data-disclaimer]')).toHaveLength(8);
-    for (const d of ['d1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7', 'd8']) {
+    const order = ['d1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7', 'd9', 'd8'];
+    expect(Array.from(container.querySelectorAll('[data-disclaimer]')).map((li) => li.getAttribute('data-disclaimer'))).toEqual(order);
+    for (const d of order) {
       expect(container.querySelector(`[data-disclaimer="${d}"]`)).toHaveTextContent(
         `landing.tiers.disclaimers.items.${d}`,
       );
     }
+  });
+
+  it('offers a company its own AI and database, in the company panel only', () => {
+    const { container } = renderWithHost(<LandingClient />);
+    expect(container.querySelectorAll('[data-byo]')).toHaveLength(1);
+    const card = container.querySelector('[data-audience="gold"] [data-byo]');
+    expect(card).not.toBeNull();
+    expect(container.querySelector('[data-audience="personal"] [data-byo]')).toBeNull();
+    for (const key of ['eyebrow', 'title', 'body', 'note']) {
+      expect(card).toHaveTextContent(`landing.tiers.byo.${key}`);
+    }
+    for (const item of ['ai', 'db']) {
+      for (const key of ['title', 'price', 'body']) {
+        expect(card).toHaveTextContent(`landing.tiers.byo.items.${item}.${key}`);
+      }
+    }
+  });
+
+  it('keeps own AI out of sight for a person: the billing fact shows with the company tab only', async () => {
+    const user = userEvent.setup();
+    const { container } = renderWithHost(<LandingClient />);
+    const fact = () => container.querySelector('[data-billing="ownAi"]');
+    expect(fact()).toHaveTextContent('landing.tiers.billing.items.ownAi.title');
+    expect(fact()).not.toHaveAttribute('hidden');
+    await user.click(screen.getByRole('tab', { name: 'landing.tiers.tabs.personal' }));
+    expect(fact()).toHaveAttribute('hidden');
+    // The other five facts apply to both audiences.
+    expect(container.querySelectorAll('[data-billing]:not([hidden])')).toHaveLength(5);
+    await user.click(screen.getByRole('tab', { name: 'landing.tiers.tabs.gold' }));
+    expect(fact()).not.toHaveAttribute('hidden');
+  });
+
+  it('lists the external chat quota on every plan, for both audiences', () => {
+    const { container } = renderWithHost(<LandingClient />);
+    for (const audience of ['personal', 'gold']) {
+      for (const plan of ['basic', 'advanced', 'max']) {
+        expect(container.querySelector(`[data-audience="${audience}"] [data-plan="${plan}"]`)).toHaveTextContent(
+          `landing.tiers.plans.items.${plan}.ext`,
+        );
+      }
+    }
+  });
+
+  it('prices a company\'s own AI and database in dollars in English, pesos beside them', () => {
+    const { container } = renderWithHost(<LandingClient />, { locale: 'en', t: undefined });
+    const card = container.querySelector('[data-byo]');
+    expect(card).toHaveTextContent(/≈ USD 3 · 9 · 22/);
+    expect(card).toHaveTextContent(/COP 9,800, COP 29,400 or COP 71,900/);
+    expect(card).toHaveTextContent(/≈ USD 15 \(COP 49,000\)/);
   });
 
   it('points the free tier CTA to the app when signed in', () => {

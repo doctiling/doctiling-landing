@@ -22,7 +22,10 @@ const TOPUP_STEP_KEYS = ['s1', 's2', 's3', 's4'] as const;
 const PACK_KEYS = ['p200', 'p500', 'p1000'] as const;
 const PART_KEYS = ['compute', 'studio', 'info', 'ai'] as const;
 const BILLING_KEYS = ['fixed', 'monthly', 'annual', 'ownAi', 'overdue', 'cancel'] as const;
-const DISCLAIMER_KEYS = ['d1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7', 'd8'] as const;
+// d9 (external chat) reads before d8, which closes the list: what is still being switched on.
+const DISCLAIMER_KEYS = ['d1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7', 'd9', 'd8'] as const;
+// A company may bring its own AI provider and its own database: it then pays only the studio.
+const BYO_KEYS = ['ai', 'db'] as const;
 
 export function TiersSection({ requestAccessHref }: { requestAccessHref: string }) {
   const { t } = useLandingText();
@@ -162,7 +165,7 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
                       </p>
                     </div>
                     <ul className="space-y-2.5 px-7 py-6">
-                      {(['daily', 'info', 'fit'] as const).map((line) => (
+                      {(['daily', 'info', 'ext', 'fit'] as const).map((line) => (
                         <li key={line} className="flex gap-2.5 text-sm">
                           <Check className="mt-0.5 size-4 shrink-0 text-emerald-600" aria-hidden="true" />
                           <span className="text-foreground/85">{t(`landing.tiers.plans.items.${plan}.${line}`)}</span>
@@ -187,6 +190,31 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
             <p className="mx-auto mt-6 max-w-3xl text-center text-sm leading-relaxed text-muted-foreground">
               {t(`landing.tiers.items.${key}.note`)}
             </p>
+            {key === 'gold' && (
+              <article data-byo className="landing-card mt-10 !border-accent p-8">
+                <span className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+                  {t('landing.tiers.byo.eyebrow')}
+                </span>
+                <h3 className="mt-3 font-display text-2xl leading-snug">{t('landing.tiers.byo.title')}</h3>
+                <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+                  {t('landing.tiers.byo.body')}
+                </p>
+                <dl className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2">
+                  {BYO_KEYS.map((item) => (
+                    <div key={item} className="rounded-lg border border-border bg-background p-5">
+                      <dt className="text-sm font-medium">{t(`landing.tiers.byo.items.${item}.title`)}</dt>
+                      <dd className="mt-2 font-display text-2xl tracking-tight">
+                        {t(`landing.tiers.byo.items.${item}.price`)}
+                      </dd>
+                      <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                        {t(`landing.tiers.byo.items.${item}.body`)}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+                <p className="mt-5 text-xs leading-relaxed text-muted-foreground">{t('landing.tiers.byo.note')}</p>
+              </article>
+            )}
           </div>
         ))}
 
@@ -268,7 +296,13 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
           </h3>
           <dl className="mt-10 grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
             {BILLING_KEYS.map((key) => (
-              <div key={key} className="border-t border-border pt-5">
+              // Own AI is a company's option: a person never sees it, like the [data-byo] card.
+              <div
+                key={key}
+                data-billing={key}
+                hidden={key === 'ownAi' && audience !== 'gold'}
+                className="border-t border-border pt-5"
+              >
                 <dt className="font-display text-xl leading-snug">{t(`landing.tiers.billing.items.${key}.title`)}</dt>
                 <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">
                   {t(`landing.tiers.billing.items.${key}.body`)}

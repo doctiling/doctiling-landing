@@ -348,9 +348,14 @@
       }
     },
     "tiers": {
-      "eyebrow": "planes",
-      "title": "Precios distintos para una persona y para una empresa.",
-      "body": "Una persona paga su cuenta en el estudio compartido. Una empresa paga un estudio privado y el plan de cada integrante. En los dos casos el precio es fijo, en pesos colombianos, y ya incluye la IA.",
+      "eyebrow": "planes y precios",
+      "title": "Precios claros para una persona y para una empresa.",
+      "body": "Escoge quién paga y verás su precio, qué incluye y cómo se usa. En los dos casos el precio es fijo, en pesos colombianos, y ya incluye la IA.",
+      "tabs": {
+        "label": "Ver precios para",
+        "personal": "Para una persona",
+        "gold": "Para una empresa"
+      },
       "items": {
         "free": {
           "eyebrow": "por invitación",
@@ -364,57 +369,6 @@
           },
           "cta": "Solicitar acceso"
         },
-        "personal": {
-          "eyebrow": "para una persona",
-          "name": "Tu cuenta en el estudio compartido",
-          "price": "Desde $28.000",
-          "priceNote": "al mes, todo incluido",
-          "body": "Entras sin esperar invitación y pagas tú, con tu medio de pago. Tus datos quedan aislados por usuario.",
-          "plansTitle": "Lo que pagas al mes, según tu plan",
-          "plans": {
-            "basic": "Básico",
-            "advanced": "Avanzado",
-            "max": "Máximo"
-          },
-          "prices": {
-            "basic": "$28.000",
-            "advanced": "$58.000",
-            "max": "$133.000"
-          },
-          "note": "Cada precio ya suma la base de la cuenta ($13.100) y el plan.",
-          "bullets": {
-            "p1": "Un solo valor al mes, sin cobros aparte.",
-            "p2": "Sin permanencia: cancelas cuando quieras.",
-            "p3": "Pasas a un estudio privado cuando tu equipo crezca."
-          },
-          "cta": "Solicitar acceso"
-        },
-        "gold": {
-          "eyebrow": "para una empresa",
-          "name": "Un estudio privado para tu equipo",
-          "price": "$49.000",
-          "priceNote": "al mes por estudio, más el plan de cada persona",
-          "body": "Tu propia base de datos dedicada, aislada de cualquier otro cliente, con dominio propio y marca blanca. Un responsable paga por todo el equipo.",
-          "plansTitle": "Más, por cada persona al mes",
-          "plans": {
-            "basic": "Básico",
-            "advanced": "Avanzado",
-            "max": "Máximo"
-          },
-          "prices": {
-            "basic": "$14.900",
-            "advanced": "$44.900",
-            "max": "$119.900"
-          },
-          "note": "Ejemplo: un equipo de 5, con 4 en Básico y 1 en Avanzado, paga $49.000 + $59.600 + $44.900 = $153.500 al mes.",
-          "bullets": {
-            "p1": "Base de datos dedicada, migraciones de esquema a tu ritmo.",
-            "p2": "Dominio propio y marca blanca personalizada.",
-            "p3": "Una sola factura al mes para toda la empresa."
-          },
-          "cta": "Solicitar demo",
-          "badge": "El preferido de los equipos"
-        },
         "platinum": {
           "eyebrow": "a medida",
           "name": "Platinum · Estudio soberano",
@@ -426,42 +380,179 @@
             "p3": "Squad dev + agentes IA dedicado a tu tenant."
           },
           "cta": "Hablemos"
+        },
+        "personal": {
+          "eyebrow": "para una persona",
+          "name": "Tu cuenta en el estudio compartido",
+          "price": "Desde $91.000",
+          "priceNote": "al mes, todo incluido",
+          "body": "Entras sin esperar invitación y pagas tú, con tu medio de pago. No necesitas servidor propio: usas el estudio que Doctiling ya tiene encendido, y tus datos quedan aislados por usuario.",
+          "priceLabel": "Al mes, todo incluido",
+          "note": "Cada precio ya suma la base de tu cuenta ($13.100) y el plan. No hay cobros aparte.",
+          "benefitsTitle": "Qué recibes",
+          "benefits": {
+            "b1": "Bases de conocimiento con documentos de texto, tablas y grafos.",
+            "b2": "Un asistente de IA que responde citando el bloque exacto de tus documentos.",
+            "b3": "Tareas programadas, wiki y chat sobre tu propio conocimiento.",
+            "b4": "Tus datos aislados por usuario; puedes exportarlos cuando quieras.",
+            "b5": "Pasas a un estudio privado cuando tu equipo crezca."
+          },
+          "useTitle": "Cómo se usa",
+          "use": {
+            "s1": {
+              "title": "Escoge tu plan",
+              "body": "Básico, Avanzado o Máximo, según cuántas consultas de IA y cuánto espacio necesitas."
+            },
+            "s2": {
+              "title": "Registra tu medio de pago",
+              "body": "Una sola vez: tarjeta, billetera o cuenta bancaria."
+            },
+            "s3": {
+              "title": "Trabaja todo el mes",
+              "body": "Subes tus documentos y preguntas. Si se acaban las consultas, recargas o esperas al día 1."
+            }
+          },
+          "cta": "Solicitar acceso",
+          "prices": {
+            "basic": "$91.000",
+            "advanced": "$268.000",
+            "max": "$763.000"
+          }
+        },
+        "gold": {
+          "eyebrow": "para una empresa",
+          "name": "Un estudio privado para tu equipo",
+          "price": "$49.000",
+          "priceNote": "al mes por estudio, más el plan de cada persona",
+          "body": "Tu propio servidor y tu propia base de datos, aislados de cualquier otro cliente, con dominio propio y marca blanca. Un responsable paga por todo el equipo.",
+          "priceLabel": "Por persona, al mes",
+          "note": "Ejemplo: un equipo de 5, con 4 en Básico y 1 en Avanzado, paga $49.000 + $311.600 + $254.900 = $615.500 al mes. Las consultas de todos se suman en una sola bolsa para el equipo.",
+          "benefitsTitle": "Qué recibe la empresa",
+          "benefits": {
+            "b1": "Servidor y base de datos dedicados, aislados de cualquier otro cliente.",
+            "b2": "Dominio propio y marca blanca.",
+            "b3": "Una sola factura al mes: un responsable paga por todo el equipo.",
+            "b4": "Cada persona en el plan que necesita: no todos pagan lo mismo.",
+            "b5": "Wiki, chat público y widget sobre el conocimiento de la empresa."
+          },
+          "useTitle": "Cómo se usa",
+          "use": {
+            "s1": {
+              "title": "Abrimos tu estudio",
+              "body": "Con su servidor, su base de datos y tu dominio."
+            },
+            "s2": {
+              "title": "Invitas a tu equipo",
+              "body": "A cada persona le asignas un plan. Puedes cambiarlo cuando quieras."
+            },
+            "s3": {
+              "title": "Pagas una vez al mes",
+              "body": "El responsable registra el medio de pago; la factura llega el día 1 con el detalle por persona."
+            }
+          },
+          "cta": "Solicitar demo",
+          "badge": "El preferido de los equipos",
+          "prices": {
+            "basic": "$77.900",
+            "advanced": "$254.900",
+            "max": "$749.900"
+          }
         }
       },
-      "other": "Otras formas de usar Doctiling",
       "plans": {
-        "title": "Qué incluye cada plan",
-        "body": "Los planes son los mismos para una persona y para una empresa: cambia solo cuánto se paga. Cada uno incluye sus consultas de IA y su espacio para información.",
-        "personalLabel": "Una persona",
-        "teamLabel": "En una empresa, por persona",
         "badge": "Recomendado",
         "items": {
           "basic": {
             "name": "Básico",
             "queries": "150 consultas de IA al mes",
-            "daily": "Unas 7 por día",
+            "daily": "Unas 7 por día hábil",
             "info": "100 MB de información",
-            "personalPrice": "$28.000",
-            "teamPrice": "$14.900"
+            "fit": "Para quien consulta de vez en cuando."
           },
           "advanced": {
             "name": "Avanzado",
             "queries": "500 consultas de IA al mes",
-            "daily": "Unas 25 por día",
+            "daily": "Unas 23 por día hábil",
             "info": "5 GB de información",
-            "personalPrice": "$58.000",
-            "teamPrice": "$44.900"
+            "fit": "Para quien trabaja con la IA todos los días."
           },
           "max": {
             "name": "Máximo",
             "queries": "1.500 consultas de IA al mes",
-            "daily": "Unas 70 por día",
+            "daily": "Unas 70 por día hábil",
             "info": "15 GB de información",
-            "personalPrice": "$133.000",
-            "teamPrice": "$119.900"
+            "fit": "Para uso intensivo y automatizaciones."
           }
         }
       },
+      "topups": {
+        "title": "Recargas: más consultas para ese mes",
+        "body": "Las consultas incluidas son el límite del mes. Si se acaban antes, la IA se pausa y todo lo demás sigue funcionando. Para seguir, compras una recarga: nunca hay cobros que no hayas decidido.",
+        "steps": {
+          "s1": {
+            "title": "Se acaban",
+            "body": "Se usaron las consultas del mes. Leer, editar y compartir siguen igual."
+          },
+          "s2": {
+            "title": "Recargas",
+            "body": "Escoges un paquete. Se cobra en el momento, a tu medio de pago."
+          },
+          "s3": {
+            "title": "Sigues",
+            "body": "Las consultas quedan disponibles de inmediato, hasta el último día del mes."
+          },
+          "s4": {
+            "title": "Día 1",
+            "body": "Vuelven las consultas de tu plan. Lo que sobró de la recarga no pasa al mes siguiente."
+          }
+        },
+        "cols": {
+          "pack": "Paquete",
+          "price": "Precio",
+          "each": "Por consulta"
+        },
+        "packs": {
+          "p200": {
+            "name": "200 consultas",
+            "price": "$90.000",
+            "each": "$450"
+          },
+          "p500": {
+            "name": "500 consultas",
+            "price": "$225.000",
+            "each": "$450"
+          },
+          "p1000": {
+            "name": "1.000 consultas",
+            "price": "$450.000",
+            "each": "$450"
+          }
+        },
+        "note": "La recarga es opcional: sin recarga, la IA vuelve el día 1. En una empresa la compra el responsable de pago y sirve para todo el equipo. No hay recargas con una cuenta en mora ni cuando la empresa usa su propia IA."
+      },
+      "parts": {
+        "title": "Qué estás pagando",
+        "body": "El precio se compone de cuatro cosas. No se cobran aparte: explican el valor.",
+        "items": {
+          "compute": {
+            "title": "Cómputo",
+            "body": "El servidor y la base de datos. En una empresa son solo suyos; una persona usa su parte del estudio compartido."
+          },
+          "studio": {
+            "title": "El estudio",
+            "body": "La aplicación donde trabajas: editor, bases de conocimiento, wiki, chat y permisos."
+          },
+          "info": {
+            "title": "Información",
+            "body": "El espacio para lo que guardas, con su índice de búsqueda. Guardamos el contenido (texto, tablas e índice), no los archivos originales."
+          },
+          "ai": {
+            "title": "IA",
+            "body": "Las consultas incluidas. Es la mayor parte del precio, porque usamos modelos de alta calidad."
+          }
+        }
+      },
+      "other": "Otras formas de usar Doctiling",
       "billing": {
         "title": "Cómo se cobra",
         "items": {
@@ -473,24 +564,36 @@
             "title": "Cobro mensual automático",
             "body": "Se factura el día 1 y se cobra a tu tarjeta, billetera o cuenta bancaria."
           },
-          "topup": {
-            "title": "Recargas",
-            "body": "Si se acaban las consultas del mes, recargas desde $9.800. Nadie te cobra de más sin que lo decidas."
-          },
           "annual": {
             "title": "Pago anual",
-            "body": "Paga el año por adelantado y recibe 12 meses por el precio de 10."
+            "body": "Paga el año por adelantado y recibe 12 meses por el precio de 10. Las recargas se pagan aparte."
           },
           "ownAi": {
             "title": "Tu propia IA",
-            "body": "Si conectas tu propio proveedor de IA, el plan baja a $9.800, $29.400 o $71.900 por persona."
+            "body": "Si tu empresa conecta su propio proveedor de IA, el plan baja a $9.800, $29.400 o $71.900 por persona y las consultas se las pagas a tu proveedor."
+          },
+          "overdue": {
+            "title": "Si un pago falla",
+            "body": "Tienes hasta el día 10 para pagar. Después se pausa la IA y, desde el día 25, se suspende el servicio. Tu información se conserva."
           },
           "cancel": {
             "title": "Sin permanencia",
             "body": "Cancelas cuando quieras, sin multa. Conservamos tu información 60 días por si vuelves."
           }
-        },
-        "note": "Precios en pesos colombianos (COP), sin impuestos. Una consulta es una petición a la IA: una pregunta al agente, un documento generado o una tarea programada."
+        }
+      },
+      "disclaimers": {
+        "title": "Letra clara",
+        "items": {
+          "d1": "Precios en pesos colombianos (COP), sin impuestos. Si aplica IVA, se suma al precio publicado.",
+          "d2": "Una consulta es una petición a la IA: una pregunta al agente, un documento generado o una tarea programada. Cuenta una sola vez, sin importar cuántos pasos dé la IA por dentro.",
+          "d3": "Las consultas incluidas no se acumulan: lo que no uses en el mes no pasa al siguiente. Las recargas vencen el último día del mes en que se compran.",
+          "d4": "«Por día hábil» es una referencia: puedes usar tus consultas cuando quieras dentro del mes.",
+          "d5": "En una empresa, $49.000 es la base mínima. Un estudio con más carga paga una base mayor, que se informa antes de contratar.",
+          "d6": "En pago anual no hay devolución al cancelar; el servicio sigue hasta terminar el año pagado.",
+          "d7": "La lista de precios se revisa cada seis meses.",
+          "d8": "El cobro automático y las recargas se están activando por etapas. Hoy la contratación se hace con nuestro equipo: solicita una demo y te acompañamos."
+        }
       }
     },
     "selfHost": {
@@ -619,11 +722,11 @@
         },
         "pricing": {
           "q": "¿Cuánto cuesta Doctiling?",
-          "a": "Depende de si eres una persona o una empresa. Una persona paga su cuenta en el estudio compartido: $28.000 al mes en el plan Básico, $58.000 en Avanzado o $133.000 en Máximo, todo incluido. Una empresa paga $49.000 al mes por su estudio privado, más el plan de cada persona: Básico $14.900, Avanzado $44.900 o Máximo $119.900. También hay acceso gratis por invitación y una instalación local gratuita. Son precios fijos en pesos colombianos."
+          "a": "Depende de si eres una persona o una empresa. Una persona paga su cuenta en el estudio compartido: $91.000 al mes en el plan Básico, $268.000 en Avanzado o $763.000 en Máximo, todo incluido. Una empresa paga desde $49.000 al mes por su estudio privado, más el plan de cada persona: Básico $77.900, Avanzado $254.900 o Máximo $749.900. Los planes incluyen 150, 500 o 1.500 consultas de IA al mes; si se acaban, hay recargas a $450 por consulta. Si la empresa conecta su propia IA, el plan baja a $9.800, $29.400 o $71.900. También hay acceso gratis por invitación y una instalación local gratuita. Son precios fijos en pesos colombianos, sin impuestos."
         },
         "queries": {
           "q": "¿Qué es una consulta y qué pasa si se acaban?",
-          "a": "Una consulta es una petición a la IA: una pregunta al agente, un documento generado o una tarea programada. Cada plan incluye sus consultas del mes. Si se acaban, la IA se pausa hasta el mes siguiente o recargas un paquete desde $9.800; el resto del estudio sigue funcionando."
+          "a": "Una consulta es una petición a la IA: una pregunta al agente, un documento generado o una tarea programada. Cada plan incluye sus consultas del mes. Si se acaban, la IA se pausa hasta el mes siguiente o recargas un paquete desde $90.000; el resto del estudio sigue funcionando."
         },
         "billing": {
           "q": "¿Cómo se paga y puedo cancelar?",
@@ -1848,7 +1951,7 @@
       "mcp": "Sí: cada base de conocimiento se puede exponer con un token acotado, revocable y de solo lectura.",
       "selfHost": "Sí: instalación local gratuita con instaladores públicos (el código es privado), o el mismo producto en tu infraestructura.",
       "freePlan": "Sí: puesto patrocinado por invitación con IA incluida (25 llamadas de IA por día), sin tarjeta.",
-      "pricing": "Gratis por invitación y self-hosted a $0. Una persona, desde $28.000 COP al mes todo incluido; una empresa, $49.000 COP al mes por su estudio privado más el plan de cada persona, desde $14.900 COP."
+      "pricing": "Gratis por invitación y self-hosted a $0. Una persona, desde $91.000 COP al mes todo incluido; una empresa, desde $49.000 COP al mes por su estudio privado más el plan de cada persona, desde $77.900 COP con IA incluida o $9.800 COP con su propia IA."
     },
     "items": {
       "notion-ai": {

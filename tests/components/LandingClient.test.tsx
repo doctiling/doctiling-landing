@@ -44,42 +44,111 @@ describe('LandingClient', () => {
     );
   });
 
-  it('routes every tier CTA to the demo request when signed out', () => {
+  it('routes every tier CTA to the demo request when signed out', async () => {
+    const user = userEvent.setup();
     renderWithHost(<LandingClient />);
-    for (const tier of ['free', 'personal', 'gold', 'platinum']) {
+    // The company tab is the default; a person's CTA appears once its tab is picked.
+    for (const tier of ['free', 'gold', 'platinum']) {
       expect(
         screen.getByRole('link', { name: new RegExp(`landing\\.tiers\\.items\\.${tier}\\.cta`) }),
       ).toHaveAttribute('href', '#demo');
     }
+    await user.click(screen.getByRole('tab', { name: 'landing.tiers.tabs.personal' }));
+    expect(screen.getByRole('link', { name: /landing\.tiers\.items\.personal\.cta/ })).toHaveAttribute(
+      'href',
+      '#demo',
+    );
   });
 
-  it('prices a person and a company apart, each with its own three plan prices', () => {
+  it('prices a person and a company apart, each panel with its own three plan prices', () => {
     const { container } = renderWithHost(<LandingClient />);
     for (const audience of ['personal', 'gold']) {
-      const card = container.querySelector(`[data-audience="${audience}"]`);
-      expect(card).not.toBeNull();
+      const panel = container.querySelector(`[data-audience="${audience}"]`);
+      expect(panel).not.toBeNull();
       for (const plan of ['basic', 'advanced', 'max']) {
-        expect(card).toHaveTextContent(`landing.tiers.items.${audience}.plans.${plan}`);
-        expect(card).toHaveTextContent(`landing.tiers.items.${audience}.prices.${plan}`);
+        expect(panel!.querySelector(`[data-plan="${plan}"]`)).toHaveTextContent(
+          `landing.tiers.plans.items.${plan}.queries`,
+        );
+        expect(panel!.querySelector(`[data-plan="${plan}"]`)).toHaveTextContent(
+          `landing.tiers.items.${audience}.prices.${plan}`,
+        );
       }
-      expect(card).toHaveTextContent(`landing.tiers.items.${audience}.note`);
+      for (const key of ['price', 'priceNote', 'priceLabel', 'note', 'benefitsTitle', 'useTitle']) {
+        expect(panel).toHaveTextContent(`landing.tiers.items.${audience}.${key}`);
+      }
+      for (const b of ['b1', 'b2', 'b3', 'b4', 'b5']) {
+        expect(panel).toHaveTextContent(`landing.tiers.items.${audience}.benefits.${b}`);
+      }
+      for (const s of ['s1', 's2', 's3']) {
+        expect(panel).toHaveTextContent(`landing.tiers.items.${audience}.use.${s}.title`);
+      }
     }
-    // A company card never carries a person's prices, nor the other way round.
+    // A company panel never carries a person's prices, nor the other way round.
     expect(container.querySelector('[data-audience="gold"]')).not.toHaveTextContent('landing.tiers.items.personal.prices');
     expect(container.querySelector('[data-audience="personal"]')).not.toHaveTextContent('landing.tiers.items.gold.prices');
   });
 
-  it('shows what each plan includes with both prices labelled, and how billing works', () => {
-    renderWithHost(<LandingClient />);
-    for (const plan of ['basic', 'advanced', 'max']) {
-      expect(screen.getByText(`landing.tiers.plans.items.${plan}.queries`)).toBeInTheDocument();
-      expect(screen.getByText(`landing.tiers.plans.items.${plan}.personalPrice`)).toBeInTheDocument();
-      expect(screen.getByText(`landing.tiers.plans.items.${plan}.teamPrice`)).toBeInTheDocument();
+  it('opens on the company tab and keeps the other panel in the document, hidden', () => {
+    const { container } = renderWithHost(<LandingClient />);
+    expect(screen.getByRole('tablist', { name: 'landing.tiers.tabs.label' })).toBeInTheDocument();
+    expect(screen.getByRole('tab', { name: 'landing.tiers.tabs.gold' })).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByRole('tab', { name: 'landing.tiers.tabs.personal' })).toHaveAttribute('aria-selected', 'false');
+    expect(container.querySelector('[data-audience="gold"]')).not.toHaveAttribute('hidden');
+    // Hidden, not removed: crawlers still read a person's prices.
+    expect(container.querySelector('[data-audience="personal"]')).toHaveAttribute('hidden');
+  });
+
+  it('switches the visible panel when the other tab is picked', async () => {
+    const user = userEvent.setup();
+    const { container } = renderWithHost(<LandingClient />);
+    await user.click(screen.getByRole('tab', { name: 'landing.tiers.tabs.personal' }));
+    expect(screen.getByRole('tab', { name: 'landing.tiers.tabs.personal' })).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByRole('tab', { name: 'landing.tiers.tabs.gold' })).toHaveAttribute('aria-selected', 'false');
+    expect(container.querySelector('[data-audience="personal"]')).not.toHaveAttribute('hidden');
+    expect(container.querySelector('[data-audience="gold"]')).toHaveAttribute('hidden');
+    await user.click(screen.getByRole('tab', { name: 'landing.tiers.tabs.gold' }));
+    expect(container.querySelector('[data-audience="gold"]')).not.toHaveAttribute('hidden');
+    expect(container.querySelector('[data-audience="personal"]')).toHaveAttribute('hidden');
+  });
+
+  it('explains top-ups in four steps and lists the three packs with price and price per query', () => {
+    const { container } = renderWithHost(<LandingClient />);
+    expect(screen.getByText('landing.tiers.topups.title')).toBeInTheDocument();
+    for (const step of ['s1', 's2', 's3', 's4']) {
+      expect(screen.getByText(`landing.tiers.topups.steps.${step}.title`)).toBeInTheDocument();
     }
-    expect(screen.getAllByText('landing.tiers.plans.personalLabel')).toHaveLength(3);
-    expect(screen.getAllByText('landing.tiers.plans.teamLabel')).toHaveLength(3);
-    for (const fact of ['fixed', 'monthly', 'topup', 'annual', 'ownAi', 'cancel']) {
+    for (const col of ['pack', 'price', 'each']) {
+      expect(screen.getByRole('columnheader', { name: `landing.tiers.topups.cols.${col}` })).toBeInTheDocument();
+    }
+    expect(container.querySelectorAll('[data-pack]')).toHaveLength(3);
+    for (const pack of ['p200', 'p500', 'p1000']) {
+      const row = container.querySelector(`[data-pack="${pack}"]`);
+      for (const cell of ['name', 'price', 'each']) {
+        expect(row).toHaveTextContent(`landing.tiers.topups.packs.${pack}.${cell}`);
+      }
+    }
+    expect(screen.getByText('landing.tiers.topups.note')).toBeInTheDocument();
+  });
+
+  it('says what the price is made of and how billing works, top-ups out of the billing facts', () => {
+    renderWithHost(<LandingClient />);
+    for (const part of ['compute', 'studio', 'info', 'ai']) {
+      expect(screen.getByText(`landing.tiers.parts.items.${part}.title`)).toBeInTheDocument();
+    }
+    for (const fact of ['fixed', 'monthly', 'annual', 'ownAi', 'overdue', 'cancel']) {
       expect(screen.getByText(`landing.tiers.billing.items.${fact}.title`)).toBeInTheDocument();
+    }
+    expect(screen.queryByText('landing.tiers.billing.items.topup.title')).not.toBeInTheDocument();
+  });
+
+  it('prints the eight plain-words notices', () => {
+    const { container } = renderWithHost(<LandingClient />);
+    expect(screen.getByText('landing.tiers.disclaimers.title')).toBeInTheDocument();
+    expect(container.querySelectorAll('[data-disclaimer]')).toHaveLength(8);
+    for (const d of ['d1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7', 'd8']) {
+      expect(container.querySelector(`[data-disclaimer="${d}"]`)).toHaveTextContent(
+        `landing.tiers.disclaimers.items.${d}`,
+      );
     }
   });
 

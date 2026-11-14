@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowUpRight, Check } from 'lucide-react';
 import { useLandingText } from '../host';
@@ -8,22 +9,24 @@ import { H2, MiniTitle } from '@doctiling/ui/atoms/typography';
 import { Reveal } from './Reveal';
 
 // Who pays: a person (their own account in the shared studio) or a company (a private
-// studio plus each member's plan). The two never share a price, so each gets its own card.
+// studio plus each member's plan). The two never share a price, so each gets its own tab.
 const AUDIENCE_KEYS = ['personal', 'gold'] as const;
+type Audience = (typeof AUDIENCE_KEYS)[number];
 // The other two ways in: a sponsored seat by invitation and a sovereign, custom studio.
 const OTHER_KEYS = ['free', 'platinum'] as const;
 // Same plans for both audiences: the plan sets the AI queries and the space, not who pays.
 const PLAN_KEYS = ['basic', 'advanced', 'max'] as const;
-const BILLING_KEYS = ['fixed', 'monthly', 'topup', 'annual', 'ownAi', 'cancel'] as const;
-const BULLET_KEYS = ['p1', 'p2', 'p3'] as const;
+const BENEFIT_KEYS = ['b1', 'b2', 'b3', 'b4', 'b5'] as const;
+const USE_KEYS = ['s1', 's2', 's3'] as const;
+const TOPUP_STEP_KEYS = ['s1', 's2', 's3', 's4'] as const;
+const PACK_KEYS = ['p200', 'p500', 'p1000'] as const;
+const PART_KEYS = ['compute', 'studio', 'info', 'ai'] as const;
+const BILLING_KEYS = ['fixed', 'monthly', 'annual', 'ownAi', 'overdue', 'cancel'] as const;
+const DISCLAIMER_KEYS = ['d1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7', 'd8'] as const;
 
 export function TiersSection({ requestAccessHref }: { requestAccessHref: string }) {
   const { t } = useLandingText();
-  // A key the dictionary does not carry echoes itself: that is how optional lines are skipped.
-  const optional = (key: string) => {
-    const text = t(key);
-    return text === key ? null : text;
-  };
+  const [audience, setAudience] = useState<Audience>('gold');
 
   return (
     <section id="stack" className="border-t border-border bg-card/60">
@@ -36,142 +39,236 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
           <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">{t('landing.tiers.body')}</p>
         </Reveal>
 
-        <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {AUDIENCE_KEYS.map((tier, i) => {
-            const highlighted = tier === 'gold';
-            const muted = highlighted ? 'text-accent-foreground/75' : 'text-muted-foreground';
+        <div
+          role="tablist"
+          aria-label={t('landing.tiers.tabs.label')}
+          className="mx-auto mt-10 flex w-fit max-w-full gap-1 rounded-full border border-border bg-background p-1"
+        >
+          {AUDIENCE_KEYS.map((key) => {
+            const selected = key === audience;
             return (
-              <Reveal key={tier} delay={i * 120}>
-                <article
-                  data-audience={tier}
-                  className={`landing-card landing-card-hover relative flex h-full flex-col p-8 ${
-                    highlighted ? '!border-accent !bg-accent text-accent-foreground' : ''
-                  }`}
-                >
-                  {highlighted && (
-                    <span className="absolute right-6 top-0 -translate-y-1/2 rounded-full bg-primary px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-primary-foreground shadow-sm">
-                      {t('landing.tiers.items.gold.badge')}
-                    </span>
-                  )}
-                  <span className={`font-mono text-[11px] uppercase tracking-widest ${muted}`}>
-                    {t(`landing.tiers.items.${tier}.eyebrow`)}
-                  </span>
-                  <h3 className="mt-3 font-display text-2xl leading-snug">{t(`landing.tiers.items.${tier}.name`)}</h3>
-                  <p className="mt-3 font-display text-4xl tracking-tight">{t(`landing.tiers.items.${tier}.price`)}</p>
-                  <p className={`mt-1 text-xs leading-relaxed ${muted}`}>{t(`landing.tiers.items.${tier}.priceNote`)}</p>
-                  <p className={`mt-4 text-sm leading-relaxed ${muted}`}>{t(`landing.tiers.items.${tier}.body`)}</p>
-
-                  <div
-                    className={`mt-6 rounded-lg border p-5 ${
-                      highlighted ? 'border-accent-foreground/25' : 'border-border bg-background'
-                    }`}
-                  >
-                    <p className={`font-mono text-[10px] uppercase tracking-widest ${muted}`}>
-                      {t(`landing.tiers.items.${tier}.plansTitle`)}
-                    </p>
-                    <dl className="mt-3 space-y-2">
-                      {PLAN_KEYS.map((plan) => (
-                        <div key={plan} className="flex items-baseline justify-between gap-4">
-                          <dt className="text-sm">{t(`landing.tiers.items.${tier}.plans.${plan}`)}</dt>
-                          <dd className="font-display text-xl tracking-tight">
-                            {t(`landing.tiers.items.${tier}.prices.${plan}`)}
-                          </dd>
-                        </div>
-                      ))}
-                    </dl>
-                    <p className={`mt-4 text-xs leading-relaxed ${muted}`}>{t(`landing.tiers.items.${tier}.note`)}</p>
-                  </div>
-
-                  <ul className="mt-6 space-y-2.5">
-                    {BULLET_KEYS.map((p) => {
-                      const text = optional(`landing.tiers.items.${tier}.bullets.${p}`);
-                      if (!text) return null;
-                      return (
-                        <li key={p} className="flex gap-2.5 text-sm">
-                          <Check
-                            className={`mt-0.5 size-4 shrink-0 ${highlighted ? 'text-primary' : 'text-emerald-600'}`}
-                            aria-hidden="true"
-                          />
-                          <span className={highlighted ? 'text-accent-foreground/90' : 'text-foreground/85'}>{text}</span>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                  <div className="mt-auto pt-8">
-                    <Button
-                      asChild
-                      variant={highlighted ? 'pill-outline' : 'pill'}
-                      size="pill"
-                      className={
-                        highlighted
-                          ? 'w-full border-accent-foreground/40 bg-transparent text-accent-foreground hover:border-accent-foreground hover:bg-accent-foreground hover:text-accent'
-                          : 'w-full'
-                      }
-                    >
-                      <Link href="#demo">
-                        {t(`landing.tiers.items.${tier}.cta`)} <ArrowUpRight className="size-4" />
-                      </Link>
-                    </Button>
-                  </div>
-                </article>
-              </Reveal>
+              <button
+                key={key}
+                type="button"
+                role="tab"
+                id={`tiers-tab-${key}`}
+                aria-selected={selected}
+                aria-controls={`tiers-panel-${key}`}
+                onClick={() => setAudience(key)}
+                className={`rounded-full px-5 py-2.5 text-sm font-medium transition-colors ${
+                  selected ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {t(`landing.tiers.tabs.${key}`)}
+              </button>
             );
           })}
         </div>
 
-        <Reveal className="mx-auto mt-24 flex max-w-3xl flex-col items-center gap-3 text-center">
-          <h3 className="font-display text-3xl leading-tight sm:text-4xl">{t('landing.tiers.plans.title')}</h3>
-          <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">{t('landing.tiers.plans.body')}</p>
-        </Reveal>
-        <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3 lg:gap-6">
-          {PLAN_KEYS.map((plan, i) => {
-            const recommended = plan === 'advanced';
-            return (
-              <Reveal key={plan} delay={i * 120}>
-                <article
-                  data-plan={plan}
-                  className={`landing-card relative flex h-full flex-col overflow-hidden ${
-                    recommended ? '!border-accent' : ''
-                  }`}
-                >
-                  <div className={`px-7 py-6 ${recommended ? 'bg-accent text-accent-foreground' : 'bg-secondary'}`}>
-                    <div className="flex items-center justify-between gap-3">
-                      <h4 className="font-mono text-[11px] uppercase tracking-widest">
-                        {t(`landing.tiers.plans.items.${plan}.name`)}
-                      </h4>
-                      {recommended && (
-                        <span className="rounded-full bg-primary px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary-foreground">
-                          {t('landing.tiers.plans.badge')}
-                        </span>
-                      )}
-                    </div>
-                    <p className="mt-3 font-display text-2xl leading-snug">
-                      {t(`landing.tiers.plans.items.${plan}.queries`)}
-                    </p>
-                  </div>
-                  <ul className="space-y-2.5 px-7 py-6">
-                    {(['daily', 'info'] as const).map((line) => (
-                      <li key={line} className="flex gap-2.5 text-sm">
+        {/* Both panels stay in the document (the inactive one hidden) so each audience's prices are crawlable. */}
+        {AUDIENCE_KEYS.map((key) => (
+          <div
+            key={key}
+            role="tabpanel"
+            id={`tiers-panel-${key}`}
+            aria-labelledby={`tiers-tab-${key}`}
+            data-audience={key}
+            hidden={key !== audience}
+            className="mt-10"
+          >
+            <article className="landing-card flex flex-col gap-8 p-8 lg:flex-row lg:items-start lg:gap-12">
+              <div className="lg:w-2/5">
+                <span className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+                  {t(`landing.tiers.items.${key}.eyebrow`)}
+                </span>
+                <h3 className="mt-3 font-display text-2xl leading-snug">{t(`landing.tiers.items.${key}.name`)}</h3>
+                <p className="mt-3 font-display text-4xl tracking-tight">{t(`landing.tiers.items.${key}.price`)}</p>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                  {t(`landing.tiers.items.${key}.priceNote`)}
+                </p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  {t(`landing.tiers.items.${key}.body`)}
+                </p>
+                <div className="mt-6">
+                  <Button asChild variant="pill" size="pill">
+                    <Link href="#demo">
+                      {t(`landing.tiers.items.${key}.cta`)} <ArrowUpRight className="size-4" />
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+              <div className="grid flex-1 grid-cols-1 gap-8 sm:grid-cols-2">
+                <div>
+                  <h4 className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                    {t(`landing.tiers.items.${key}.benefitsTitle`)}
+                  </h4>
+                  <ul className="mt-4 space-y-2.5">
+                    {BENEFIT_KEYS.map((b) => (
+                      <li key={b} className="flex gap-2.5 text-sm">
                         <Check className="mt-0.5 size-4 shrink-0 text-emerald-600" aria-hidden="true" />
-                        <span className="text-foreground/85">{t(`landing.tiers.plans.items.${plan}.${line}`)}</span>
+                        <span className="text-foreground/85">{t(`landing.tiers.items.${key}.benefits.${b}`)}</span>
                       </li>
                     ))}
                   </ul>
-                  <dl className="mt-auto space-y-2 border-t border-border px-7 py-5">
-                    {(['personal', 'team'] as const).map((who) => (
-                      <div key={who} className="flex items-baseline justify-between gap-4">
-                        <dt className="text-xs text-muted-foreground">{t(`landing.tiers.plans.${who}Label`)}</dt>
-                        <dd className="font-display text-xl tracking-tight">
-                          {t(`landing.tiers.plans.items.${plan}.${who}Price`)}
-                        </dd>
-                      </div>
+                </div>
+                <div>
+                  <h4 className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                    {t(`landing.tiers.items.${key}.useTitle`)}
+                  </h4>
+                  <ol className="mt-4 space-y-4">
+                    {USE_KEYS.map((s, i) => (
+                      <li key={s} className="flex gap-3 text-sm">
+                        <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-secondary font-mono text-[11px]">
+                          {i + 1}
+                        </span>
+                        <span>
+                          <span className="font-medium">{t(`landing.tiers.items.${key}.use.${s}.title`)}</span>{' '}
+                          <span className="text-muted-foreground">{t(`landing.tiers.items.${key}.use.${s}.body`)}</span>
+                        </span>
+                      </li>
                     ))}
-                  </dl>
-                </article>
-              </Reveal>
-            );
-          })}
-        </div>
+                  </ol>
+                </div>
+              </div>
+            </article>
+
+            <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-3 lg:gap-6">
+              {PLAN_KEYS.map((plan) => {
+                const recommended = plan === 'advanced';
+                return (
+                  <article
+                    key={plan}
+                    data-plan={plan}
+                    className={`landing-card relative flex h-full flex-col overflow-hidden ${
+                      recommended ? '!border-accent' : ''
+                    }`}
+                  >
+                    <div className={`px-7 py-6 ${recommended ? 'bg-accent text-accent-foreground' : 'bg-secondary'}`}>
+                      <div className="flex items-center justify-between gap-3">
+                        <h4 className="font-mono text-[11px] uppercase tracking-widest">
+                          {t(`landing.tiers.plans.items.${plan}.name`)}
+                        </h4>
+                        {recommended && (
+                          <span className="rounded-full bg-primary px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary-foreground">
+                            {t('landing.tiers.plans.badge')}
+                          </span>
+                        )}
+                      </div>
+                      <p className="mt-3 font-display text-2xl leading-snug">
+                        {t(`landing.tiers.plans.items.${plan}.queries`)}
+                      </p>
+                    </div>
+                    <ul className="space-y-2.5 px-7 py-6">
+                      {(['daily', 'info', 'fit'] as const).map((line) => (
+                        <li key={line} className="flex gap-2.5 text-sm">
+                          <Check className="mt-0.5 size-4 shrink-0 text-emerald-600" aria-hidden="true" />
+                          <span className="text-foreground/85">{t(`landing.tiers.plans.items.${plan}.${line}`)}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-auto border-t border-border px-7 py-5">
+                      <p className="text-xs text-muted-foreground">{t(`landing.tiers.items.${key}.priceLabel`)}</p>
+                      <p className="mt-1 font-display text-3xl tracking-tight">
+                        {t(`landing.tiers.items.${key}.prices.${plan}`)}
+                      </p>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+            <p className="mx-auto mt-6 max-w-3xl text-center text-sm leading-relaxed text-muted-foreground">
+              {t(`landing.tiers.items.${key}.note`)}
+            </p>
+          </div>
+        ))}
+
+        <Reveal className="mt-24">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
+            <h3 className="font-display text-3xl leading-tight sm:text-4xl">{t('landing.tiers.topups.title')}</h3>
+            <p className="text-base leading-relaxed text-muted-foreground">{t('landing.tiers.topups.body')}</p>
+          </div>
+          <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+            <ol className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+              {TOPUP_STEP_KEYS.map((s, i) => (
+                <li key={s} className="border-t border-border pt-4">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{i + 1}</span>
+                  <p className="mt-1 font-display text-xl leading-snug">{t(`landing.tiers.topups.steps.${s}.title`)}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {t(`landing.tiers.topups.steps.${s}.body`)}
+                  </p>
+                </li>
+              ))}
+            </ol>
+            <div className="landing-card overflow-hidden">
+              <table className="w-full text-sm">
+                <thead className="bg-secondary text-left">
+                  <tr>
+                    <th scope="col" className="px-6 py-3 font-medium">
+                      {t('landing.tiers.topups.cols.pack')}
+                    </th>
+                    <th scope="col" className="px-6 py-3 text-right font-medium">
+                      {t('landing.tiers.topups.cols.price')}
+                    </th>
+                    <th scope="col" className="px-6 py-3 text-right font-medium">
+                      {t('landing.tiers.topups.cols.each')}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {PACK_KEYS.map((pack) => (
+                    <tr key={pack} data-pack={pack} className="border-t border-border">
+                      <th scope="row" className="px-6 py-4 text-left font-normal">
+                        {t(`landing.tiers.topups.packs.${pack}.name`)}
+                      </th>
+                      <td className="px-6 py-4 text-right font-display text-xl tracking-tight">
+                        {t(`landing.tiers.topups.packs.${pack}.price`)}
+                      </td>
+                      <td className="px-6 py-4 text-right text-muted-foreground">
+                        {t(`landing.tiers.topups.packs.${pack}.each`)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <p className="border-t border-border px-6 py-4 text-xs leading-relaxed text-muted-foreground">
+                {t('landing.tiers.topups.note')}
+              </p>
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal className="mt-24">
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
+            <h3 className="font-display text-3xl leading-tight sm:text-4xl">{t('landing.tiers.parts.title')}</h3>
+            <p className="text-base leading-relaxed text-muted-foreground">{t('landing.tiers.parts.body')}</p>
+          </div>
+          <dl className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {PART_KEYS.map((part) => (
+              <div key={part} className="landing-card p-6">
+                <dt className="font-display text-xl leading-snug">{t(`landing.tiers.parts.items.${part}.title`)}</dt>
+                <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {t(`landing.tiers.parts.items.${part}.body`)}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
+
+        <Reveal className="mt-24">
+          <h3 className="text-center font-display text-3xl leading-tight sm:text-4xl">
+            {t('landing.tiers.billing.title')}
+          </h3>
+          <dl className="mt-10 grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+            {BILLING_KEYS.map((key) => (
+              <div key={key} className="border-t border-border pt-5">
+                <dt className="font-display text-xl leading-snug">{t(`landing.tiers.billing.items.${key}.title`)}</dt>
+                <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {t(`landing.tiers.billing.items.${key}.body`)}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
 
         <Reveal className="mt-20">
           <h3 className="text-center font-display text-2xl leading-tight sm:text-3xl">{t('landing.tiers.other')}</h3>
@@ -200,23 +297,17 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
           </div>
         </Reveal>
 
-        <Reveal className="mt-20">
-          <h3 className="text-center font-display text-3xl leading-tight sm:text-4xl">
-            {t('landing.tiers.billing.title')}
+        <Reveal className="mx-auto mt-20 max-w-4xl">
+          <h3 className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+            {t('landing.tiers.disclaimers.title')}
           </h3>
-          <dl className="mt-10 grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-            {BILLING_KEYS.map((key) => (
-              <div key={key} className="border-t border-border pt-5">
-                <dt className="font-display text-xl leading-snug">{t(`landing.tiers.billing.items.${key}.title`)}</dt>
-                <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {t(`landing.tiers.billing.items.${key}.body`)}
-                </dd>
-              </div>
+          <ul className="mt-4 space-y-2 text-xs leading-relaxed text-muted-foreground">
+            {DISCLAIMER_KEYS.map((d) => (
+              <li key={d} data-disclaimer={d}>
+                {t(`landing.tiers.disclaimers.items.${d}`)}
+              </li>
             ))}
-          </dl>
-          <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-muted-foreground">
-            {t('landing.tiers.billing.note')}
-          </p>
+          </ul>
         </Reveal>
       </div>
     </section>

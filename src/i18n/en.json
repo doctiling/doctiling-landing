@@ -349,8 +349,8 @@
     },
     "tiers": {
       "eyebrow": "plans",
-      "title": "One base per studio and one plan per person.",
-      "body": "First choose where your studio lives: shared, private or sovereign. Then pick each person’s plan by how much AI they need. Fixed prices in Colombian pesos, no surprises.",
+      "title": "Different prices for a person and for a company.",
+      "body": "A person pays for their account in the shared studio. A company pays for a private studio and each member’s plan. Either way the price is fixed, in Colombian pesos, and already includes AI.",
       "items": {
         "free": {
           "eyebrow": "by invitation",
@@ -365,28 +365,52 @@
           "cta": "Request access"
         },
         "personal": {
-          "eyebrow": "for you",
-          "name": "Personal · Shared studio",
-          "price": "COP 13,100",
-          "priceNote": "base per month, plus your plan",
-          "body": "Your own account in the shared studio, without waiting for an invitation. You pay, with your own payment method. Your data stays logically isolated per user.",
+          "eyebrow": "for one person",
+          "name": "Your account in the shared studio",
+          "price": "From COP 28,000",
+          "priceNote": "a month, all included",
+          "body": "You get in without waiting for an invitation and you pay, with your own payment method. Your data stays isolated per user.",
+          "plansTitle": "What you pay per month, by plan",
+          "plans": {
+            "basic": "Basic",
+            "advanced": "Advanced",
+            "max": "Max"
+          },
+          "prices": {
+            "basic": "COP 28,000",
+            "advanced": "COP 58,000",
+            "max": "COP 133,000"
+          },
+          "note": "Each price already adds the account base (COP 13,100) and the plan.",
           "bullets": {
-            "p1": "From COP 28,000 a month on the Basic plan.",
+            "p1": "One amount a month, nothing charged on top.",
             "p2": "No lock-in: cancel whenever you want.",
             "p3": "Move to a private studio when your team grows."
           },
           "cta": "Request access"
         },
         "gold": {
-          "eyebrow": "for your team",
-          "name": "Gold · Private studio",
+          "eyebrow": "for a company",
+          "name": "A private studio for your team",
           "price": "COP 49,000",
           "priceNote": "per studio per month, plus each person’s plan",
-          "body": "Your own dedicated database — isolated from every other tenant. Same hosted runtime, but no neighbour shares your rows or embeddings. White-label branding is included.",
+          "body": "Your own dedicated database, isolated from every other customer, with your own domain and white-label. One owner pays for the whole team.",
+          "plansTitle": "Plus, per person per month",
+          "plans": {
+            "basic": "Basic",
+            "advanced": "Advanced",
+            "max": "Max"
+          },
+          "prices": {
+            "basic": "COP 14,900",
+            "advanced": "COP 44,900",
+            "max": "COP 119,900"
+          },
+          "note": "Example: a team of 5, with 4 on Basic and 1 on Advanced, pays COP 49,000 + COP 59,600 + COP 44,900 = COP 153,500 a month.",
           "bullets": {
-            "p1": "Dedicated database, schema migrations on your timeline.",
-            "p2": "Custom domain + white-label branding.",
-            "p3": "One owner pays for the whole team: a single invoice per month."
+            "p1": "Dedicated database, schema migrations at your pace.",
+            "p2": "Your own domain and custom white-label.",
+            "p3": "A single invoice per month for the whole company."
           },
           "cta": "Request a demo",
           "badge": "Most popular with teams"
@@ -404,37 +428,38 @@
           "cta": "Talk to us"
         }
       },
+      "other": "Other ways to use Doctiling",
       "plans": {
-        "title": "Each person’s plan",
-        "body": "Every plan includes its AI queries and its space for information. You can mix plans within one studio: not everyone uses AI the same way.",
-        "perPerson": "per person per month",
+        "title": "What each plan includes",
+        "body": "The plans are the same for a person and for a company: only the price changes. Each one includes its AI queries and its space for information.",
+        "personalLabel": "One person",
+        "teamLabel": "In a company, per person",
         "badge": "Recommended",
         "items": {
           "basic": {
             "name": "Basic",
-            "price": "COP 14,900",
             "queries": "150 AI queries a month",
             "daily": "About 7 a day",
-            "info": "100 MB of information"
+            "info": "100 MB of information",
+            "personalPrice": "COP 28,000",
+            "teamPrice": "COP 14,900"
           },
           "advanced": {
             "name": "Advanced",
-            "price": "COP 44,900",
             "queries": "500 AI queries a month",
             "daily": "About 25 a day",
-            "info": "5 GB of information"
+            "info": "5 GB of information",
+            "personalPrice": "COP 58,000",
+            "teamPrice": "COP 44,900"
           },
           "max": {
             "name": "Max",
-            "price": "COP 119,900",
             "queries": "1,500 AI queries a month",
             "daily": "About 70 a day",
-            "info": "15 GB of information"
+            "info": "15 GB of information",
+            "personalPrice": "COP 133,000",
+            "teamPrice": "COP 119,900"
           }
-        },
-        "examples": {
-          "personal": "One person in the shared studio on the Advanced plan: COP 13,100 + COP 44,900 = COP 58,000 a month.",
-          "team": "A team of 5 in a private studio, 4 on Basic and 1 on Advanced: COP 49,000 + COP 59,600 + COP 44,900 = COP 153,500 a month."
         }
       },
       "billing": {
@@ -594,7 +619,7 @@
         },
         "pricing": {
           "q": "How much does Doctiling cost?",
-          "a": "There is free access by invitation and a free local install. If you pay, it is a base —COP 13,100 a month in the shared studio or COP 49,000 a month for a private studio— plus each person’s plan: Basic COP 14,900, Advanced COP 44,900 or Max COP 119,900 a month. Prices are fixed in Colombian pesos."
+          "a": "It depends on whether you are a person or a company. A person pays for their account in the shared studio: COP 28,000 a month on Basic, COP 58,000 on Advanced or COP 133,000 on Max, all included. A company pays COP 49,000 a month for its private studio, plus each person’s plan: Basic COP 14,900, Advanced COP 44,900 or Max COP 119,900. There is also free access by invitation and a free local install. Prices are fixed in Colombian pesos."
         },
         "queries": {
           "q": "What is a query, and what happens when they run out?",
@@ -1823,7 +1848,7 @@
       "mcp": "Yes: each knowledge base can be exposed with a scoped, revocable, read-only token.",
       "selfHost": "Yes: free local install with public installers (the code is private), or the same product on your infrastructure.",
       "freePlan": "Yes: sponsored seat by invitation with AI included (25 AI calls per day), no credit card.",
-      "pricing": "Free by invitation and self-hosted at $0. Personal from COP 28,000 a month; private studio from COP 49,000 a month plus each person’s plan."
+      "pricing": "Free by invitation and self-hosted at $0. One person, from COP 28,000 a month all included; a company, COP 49,000 a month for its private studio plus each person’s plan, from COP 14,900."
     },
     "items": {
       "notion-ai": {

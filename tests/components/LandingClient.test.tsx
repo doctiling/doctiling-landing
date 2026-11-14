@@ -53,13 +53,31 @@ describe('LandingClient', () => {
     }
   });
 
-  it('shows the three per-person plans with their price and what the base adds up to', () => {
+  it('prices a person and a company apart, each with its own three plan prices', () => {
+    const { container } = renderWithHost(<LandingClient />);
+    for (const audience of ['personal', 'gold']) {
+      const card = container.querySelector(`[data-audience="${audience}"]`);
+      expect(card).not.toBeNull();
+      for (const plan of ['basic', 'advanced', 'max']) {
+        expect(card).toHaveTextContent(`landing.tiers.items.${audience}.plans.${plan}`);
+        expect(card).toHaveTextContent(`landing.tiers.items.${audience}.prices.${plan}`);
+      }
+      expect(card).toHaveTextContent(`landing.tiers.items.${audience}.note`);
+    }
+    // A company card never carries a person's prices, nor the other way round.
+    expect(container.querySelector('[data-audience="gold"]')).not.toHaveTextContent('landing.tiers.items.personal.prices');
+    expect(container.querySelector('[data-audience="personal"]')).not.toHaveTextContent('landing.tiers.items.gold.prices');
+  });
+
+  it('shows what each plan includes with both prices labelled, and how billing works', () => {
     renderWithHost(<LandingClient />);
     for (const plan of ['basic', 'advanced', 'max']) {
       expect(screen.getByText(`landing.tiers.plans.items.${plan}.queries`)).toBeInTheDocument();
-      expect(screen.getByText(`landing.tiers.plans.items.${plan}.price`)).toBeInTheDocument();
+      expect(screen.getByText(`landing.tiers.plans.items.${plan}.personalPrice`)).toBeInTheDocument();
+      expect(screen.getByText(`landing.tiers.plans.items.${plan}.teamPrice`)).toBeInTheDocument();
     }
-    expect(screen.getByText('landing.tiers.plans.examples.team')).toBeInTheDocument();
+    expect(screen.getAllByText('landing.tiers.plans.personalLabel')).toHaveLength(3);
+    expect(screen.getAllByText('landing.tiers.plans.teamLabel')).toHaveLength(3);
     for (const fact of ['fixed', 'monthly', 'topup', 'annual', 'ownAi', 'cancel']) {
       expect(screen.getByText(`landing.tiers.billing.items.${fact}.title`)).toBeInTheDocument();
     }

@@ -19,7 +19,7 @@ const PLAN_KEYS = ['basic', 'advanced', 'max'] as const;
 const BENEFIT_KEYS = ['b1', 'b2', 'b3', 'b4', 'b5'] as const;
 const USE_KEYS = ['s1', 's2', 's3'] as const;
 const TOPUP_STEP_KEYS = ['s1', 's2', 's3', 's4'] as const;
-const PACK_KEYS = ['p200', 'p500', 'p1000'] as const;
+const PACK_KEYS = ['p50', 'p200', 'p500', 'p1000'] as const;
 const PART_KEYS = ['compute', 'studio', 'info', 'ai'] as const;
 const BILLING_KEYS = ['fixed', 'monthly', 'annual', 'ownAi', 'overdue', 'cancel'] as const;
 // d9 (external chat) reads before d8, which closes the list: what is still being switched on.

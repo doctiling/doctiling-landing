@@ -401,7 +401,7 @@
           "use": {
             "s1": {
               "title": "Escoge tu plan",
-              "body": "Básico, Avanzado o Máximo, según cuántas consultas de IA y cuánto espacio necesitas."
+              "body": "Básico, Avanzado o Máximo, según cuánta IA y cuánto espacio necesitas."
             },
             "s2": {
               "title": "Registra tu medio de pago",
@@ -409,7 +409,7 @@
             },
             "s3": {
               "title": "Trabaja todo el mes",
-              "body": "Subes tus documentos y preguntas. Si se acaban las consultas, recargas o esperas al día 1."
+              "body": "Subes tus documentos y preguntas. Si se acaba tu saldo de IA, recargas o esperas al día 1."
             }
           },
           "cta": "Solicitar acceso",
@@ -431,7 +431,7 @@
           "priceNote": "al mes por estudio, más el plan de cada persona",
           "body": "Tu propio servidor y tu propia base de datos, aislados de cualquier otro cliente, con dominio propio y marca blanca. Un responsable paga por todo el equipo.",
           "priceLabel": "Por persona, al mes",
-          "note": "Ejemplo: un equipo de 5, con 4 en Básico y 1 en Avanzado, paga $49.000 + $311.600 + $254.900 = $615.500 al mes. Las consultas de todos se suman en una sola bolsa para el equipo.",
+          "note": "Ejemplo: un equipo de 5, con 4 en Básico y 1 en Avanzado, paga $49.000 + $311.600 + $254.900 = $615.500 al mes. El saldo de IA de todos se suma en una sola bolsa para el equipo.",
           "benefitsTitle": "Qué recibe la empresa",
           "benefits": {
             "b1": "Servidor y base de datos dedicados, aislados de cualquier otro cliente.",
@@ -474,71 +474,76 @@
         "items": {
           "basic": {
             "name": "Básico",
-            "queries": "150 consultas de IA al mes",
-            "daily": "Unas 7 por día hábil",
+            "queries": "$68.100 de saldo de IA al mes",
+            "daily": "Rinde cerca de 150 consultas",
             "info": "100 MB de información",
-            "ext": "+ 300 consultas de chat externo",
+            "ext": "Chat para visitantes, del mismo saldo",
             "fit": "Para quien consulta de vez en cuando."
           },
           "advanced": {
             "name": "Avanzado",
-            "queries": "500 consultas de IA al mes",
-            "daily": "Unas 23 por día hábil",
+            "queries": "$225.500 de saldo de IA al mes",
+            "daily": "Rinde cerca de 500 consultas",
             "info": "5 GB de información",
-            "ext": "+ 1.000 consultas de chat externo",
+            "ext": "Chat para visitantes, del mismo saldo",
             "fit": "Para quien trabaja con la IA todos los días."
           },
           "max": {
             "name": "Máximo",
-            "queries": "1.500 consultas de IA al mes",
-            "daily": "Unas 70 por día hábil",
+            "queries": "$678.000 de saldo de IA al mes",
+            "daily": "Rinde cerca de 1.500 consultas",
             "info": "15 GB de información",
-            "ext": "+ 3.000 consultas de chat externo",
+            "ext": "Chat para visitantes, del mismo saldo",
             "fit": "Para uso intensivo y automatizaciones."
           }
         }
       },
       "topups": {
-        "title": "Recargas: más consultas para ese mes",
-        "body": "Las consultas incluidas son el límite del mes. Si se acaban antes, la IA se pausa y todo lo demás sigue funcionando. Para seguir, compras una recarga: nunca hay cobros que no hayas decidido.",
+        "title": "Recargas: más saldo de IA para ese mes",
+        "body": "Tu plan trae un saldo de IA en pesos y ese saldo es el límite del mes. Cada consulta descuenta lo que costó: las sencillas gastan poco y las grandes, más. Si el saldo se acaba antes, la IA se pausa y todo lo demás sigue funcionando. Para seguir, recargas: nunca hay cobros que no hayas decidido.",
         "steps": {
           "s1": {
-            "title": "Se acaban",
-            "body": "Se usaron las consultas del mes. Leer, editar y compartir siguen igual."
+            "title": "Se gasta",
+            "body": "Se usó el saldo de IA del mes. Leer, editar y compartir siguen igual."
           },
           "s2": {
             "title": "Recargas",
-            "body": "Escoges un paquete. Se cobra en el momento, a tu medio de pago."
+            "body": "Escoges un valor. Se cobra en el momento, a tu medio de pago."
           },
           "s3": {
             "title": "Sigues",
-            "body": "Las consultas quedan disponibles de inmediato, hasta el último día del mes."
+            "body": "Lo que pagas queda de saldo de inmediato, hasta el último día del mes."
           },
           "s4": {
             "title": "Día 1",
-            "body": "Vuelven las consultas de tu plan. Lo que sobró de la recarga no pasa al mes siguiente."
+            "body": "Vuelve el saldo de tu plan. Lo que sobró de la recarga no pasa al mes siguiente."
           }
         },
         "cols": {
-          "pack": "Paquete",
-          "price": "Precio",
-          "each": "Por consulta"
+          "pack": "Recarga",
+          "price": "Saldo que recibes",
+          "each": "Rinde cerca de"
         },
         "packs": {
+          "p50": {
+            "name": "Recarga mínima",
+            "price": "$20.000",
+            "each": "45 consultas"
+          },
           "p200": {
-            "name": "200 consultas",
+            "name": "Recarga pequeña",
             "price": "$90.000",
-            "each": "$450"
+            "each": "200 consultas"
           },
           "p500": {
-            "name": "500 consultas",
+            "name": "Recarga mediana",
             "price": "$225.000",
-            "each": "$450"
+            "each": "500 consultas"
           },
           "p1000": {
-            "name": "1.000 consultas",
+            "name": "Recarga grande",
             "price": "$450.000",
-            "each": "$450"
+            "each": "1.000 consultas"
           }
         },
         "note": "La recarga es opcional: sin recarga, la IA vuelve el día 1. En una empresa la compra el responsable de pago y sirve para todo el equipo. No hay recargas con una cuenta en mora ni cuando la empresa usa su propia IA."
@@ -561,7 +566,7 @@
           },
           "ai": {
             "title": "IA",
-            "body": "Las consultas incluidas. Es la mayor parte del precio, porque usamos modelos de alta calidad."
+            "body": "Tu saldo de IA. Es la mayor parte del precio, porque usamos modelos de alta calidad."
           }
         }
       },
@@ -573,7 +578,7 @@
           "ai": {
             "title": "Con tu propia IA",
             "price": "$9.800 · $29.400 · $71.900",
-            "body": "Por persona al mes, según el plan. Las consultas se las pagas a tu proveedor, sin cuota nuestra."
+            "body": "Por persona al mes, según el plan. La IA se la pagas a tu proveedor, sin saldo nuestro."
           },
           "db": {
             "title": "Con tu propia IA y tu base de datos",
@@ -601,7 +606,7 @@
           },
           "ownAi": {
             "title": "Tu propia IA",
-            "body": "Si tu empresa conecta su propio proveedor de IA, el plan baja a $9.800, $29.400 o $71.900 por persona y las consultas se las pagas a tu proveedor."
+            "body": "Si tu empresa conecta su propio proveedor de IA, el plan baja a $9.800, $29.400 o $71.900 por persona y la IA se la pagas a tu proveedor."
           },
           "overdue": {
             "title": "Si un pago falla",
@@ -617,13 +622,13 @@
         "title": "Letra clara",
         "items": {
           "d1": "Precios en pesos colombianos (COP), sin impuestos. Si aplica IVA, se suma al precio publicado.",
-          "d2": "Una consulta es una petición a la IA: una pregunta al agente, un documento generado o una tarea programada. Cuenta una sola vez, sin importar cuántos pasos dé la IA por dentro.",
-          "d3": "Las consultas incluidas no se acumulan: lo que no uses en el mes no pasa al siguiente. Las recargas vencen el último día del mes en que se compran.",
-          "d4": "«Por día hábil» es una referencia: puedes usar tus consultas cuando quieras dentro del mes.",
+          "d2": "La IA se paga por lo que procesa, no por pregunta. Por eso tu plan trae un saldo en pesos y cada petición (una pregunta al agente, un documento generado, una tarea programada o la búsqueda en tus documentos) descuenta lo que costó. «Rinde cerca de» es una referencia con consultas normales: rinde más si son sencillas y menos si son grandes.",
+          "d3": "El saldo incluido no se acumula: lo que no uses en el mes no pasa al siguiente. Las recargas vencen el último día del mes en que se compran.",
+          "d4": "Por seguridad hay topes de peticiones por día y por semana, para que un error o un robot no gaste tu saldo. No se venden ni cambian al recargar; si llegas a uno, la IA vuelve cuando pasa ese día o esa semana.",
           "d5": "En una empresa, $49.000 es la base mínima. Un estudio con más carga paga una base mayor, que se informa antes de contratar.",
           "d6": "En pago anual no hay devolución al cancelar; el servicio sigue hasta terminar el año pagado.",
           "d7": "La lista de precios se revisa cada seis meses.",
-          "d9": "El chat externo son las preguntas de visitantes por el chat público y el widget. Tiene su propia cuota, no gasta las consultas del plan y lo responde un modelo más liviano. Se está activando por etapas.",
+          "d9": "El chat externo son las preguntas de visitantes por el chat público y el widget. Gasta del mismo saldo de IA y lo responde un modelo más liviano, así que cada pregunta gasta poco. Puedes ponerle un tope al mes para cuidar tu saldo.",
           "d8": "El cobro automático y las recargas se están activando por etapas. Hoy la contratación se hace con nuestro equipo: solicita una demo y te acompañamos."
         }
       }
@@ -754,11 +759,11 @@
         },
         "pricing": {
           "q": "¿Cuánto cuesta Doctiling?",
-          "a": "Depende de si eres una persona o una empresa. Una persona paga su cuenta en el estudio compartido: $91.000 al mes en el plan Básico, $268.000 en Avanzado o $763.000 en Máximo, todo incluido. Una empresa paga desde $49.000 al mes por su estudio privado, más el plan de cada persona: Básico $77.900, Avanzado $254.900 o Máximo $749.900. Los planes incluyen 150, 500 o 1.500 consultas de IA al mes; si se acaban, hay recargas a $450 por consulta. Si la empresa conecta su propia IA, el plan baja a $9.800, $29.400 o $71.900. También hay acceso gratis por invitación y una instalación local gratuita. Son precios fijos en pesos colombianos, sin impuestos."
+          "a": "Depende de si eres una persona o una empresa. Una persona paga su cuenta en el estudio compartido: $91.000 al mes en el plan Básico, $268.000 en Avanzado o $763.000 en Máximo, todo incluido. Una empresa paga desde $49.000 al mes por su estudio privado, más el plan de cada persona: Básico $77.900, Avanzado $254.900 o Máximo $749.900. Cada plan trae un saldo de IA en pesos ($68.100, $225.500 o $678.000 al mes, que rinde cerca de 150, 500 o 1.500 consultas); si se gasta, recargas desde $20.000 y ese mismo valor queda de saldo. Si la empresa conecta su propia IA, el plan baja a $9.800, $29.400 o $71.900. También hay acceso gratis por invitación y una instalación local gratuita. Son precios fijos en pesos colombianos, sin impuestos."
         },
         "queries": {
           "q": "¿Qué es una consulta y qué pasa si se acaban?",
-          "a": "Una consulta es una petición a la IA: una pregunta al agente, un documento generado o una tarea programada. Cada plan incluye sus consultas del mes. Si se acaban, la IA se pausa hasta el mes siguiente o recargas un paquete desde $90.000; el resto del estudio sigue funcionando."
+          "a": "Una consulta es una petición a la IA: una pregunta al agente, un documento generado, una tarea programada o la búsqueda en tus documentos. Tu plan no trae un número fijo de consultas sino un saldo de IA en pesos, y cada consulta descuenta lo que costó: las sencillas gastan poco y las grandes, más. Si el saldo se acaba, la IA se pausa hasta el día 1 o recargas desde $20.000; el resto del estudio sigue funcionando."
         },
         "billing": {
           "q": "¿Cómo se paga y puedo cancelar?",

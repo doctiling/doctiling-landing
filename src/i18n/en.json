@@ -401,7 +401,7 @@
           "use": {
             "s1": {
               "title": "Pick your plan",
-              "body": "Basic, Advanced or Max, by how many AI queries and how much space you need."
+              "body": "Basic, Advanced or Max, by how much AI and how much space you need."
             },
             "s2": {
               "title": "Register your payment method",
@@ -409,7 +409,7 @@
             },
             "s3": {
               "title": "Work all month",
-              "body": "Upload your documents and ask. If queries run out, top up or wait for the 1st."
+              "body": "Upload your documents and ask. If your AI balance runs out, top up or wait for the 1st."
             }
           },
           "cta": "Request access",
@@ -431,7 +431,7 @@
           "priceNote": "a month per studio (billed as COP 49,000), plus each person’s plan",
           "body": "Your own server and your own database, isolated from every other customer, with your own domain and white-label. One person in charge pays for the whole team.",
           "priceLabel": "Per person, a month",
-          "note": "Example: a team of 5, with 4 on Basic and 1 on Advanced, pays COP 49,000 + COP 311,600 + COP 254,900 = COP 615,500 a month (≈ USD 188). Everyone’s queries add up into one pool for the team.",
+          "note": "Example: a team of 5, with 4 on Basic and 1 on Advanced, pays COP 49,000 + COP 311,600 + COP 254,900 = COP 615,500 a month (≈ USD 188). Everyone’s AI balance adds up into one pool for the team.",
           "benefitsTitle": "What the company gets",
           "benefits": {
             "b1": "Dedicated server and database, isolated from every other customer.",
@@ -474,74 +474,79 @@
         "items": {
           "basic": {
             "name": "Basic",
-            "queries": "150 AI queries a month",
-            "daily": "About 7 per working day",
+            "queries": "≈ USD 21 of AI balance a month (COP 68,100)",
+            "daily": "Goes for about 150 queries",
             "info": "100 MB of information",
-            "ext": "+ 300 external chat queries",
+            "ext": "Visitor chat, from the same balance",
             "fit": "For occasional questions."
           },
           "advanced": {
             "name": "Advanced",
-            "queries": "500 AI queries a month",
-            "daily": "About 23 per working day",
+            "queries": "≈ USD 69 of AI balance a month (COP 225,500)",
+            "daily": "Goes for about 500 queries",
             "info": "5 GB of information",
-            "ext": "+ 1,000 external chat queries",
+            "ext": "Visitor chat, from the same balance",
             "fit": "For working with AI every day."
           },
           "max": {
             "name": "Max",
-            "queries": "1,500 AI queries a month",
-            "daily": "About 70 per working day",
+            "queries": "≈ USD 207 of AI balance a month (COP 678,000)",
+            "daily": "Goes for about 1,500 queries",
             "info": "15 GB of information",
-            "ext": "+ 3,000 external chat queries",
+            "ext": "Visitor chat, from the same balance",
             "fit": "For heavy use and automations."
           }
         }
       },
       "topups": {
-        "title": "Top-ups: more queries for that month",
-        "body": "The included queries are the month’s limit. If they run out early, AI pauses and everything else keeps working. To go on, you buy a top-up: there is never a charge you did not decide.",
+        "title": "Top-ups: more AI balance for that month",
+        "body": "Your plan comes with an AI balance in pesos, and that balance is the month’s limit. Each query takes what it cost: simple ones take little, big ones more. If the balance runs out early, AI pauses and everything else keeps working. To go on, you top up: there is never a charge you did not decide.",
         "steps": {
           "s1": {
-            "title": "They run out",
-            "body": "The month’s queries were used. Reading, editing and sharing work as usual."
+            "title": "It runs out",
+            "body": "The month’s AI balance was used. Reading, editing and sharing work as usual."
           },
           "s2": {
             "title": "You top up",
-            "body": "You pick a pack. It is charged on the spot, to your payment method."
+            "body": "You pick an amount. It is charged on the spot, to your payment method."
           },
           "s3": {
             "title": "You go on",
-            "body": "The queries are available right away, until the last day of the month."
+            "body": "What you pay becomes balance right away, until the last day of the month."
           },
           "s4": {
             "title": "The 1st",
-            "body": "Your plan’s queries come back. What was left of the top-up does not carry over."
+            "body": "Your plan’s balance comes back. What was left of the top-up does not carry over."
           }
         },
         "cols": {
-          "pack": "Pack",
-          "price": "Price",
-          "each": "Per query"
+          "pack": "Top-up",
+          "price": "Balance you get",
+          "each": "Goes for about"
         },
         "packs": {
+          "p50": {
+            "name": "Minimum top-up",
+            "price": "≈ USD 6",
+            "each": "45 queries"
+          },
           "p200": {
-            "name": "200 queries",
+            "name": "Small top-up",
             "price": "≈ USD 28",
-            "each": "≈ USD 0.14"
+            "each": "200 queries"
           },
           "p500": {
-            "name": "500 queries",
+            "name": "Medium top-up",
             "price": "≈ USD 69",
-            "each": "≈ USD 0.14"
+            "each": "500 queries"
           },
           "p1000": {
-            "name": "1,000 queries",
+            "name": "Large top-up",
             "price": "≈ USD 138",
-            "each": "≈ USD 0.14"
+            "each": "1,000 queries"
           }
         },
-        "note": "Billed as COP 90,000, COP 225,000 or COP 450,000: COP 450 per query. A top-up is optional: without one, AI comes back on the 1st. In a company the person in charge of payment buys it and it serves the whole team. There are no top-ups for an overdue account or when the company uses its own AI."
+        "note": "You pay COP 20,000, COP 90,000, COP 225,000 or COP 450,000 and get that same amount as balance. A top-up is optional: without one, AI comes back on the 1st. In a company the person in charge of payment buys it and it serves the whole team. There are no top-ups for an overdue account or when the company uses its own AI."
       },
       "parts": {
         "title": "What you are paying for",
@@ -561,7 +566,7 @@
           },
           "ai": {
             "title": "AI",
-            "body": "The included queries. It is most of the price, because we use high-quality models."
+            "body": "Your AI balance. It is most of the price, because we use high-quality models."
           }
         }
       },
@@ -573,7 +578,7 @@
           "ai": {
             "title": "With your own AI",
             "price": "≈ USD 3 · 9 · 22",
-            "body": "Per person a month, by plan (COP 9,800, COP 29,400 or COP 71,900). You pay the queries to your provider, with no quota from us."
+            "body": "Per person a month, by plan (COP 9,800, COP 29,400 or COP 71,900). You pay your provider for the AI, with no balance from us."
           },
           "db": {
             "title": "With your own AI and your database",
@@ -601,7 +606,7 @@
           },
           "ownAi": {
             "title": "Your own AI",
-            "body": "If your company connects its own AI provider, the plan drops to about USD 3, USD 9 or USD 22 per person (COP 9,800, COP 29,400 or COP 71,900) and you pay the queries to your provider."
+            "body": "If your company connects its own AI provider, the plan drops to about USD 3, USD 9 or USD 22 per person (COP 9,800, COP 29,400 or COP 71,900) and you pay your provider for the AI."
           },
           "overdue": {
             "title": "If a payment fails",
@@ -617,13 +622,13 @@
         "title": "The fine print, in plain words",
         "items": {
           "d1": "You are charged in Colombian pesos (COP), before taxes; if VAT applies, it is added to the published price. USD figures are a rounded reference at COP 3,270 per USD and move with the exchange rate.",
-          "d2": "A query is one request to the AI: a question to the agent, a generated document or a scheduled task. It counts once, no matter how many steps the AI takes inside.",
-          "d3": "Included queries do not accumulate: what you do not use in the month does not carry over. Top-ups expire on the last day of the month they are bought in.",
-          "d4": "“Per working day” is a reference: you can use your queries whenever you want within the month.",
+          "d2": "AI is paid for by what it processes, not per question. So your plan comes with a balance in pesos, and each request (a question to the agent, a generated document, a scheduled task or a search in your documents) takes what it cost. “Goes for about” is a reference with normal queries: more if they are simple, fewer if they are big.",
+          "d3": "The included balance does not accumulate: what you do not use in the month does not carry over. Top-ups expire on the last day of the month they are bought in.",
+          "d4": "For safety there are caps on requests per day and per week, so a mistake or a bot does not spend your balance. They are not sold and do not change when you top up; if you hit one, AI comes back when that day or week is over.",
           "d5": "For a company, COP 49,000 (≈ USD 15) is the minimum base. A studio under heavier load pays a higher base, stated before you sign up.",
           "d6": "With annual payment there is no refund on cancelling; the service runs until the paid year ends.",
           "d7": "The price list is reviewed every six months.",
-          "d9": "External chat is the questions visitors ask through the public chat and the widget. It has its own quota, does not use the plan’s queries and is answered by a lighter model. It is being switched on in stages.",
+          "d9": "External chat is the questions visitors ask through the public chat and the widget. It uses the same AI balance and is answered by a lighter model, so each question takes little. You can set a monthly cap to protect your balance.",
           "d8": "Automatic charging and top-ups are being switched on in stages. Today you sign up with our team: request a demo and we walk you through it."
         }
       }
@@ -754,11 +759,11 @@
         },
         "pricing": {
           "q": "How much does Doctiling cost?",
-          "a": "It depends on whether you are a person or a company. A person pays for their account in the shared studio: about USD 28 a month on Basic, USD 82 on Advanced or USD 233 on Max, all included (COP 91,000, COP 268,000 or COP 763,000). A company pays from about USD 15 a month (COP 49,000) for its private studio, plus each person’s plan: Basic about USD 24, Advanced USD 78 or Max USD 229 (COP 77,900, COP 254,900 or COP 749,900). Plans include 150, 500 or 1,500 AI queries a month; if they run out, top-ups cost about USD 0.14 per query (COP 450). If the company connects its own AI, the plan drops to about USD 3, USD 9 or USD 22 (COP 9,800, COP 29,400 or COP 71,900). There is also free access by invitation and a free local install. You are charged in Colombian pesos, at fixed prices, before taxes; USD figures are a reference."
+          "a": "It depends on whether you are a person or a company. A person pays for their account in the shared studio: about USD 28 a month on Basic, USD 82 on Advanced or USD 233 on Max, all included (COP 91,000, COP 268,000 or COP 763,000). A company pays from about USD 15 a month (COP 49,000) for its private studio, plus each person’s plan: Basic about USD 24, Advanced USD 78 or Max USD 229 (COP 77,900, COP 254,900 or COP 749,900). Each plan comes with an AI balance in pesos (about USD 21, USD 69 or USD 207 a month, enough for about 150, 500 or 1,500 queries); if it runs out, you top up from about USD 6 (COP 20,000) and get that same amount as balance. If the company connects its own AI, the plan drops to about USD 3, USD 9 or USD 22 (COP 9,800, COP 29,400 or COP 71,900). There is also free access by invitation and a free local install. You are charged in Colombian pesos, at fixed prices, before taxes; USD figures are a reference."
         },
         "queries": {
           "q": "What is a query, and what happens when they run out?",
-          "a": "A query is one request to the AI: a question to the agent, a generated document or a scheduled task. Every plan includes its queries for the month. When they run out, AI pauses until next month or you top up a pack from about USD 28 (COP 90,000); the rest of the studio keeps working."
+          "a": "A query is one request to the AI: a question to the agent, a generated document, a scheduled task or a search in your documents. Your plan does not come with a fixed number of queries but with an AI balance in pesos, and each query takes what it cost: simple ones take little, big ones more. If the balance runs out, AI pauses until the 1st or you top up from about USD 6 (COP 20,000); the rest of the studio keeps working."
         },
         "billing": {
           "q": "How do I pay, and can I cancel?",

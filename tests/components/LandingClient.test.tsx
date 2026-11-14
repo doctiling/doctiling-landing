@@ -97,12 +97,16 @@ describe('LandingClient', () => {
         expect(card!.querySelector('[data-billed]')).toHaveTextContent(/^billed as COP [\d,]+$/);
       }
     }
-    for (const pack of ['p200', 'p500', 'p1000']) {
-      expect(container.querySelector(`[data-pack="${pack}"]`)).toHaveTextContent(/≈ USD \d+.*≈ USD 0\.14/);
+    // The AI balance in each plan is money too: dollars first, pesos beside.
+    expect(container.querySelector('[data-audience="gold"] [data-plan="basic"]')).toHaveTextContent(
+      /≈ USD 21 of AI balance a month \(COP 68,100\)/,
+    );
+    for (const pack of ['p50', 'p200', 'p500', 'p1000']) {
+      expect(container.querySelector(`[data-pack="${pack}"]`)).toHaveTextContent(/≈ USD \d+.*[\d,]+ queries/);
     }
-    // The table stays in one currency; the peso charge of the three packs sits in its note.
+    // The table stays in one currency; the peso charge of the four amounts sits in its note.
     expect(container.querySelector('section#stack table + p')).toHaveTextContent(
-      /COP 90,000, COP 225,000 or COP 450,000: COP 450 per query/,
+      /COP 20,000, COP 90,000, COP 225,000 or COP 450,000/,
     );
     // The reference rate is stated once, in the fine print.
     expect(container.querySelector('[data-disclaimer="d1"]')).toHaveTextContent(/USD.*COP 3,270/);
@@ -115,6 +119,8 @@ describe('LandingClient', () => {
     expect(section!.querySelector('[data-byo]')).toHaveTextContent('$9.800 · $29.400 · $71.900');
     expect(section!.querySelectorAll('[data-billed]')).toHaveLength(0);
     expect(section!.querySelector('[data-audience="gold"] [data-plan="basic"] [data-price]')).toHaveTextContent('$77.900');
+    expect(section!.querySelector('[data-audience="gold"] [data-plan="basic"]')).toHaveTextContent('$68.100 de saldo de IA al mes');
+    expect(section!.querySelector('[data-pack="p50"]')).toHaveTextContent('$20.000');
   });
 
   it('opens on the company tab and keeps the other panel in the document, hidden', () => {
@@ -140,7 +146,7 @@ describe('LandingClient', () => {
     expect(container.querySelector('[data-audience="personal"]')).toHaveAttribute('hidden');
   });
 
-  it('explains top-ups in four steps and lists the three packs with price and price per query', () => {
+  it('explains top-ups in four steps and lists the four amounts, the minimum first', () => {
     const { container } = renderWithHost(<LandingClient />);
     expect(screen.getByText('landing.tiers.topups.title')).toBeInTheDocument();
     for (const step of ['s1', 's2', 's3', 's4']) {
@@ -149,8 +155,13 @@ describe('LandingClient', () => {
     for (const col of ['pack', 'price', 'each']) {
       expect(screen.getByRole('columnheader', { name: `landing.tiers.topups.cols.${col}` })).toBeInTheDocument();
     }
-    expect(container.querySelectorAll('[data-pack]')).toHaveLength(3);
-    for (const pack of ['p200', 'p500', 'p1000']) {
+    expect(Array.from(container.querySelectorAll('[data-pack]')).map((r) => r.getAttribute('data-pack'))).toEqual([
+      'p50',
+      'p200',
+      'p500',
+      'p1000',
+    ]);
+    for (const pack of ['p50', 'p200', 'p500', 'p1000']) {
       const row = container.querySelector(`[data-pack="${pack}"]`);
       for (const cell of ['name', 'price', 'each']) {
         expect(row).toHaveTextContent(`landing.tiers.topups.packs.${pack}.${cell}`);
@@ -212,7 +223,7 @@ describe('LandingClient', () => {
     expect(fact()).not.toHaveAttribute('hidden');
   });
 
-  it('lists the external chat quota on every plan, for both audiences', () => {
+  it('says on every plan, for both audiences, that visitor chat spends the same balance', () => {
     const { container } = renderWithHost(<LandingClient />);
     for (const audience of ['personal', 'gold']) {
       for (const plan of ['basic', 'advanced', 'max']) {
@@ -237,6 +248,16 @@ describe('LandingClient', () => {
       'href',
       '/es/kb',
     );
+  });
+
+  it('answers the pricing FAQ with the AI balance, not a price per query', async () => {
+    const user = userEvent.setup();
+    renderWithHost(<LandingClient />, { locale: 'es', t: undefined });
+    await user.click(screen.getByRole('button', { name: /cuánto cuesta|precio/i }));
+    const answer = screen.getByText(/Depende de si eres una persona o una empresa/);
+    expect(answer).toHaveTextContent('$68.100');
+    expect(answer).toHaveTextContent('$20.000');
+    expect(answer).not.toHaveTextContent('por consulta');
   });
 
   it('reveals an FAQ answer when its question is clicked', async () => {

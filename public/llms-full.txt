@@ -88,11 +88,11 @@ Free access is sponsored and invitation-only. Request a demo with your email; on
 
 **How much does Doctiling cost?**
 
-It depends on whether you are a person or a company. A person pays for their account in the shared studio: about USD 28 a month on Basic, USD 82 on Advanced or USD 233 on Max, all included (COP 91,000, COP 268,000 or COP 763,000). A company pays from about USD 15 a month (COP 49,000) for its private studio, plus each person’s plan: Basic about USD 24, Advanced USD 78 or Max USD 229 (COP 77,900, COP 254,900 or COP 749,900). Plans include 150, 500 or 1,500 AI queries a month; if they run out, top-ups cost about USD 0.14 per query (COP 450). If the company connects its own AI, the plan drops to about USD 3, USD 9 or USD 22 (COP 9,800, COP 29,400 or COP 71,900). There is also free access by invitation and a free local install. You are charged in Colombian pesos, at fixed prices, before taxes; USD figures are a reference.
+It depends on whether you are a person or a company. A person pays for their account in the shared studio: about USD 28 a month on Basic, USD 82 on Advanced or USD 233 on Max, all included (COP 91,000, COP 268,000 or COP 763,000). A company pays from about USD 15 a month (COP 49,000) for its private studio, plus each person’s plan: Basic about USD 24, Advanced USD 78 or Max USD 229 (COP 77,900, COP 254,900 or COP 749,900). Each plan comes with an AI balance in pesos (about USD 21, USD 69 or USD 207 a month, enough for about 150, 500 or 1,500 queries); if it runs out, you top up from about USD 6 (COP 20,000) and get that same amount as balance. If the company connects its own AI, the plan drops to about USD 3, USD 9 or USD 22 (COP 9,800, COP 29,400 or COP 71,900). There is also free access by invitation and a free local install. You are charged in Colombian pesos, at fixed prices, before taxes; USD figures are a reference.
 
 **What is a query, and what happens when they run out?**
 
-A query is one request to the AI: a question to the agent, a generated document or a scheduled task. Every plan includes its queries for the month. When they run out, AI pauses until next month or you top up a pack from about USD 28 (COP 90,000); the rest of the studio keeps working.
+A query is one request to the AI: a question to the agent, a generated document, a scheduled task or a search in your documents. Your plan does not come with a fixed number of queries but with an AI balance in pesos, and each query takes what it cost: simple ones take little, big ones more. If the balance runs out, AI pauses until the 1st or you top up from about USD 6 (COP 20,000); the rest of the studio keeps working.
 
 **How do I pay, and can I cancel?**
 
@@ -407,11 +407,11 @@ El acceso gratis es patrocinado y por invitación. Solicita una demo con tu corr
 
 **¿Cuánto cuesta Doctiling?**
 
-Depende de si eres una persona o una empresa. Una persona paga su cuenta en el estudio compartido: $91.000 al mes en el plan Básico, $268.000 en Avanzado o $763.000 en Máximo, todo incluido. Una empresa paga desde $49.000 al mes por su estudio privado, más el plan de cada persona: Básico $77.900, Avanzado $254.900 o Máximo $749.900. Los planes incluyen 150, 500 o 1.500 consultas de IA al mes; si se acaban, hay recargas a $450 por consulta. Si la empresa conecta su propia IA, el plan baja a $9.800, $29.400 o $71.900. También hay acceso gratis por invitación y una instalación local gratuita. Son precios fijos en pesos colombianos, sin impuestos.
+Depende de si eres una persona o una empresa. Una persona paga su cuenta en el estudio compartido: $91.000 al mes en el plan Básico, $268.000 en Avanzado o $763.000 en Máximo, todo incluido. Una empresa paga desde $49.000 al mes por su estudio privado, más el plan de cada persona: Básico $77.900, Avanzado $254.900 o Máximo $749.900. Cada plan trae un saldo de IA en pesos ($68.100, $225.500 o $678.000 al mes, que rinde cerca de 150, 500 o 1.500 consultas); si se gasta, recargas desde $20.000 y ese mismo valor queda de saldo. Si la empresa conecta su propia IA, el plan baja a $9.800, $29.400 o $71.900. También hay acceso gratis por invitación y una instalación local gratuita. Son precios fijos en pesos colombianos, sin impuestos.
 
 **¿Qué es una consulta y qué pasa si se acaban?**
 
-Una consulta es una petición a la IA: una pregunta al agente, un documento generado o una tarea programada. Cada plan incluye sus consultas del mes. Si se acaban, la IA se pausa hasta el mes siguiente o recargas un paquete desde $90.000; el resto del estudio sigue funcionando.
+Una consulta es una petición a la IA: una pregunta al agente, un documento generado, una tarea programada o la búsqueda en tus documentos. Tu plan no trae un número fijo de consultas sino un saldo de IA en pesos, y cada consulta descuenta lo que costó: las sencillas gastan poco y las grandes, más. Si el saldo se acaba, la IA se pausa hasta el día 1 o recargas desde $20.000; el resto del estudio sigue funcionando.
 
 **¿Cómo se paga y puedo cancelar?**
 

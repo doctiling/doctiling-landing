@@ -412,7 +412,7 @@
               "body": "Upload your documents and ask. If your AI balance runs out, top up or wait for the 1st."
             }
           },
-          "cta": "Request access",
+          "cta": "Choose a plan",
           "prices": {
             "basic": "≈ USD 28",
             "advanced": "≈ USD 82",
@@ -455,7 +455,7 @@
               "body": "The person in charge registers the payment method; the invoice arrives on the 1st with the detail per person."
             }
           },
-          "cta": "Request a demo",
+          "cta": "Request a quote",
           "badge": "The teams’ favorite",
           "prices": {
             "basic": "≈ USD 24",
@@ -496,7 +496,8 @@
             "ext": "Visitor chat, from the same balance",
             "fit": "For heavy use and automations."
           }
-        }
+        },
+        "choose": "Choose this plan"
       },
       "topups": {
         "title": "Top-ups: more AI balance for that month",

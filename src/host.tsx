@@ -46,6 +46,9 @@ export interface LandingRoutes {
   cookies: string;
   terms: string;
   security: string;
+  /** Where a person buys a plan: the paid sign-up of the shared studio (doctiling-web spec 079). Absolute by
+   *  default — it lives in Studio whatever host mounts the landing. */
+  plans: string;
 }
 
 export const DEFAULT_LANDING_ROUTES: LandingRoutes = {
@@ -56,6 +59,7 @@ export const DEFAULT_LANDING_ROUTES: LandingRoutes = {
   cookies: '/cookies',
   terms: '/terms',
   security: '/security',
+  plans: 'https://studio.doctiling.app/planes',
 };
 
 export interface LandingConsent {
@@ -94,6 +98,8 @@ export interface ResolvedLandingHost extends Omit<LandingHost, 'routes' | 't' | 
   href: (route: keyof LandingRoutes) => string;
   /** `/{locale}/{slug}` for a landing page (`''` = the home). */
   landingHref: (slug?: string) => string;
+  /** The paid sign-up in the locale, with the plan preselected (`basico` | `avanzado` | `maximo`). */
+  plansHref: (plan?: string) => string;
 }
 
 const LandingHostContext = createContext<ResolvedLandingHost | null>(null);
@@ -112,6 +118,15 @@ export function LandingHostProvider({ host, children }: { host: LandingHost; chi
       track: track ?? dataLayerTrack,
       href: (route) => (/^https?:\/\//.test(routes[route]) ? routes[route] : `/${host.locale}${routes[route]}`),
       landingHref: (slug = 'landing') => `/${host.locale}/${slug}`,
+      plansHref: (plan) => {
+        const base = routes.plans;
+        const query = plan ? `?plan=${encodeURIComponent(plan)}` : '';
+        if (/^https?:\/\//.test(base)) {
+          const u = new URL(base);
+          return `${u.origin}/${host.locale}${u.pathname.replace(/\/$/, '')}${query}`;
+        }
+        return `/${host.locale}${base}${query}`;
+      },
     };
   }, [host]);
   return <LandingHostContext.Provider value={value}>{children}</LandingHostContext.Provider>;

@@ -412,7 +412,7 @@
               "body": "Subes tus documentos y preguntas. Si se acaba tu saldo de IA, recargas o esperas al día 1."
             }
           },
-          "cta": "Solicitar acceso",
+          "cta": "Elegir un plan",
           "prices": {
             "basic": "$91.000",
             "advanced": "$268.000",
@@ -455,7 +455,7 @@
               "body": "El responsable registra el medio de pago; la factura llega el día 1 con el detalle por persona."
             }
           },
-          "cta": "Solicitar demo",
+          "cta": "Pedir cotización",
           "badge": "El preferido de los equipos",
           "prices": {
             "basic": "$77.900",
@@ -496,7 +496,8 @@
             "ext": "Chat para visitantes, del mismo saldo",
             "fit": "Para uso intensivo y automatizaciones."
           }
-        }
+        },
+        "choose": "Elegir este plan"
       },
       "topups": {
         "title": "Recargas: más saldo de IA para ese mes",

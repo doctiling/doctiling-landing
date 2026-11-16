@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowUpRight, Check } from 'lucide-react';
-import { useLandingText } from '../host';
+import { useLandingHost, useLandingText } from '../host';
 import { Button } from '@doctiling/ui/atoms/button';
 import { H2, MiniTitle } from '@doctiling/ui/atoms/typography';
 import { Reveal } from './Reveal';
@@ -16,6 +16,8 @@ type Audience = (typeof AUDIENCE_KEYS)[number];
 const OTHER_KEYS = ['free', 'platinum'] as const;
 // Same plans for both audiences: the plan sets the AI queries and the space, not who pays.
 const PLAN_KEYS = ['basic', 'advanced', 'max'] as const;
+// The plan names the billing service and the paid sign-up use (doctiling-billing `GET /v1/plans`).
+const BILLING_PLAN = { basic: 'basico', advanced: 'avanzado', max: 'maximo' } as const;
 const BENEFIT_KEYS = ['b1', 'b2', 'b3', 'b4', 'b5'] as const;
 const USE_KEYS = ['s1', 's2', 's3'] as const;
 const TOPUP_STEP_KEYS = ['s1', 's2', 's3', 's4'] as const;
@@ -29,6 +31,7 @@ const BYO_KEYS = ['ai', 'db'] as const;
 
 export function TiersSection({ requestAccessHref }: { requestAccessHref: string }) {
   const { t } = useLandingText();
+  const { plansHref } = useLandingHost();
   const [audience, setAudience] = useState<Audience>('gold');
 
   return (
@@ -94,7 +97,8 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
                 </p>
                 <div className="mt-6">
                   <Button asChild variant="pill" size="pill">
-                    <Link href="#demo">
+                    {/* A person buys online; a company asks for a quote (the tenant is created from it). */}
+                    <Link href={key === 'personal' ? plansHref() : '#demo'}>
                       {t(`landing.tiers.items.${key}.cta`)} <ArrowUpRight className="size-4" />
                     </Link>
                   </Button>
@@ -181,6 +185,17 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
                         <p data-billed className="mt-1 text-xs text-muted-foreground">
                           {billed}
                         </p>
+                      )}
+                      {key === 'personal' && (
+                        <Button asChild variant={recommended ? 'pill' : 'pill-outline'} size="pill" className="mt-4 w-full">
+                          <Link
+                            href={plansHref(BILLING_PLAN[plan])}
+                            data-buy={BILLING_PLAN[plan]}
+                            aria-label={`${t('landing.tiers.plans.choose')}: ${t(`landing.tiers.plans.items.${plan}.name`)}`}
+                          >
+                            {t('landing.tiers.plans.choose')} <ArrowUpRight className="size-4" />
+                          </Link>
+                        </Button>
                       )}
                     </div>
                   </article>

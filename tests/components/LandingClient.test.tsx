@@ -44,20 +44,33 @@ describe('LandingClient', () => {
     );
   });
 
-  it('routes every tier CTA to the demo request when signed out', async () => {
+  it('a company asks for a quote; a person buys a plan online in the shared studio', async () => {
     const user = userEvent.setup();
-    renderWithHost(<LandingClient />);
+    const { container } = renderWithHost(<LandingClient />);
     // The company tab is the default; a person's CTA appears once its tab is picked.
     for (const tier of ['free', 'gold', 'platinum']) {
       expect(
         screen.getByRole('link', { name: new RegExp(`landing\\.tiers\\.items\\.${tier}\\.cta`) }),
       ).toHaveAttribute('href', '#demo');
     }
+    // No buy button on a company plan: a company comes in through a quote.
+    expect(container.querySelector('[data-audience="gold"] [data-buy]')).toBeNull();
     await user.click(screen.getByRole('tab', { name: 'landing.tiers.tabs.personal' }));
     expect(screen.getByRole('link', { name: /landing\.tiers\.items\.personal\.cta/ })).toHaveAttribute(
       'href',
-      '#demo',
+      'https://studio.doctiling.app/es/planes',
     );
+    const buys = [...container.querySelectorAll('[data-audience="personal"] [data-buy]')].map((a) => [
+      a.getAttribute('data-buy'),
+      a.getAttribute('href'),
+    ]);
+    expect(buys).toEqual([
+      ['basico', 'https://studio.doctiling.app/es/planes?plan=basico'],
+      ['avanzado', 'https://studio.doctiling.app/es/planes?plan=avanzado'],
+      ['maximo', 'https://studio.doctiling.app/es/planes?plan=maximo'],
+    ]);
+    expect(screen.getByRole('link', { name: 'landing.tiers.plans.choose: landing.tiers.plans.items.advanced.name' }))
+      .toHaveAttribute('href', 'https://studio.doctiling.app/es/planes?plan=avanzado');
   });
 
   it('prices a person and a company apart, each panel with its own three plan prices', () => {

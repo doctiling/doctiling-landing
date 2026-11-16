@@ -73,3 +73,26 @@ describe('LandingHostProvider', () => {
     spy.mockRestore();
   });
 });
+
+
+describe('plansHref (doctiling-web spec 079: the paid sign-up lives in Studio)', () => {
+  function Probe({ plan }: { plan?: string }) {
+    const { plansHref } = useLandingHost();
+    return <a href={plansHref(plan)}>x</a>;
+  }
+
+  it('builds the localized Studio URL with the plan, and lets the host move it', () => {
+    const { rerender } = render(
+      <LandingHostProvider host={{ ...baseHost, locale: 'en' }}>
+        <Probe plan="avanzado" />
+      </LandingHostProvider>,
+    );
+    expect(screen.getByRole('link')).toHaveAttribute('href', 'https://studio.doctiling.app/en/planes?plan=avanzado');
+    rerender(
+      <LandingHostProvider host={{ ...baseHost, locale: 'es', routes: { plans: '/planes' } }}>
+        <Probe />
+      </LandingHostProvider>,
+    );
+    expect(screen.getByRole('link')).toHaveAttribute('href', '/es/planes');
+  });
+});

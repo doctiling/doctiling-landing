@@ -16,7 +16,10 @@ export {
   type LandingNotice,
   type DemoRequestInput,
   type DemoRequestOutcome,
+  type QuoteRequestInput,
+  type QuoteRequestOutcome,
 } from './host';
+export { QuoteRequestForm } from './components/QuoteRequestForm';
 
 export { default as LandingPage } from './components/LandingClient';
 export { default as DocumentsPage } from './components/DocumentsPageClient';

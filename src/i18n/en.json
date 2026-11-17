@@ -1536,6 +1536,37 @@
       "policy": "Cookie policy",
       "accept": "Accept",
       "reject": "Reject"
+    },
+    "quote": {
+      "eyebrow": "For companies",
+      "title": "Get a quote for your team",
+      "body": "Tell us how many people will use each plan. We email the quote right away with the price list in force and, once you accept it, we create your company’s space.",
+      "fields": {
+        "company": "Company",
+        "name": "Your name",
+        "email": "Work email",
+        "people": "People per plan",
+        "notes": "Anything else? (optional)"
+      },
+      "plans": {
+        "basico": "Basic",
+        "avanzado": "Advanced",
+        "maximo": "Maximum"
+      },
+      "submit": "Email me the quote",
+      "submitting": "Sending…",
+      "success": "Done: we emailed you the quote, with a link to accept it.",
+      "errors": {
+        "missing_fields": "Fill in company, name and email.",
+        "invalid_members": "Say how many people will use at least one plan.",
+        "invalid_email": "Check the email.",
+        "invalid_company": "Check the company name.",
+        "invalid_name": "Check your name.",
+        "consent_required": "Accept the data processing to continue.",
+        "rate_limited": "Too many requests. Try again in a while.",
+        "captcha_failed": "We could not verify you are a person. Try again.",
+        "unavailable": "We could not send the quote. Try again in a few minutes."
+      }
     }
   },
   "verticalsPage": {

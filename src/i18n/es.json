@@ -1555,7 +1555,7 @@
       },
       "submit": "Enviarme la cotización",
       "submitting": "Enviando…",
-      "success": "Listo: te enviamos la cotización a tu correo, con un enlace para aceptarla.",
+      "success": "Listo: te enviamos la cotización por correo.",
       "errors": {
         "missing_fields": "Completa empresa, nombre y correo.",
         "invalid_members": "Indica cuántas personas usarán al menos un plan.",
@@ -1566,6 +1566,16 @@
         "rate_limited": "Demasiadas solicitudes. Prueba en un rato.",
         "captcha_failed": "No pudimos verificar que eres una persona. Intenta de nuevo.",
         "unavailable": "No pudimos enviar la cotización. Intenta de nuevo en unos minutos."
+      },
+      "sent": {
+        "kicker": "Cotización enviada",
+        "title": "Revisa tu correo",
+        "body": "Enviamos la cotización a {email}. Llega en unos minutos con el detalle mensual y un enlace para aceptarla.",
+        "step1": "Abre el correo «Tu cotización de Doctiling» y revisa el valor mensual.",
+        "step2": "Toca «Ver y aceptar la cotización» y acepta los términos para empresas.",
+        "step3": "Creamos el espacio de tu empresa y te escribimos para activarlo.",
+        "spam": "¿No llega en 10 minutos? Revisa spam o promociones, o escríbenos.",
+        "again": "Pedir otra cotización"
       }
     }
   },

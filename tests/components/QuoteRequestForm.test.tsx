@@ -37,6 +37,11 @@ describe('QuoteRequestForm', () => {
       ),
     );
     expect(notify).toHaveBeenCalledWith(expect.objectContaining({ title: 'landing.quote.success' }));
+    // the form gives way to a confirmation that stays: where it went, what comes next, check spam
+    expect(screen.getByRole('status')).toHaveTextContent('landing.quote.sent.title');
+    expect(screen.getByText('landing.quote.sent.spam')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'landing.quote.sent.again' }));
+    expect(screen.getByLabelText('landing.quote.fields.company')).toBeInTheDocument();
   });
 
   it('asks for at least one plan with people before sending', async () => {

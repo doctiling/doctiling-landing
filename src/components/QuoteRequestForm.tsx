@@ -32,6 +32,8 @@ export function QuoteRequestForm() {
   const [notes, setNotes] = useState('');
   const [website, setWebsite] = useState('');
   const [consent, setConsent] = useState(false);
+  /** Where the quote went: the form gives way to a confirmation that stays on screen. */
+  const [sentTo, setSentTo] = useState<string | null>(null);
   const { execute: executeCaptcha } = useRecaptchaV3(recaptchaSiteKey);
   const [consentLabelBefore, consentLabelAfter] = consentCopy.label.split('{policy}');
 
@@ -72,6 +74,7 @@ export function QuoteRequestForm() {
       if (res.ok) {
         track(LANDING_EVENTS.lead, { form: 'quote', team_size: String(people) });
         notify({ title: t('landing.quote.success') });
+        setSentTo(email.trim());
         setCompany('');
         setContactName('');
         setEmail('');
@@ -86,6 +89,27 @@ export function QuoteRequestForm() {
       notify({ title: t('landing.quote.errors.unavailable'), variant: 'destructive' });
     }
   });
+
+  if (sentTo) {
+    return (
+      <div role="status" className="grid gap-4 border border-border bg-card p-7">
+        <p className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground">{t('landing.quote.sent.kicker')}</p>
+        <p className="font-display text-2xl text-foreground">{t('landing.quote.sent.title')}</p>
+        <p className="text-sm leading-relaxed text-foreground/85">{t('landing.quote.sent.body', { email: sentTo })}</p>
+        <ol className="list-decimal space-y-1 pl-5 text-sm text-foreground/85">
+          <li>{t('landing.quote.sent.step1')}</li>
+          <li>{t('landing.quote.sent.step2')}</li>
+          <li>{t('landing.quote.sent.step3')}</li>
+        </ol>
+        <p className="text-[12px] text-muted-foreground">{t('landing.quote.sent.spam')}</p>
+        <div>
+          <Button type="button" variant="tile" size="tile" onClick={() => setSentTo(null)}>
+            {t('landing.quote.sent.again')}
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <form

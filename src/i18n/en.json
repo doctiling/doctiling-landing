@@ -1557,7 +1557,7 @@
       "perPerson": "per person a month",
       "submit": "Email me the quote",
       "submitting": "Sending…",
-      "success": "Done: we emailed you the quote, with a link to accept it.",
+      "success": "Done: we emailed you the quote.",
       "errors": {
         "missing_fields": "Fill in company, name and email.",
         "invalid_members": "Say how many people will use at least one plan.",
@@ -1568,6 +1568,16 @@
         "rate_limited": "Too many requests. Try again in a while.",
         "captcha_failed": "We could not verify you are a person. Try again.",
         "unavailable": "We could not send the quote. Try again in a few minutes."
+      },
+      "sent": {
+        "kicker": "Quote sent",
+        "title": "Check your email",
+        "body": "We sent the quote to {email}. It arrives within a few minutes with the monthly detail and a link to accept it.",
+        "step1": "Open the email «Your Doctiling quote» and check the monthly amount.",
+        "step2": "Tap «Review and accept the quote» and accept the terms for companies.",
+        "step3": "We create your company’s space and write to you to activate it.",
+        "spam": "Not there in 10 minutes? Check spam or promotions, or write to us.",
+        "again": "Ask for another quote"
       }
     }
   },

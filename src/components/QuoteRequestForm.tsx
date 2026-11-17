@@ -2,12 +2,13 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Info } from 'lucide-react';
 import { Button } from '@doctiling/ui/atoms/button';
 import { Checkbox } from '@doctiling/ui/atoms/checkbox';
 import { Input } from '@doctiling/ui/atoms/input';
 import { Label } from '@doctiling/ui/atoms/label';
 import { Textarea } from '@doctiling/ui/atoms/textarea';
+import { SimpleTooltip } from '@doctiling/ui/molecules/tooltip';
 import { useAsyncAction } from '@doctiling/ui/hooks/use-async-action';
 import { useRecaptchaV3 } from '@doctiling/ui/hooks/use-recaptcha-v3';
 import { useLandingHost } from '../host';
@@ -16,6 +17,9 @@ import { LANDING_EVENTS } from '../analytics';
 const labelClass = 'text-[10px] font-medium uppercase tracking-widest text-muted-foreground';
 const PLANS = ['basico', 'avanzado', 'maximo'] as const;
 type Plan = (typeof PLANS)[number];
+// The quote names plans as billing does; the price list in the tiers section names them in English.
+const TIER_KEY = { basico: 'basic', avanzado: 'advanced', maximo: 'max' } as const satisfies Record<Plan, string>;
+const PLAN_FACTS = ['queries', 'daily', 'info'] as const;
 
 // A company asks for a quote (doctiling-billing US13): how many people on each plan. Billing prices it from the
 // price list in force and emails a link to accept it; then the company's space is created.
@@ -34,6 +38,12 @@ export function QuoteRequestForm() {
   const members = Object.fromEntries(
     PLANS.map((p) => [p, Number.parseInt(counts[p], 10)]).filter(([, n]) => Number.isInteger(n) && (n as number) > 0),
   ) as Partial<Record<Plan, number>>;
+  // What a plan includes, from the same copy as the price list: a company's price per person, the AI balance,
+  // what it yields, the space and who it fits. The tooltip shows it; the input carries it as its description.
+  const planPrice = (p: Plan) => `${t(`landing.tiers.items.gold.prices.${TIER_KEY[p]}`)} ${t('landing.quote.perPerson')}`;
+  const planFacts = (p: Plan) => PLAN_FACTS.map((f) => t(`landing.tiers.plans.items.${TIER_KEY[p]}.${f}`));
+  const planFit = (p: Plan) => t(`landing.tiers.plans.items.${TIER_KEY[p]}.fit`);
+  const planSummary = (p: Plan) => [planPrice(p), ...planFacts(p), planFit(p)].join(' · ');
   const people = Object.values(members).reduce((a, n) => a + (n ?? 0), 0);
 
   const { run: submit, pending: submitting } = useAsyncAction(async () => {
@@ -113,11 +123,51 @@ export function QuoteRequestForm() {
         <legend className={`${labelClass} mb-2`}>{t('landing.quote.fields.people')}</legend>
         {PLANS.map((p) => (
           <div key={p} className="space-y-1">
-            <Label htmlFor={`quote-${p}`} className={labelClass}>
-              {t(`landing.quote.plans.${p}`)}
-            </Label>
+            <div className="flex items-center gap-1.5">
+              <Label htmlFor={`quote-${p}`} className={labelClass}>
+                {t(`landing.quote.plans.${p}`)}
+              </Label>
+              <SimpleTooltip
+                side="top"
+                contentClassName="max-w-[17rem] rounded-none border-border bg-popover p-0 text-left shadow-lg"
+                label={
+                  <div data-plan-tip={p}>
+                    <p className="border-b border-border px-3.5 py-2.5">
+                      <span className="block text-[10px] font-medium uppercase tracking-widest text-muted-foreground">
+                        {t(`landing.quote.plans.${p}`)}
+                      </span>
+                      <span className="font-display text-xl tabular-nums text-foreground">
+                        {t(`landing.tiers.items.gold.prices.${TIER_KEY[p]}`)}
+                      </span>{' '}
+                      <span className="text-[11px] text-muted-foreground">{t('landing.quote.perPerson')}</span>
+                    </p>
+                    <ul className="space-y-1 px-3.5 py-2.5 text-[12px] leading-snug text-foreground/85">
+                      {planFacts(p).map((fact) => (
+                        <li key={fact} className="flex gap-2">
+                          <span aria-hidden="true" className="mt-[0.45em] size-1 shrink-0 rounded-full bg-accent" />
+                          {fact}
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="border-t border-border px-3.5 py-2 text-[11px] italic text-muted-foreground">{planFit(p)}</p>
+                  </div>
+                }
+              >
+                <button
+                  type="button"
+                  aria-label={`${t('landing.quote.planInfo')}: ${t(`landing.quote.plans.${p}`)}`}
+                  className="inline-flex size-5 items-center justify-center text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                >
+                  <Info className="size-3.5" aria-hidden="true" />
+                </button>
+              </SimpleTooltip>
+            </div>
+            <span id={`quote-${p}-info`} className="sr-only">
+              {planSummary(p)}
+            </span>
             <Input
               id={`quote-${p}`}
+              aria-describedby={`quote-${p}-info`}
               type="number"
               min={0}
               inputMode="numeric"

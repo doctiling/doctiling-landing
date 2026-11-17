@@ -34,7 +34,8 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
   const { plansHref, submitQuoteRequest } = useLandingHost();
   // A company asks for a quote where the host takes one; otherwise, the demo request (as before).
   const companyHref = submitQuoteRequest ? '#cotizar' : '#demo';
-  const [audience, setAudience] = useState<Audience>('gold');
+  // A person opens first: most visitors come to buy their own plan; a company switches tabs to ask for a quote.
+  const [audience, setAudience] = useState<Audience>('personal');
 
   return (
     <section id="stack" className="border-t border-border bg-card/60">

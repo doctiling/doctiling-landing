@@ -47,15 +47,7 @@ describe('LandingClient', () => {
   it('a company asks for a quote; a person buys a plan online in the shared studio', async () => {
     const user = userEvent.setup();
     const { container } = renderWithHost(<LandingClient />);
-    // The company tab is the default; a person's CTA appears once its tab is picked.
-    for (const tier of ['free', 'gold', 'platinum']) {
-      expect(
-        screen.getByRole('link', { name: new RegExp(`landing\\.tiers\\.items\\.${tier}\\.cta`) }),
-      ).toHaveAttribute('href', '#demo');
-    }
-    // No buy button on a company plan: a company comes in through a quote.
-    expect(container.querySelector('[data-audience="gold"] [data-buy]')).toBeNull();
-    await user.click(screen.getByRole('tab', { name: 'landing.tiers.tabs.personal' }));
+    // The person tab is the default: its CTA and buy buttons show without a click.
     expect(screen.getByRole('link', { name: /landing\.tiers\.items\.personal\.cta/ })).toHaveAttribute(
       'href',
       'https://studio.doctiling.app/es/planes',
@@ -71,6 +63,14 @@ describe('LandingClient', () => {
     ]);
     expect(screen.getByRole('link', { name: 'landing.tiers.plans.choose: landing.tiers.plans.items.advanced.name' }))
       .toHaveAttribute('href', 'https://studio.doctiling.app/es/planes?plan=avanzado');
+    // A company's CTA appears once its tab is picked; no buy button there: a company comes in through a quote.
+    await user.click(screen.getByRole('tab', { name: 'landing.tiers.tabs.gold' }));
+    for (const tier of ['free', 'gold', 'platinum']) {
+      expect(
+        screen.getByRole('link', { name: new RegExp(`landing\\.tiers\\.items\\.${tier}\\.cta`) }),
+      ).toHaveAttribute('href', '#demo');
+    }
+    expect(container.querySelector('[data-audience="gold"] [data-buy]')).toBeNull();
   });
 
   it('prices a person and a company apart, each panel with its own three plan prices', () => {
@@ -136,27 +136,27 @@ describe('LandingClient', () => {
     expect(section!.querySelector('[data-pack="p50"]')).toHaveTextContent('$20.000');
   });
 
-  it('opens on the company tab and keeps the other panel in the document, hidden', () => {
+  it('opens on the person tab and keeps the other panel in the document, hidden', () => {
     const { container } = renderWithHost(<LandingClient />);
     expect(screen.getByRole('tablist', { name: 'landing.tiers.tabs.label' })).toBeInTheDocument();
-    expect(screen.getByRole('tab', { name: 'landing.tiers.tabs.gold' })).toHaveAttribute('aria-selected', 'true');
-    expect(screen.getByRole('tab', { name: 'landing.tiers.tabs.personal' })).toHaveAttribute('aria-selected', 'false');
-    expect(container.querySelector('[data-audience="gold"]')).not.toHaveAttribute('hidden');
-    // Hidden, not removed: crawlers still read a person's prices.
-    expect(container.querySelector('[data-audience="personal"]')).toHaveAttribute('hidden');
+    expect(screen.getByRole('tab', { name: 'landing.tiers.tabs.personal' })).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByRole('tab', { name: 'landing.tiers.tabs.gold' })).toHaveAttribute('aria-selected', 'false');
+    expect(container.querySelector('[data-audience="personal"]')).not.toHaveAttribute('hidden');
+    // Hidden, not removed: crawlers still read a company's prices.
+    expect(container.querySelector('[data-audience="gold"]')).toHaveAttribute('hidden');
   });
 
   it('switches the visible panel when the other tab is picked', async () => {
     const user = userEvent.setup();
     const { container } = renderWithHost(<LandingClient />);
-    await user.click(screen.getByRole('tab', { name: 'landing.tiers.tabs.personal' }));
-    expect(screen.getByRole('tab', { name: 'landing.tiers.tabs.personal' })).toHaveAttribute('aria-selected', 'true');
-    expect(screen.getByRole('tab', { name: 'landing.tiers.tabs.gold' })).toHaveAttribute('aria-selected', 'false');
-    expect(container.querySelector('[data-audience="personal"]')).not.toHaveAttribute('hidden');
-    expect(container.querySelector('[data-audience="gold"]')).toHaveAttribute('hidden');
     await user.click(screen.getByRole('tab', { name: 'landing.tiers.tabs.gold' }));
+    expect(screen.getByRole('tab', { name: 'landing.tiers.tabs.gold' })).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByRole('tab', { name: 'landing.tiers.tabs.personal' })).toHaveAttribute('aria-selected', 'false');
     expect(container.querySelector('[data-audience="gold"]')).not.toHaveAttribute('hidden');
     expect(container.querySelector('[data-audience="personal"]')).toHaveAttribute('hidden');
+    await user.click(screen.getByRole('tab', { name: 'landing.tiers.tabs.personal' }));
+    expect(container.querySelector('[data-audience="personal"]')).not.toHaveAttribute('hidden');
+    expect(container.querySelector('[data-audience="gold"]')).toHaveAttribute('hidden');
   });
 
   it('explains top-ups in four steps and lists the four amounts, the minimum first', () => {
@@ -227,13 +227,14 @@ describe('LandingClient', () => {
     const { container } = renderWithHost(<LandingClient />);
     const fact = () => container.querySelector('[data-billing="ownAi"]');
     expect(fact()).toHaveTextContent('landing.tiers.billing.items.ownAi.title');
-    expect(fact()).not.toHaveAttribute('hidden');
-    await user.click(screen.getByRole('tab', { name: 'landing.tiers.tabs.personal' }));
+    // The person tab opens first: own AI starts hidden.
     expect(fact()).toHaveAttribute('hidden');
     // The other five facts apply to both audiences.
     expect(container.querySelectorAll('[data-billing]:not([hidden])')).toHaveLength(5);
     await user.click(screen.getByRole('tab', { name: 'landing.tiers.tabs.gold' }));
     expect(fact()).not.toHaveAttribute('hidden');
+    await user.click(screen.getByRole('tab', { name: 'landing.tiers.tabs.personal' }));
+    expect(fact()).toHaveAttribute('hidden');
   });
 
   it('says on every plan, for both audiences, that visitor chat spends the same balance', () => {

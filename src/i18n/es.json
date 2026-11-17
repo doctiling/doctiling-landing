@@ -1553,6 +1553,8 @@
         "avanzado": "Avanzado",
         "maximo": "Máximo"
       },
+      "planInfo": "Qué incluye el plan",
+      "perPerson": "por persona al mes",
       "submit": "Enviarme la cotización",
       "submitting": "Enviando…",
       "success": "Listo: te enviamos la cotización a tu correo, con un enlace para aceptarla.",

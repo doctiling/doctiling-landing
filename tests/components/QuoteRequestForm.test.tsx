@@ -50,4 +50,22 @@ describe('QuoteRequestForm', () => {
     expect(submitQuoteRequest).not.toHaveBeenCalled();
     expect(notify).toHaveBeenCalledWith(expect.objectContaining({ title: 'landing.quote.errors.invalid_members', variant: 'destructive' }));
   });
+
+  it('says what each plan includes: price per person, AI balance, queries, space and who it fits', async () => {
+    const user = userEvent.setup();
+    renderWithHost(<QuoteRequestForm />, host);
+    const plans = { basico: 'basic', avanzado: 'advanced', maximo: 'max' } as const;
+    for (const [field, plan] of Object.entries(plans)) {
+      // The count input carries the summary as its description, so a screen reader hears it without hovering.
+      const input = screen.getByLabelText(`landing.quote.plans.${field}`);
+      for (const part of [`landing.tiers.items.gold.prices.${plan}`, `landing.tiers.plans.items.${plan}.queries`, `landing.tiers.plans.items.${plan}.daily`, `landing.tiers.plans.items.${plan}.info`, `landing.tiers.plans.items.${plan}.fit`]) {
+        expect(input).toHaveAccessibleDescription(expect.stringContaining(part));
+      }
+    }
+    // Hovering (or focusing) the plan's info button opens the tooltip with the same facts.
+    await user.hover(screen.getByRole('button', { name: 'landing.quote.planInfo' + ': landing.quote.plans.avanzado' }));
+    const tip = await screen.findByRole('tooltip');
+    expect(tip).toHaveTextContent('landing.tiers.items.gold.prices.advanced');
+    expect(tip).toHaveTextContent('landing.tiers.plans.items.advanced.fit');
+  });
 });

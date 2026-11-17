@@ -1553,6 +1553,8 @@
         "avanzado": "Advanced",
         "maximo": "Maximum"
       },
+      "planInfo": "What the plan includes",
+      "perPerson": "per person a month",
       "submit": "Email me the quote",
       "submitting": "Sending…",
       "success": "Done: we emailed you the quote, with a link to accept it.",

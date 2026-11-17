@@ -1536,6 +1536,37 @@
       "policy": "Política de cookies",
       "accept": "Aceptar",
       "reject": "Rechazar"
+    },
+    "quote": {
+      "eyebrow": "Para empresas",
+      "title": "Cotiza el plan de tu equipo",
+      "body": "Dinos cuántas personas usarán cada plan. Te enviamos la cotización al instante con la lista de precios vigente y, cuando la aceptes, creamos el espacio de tu empresa.",
+      "fields": {
+        "company": "Empresa",
+        "name": "Tu nombre",
+        "email": "Correo de trabajo",
+        "people": "Personas por plan",
+        "notes": "¿Algo más? (opcional)"
+      },
+      "plans": {
+        "basico": "Básico",
+        "avanzado": "Avanzado",
+        "maximo": "Máximo"
+      },
+      "submit": "Enviarme la cotización",
+      "submitting": "Enviando…",
+      "success": "Listo: te enviamos la cotización a tu correo, con un enlace para aceptarla.",
+      "errors": {
+        "missing_fields": "Completa empresa, nombre y correo.",
+        "invalid_members": "Indica cuántas personas usarán al menos un plan.",
+        "invalid_email": "Revisa el correo.",
+        "invalid_company": "Revisa el nombre de la empresa.",
+        "invalid_name": "Revisa tu nombre.",
+        "consent_required": "Acepta el tratamiento de datos para continuar.",
+        "rate_limited": "Demasiadas solicitudes. Prueba en un rato.",
+        "captcha_failed": "No pudimos verificar que eres una persona. Intenta de nuevo.",
+        "unavailable": "No pudimos enviar la cotización. Intenta de nuevo en unos minutos."
+      }
     }
   },
   "verticalsPage": {

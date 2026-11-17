@@ -12,6 +12,7 @@ import {
   DropdownMenuItem,
 } from '@doctiling/ui/molecules/dropdown-menu';
 import { DemoRequestForm } from './DemoRequestForm';
+import { QuoteRequestForm } from './QuoteRequestForm';
 import { HeroAccessForm } from './HeroAccessForm';
 import { StickyCta } from './StickyCta';
 import { FaqSection } from './FaqSection';
@@ -35,7 +36,7 @@ const NAV_LINK =
   'whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-foreground/75 transition-colors hover:bg-card hover:text-foreground';
 
 export default function LandingClient() {
-  const { t, locale, isAuthenticated: isAuthed, features, href } = useLandingHost();
+  const { t, locale, isAuthenticated: isAuthed, features, href, submitQuoteRequest } = useLandingHost();
   const INTEGRATIONS_ENABLED = features.integrations;
   const signinHref = href('signin');
   const appHref = href('app');
@@ -335,6 +336,26 @@ export default function LandingClient() {
                       </p>
                     </article>
                   ))}
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* QUOTE REQUEST — a company's plan (doctiling-billing US13); only where the host can take it. */}
+      {submitQuoteRequest && (
+        <section id="cotizar" className="border-t border-border">
+          <div className={`${SECTION} py-24`}>
+            <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+              <Reveal className="lg:col-span-5">
+                <MiniTitle className="mb-6">{t('landing.quote.eyebrow')}</MiniTitle>
+                <H2 className="max-w-md text-balance text-4xl not-italic leading-tight sm:text-5xl">{t('landing.quote.title')}</H2>
+                <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">{t('landing.quote.body')}</p>
+              </Reveal>
+              <Reveal delay={140} className="lg:col-span-7">
+                <div className="landing-card p-6 sm:p-8">
+                  <QuoteRequestForm />
                 </div>
               </Reveal>
             </div>

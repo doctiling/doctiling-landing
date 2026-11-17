@@ -23,6 +23,26 @@ export interface DemoRequestInput {
   locale?: string;
 }
 
+/** A company asks for a quote (doctiling-billing US13): billing prices it from the list and emails a link to accept. */
+export interface QuoteRequestInput {
+  company: string;
+  contactName: string;
+  contactEmail: string;
+  /** People per plan; plans without people are left out. */
+  members: Partial<Record<'basico' | 'avanzado' | 'maximo', number>>;
+  notes?: string;
+  website?: string;
+  captchaToken?: string;
+  consent: boolean;
+  locale?: string;
+}
+
+export interface QuoteRequestOutcome {
+  ok: boolean;
+  /** Key under `landing.quote.errors.*` when `ok` is false. */
+  error?: string;
+}
+
 export interface DemoRequestOutcome {
   ok: boolean;
   /** Key under `landing.demo.errors.*` when `ok` is false. */
@@ -76,6 +96,8 @@ export interface LandingHost {
   features?: { integrations?: boolean };
   recaptchaSiteKey?: string;
   submitDemoRequest: (input: DemoRequestInput) => Promise<DemoRequestOutcome>;
+  /** Optional: where a company's quote request goes. Without it the company buttons keep pointing at the demo form. */
+  submitQuoteRequest?: (input: QuoteRequestInput) => Promise<QuoteRequestOutcome>;
   notify: (notice: LandingNotice) => void;
   consent: LandingConsent;
   routes?: Partial<LandingRoutes>;

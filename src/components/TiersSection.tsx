@@ -31,7 +31,9 @@ const BYO_KEYS = ['ai', 'db'] as const;
 
 export function TiersSection({ requestAccessHref }: { requestAccessHref: string }) {
   const { t } = useLandingText();
-  const { plansHref } = useLandingHost();
+  const { plansHref, submitQuoteRequest } = useLandingHost();
+  // A company asks for a quote where the host takes one; otherwise, the demo request (as before).
+  const companyHref = submitQuoteRequest ? '#cotizar' : '#demo';
   const [audience, setAudience] = useState<Audience>('gold');
 
   return (
@@ -98,7 +100,7 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
                 <div className="mt-6">
                   <Button asChild variant="pill" size="pill">
                     {/* A person buys online; a company asks for a quote (the tenant is created from it). */}
-                    <Link href={key === 'personal' ? plansHref() : '#demo'}>
+                    <Link href={key === 'personal' ? plansHref() : companyHref}>
                       {t(`landing.tiers.items.${key}.cta`)} <ArrowUpRight className="size-4" />
                     </Link>
                   </Button>
@@ -344,7 +346,7 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
                 </p>
                 <div className="mt-auto pt-6">
                   <Button asChild variant="pill" size="pill">
-                    <Link href={tier === 'free' ? requestAccessHref : '#demo'}>
+                    <Link href={tier === 'free' ? requestAccessHref : companyHref}>
                       {t(`landing.tiers.items.${tier}.cta`)} <ArrowUpRight className="size-4" />
                     </Link>
                   </Button>

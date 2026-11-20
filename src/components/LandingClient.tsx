@@ -21,7 +21,7 @@ import { SecuritySection } from './SecuritySection';
 import { PlatformSection } from './PlatformSection';
 import { InterfacesSection } from './InterfacesSection';
 import { VerticalsSection } from './VerticalsSection';
-import { TiersSection } from './TiersSection';
+import { SELF_HOST_HASH, TiersSection } from './TiersSection';
 import { LandingFooter } from './LandingFooter';
 import { Reveal } from './Reveal';
 import { HeroChatDemo } from './HeroChatDemo';
@@ -41,7 +41,8 @@ export default function LandingClient() {
   const signinHref = href('signin');
   const appHref = href('app');
   const deckHref = `/Doctiling-Pitch-Deck-${locale === 'en' ? 'en' : 'es'}.pdf`;
-  const selfHostHref = `/${locale}/connect#self-host`;
+  // The self-host license is the third pricing tab on this page (TiersSection opens it from the hash).
+  const selfHostHref = SELF_HOST_HASH;
   const supportEmail = t('landing.footer.support.email');
   const supportHref = `mailto:${supportEmail}`;
   // Invitation-only: anonymous visitors are funneled to the demo-request form
@@ -106,7 +107,8 @@ export default function LandingClient() {
                   <Link href={`/${locale}/documents#evidence`}>{t('landing.nav.links.evidence')}</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href={selfHostHref}>{t('landing.nav.links.selfHost')}</Link>
+                  {/* A native anchor: the hash change must fire `hashchange` to open the tab. */}
+                  <a href={selfHostHref}>{t('landing.nav.links.selfHost')}</a>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <a href={deckHref} download>
@@ -247,12 +249,12 @@ export default function LandingClient() {
                 >
                   {t('landing.hero.ctaSecondary')}
                 </Link>
-                <Link
+                <a
                   href={selfHostHref}
                   className="inline-flex items-center gap-1.5 text-sm text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
                 >
                   {t('landing.hero.ctaSelfHost')} <ArrowRight className="size-3.5" />
-                </Link>
+                </a>
               </div>
             </div>
           </div>

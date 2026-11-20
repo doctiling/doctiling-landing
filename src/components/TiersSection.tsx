@@ -1,17 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowUpRight, Check } from 'lucide-react';
 import { useLandingHost, useLandingText } from '../host';
 import { Button } from '@doctiling/ui/atoms/button';
 import { H2, MiniTitle } from '@doctiling/ui/atoms/typography';
 import { Reveal } from './Reveal';
+import { SelfHostSection } from './SelfHostSection';
 
 // Who pays: a person (their own account in the shared studio) or a company (a private
 // studio plus each member's plan). The two never share a price, so each gets its own tab.
 const AUDIENCE_KEYS = ['personal', 'gold'] as const;
-type Audience = (typeof AUDIENCE_KEYS)[number];
+// A third tab: no plan grid, Doctiling inside the client's own infrastructure under a paid license.
+const TAB_KEYS = [...AUDIENCE_KEYS, 'sovereign'] as const;
+type Tab = (typeof TAB_KEYS)[number];
+// The hero and the nav point here; the tab opens itself, since a hidden panel cannot be scrolled to.
+export const SELF_HOST_HASH = '#self-host';
 // The other two ways in: a sponsored seat by invitation and a sovereign, custom studio.
 const OTHER_KEYS = ['free', 'platinum'] as const;
 // Same plans for both audiences: the plan sets the AI queries and the space, not who pays.
@@ -35,7 +40,18 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
   // A company asks for a quote where the host takes one; otherwise, the demo request (as before).
   const companyHref = submitQuoteRequest ? '#cotizar' : '#demo';
   // A person opens first: most visitors come to buy their own plan; a company switches tabs to ask for a quote.
-  const [audience, setAudience] = useState<Audience>('personal');
+  const [audience, setAudience] = useState<Tab>('personal');
+
+  useEffect(() => {
+    const openFromHash = () => {
+      if (window.location.hash !== SELF_HOST_HASH) return;
+      setAudience('sovereign');
+      document.getElementById('stack')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
+    return () => window.removeEventListener('hashchange', openFromHash);
+  }, []);
 
   return (
     <section id="stack" className="border-t border-border bg-card/60">
@@ -53,7 +69,7 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
           aria-label={t('landing.tiers.tabs.label')}
           className="mx-auto mt-10 flex w-fit max-w-full gap-1 rounded-full border border-border bg-background p-1"
         >
-          {AUDIENCE_KEYS.map((key) => {
+          {TAB_KEYS.map((key) => {
             const selected = key === audience;
             return (
               <button
@@ -235,6 +251,16 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
             )}
           </div>
         ))}
+        <div
+          role="tabpanel"
+          id="tiers-panel-sovereign"
+          aria-labelledby="tiers-tab-sovereign"
+          data-audience="sovereign"
+          hidden={audience !== 'sovereign'}
+          className="mt-10"
+        >
+          <SelfHostSection variant="panel" />
+        </div>
 
         <Reveal className="mt-24">
           <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">

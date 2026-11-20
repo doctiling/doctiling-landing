@@ -256,7 +256,7 @@
         "success": "Done — check your inbox. Your invitation is on its way.",
         "details": "Tell us more about your case"
       },
-      "ctaSelfHost": "Install it free on your machine",
+      "ctaSelfHost": "Run it on your infrastructure",
       "ctaParadigm": "What is a knowledge base?",
       "lede2": "Doctiling proposes another way: organise the information in knowledge bases with their own access rules and connect an AI agent that can query it, relate data and run authorised actions in plain language.",
       "ledeStrong": "Fewer systems to build. More processes solved.",
@@ -354,7 +354,8 @@
       "tabs": {
         "label": "Show prices for",
         "personal": "For a person",
-        "gold": "For a company"
+        "gold": "For a company",
+        "sovereign": "On your infrastructure"
       },
       "items": {
         "free": {
@@ -635,12 +636,16 @@
       }
     },
     "selfHost": {
-      "eyebrow": "free install",
-      "title": "Run it on your own machine. Free, no account, no invitation.",
-      "lede": "The installers and the binaries are public on GitHub: one command and the whole studio runs on 127.0.0.1 against your local SQLite database. Point it at a local model (LM Studio or Ollama) and work without a single document leaving your machine.",
+      "eyebrow": "sovereign use · license",
+      "title": "Doctiling inside your infrastructure. Sovereign use, under license.",
+      "lede": "The whole studio runs on your organization's servers or machines, against your own SQLite database. Point it at a local model (LM Studio or Ollama) or at your own AI keys, and not a single document leaves your boundary. You pay for a usage license, not per query.",
       "repoCta": "See releases on GitHub",
-      "repoHint": "Public distribution repo: installers and the standalone tarball for each version.",
-      "sourceNote": "Open distribution, not open source: we publish the installers and the binaries; the product code is private. What you pay for is the hosted studio.",
+      "repoHint": "Public distribution repo: installers, the tarball of each version and the license.",
+      "licenseCta": "Get a license quote",
+      "licenseHint": "Ask for a quote on the license to run Doctiling on your infrastructure.",
+      "licenseLink": "Read the license",
+      "licenseLinkHint": "The usage license text, published in the releases repo.",
+      "sourceNote": "The installers are public; running Doctiling on your infrastructure requires a valid license. Open distribution, not open source: the product code is private.",
       "copy": "Copy command",
       "copyHint": "Copy this install command to your clipboard",
       "channels": {
@@ -648,18 +653,18 @@
         "windows": "windows · scoop",
         "linux": "linux / macOS · script"
       },
-      "free": {
-        "price": "$0 · self-hosted",
-        "title": "Free to use on your machine",
+      "license": {
+        "price": "license · on quote",
+        "title": "Sovereign use on your infrastructure",
         "bullets": {
           "p1": "The whole studio: knowledge bases, editor, cited agent and mirror view.",
-          "p2": "Single user, local login, no invitation list. Your own AI keys or a local model.",
+          "p2": "Your data, your database and your model: with a local model, nothing leaves your boundary.",
           "p3": "Team sharing and MCP endpoints ship switched off in the local profile."
         }
       },
       "hosted": {
         "price": "hosted · from $0 sponsored",
-        "title": "What you pay for is running it as a team",
+        "title": "Rather not run it? We host it for you",
         "bullets": {
           "p1": "Share bases with roles, per-person private analyses and comments.",
           "p2": "Managed MCP endpoints with scoped, revocable tokens.",
@@ -760,7 +765,7 @@
         },
         "pricing": {
           "q": "How much does Doctiling cost?",
-          "a": "It depends on whether you are a person or a company. A person pays for their account in the shared studio: about USD 28 a month on Basic, USD 82 on Advanced or USD 233 on Max, all included (COP 91,000, COP 268,000 or COP 763,000). A company pays from about USD 15 a month (COP 49,000) for its private studio, plus each person’s plan: Basic about USD 24, Advanced USD 78 or Max USD 229 (COP 77,900, COP 254,900 or COP 749,900). Each plan comes with an AI balance in pesos (about USD 21, USD 69 or USD 207 a month, enough for about 150, 500 or 1,500 queries); if it runs out, you top up from about USD 6 (COP 20,000) and get that same amount as balance. If the company connects its own AI, the plan drops to about USD 3, USD 9 or USD 22 (COP 9,800, COP 29,400 or COP 71,900). There is also free access by invitation and a free local install. You are charged in Colombian pesos, at fixed prices, before taxes; USD figures are a reference."
+          "a": "It depends on whether you are a person or a company. A person pays for their account in the shared studio: about USD 28 a month on Basic, USD 82 on Advanced or USD 233 on Max, all included (COP 91,000, COP 268,000 or COP 763,000). A company pays from about USD 15 a month (COP 49,000) for its private studio, plus each person’s plan: Basic about USD 24, Advanced USD 78 or Max USD 229 (COP 77,900, COP 254,900 or COP 749,900). Each plan comes with an AI balance in pesos (about USD 21, USD 69 or USD 207 a month, enough for about 150, 500 or 1,500 queries); if it runs out, you top up from about USD 6 (COP 20,000) and get that same amount as balance. If the company connects its own AI, the plan drops to about USD 3, USD 9 or USD 22 (COP 9,800, COP 29,400 or COP 71,900). There is also free access by invitation and a license to run it on your infrastructure. You are charged in Colombian pesos, at fixed prices, before taxes; USD figures are a reference."
         },
         "queries": {
           "q": "What is a query, and what happens when they run out?",
@@ -1122,7 +1127,7 @@
         "p3": "Invitation-only access and scoped, revocable MCP tokens.",
         "p4": "Per-user AI spend cap, enforced on the server."
       },
-      "selfHostCta": "See the free install",
+      "selfHostCta": "See the self-host license",
       "tablistLabel": "Where Doctiling runs",
       "parts": {
         "studio": "Studio",
@@ -1160,16 +1165,16 @@
           }
         },
         "local": {
-          "tab": "On your machine",
-          "boundary": "Your computer",
-          "where": "127.0.0.1 · self-host",
-          "badge": "with a local model, nothing leaves your machine",
-          "alt": "Diagram: on the local install, studio, SQLite database, index and a local model all run on your own machine.",
-          "body": "One command installs the full studio on your machine, free, with no account and no invitation. Point it at a local model and work without third parties.",
+          "tab": "On your infrastructure",
+          "boundary": "Your infrastructure",
+          "where": "your server · license",
+          "badge": "with a local model, nothing leaves your boundary",
+          "alt": "Diagram: on the licensed install, studio, SQLite database, index and a local model all run on your own infrastructure.",
+          "body": "With a usage license, one command installs the full studio on your infrastructure. Point it at a local model and work without third parties.",
           "parts": {
             "studio": "The full studio, single user.",
-            "database": "Local SQLite on your disk.",
-            "index": "Built and kept on your machine.",
+            "database": "SQLite on your own disk.",
+            "index": "Built and kept on your infrastructure.",
             "model": "Your AI keys or a local model."
           }
         }
@@ -2030,9 +2035,9 @@
       "structure": "Text, table and graph documents; the agent draws charts, diagrams and mind maps from them.",
       "sources": "File uploads and read-only SQL engines. No native sync with Google Drive, Slack or Confluence.",
       "mcp": "Yes: each knowledge base can be exposed with a scoped, revocable, read-only token.",
-      "selfHost": "Yes: free local install with public installers (the code is private), or the same product on your infrastructure.",
+      "selfHost": "Yes: the same product on your infrastructure, under a usage license with public installers (the code is private).",
       "freePlan": "Yes: sponsored seat by invitation with AI included (25 AI calls per day), no credit card.",
-      "pricing": "Free by invitation and self-hosted at $0. One person, from about USD 28 a month all included (COP 91,000); a company, from about USD 15 a month (COP 49,000) for its private studio plus each person’s plan, from about USD 24 (COP 77,900) with AI included or USD 3 (COP 9,800) with its own AI. Charged in Colombian pesos."
+      "pricing": "Free by invitation and self-hosted under a usage license. One person, from about USD 28 a month all included (COP 91,000); a company, from about USD 15 a month (COP 49,000) for its private studio plus each person’s plan, from about USD 24 (COP 77,900) with AI included or USD 3 (COP 9,800) with its own AI. Charged in Colombian pesos."
     },
     "items": {
       "notion-ai": {
@@ -2044,7 +2049,7 @@
           "keywords": "Doctiling vs Notion AI, Notion AI alternative, AI knowledge base comparison, Notion AI vs, knowledge base with citations, self-hosted Notion AI alternative"
         },
         "h1": "Doctiling vs Notion AI",
-        "verdict": "Choose Notion AI if your team already writes and plans in Notion and wants AI inside those pages. Choose Doctiling if you need a dedicated knowledge base built from your own sources — documents, tables and graphs — that experts curate and you can also run free on your own machine.",
+        "verdict": "Choose Notion AI if your team already writes and plans in Notion and wants AI inside those pages. Choose Doctiling if you need a dedicated knowledge base built from your own sources — documents, tables and graphs — that experts curate and you can also run on your own infrastructure under a usage license.",
         "verdict2": "Both answer with citations and both connect over MCP; the difference is where the knowledge lives and who governs it.",
         "rows": {
           "focus": "AI built into the Notion workspace: pages, docs, tasks and databases.",
@@ -2059,7 +2064,7 @@
         "chooseDoctiling": {
           "c1": "You want one knowledge base per client, team or case, with its own permissions, prompt and tools.",
           "c2": "Your sources include PDF tables or relationships you want to query as table and graph documents.",
-          "c3": "You need to run the same product on your own machine or infrastructure, for free to start."
+          "c3": "You need to run the same product on your own infrastructure, under a usage license."
         },
         "chooseOther": {
           "c1": "Your team already writes, plans and tracks tasks in Notion.",
@@ -2077,7 +2082,7 @@
           },
           "q3": {
             "q": "Can I try Doctiling for free?",
-            "a": "Yes. The hosted seat is sponsored and invitation-only, with AI included and no credit card, and the local install is free with no account."
+            "a": "Yes. The hosted seat is sponsored and invitation-only, with AI included and no credit card."
           }
         }
       },
@@ -2090,7 +2095,7 @@
           "keywords": "Doctiling vs Guru, Guru alternative, AI knowledge base comparison, Guru vs, governed knowledge base, self-hosted knowledge base"
         },
         "h1": "Doctiling vs Guru",
-        "verdict": "Choose Guru if you want a governed, company-wide knowledge layer with ready connectors to tools like Slack, Google Drive or Confluence, under a sales-led contract. Choose Doctiling if you want knowledge bases per client, team or case built from documents you bring, with table and graph documents and a free way to start, hosted or self-hosted.",
+        "verdict": "Choose Guru if you want a governed, company-wide knowledge layer with ready connectors to tools like Slack, Google Drive or Confluence, under a sales-led contract. Choose Doctiling if you want knowledge bases per client, team or case built from documents you bring, with table and graph documents and a free way to start hosted, or self-hosted under a license.",
         "verdict2": "Both cite every answer and expose knowledge over MCP; Guru connects to where knowledge already lives, Doctiling structures what you bring into it.",
         "rows": {
           "focus": "A governed knowledge layer that structures and improves company knowledge for enterprise AI.",
@@ -2105,7 +2110,7 @@
         "chooseDoctiling": {
           "c1": "You work by client, team or case and want each knowledge base isolated with its own permissions.",
           "c2": "You need tables and graphs built from your documents, not only text.",
-          "c3": "You want to start free, or run it on your own machine or infrastructure."
+          "c3": "You want to start free, or run it on your own infrastructure under a usage license."
         },
         "chooseOther": {
           "c1": "You want knowledge synced from the tools where it already lives, such as Slack, Google Drive or Confluence.",
@@ -2123,7 +2128,7 @@
           },
           "q3": {
             "q": "Is there a free way to try Doctiling?",
-            "a": "Yes. The hosted seat is sponsored and invitation-only, with AI included and no credit card, and the local install is free with no account."
+            "a": "Yes. The hosted seat is sponsored and invitation-only, with AI included and no credit card."
           }
         }
       },
@@ -2136,7 +2141,7 @@
           "keywords": "Doctiling vs Glean, Glean alternative, enterprise AI search comparison, Glean vs, AI knowledge base for teams, self-hosted Glean alternative"
         },
         "h1": "Doctiling vs Glean",
-        "verdict": "Choose Glean if you need enterprise search and AI across hundreds of connected company apps and can run a sales-led rollout. Choose Doctiling if you want curated knowledge bases built from selected sources, with table and graph documents, starting free — hosted or on your own machine.",
+        "verdict": "Choose Glean if you need enterprise search and AI across hundreds of connected company apps and can run a sales-led rollout. Choose Doctiling if you want curated knowledge bases built from selected sources, with table and graph documents, starting free in the hosted studio, or under a license on your own infrastructure.",
         "verdict2": "Both cite their answers and offer MCP; Glean indexes the company's existing tools, Doctiling turns selected sources into curated knowledge.",
         "rows": {
           "focus": "Enterprise AI platform connected to the company's data.",
@@ -2151,7 +2156,7 @@
         "chooseDoctiling": {
           "c1": "You want a curated knowledge base per client, team or case rather than search over every company app.",
           "c2": "Your sources include tables or relationships you want to query as table and graph documents.",
-          "c3": "You want to start free, or run the same product fully on your own machine."
+          "c3": "You want to start free, or run the same product fully on your own infrastructure."
         },
         "chooseOther": {
           "c1": "You need search and AI across hundreds of the company's existing apps.",
@@ -2165,11 +2170,11 @@
           },
           "q2": {
             "q": "Can Doctiling run on our own infrastructure?",
-            "a": "Yes. The same product installs free on a local machine, and the self-hosted build runs on your infrastructure."
+            "a": "Yes. With a usage license, the same product runs fully on your infrastructure."
           },
           "q3": {
             "q": "Is there a free option?",
-            "a": "Yes. The hosted seat is sponsored and invitation-only, with AI included and no credit card, and the local install is free with no account."
+            "a": "Yes. The hosted seat is sponsored and invitation-only, with AI included and no credit card."
           }
         }
       }

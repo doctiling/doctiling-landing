@@ -159,6 +159,33 @@ describe('LandingClient', () => {
     expect(container.querySelector('[data-audience="gold"]')).toHaveAttribute('hidden');
   });
 
+  it('puts self-host in a third tab, sold as a license on the client infrastructure', async () => {
+    const user = userEvent.setup();
+    const { container } = renderWithHost(<LandingClient />);
+    const panel = container.querySelector('[data-audience="sovereign"]');
+    expect(panel).toHaveAttribute('hidden');
+    await user.click(screen.getByRole('tab', { name: 'landing.tiers.tabs.sovereign' }));
+    expect(panel).not.toHaveAttribute('hidden');
+    expect(container.querySelector('[data-audience="personal"]')).toHaveAttribute('hidden');
+    expect(panel).toHaveTextContent('landing.selfHost.license.title');
+    expect(panel!.querySelector('[data-license-quote]')).toHaveAttribute('href', '#demo');
+  });
+
+  it('the hero self-host link opens the license tab on this page', () => {
+    renderWithHost(<LandingClient />);
+    expect(screen.getByRole('link', { name: /landing\.hero\.ctaSelfHost/ })).toHaveAttribute('href', '#self-host');
+  });
+
+  it('arriving with #self-host opens the license tab', () => {
+    window.location.hash = '#self-host';
+    try {
+      renderWithHost(<LandingClient />);
+      expect(screen.getByRole('tab', { name: 'landing.tiers.tabs.sovereign' })).toHaveAttribute('aria-selected', 'true');
+    } finally {
+      window.location.hash = '';
+    }
+  });
+
   it('explains top-ups in four steps and lists the four amounts, the minimum first', () => {
     const { container } = renderWithHost(<LandingClient />);
     expect(screen.getByText('landing.tiers.topups.title')).toBeInTheDocument();

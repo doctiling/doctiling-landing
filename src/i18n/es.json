@@ -256,7 +256,7 @@
         "success": "Listo — revisa tu correo. Te enviamos la invitación en breve.",
         "details": "Cuéntanos más sobre tu caso"
       },
-      "ctaSelfHost": "Instálalo gratis en tu máquina",
+      "ctaSelfHost": "Instálalo en tu infraestructura",
       "ctaParadigm": "¿Qué es una base de conocimiento?",
       "lede2": "Doctiling propone otra forma: organiza la información en bases de conocimiento con sus propias reglas de acceso y conecta un agente de IA que puede consultarla, relacionar datos y ejecutar acciones autorizadas en lenguaje natural.",
       "ledeStrong": "Menos sistemas que construir. Más procesos que resolver.",
@@ -354,7 +354,8 @@
       "tabs": {
         "label": "Ver precios para",
         "personal": "Para una persona",
-        "gold": "Para una empresa"
+        "gold": "Para una empresa",
+        "sovereign": "En tu infraestructura"
       },
       "items": {
         "free": {
@@ -635,12 +636,16 @@
       }
     },
     "selfHost": {
-      "eyebrow": "instalación libre",
-      "title": "Instálalo en tu máquina. Gratis, sin cuenta y sin invitación.",
-      "lede": "Los instaladores y los binarios son públicos en GitHub: un comando y tienes el estudio completo corriendo en 127.0.0.1, con tu base SQLite local. Puedes apuntarlo a un modelo local (LM Studio u Ollama) y trabajar sin que un solo documento salga de tu equipo.",
+      "eyebrow": "uso soberano · licencia",
+      "title": "Doctiling dentro de tu infraestructura. Uso soberano, con licencia.",
+      "lede": "El estudio completo corre en los servidores o los equipos de tu organización, contra tu propia base SQLite. Apúntalo a un modelo local (LM Studio u Ollama) o a tus propias llaves de IA, y ningún documento sale de tu frontera. Se paga por licencia de uso, no por consulta.",
       "repoCta": "Ver releases en GitHub",
-      "repoHint": "Repositorio público de distribución: instaladores y el tarball de cada versión.",
-      "sourceNote": "Distribución abierta, no código abierto: publicamos los instaladores y los binarios; el código del producto es privado. El estudio hosteado es lo que se paga.",
+      "repoHint": "Repositorio público de distribución: instaladores, el tarball de cada versión y la licencia.",
+      "licenseCta": "Cotizar licencia",
+      "licenseHint": "Pide una cotización de la licencia para usar Doctiling en tu infraestructura.",
+      "licenseLink": "Leer la licencia",
+      "licenseLinkHint": "El texto de la licencia de uso, publicado en el repositorio de releases.",
+      "sourceNote": "Los instaladores son públicos; usar Doctiling en tu infraestructura requiere una licencia vigente. Distribución abierta, no código abierto: el código del producto es privado.",
       "copy": "Copiar comando",
       "copyHint": "Copiar este comando de instalación al portapapeles",
       "channels": {
@@ -648,18 +653,18 @@
         "windows": "windows · scoop",
         "linux": "linux / macOS · script"
       },
-      "free": {
-        "price": "$0 · self-host",
-        "title": "Uso libre en tu máquina",
+      "license": {
+        "price": "licencia · a cotizar",
+        "title": "Uso soberano en tu infraestructura",
         "bullets": {
           "p1": "El estudio completo: bases de conocimiento, editor, agente con citas y vista espejo.",
-          "p2": "Un solo usuario, login local, sin lista de invitación. Tus llaves de IA o un modelo local.",
+          "p2": "Tus datos, tu base y tu modelo: con un modelo local, nada sale de tu frontera.",
           "p3": "Compartir en equipo y los endpoints MCP vienen apagados en el perfil local."
         }
       },
       "hosted": {
         "price": "hosteado · desde $0 patrocinado",
-        "title": "Lo que se paga es operarlo en equipo",
+        "title": "¿Prefieres no operarlo? Te lo hosteamos",
         "bullets": {
           "p1": "Compartir bases con roles, análisis privados por persona y comentarios.",
           "p2": "Endpoints MCP gestionados con tokens acotados y revocables.",
@@ -760,7 +765,7 @@
         },
         "pricing": {
           "q": "¿Cuánto cuesta Doctiling?",
-          "a": "Depende de si eres una persona o una empresa. Una persona paga su cuenta en el estudio compartido: $91.000 al mes en el plan Básico, $268.000 en Avanzado o $763.000 en Máximo, todo incluido. Una empresa paga desde $49.000 al mes por su estudio privado, más el plan de cada persona: Básico $77.900, Avanzado $254.900 o Máximo $749.900. Cada plan trae un saldo de IA en pesos ($68.100, $225.500 o $678.000 al mes, que rinde cerca de 150, 500 o 1.500 consultas); si se gasta, recargas desde $20.000 y ese mismo valor queda de saldo. Si la empresa conecta su propia IA, el plan baja a $9.800, $29.400 o $71.900. También hay acceso gratis por invitación y una instalación local gratuita. Son precios fijos en pesos colombianos, sin impuestos."
+          "a": "Depende de si eres una persona o una empresa. Una persona paga su cuenta en el estudio compartido: $91.000 al mes en el plan Básico, $268.000 en Avanzado o $763.000 en Máximo, todo incluido. Una empresa paga desde $49.000 al mes por su estudio privado, más el plan de cada persona: Básico $77.900, Avanzado $254.900 o Máximo $749.900. Cada plan trae un saldo de IA en pesos ($68.100, $225.500 o $678.000 al mes, que rinde cerca de 150, 500 o 1.500 consultas); si se gasta, recargas desde $20.000 y ese mismo valor queda de saldo. Si la empresa conecta su propia IA, el plan baja a $9.800, $29.400 o $71.900. También hay acceso gratis por invitación y una licencia para correrlo en tu infraestructura. Son precios fijos en pesos colombianos, sin impuestos."
         },
         "queries": {
           "q": "¿Qué es una consulta y qué pasa si se acaban?",
@@ -1122,7 +1127,7 @@
         "p3": "Acceso por invitación y tokens MCP acotados y revocables.",
         "p4": "Tope de gasto de IA por usuario, aplicado en el servidor."
       },
-      "selfHostCta": "Ver la instalación libre",
+      "selfHostCta": "Ver la licencia self-host",
       "tablistLabel": "Dónde corre Doctiling",
       "parts": {
         "studio": "Estudio",
@@ -1160,16 +1165,16 @@
           }
         },
         "local": {
-          "tab": "En tu máquina",
-          "boundary": "Tu equipo",
-          "where": "127.0.0.1 · self-host",
-          "badge": "con modelo local, nada sale de tu equipo",
-          "alt": "Diagrama: en la instalación local, estudio, base SQLite, índice y un modelo local corren en tu propia máquina.",
-          "body": "Un comando instala el estudio completo en tu máquina, gratis, sin cuenta y sin invitación. Apúntalo a un modelo local y trabaja sin conexión a terceros.",
+          "tab": "En tu infraestructura",
+          "boundary": "Tu infraestructura",
+          "where": "tu servidor · licencia",
+          "badge": "con modelo local, nada sale de tu frontera",
+          "alt": "Diagrama: en la instalación con licencia, estudio, base SQLite, índice y un modelo local corren en tu propia infraestructura.",
+          "body": "Con una licencia de uso, el estudio completo se instala con un comando en tu infraestructura. Apúntalo a un modelo local y trabaja sin conexión a terceros.",
           "parts": {
             "studio": "El estudio completo, un solo usuario.",
-            "database": "SQLite local en tu disco.",
-            "index": "Se construye y vive en tu máquina.",
+            "database": "SQLite en tu propio disco.",
+            "index": "Se construye y vive en tu infraestructura.",
             "model": "Tus llaves de IA o un modelo local."
           }
         }
@@ -2030,9 +2035,9 @@
       "structure": "Documentos de texto, tabla y grafo; el agente dibuja gráficas, diagramas y mapas mentales a partir de ellos.",
       "sources": "Subida de archivos y motores SQL de solo lectura. Sin sincronización nativa con Google Drive, Slack o Confluence.",
       "mcp": "Sí: cada base de conocimiento se puede exponer con un token acotado, revocable y de solo lectura.",
-      "selfHost": "Sí: instalación local gratuita con instaladores públicos (el código es privado), o el mismo producto en tu infraestructura.",
+      "selfHost": "Sí: el mismo producto en tu infraestructura, con licencia de uso e instaladores públicos (el código es privado).",
       "freePlan": "Sí: puesto patrocinado por invitación con IA incluida (25 llamadas de IA por día), sin tarjeta.",
-      "pricing": "Gratis por invitación y self-hosted a $0. Una persona, desde $91.000 COP al mes todo incluido; una empresa, desde $49.000 COP al mes por su estudio privado más el plan de cada persona, desde $77.900 COP con IA incluida o $9.800 COP con su propia IA."
+      "pricing": "Gratis por invitación y self-hosted con licencia de uso. Una persona, desde $91.000 COP al mes todo incluido; una empresa, desde $49.000 COP al mes por su estudio privado más el plan de cada persona, desde $77.900 COP con IA incluida o $9.800 COP con su propia IA."
     },
     "items": {
       "notion-ai": {
@@ -2044,7 +2049,7 @@
           "keywords": "Doctiling vs Notion AI, alternativa a Notion AI, comparativa base de conocimiento IA, Notion AI vs, base de conocimiento con citas, alternativa self-hosted a Notion AI"
         },
         "h1": "Doctiling vs Notion AI",
-        "verdict": "Elige Notion AI si tu equipo ya escribe y planifica en Notion y quiere IA dentro de esas páginas. Elige Doctiling si necesitas una base de conocimiento dedicada, construida con tus propias fuentes — documentos, tablas y grafos —, que curan expertos y que también puedes correr gratis en tu propia máquina.",
+        "verdict": "Elige Notion AI si tu equipo ya escribe y planifica en Notion y quiere IA dentro de esas páginas. Elige Doctiling si necesitas una base de conocimiento dedicada, construida con tus propias fuentes — documentos, tablas y grafos —, que curan expertos y que también puedes correr en tu propia infraestructura con licencia de uso.",
         "verdict2": "Los dos responden con citas y los dos se conectan por MCP; la diferencia es dónde vive el conocimiento y quién lo gobierna.",
         "rows": {
           "focus": "IA integrada en el espacio de trabajo de Notion: páginas, documentos, tareas y bases de datos.",
@@ -2059,7 +2064,7 @@
         "chooseDoctiling": {
           "c1": "Quieres una base de conocimiento por cliente, equipo o caso, con sus propios permisos, prompt y herramientas.",
           "c2": "Tus fuentes incluyen tablas de PDF o relaciones que quieres consultar como documentos de tabla y grafo.",
-          "c3": "Necesitas correr el mismo producto en tu máquina o tu infraestructura, gratis para empezar."
+          "c3": "Necesitas correr el mismo producto en tu propia infraestructura, con licencia de uso."
         },
         "chooseOther": {
           "c1": "Tu equipo ya escribe, planifica y sigue tareas en Notion.",
@@ -2077,7 +2082,7 @@
           },
           "q3": {
             "q": "¿Puedo probar Doctiling gratis?",
-            "a": "Sí. El puesto alojado es patrocinado y por invitación, con IA incluida y sin tarjeta, y la instalación local es gratuita y sin cuenta."
+            "a": "Sí. El puesto alojado es patrocinado y por invitación, con IA incluida y sin tarjeta."
           }
         }
       },
@@ -2090,7 +2095,7 @@
           "keywords": "Doctiling vs Guru, alternativa a Guru, comparativa base de conocimiento IA, Guru vs, base de conocimiento gobernada, base de conocimiento self-hosted"
         },
         "h1": "Doctiling vs Guru",
-        "verdict": "Elige Guru si quieres una capa de conocimiento gobernada para toda la empresa, con conectores listos a herramientas como Slack, Google Drive o Confluence, bajo un contrato con ventas. Elige Doctiling si quieres bases de conocimiento por cliente, equipo o caso construidas con los documentos que traes, con documentos de tabla y grafo y una forma gratuita de empezar, alojada o self-hosted.",
+        "verdict": "Elige Guru si quieres una capa de conocimiento gobernada para toda la empresa, con conectores listos a herramientas como Slack, Google Drive o Confluence, bajo un contrato con ventas. Elige Doctiling si quieres bases de conocimiento por cliente, equipo o caso construidas con los documentos que traes, con documentos de tabla y grafo y una forma gratuita de empezar alojada, o self-hosted con licencia.",
         "verdict2": "Los dos citan cada respuesta y exponen el conocimiento por MCP; Guru se conecta a donde ya vive el conocimiento, Doctiling estructura lo que traes.",
         "rows": {
           "focus": "Una capa de conocimiento gobernada que estructura y mejora el conocimiento de la empresa para IA empresarial.",
@@ -2105,7 +2110,7 @@
         "chooseDoctiling": {
           "c1": "Trabajas por cliente, equipo o caso y quieres cada base de conocimiento aislada con sus propios permisos.",
           "c2": "Necesitas tablas y grafos construidos con tus documentos, no solo texto.",
-          "c3": "Quieres empezar gratis, o correrlo en tu propia máquina o infraestructura."
+          "c3": "Quieres empezar gratis, o correrlo en tu propia infraestructura con licencia de uso."
         },
         "chooseOther": {
           "c1": "Quieres conocimiento sincronizado desde las herramientas donde ya vive, como Slack, Google Drive o Confluence.",
@@ -2123,7 +2128,7 @@
           },
           "q3": {
             "q": "¿Hay una forma gratuita de probar Doctiling?",
-            "a": "Sí. El puesto alojado es patrocinado y por invitación, con IA incluida y sin tarjeta, y la instalación local es gratuita y sin cuenta."
+            "a": "Sí. El puesto alojado es patrocinado y por invitación, con IA incluida y sin tarjeta."
           }
         }
       },
@@ -2136,7 +2141,7 @@
           "keywords": "Doctiling vs Glean, alternativa a Glean, comparativa búsqueda empresarial IA, Glean vs, base de conocimiento IA para equipos, alternativa self-hosted a Glean"
         },
         "h1": "Doctiling vs Glean",
-        "verdict": "Elige Glean si necesitas búsqueda e IA empresarial sobre cientos de apps conectadas de la empresa y puedes hacer un despliegue guiado por ventas. Elige Doctiling si quieres bases de conocimiento curadas a partir de fuentes seleccionadas, con documentos de tabla y grafo, empezando gratis — alojado o en tu propia máquina.",
+        "verdict": "Elige Glean si necesitas búsqueda e IA empresarial sobre cientos de apps conectadas de la empresa y puedes hacer un despliegue guiado por ventas. Elige Doctiling si quieres bases de conocimiento curadas a partir de fuentes seleccionadas, con documentos de tabla y grafo, empezando gratis en el estudio alojado, o con licencia en tu propia infraestructura.",
         "verdict2": "Los dos citan sus respuestas y ofrecen MCP; Glean indexa las herramientas que la empresa ya usa, Doctiling convierte fuentes seleccionadas en conocimiento curado.",
         "rows": {
           "focus": "Plataforma de IA empresarial conectada a los datos de la empresa.",
@@ -2151,7 +2156,7 @@
         "chooseDoctiling": {
           "c1": "Quieres una base de conocimiento curada por cliente, equipo o caso en lugar de buscar en todas las apps de la empresa.",
           "c2": "Tus fuentes incluyen tablas o relaciones que quieres consultar como documentos de tabla y grafo.",
-          "c3": "Quieres empezar gratis, o correr el mismo producto por completo en tu propia máquina."
+          "c3": "Quieres empezar gratis, o correr el mismo producto por completo en tu propia infraestructura."
         },
         "chooseOther": {
           "c1": "Necesitas búsqueda e IA sobre cientos de apps que la empresa ya usa.",
@@ -2165,11 +2170,11 @@
           },
           "q2": {
             "q": "¿Doctiling puede correr en nuestra propia infraestructura?",
-            "a": "Sí. El mismo producto se instala gratis en una máquina local, y la versión self-hosted corre en tu infraestructura."
+            "a": "Sí. Con una licencia de uso, el mismo producto corre por completo en tu infraestructura."
           },
           "q3": {
             "q": "¿Hay una opción gratuita?",
-            "a": "Sí. El puesto alojado es patrocinado y por invitación, con IA incluida y sin tarjeta, y la instalación local es gratuita y sin cuenta."
+            "a": "Sí. El puesto alojado es patrocinado y por invitación, con IA incluida y sin tarjeta."
           }
         }
       }

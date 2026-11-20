@@ -6,6 +6,7 @@ import { renderWithHost } from '../helpers/host';
 import {
   SelfHostSection,
   INSTALL_COMMANDS,
+  LICENSE_URL,
   RELEASES_URL,
 } from '../../src/components/SelfHostSection';
 
@@ -46,14 +47,34 @@ describe('SelfHostSection', () => {
     await waitFor(() => expect(writeText).toHaveBeenCalledWith(command));
   });
 
-  it('states plainly what the free install does not include', () => {
+  it('sells self-host as a license, not as a free install', () => {
     renderWithHost(<SelfHostSection />);
-    expect(screen.getByText('landing.selfHost.free.title')).toBeInTheDocument();
+    expect(screen.getByText('landing.selfHost.license.title')).toBeInTheDocument();
     expect(screen.getByText('landing.selfHost.hosted.title')).toBeInTheDocument();
     for (const p of ['p1', 'p2', 'p3'] as const) {
-      expect(screen.getByText(`landing.selfHost.free.bullets.${p}`)).toBeInTheDocument();
+      expect(screen.getByText(`landing.selfHost.license.bullets.${p}`)).toBeInTheDocument();
       expect(screen.getByText(`landing.selfHost.hosted.bullets.${p}`)).toBeInTheDocument();
     }
+    expect(screen.queryByText(/landing\.selfHost\.free/)).not.toBeInTheDocument();
+  });
+
+  it('links the license text published next to the installers', () => {
+    renderWithHost(<SelfHostSection />);
+    expect(LICENSE_URL).toBe('https://github.com/doctiling/releases/blob/main/LICENSE');
+    const link = screen.getByRole('link', { name: /landing\.selfHost\.licenseLink/ });
+    expect(link).toHaveAttribute('href', LICENSE_URL);
+    expect(link).toHaveAttribute('rel', expect.stringContaining('noopener'));
+  });
+
+  it('asks for a license quote on the home page from the connect page', () => {
+    renderWithHost(<SelfHostSection />);
+    expect(screen.getByRole('link', { name: /landing\.selfHost\.licenseCta/ })).toHaveAttribute('href', '/es#demo');
+  });
+
+  it('inside the pricing tabs, quotes on the same page and carries no second #self-host', () => {
+    const { container } = renderWithHost(<SelfHostSection variant="panel" />);
+    expect(screen.getByRole('link', { name: /landing\.selfHost\.licenseCta/ })).toHaveAttribute('href', '#demo');
+    expect(container.querySelector('#self-host')).toBeNull();
   });
 
   it('carries an anchor the nav can point at', () => {

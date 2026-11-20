@@ -2,6 +2,8 @@ import { describe, it, expect, vi } from 'vitest';
 import { screen } from '@testing-library/react';
 import { renderWithHost } from '../helpers/host';
 import userEvent from '@testing-library/user-event';
+import { USE_CASE_SLUGS } from '../../src/use-cases';
+import { COMPARE_SLUGS } from '../../src/compare';
 
 class ResizeObserverMock {
   observe() {}
@@ -383,5 +385,40 @@ describe('LandingClient', () => {
       'href',
       '/es/security',
     );
+  });
+  it('puts the searched phrase inside the single h1, ahead of the claim', () => {
+    renderWithHost(<LandingClient />);
+    const h1s = screen.getAllByRole('heading', { level: 1 });
+    expect(h1s).toHaveLength(1);
+    expect(h1s[0].textContent?.startsWith('landing.hero.eyebrow')).toBe(true);
+    expect(h1s[0]).toHaveTextContent('landing.hero.titleLine1');
+  });
+
+  it('links the footer to every use-case and comparison page so none is an orphan', () => {
+    renderWithHost(<LandingClient />);
+    for (const slug of USE_CASE_SLUGS) {
+      expect(screen.getByRole('link', { name: `landing.footer.useCases.${slug}` })).toHaveAttribute(
+        'href',
+        `/es/use-cases/${slug}`,
+      );
+    }
+    for (const slug of COMPARE_SLUGS) {
+      expect(screen.getByRole('link', { name: `comparePage.items.${slug}.h1` })).toHaveAttribute(
+        'href',
+        `/es/compare/${slug}`,
+      );
+    }
+  });
+
+  it('links each sector card that has a use case to its page', () => {
+    renderWithHost(<LandingClient />);
+    const links = screen.getAllByRole('link', { name: /landing\.verticals\.useCase/ });
+    expect(links.map((l) => l.getAttribute('href'))).toEqual([
+      '/es/use-cases/legal',
+      '/es/use-cases/healthcare',
+      '/es/use-cases/finance',
+      '/es/use-cases/research',
+      '/es/use-cases/consulting',
+    ]);
   });
 });

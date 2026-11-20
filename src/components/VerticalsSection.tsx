@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { ArrowUpRight, Briefcase, Calculator, GraduationCap, Landmark, Scale, Stethoscope } from 'lucide-react';
 import { useLandingText } from '../host';
+import { useCasePath } from '../routes';
+import { useCaseForVertical } from '../use-cases';
 import { H2, MiniTitle } from '@doctiling/ui/atoms/typography';
 import { Reveal } from './Reveal';
 
@@ -48,6 +50,16 @@ export function VerticalsSection() {
                   <p className="mt-2 text-sm leading-relaxed text-foreground/80">
                     {t(`landing.verticals.items.${key}.edge`)}
                   </p>
+                  {useCaseForVertical(key) && (
+                    <Link
+                      href={`/${locale}/${useCasePath(useCaseForVertical(key)!)}`}
+                      className="mt-4 inline-flex items-center gap-1.5 text-sm text-accent transition-colors hover:text-foreground"
+                    >
+                      {t('landing.verticals.useCase')}
+                      <span className="sr-only">: {t(`landing.verticals.items.${key}.title`)}</span>
+                      <ArrowUpRight className="size-3.5" aria-hidden="true" />
+                    </Link>
+                  )}
                 </div>
               </article>
             </Reveal>

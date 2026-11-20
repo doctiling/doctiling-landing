@@ -174,10 +174,12 @@ export default function LandingClient() {
         <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,hsl(var(--primary)/0.10),transparent_55%)]" />
         <div className={`${SECTION} grid grid-cols-1 gap-12 py-14 sm:py-20 lg:grid-cols-12 lg:items-center lg:gap-10 lg:py-24`}>
           <div className="lg:col-span-7">
-            <div className="landing-enter">
-              <MiniTitle className="mb-7 text-accent">{t('landing.hero.eyebrow')}</MiniTitle>
-            </div>
-            <Display as="h1" className="text-balance leading-[1.04] sm:text-6xl lg:text-[3.4rem] xl:text-[4rem]">
+            {/* One h1: the searched phrase (eyebrow) leads, the claim follows — same look as before */}
+            <h1>
+            <span className="landing-enter block">
+              <MiniTitle as="span" className="mb-7 block text-accent">{t('landing.hero.eyebrow')}</MiniTitle>
+            </span>
+            <Display as="span" className="block text-balance leading-[1.04] sm:text-6xl lg:text-[3.4rem] xl:text-[4rem]">
               <span className="landing-enter block" style={{ animationDelay: '80ms' }}>
                 {t('landing.hero.titleLine1')}{' '}
                 <span className="relative inline-block whitespace-nowrap">
@@ -200,6 +202,7 @@ export default function LandingClient() {
                 </span>
               </span>
             </Display>
+            </h1>
             <p
               className="landing-enter mt-5 max-w-xl font-display text-2xl italic leading-snug text-accent sm:text-3xl"
               style={{ animationDelay: '220ms' }}

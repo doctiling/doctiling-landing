@@ -240,7 +240,7 @@
     "hero": {
       "videoTitle": "Doctiling demo video",
       "videoPlay": "Watch the demo",
-      "eyebrow": "doctiling · intelligent processes with knowledge bases and AI agents",
+      "eyebrow": "AI knowledge base for teams",
       "titleLine1": "You don't need a system for",
       "titleAccent": "You need organised knowledge and an agent that sets it in motion.",
       "lede": "Today, automating a process usually means building screens, data models, permissions and integrations, and maintaining one more system. Or relying on email and spreadsheets.",
@@ -345,7 +345,8 @@
           "body": "Turn data rooms and interviews into grounded deliverables. Mirror view stacks summaries, entities and correlations beside the document.",
           "edge": "Save each finding as a variant and expose it to your team chat over MCP — the client sees the trail, not a black box."
         }
-      }
+      },
+      "useCase": "See the use case"
     },
     "tiers": {
       "eyebrow": "plans and pricing",
@@ -806,7 +807,17 @@
       "columns": {
         "product": "Product",
         "legal": "Legal",
-        "contact": "Contact"
+        "contact": "Contact",
+        "useCases": "Use cases",
+        "compare": "Comparisons"
+      },
+      "useCases": {
+        "legal": "AI for legal teams",
+        "consulting": "AI for consulting",
+        "healthcare": "AI for healthcare",
+        "finance": "AI for finance",
+        "research": "AI for research",
+        "engineering-teams": "AI for engineering teams"
       }
     },
     "subnav": {

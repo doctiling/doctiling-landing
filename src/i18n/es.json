@@ -240,7 +240,7 @@
     "hero": {
       "videoTitle": "Video demo de Doctiling",
       "videoPlay": "Ver el demo",
-      "eyebrow": "doctiling · procesos inteligentes con bases de conocimiento y agentes de IA",
+      "eyebrow": "base de conocimiento con IA para equipos",
       "titleLine1": "No necesitas un sistema para",
       "titleAccent": "Necesitas conocimiento organizado y un agente que lo ponga en marcha.",
       "lede": "Hoy, automatizar un proceso suele significar construir pantallas, modelos de datos, permisos, integraciones y mantener otro sistema. O depender de correos y hojas de cálculo.",
@@ -345,7 +345,8 @@
           "body": "Transforma data rooms y entrevistas en entregables con fundamento. La vista espejo apila resúmenes, entidades y correlaciones junto al documento.",
           "edge": "Guardas cada hallazgo como variante y lo expones a tu chat de equipo vía MCP — el cliente ve el rastro, no una caja negra."
         }
-      }
+      },
+      "useCase": "Ver el caso de uso"
     },
     "tiers": {
       "eyebrow": "planes y precios",
@@ -806,7 +807,17 @@
       "columns": {
         "product": "Producto",
         "legal": "Legal",
-        "contact": "Contacto"
+        "contact": "Contacto",
+        "useCases": "Casos de uso",
+        "compare": "Comparativas"
+      },
+      "useCases": {
+        "legal": "IA para equipos legales",
+        "consulting": "IA para consultoría",
+        "healthcare": "IA para salud",
+        "finance": "IA para finanzas",
+        "research": "IA para investigación",
+        "engineering-teams": "IA para equipos de ingeniería"
       }
     },
     "subnav": {

@@ -32,6 +32,12 @@ Every page exists in English (/en/) and Spanish (/es/).
 - [Doctiling vs Guru: compare AI knowledge bases](https://www.doctiling.app/en/compare/guru): Doctiling vs Guru: cited answers, MCP, connectors, tables and graphs, self-hosting and pricing, compared with sources from each official site.
 - [Doctiling vs Glean: compare AI knowledge for teams](https://www.doctiling.app/en/compare/glean): Doctiling vs Glean: cited answers, MCP, connectors, self-hosting, free plans and pricing, compared with sources from each official site.
 
+## Guides (English)
+
+- [How to build an AI knowledge base | Doctiling](https://www.doctiling.app/en/guides/ai-knowledge-base): A guide to building an AI knowledge base for your team: which sources go in, how to structure them, who curates them and how to query them with citations.
+- [What is MCP (Model Context Protocol)? | Doctiling](https://www.doctiling.app/en/guides/what-is-mcp): What MCP is, how it works and how to connect a knowledge base so your AI tools answer from your documents with citations, through scoped, revocable tokens.
+- [RAG vs a curated knowledge base | Doctiling](https://www.doctiling.app/en/guides/rag-vs-curated-knowledge-base): What RAG is, where it fails over uncurated documents and what a curated knowledge base adds to the quality and traceability of AI answers.
+
 ## Páginas (Español)
 
 - [Base de conocimiento con IA para equipos | Doctiling](https://www.doctiling.app/es/landing): Base de conocimiento con IA para equipos, gratis para empezar y sin tarjeta. Expertos curan tus fuentes; agentes de IA responden desde ellas y citan todo.
@@ -53,3 +59,9 @@ Every page exists in English (/en/) and Spanish (/es/).
 - [Doctiling vs Notion AI: comparativa de bases de conocimiento](https://www.doctiling.app/es/compare/notion-ai): Doctiling vs Notion AI: respuestas citadas, MCP, tablas y grafos, self-hosting y planes gratuitos, con fuentes de cada sitio oficial.
 - [Doctiling vs Guru: comparativa de bases de conocimiento IA](https://www.doctiling.app/es/compare/guru): Doctiling vs Guru: respuestas citadas, MCP, conectores, tablas y grafos, self-hosting y precios, con fuentes de cada sitio oficial.
 - [Doctiling vs Glean: comparativa de IA para el conocimiento](https://www.doctiling.app/es/compare/glean): Doctiling vs Glean: respuestas citadas, MCP, conectores, self-hosting, planes gratuitos y precios, con fuentes de cada sitio oficial.
+
+## Guías (Español)
+
+- [Cómo armar una base de conocimiento con IA | Doctiling](https://www.doctiling.app/es/guides/ai-knowledge-base): Guía para armar una base de conocimiento con IA para tu equipo: qué fuentes entran, cómo se estructuran, quién las cura y cómo se consultan con citas.
+- [Qué es MCP (Model Context Protocol) | Doctiling](https://www.doctiling.app/es/guides/what-is-mcp): Qué es MCP, cómo funciona y cómo conectar tu base de conocimiento para que tus herramientas de IA respondan con tus documentos, con citas y tokens seguros.
+- [RAG vs base de conocimiento curada | Doctiling](https://www.doctiling.app/es/guides/rag-vs-curated-knowledge-base): Qué es RAG, dónde falla sobre documentos sin curar y qué agrega una base de conocimiento curada a la calidad y la trazabilidad de las respuestas de IA.

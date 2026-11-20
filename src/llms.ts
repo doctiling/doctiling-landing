@@ -6,8 +6,9 @@
 // regenerate them.
 
 import { LANDING_MESSAGES, type LandingLocale } from './i18n';
-import { LANDING_PAGE_PATHS, comparePath, useCasePath, type LandingPagePath } from './routes';
-import { LANDING_SEO_COPY, compareCopy, useCaseCopy } from './seo';
+import { LANDING_PAGE_PATHS, comparePath, guidePath, useCasePath, type LandingPagePath } from './routes';
+import { LANDING_SEO_COPY, compareCopy, guideCopy, useCaseCopy } from './seo';
+import { GUIDE_FAQ_KEYS, GUIDE_SECTION_KEYS, GUIDE_SLUGS, paragraphs } from './guides';
 import { USE_CASE_FAQ_KEYS, USE_CASE_SLUGS } from './use-cases';
 import { COMPARE, COMPARE_FAQ_KEYS, COMPARE_ROW_KEYS, COMPARE_SLUGS } from './compare';
 import { FAQ_KEYS } from './components/faq-keys';
@@ -19,9 +20,9 @@ type Dict = Record<string, any>; // eslint-disable-line @typescript-eslint/no-ex
 
 const dict = (locale: LandingLocale) => LANDING_MESSAGES[locale] as Dict;
 
-const SECTIONS: Record<LandingLocale, { pages: string; useCases: string; compare: string; heading: string }> = {
-  en: { heading: 'English', pages: 'Pages', useCases: 'Use cases', compare: 'Comparisons' },
-  es: { heading: 'Español', pages: 'Páginas', useCases: 'Casos de uso', compare: 'Comparativas' },
+const SECTIONS: Record<LandingLocale, { pages: string; useCases: string; compare: string; guides: string; heading: string }> = {
+  en: { heading: 'English', pages: 'Pages', useCases: 'Use cases', compare: 'Comparisons', guides: 'Guides' },
+  es: { heading: 'Español', pages: 'Páginas', useCases: 'Casos de uso', compare: 'Comparativas', guides: 'Guías' },
 };
 
 function link(siteUrl: string, locale: LandingLocale, path: LandingPagePath): string {
@@ -61,6 +62,10 @@ function index(siteUrl: string, locale: LandingLocale): string[] {
     `## ${s.compare} (${s.heading})`,
     '',
     ...COMPARE_SLUGS.map((slug) => link(siteUrl, locale, comparePath(slug))),
+    '',
+    `## ${s.guides} (${s.heading})`,
+    '',
+    ...GUIDE_SLUGS.map((slug) => link(siteUrl, locale, guidePath(slug))),
   ];
 }
 
@@ -101,10 +106,19 @@ function fullLocale(siteUrl: string, locale: LandingLocale): string[] {
     out.push('', d.comparePage.labels.sourcesNote.replace('{name}', c.name).replace('{date}', entry.verifiedOn), '');
     for (const q of COMPARE_FAQ_KEYS) out.push(...qa(c.faq[q].q, c.faq[q].a));
   }
+
+  for (const slug of GUIDE_SLUGS) {
+    const c = guideCopy(slug, locale) as Dict;
+    out.push(`## ${c.h1}`, '', `URL: ${siteUrl}/${locale}/${guidePath(slug)}`, '', c.lede, '');
+    for (const key of GUIDE_SECTION_KEYS) {
+      out.push(`### ${c.sections[key].h}`, '', ...paragraphs(c.sections[key].body).flatMap((p) => [p, '']));
+    }
+    for (const q of GUIDE_FAQ_KEYS) out.push(...qa(c.faq[q].q, c.faq[q].a));
+  }
   return out;
 }
 
-/** Full text: the index plus the content of the home FAQ, every use case and every comparison, in both languages. */
+/** Full text: the index plus the content of the home FAQ, every use case, comparison and guide, in both languages. */
 export function llmsFullTxt(siteUrl: string = LLMS_SITE_URL): string {
   return [llmsTxt(siteUrl), ...fullLocale(siteUrl, 'en'), ...fullLocale(siteUrl, 'es')].join('\n').trimEnd() + '\n';
 }

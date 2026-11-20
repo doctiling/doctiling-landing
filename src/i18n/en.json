@@ -809,7 +809,8 @@
         "legal": "Legal",
         "contact": "Contact",
         "useCases": "Use cases",
-        "compare": "Comparisons"
+        "compare": "Comparisons",
+        "guides": "Guides"
       },
       "useCases": {
         "legal": "AI for legal teams",
@@ -2187,6 +2188,159 @@
             "q": "Is there a free option?",
             "a": "Yes. The hosted seat is sponsored and invitation-only, with AI included and no credit card."
           }
+        }
+      }
+    }
+  },
+  "guidesPage": {
+    "labels": {
+      "eyebrow": "guide",
+      "breadcrumb": "Guides",
+      "updated": "Updated {date}",
+      "faq": "Frequently asked questions",
+      "useCases": "Related use cases",
+      "related": "More guides"
+    },
+    "items": {
+      "ai-knowledge-base": {
+        "h1": "How to build an AI knowledge base for your team",
+        "card": "Which sources go in, how they are structured, who curates them and how they are queried with citations.",
+        "lede": "An AI knowledge base is the set of sources your team decides to trust — contracts, manuals, reports, decisions — organised so an AI agent answers from them and cites where every claim comes from. Building one well depends less on technology than on four decisions: what goes in, how it is structured, who curates it and where it is queried from.",
+        "sections": {
+          "s1": {
+            "h": "Start with one process, not every document",
+            "body": "The most common mistake is uploading the whole shared drive and expecting the AI to make sense of it. A base with everything answers with everything: old versions, drafts and documents that contradict each other.\n\nPick one concrete process — answering questions about a master agreement, preparing a committee, handling support questions — and build a base just for it. In Doctiling every knowledge base has its own sources, its own system prompt, its tools and its permissions, so a second process is a second base, not one more folder inside the first."
+          },
+          "s2": {
+            "h": "Choose the sources that actually answer the question",
+            "body": "For each base, make a short list: which documents would an expert use to answer the questions of that process. That list is the base. Everything else can be added later, when a real question calls for it.\n\nPDF, Word, spreadsheets, web pages and notes all work. What matters is that they are the current version and that someone can say \"this is correct\". If two documents contradict each other, decide which one rules before uploading them, or retire the one that is out of date."
+          },
+          "s3": {
+            "h": "Structure: text, tables and graphs",
+            "body": "Not all knowledge is prose. A contract is read clause by clause; a price list or a financial statement is a table; a map of systems or stakeholders is a graph of relationships.\n\nDoctiling keeps all three as documents of the same base: text is cut into blocks at headings, PDF tables are rebuilt as queryable tables and graphs are queried by neighbourhood. So the agent can cite the exact clause, add up a column or follow a relationship, instead of guessing from plain text."
+          },
+          "s4": {
+            "h": "Curation: the step that separates a useful base from an archive",
+            "body": "Indexing documents is the easy part. What makes a base trustworthy is someone with judgement maintaining it: fixing what was badly converted, validating what is used to decide and retiring what no longer applies.\n\nGive each base an owner and time for that job. With roles (owner, admin, contributor, reader) you decide who can change the content and who only queries it. Every agent answer cites the block it came from, so errors show up and are fixed at the source, not in the answer."
+          },
+          "s5": {
+            "h": "Querying: in the studio, in the team chat or over MCP",
+            "body": "A base pays off when people use it where they already work. In the Doctiling studio you talk to the agent, which answers with citations and produces tables, charts, diagrams or new documents from the base.\n\nOutside the studio, the same base can be exposed over MCP with a scoped, revocable, read-only token, so a desktop AI tool, a coding agent or an internal system can query it as a source of truth. Start with one base and a small group; grow when real questions show what is missing."
+          }
+        },
+        "faq": {
+          "q1": {
+            "q": "How is an AI knowledge base different from a generic AI chat?",
+            "a": "A generic chat answers from what it learned in training and can make things up. An AI knowledge base first retrieves passages from your own sources and answers from them, citing every claim. If the answer is not in your sources, the agent says so."
+          },
+          "q2": {
+            "q": "How many documents do I need to start?",
+            "a": "Few. A useful base can start with the ten or twenty documents an expert would use to answer the questions of one process. A small, current base beats a large, messy one."
+          },
+          "q3": {
+            "q": "Do I need a technical team to build it?",
+            "a": "No. In Doctiling chunking, indexing and citation are already built: you upload the sources, organise them and curate them from the studio. What you do need is someone who knows the subject and decides what goes in and what comes out."
+          }
+        },
+        "seo": {
+          "title": "How to build an AI knowledge base | Doctiling",
+          "description": "A guide to building an AI knowledge base for your team: which sources go in, how to structure them, who curates them and how to query them with citations.",
+          "ogAlt": "Guide: how to build an AI knowledge base for a team",
+          "keywords": "AI knowledge base, how to build a knowledge base, knowledge management, team knowledge base, AI with citations, knowledge curation"
+        }
+      },
+      "what-is-mcp": {
+        "h1": "What MCP is and how to connect your knowledge base",
+        "card": "The protocol that lets AI tools query your sources, and how to connect them with a safe token.",
+        "lede": "MCP (Model Context Protocol) is an open standard that lets an AI tool — a desktop assistant, a coding agent, a chat — connect to an external data source and query it while it works. Connecting your knowledge base over MCP makes those tools answer from your documents, not from what they remember.",
+        "sections": {
+          "s1": {
+            "h": "The problem MCP solves",
+            "body": "Every AI tool your team uses knows a lot about the world and nothing about your company: it does not know your contracts, your architecture decisions or your procedures. Until recently, giving it that context meant copying and pasting, or building a custom integration for each tool.\n\nMCP defines a common way to do it. A data source is exposed once as an MCP server and any compatible client can query it, with no custom integrations."
+          },
+          "s2": {
+            "h": "How it works, in plain terms",
+            "body": "There are two pieces. The MCP server exposes tools — for example \"search this base\" or \"read this document\" — and describes what each one does. The MCP client is the AI tool: it reads those descriptions and decides when to call them to answer what it is asked.\n\nThe client does not get a copy of your data. It asks for what it needs for each question and the server decides what to return, based on the permissions of the token it connected with."
+          },
+          "s3": {
+            "h": "What changes when the source is a curated base",
+            "body": "Connecting a folder of files over MCP gives the tool access to everything, drafts and old versions included. Connecting a curated knowledge base gives it access only to what your team has validated.\n\nIn Doctiling, a base's MCP endpoint returns passages with their citation: the source document and section. The tool asking can show that citation, and whoever reads the answer can check it."
+          },
+          "s4": {
+            "h": "Security: scoped, revocable tokens",
+            "body": "MCP access in Doctiling goes through a read-only token, scoped to one knowledge base and revocable at any time. A token for the engineering team's coding agent does not open the legal team's base.\n\nIf a tool is no longer used or someone leaves the team, you revoke their token and access ends. For organisations with strict requirements, the self-hosted version runs the same product on their own infrastructure."
+          },
+          "s5": {
+            "h": "How to connect it, step by step",
+            "body": "First, build and curate the base you want to expose: only what should be a source of truth. Second, create an MCP token for that base from the studio. Third, add the endpoint URL and the token to the settings of the tool that will query it; most compatible clients have a section for MCP servers.\n\nFrom then on, when you ask something the base answers, the tool will query it and bring back the answer with its citation. Review from time to time which tokens are still active."
+          }
+        },
+        "faq": {
+          "q1": {
+            "q": "Does MCP belong to a particular AI vendor?",
+            "a": "No. It is an open standard implemented by several desktop AI tools, coding agents and platforms. A base exposed over MCP serves any compatible client."
+          },
+          "q2": {
+            "q": "Can the connected tool modify my base?",
+            "a": "No. In Doctiling the MCP token is read-only: the tool queries and gets cited answers, but it does not edit or delete content."
+          },
+          "q3": {
+            "q": "How is MCP different from an API?",
+            "a": "An API is called by a program written for it. MCP is used by an AI tool that reads the description of each operation and decides on its own when to call it. That is why connecting a base over MCP needs no code on the client side."
+          }
+        },
+        "seo": {
+          "title": "What is MCP (Model Context Protocol)? | Doctiling",
+          "description": "What MCP is, how it works and how to connect a knowledge base so your AI tools answer from your documents with citations, through scoped, revocable tokens.",
+          "ogAlt": "Guide: what MCP is and how to connect a knowledge base",
+          "keywords": "what is MCP, Model Context Protocol, MCP server, connect knowledge base, MCP knowledge base, AI integrations"
+        }
+      },
+      "rag-vs-curated-knowledge-base": {
+        "h1": "RAG vs a curated knowledge base: what changes in the answers",
+        "card": "Why retrieving passages is not enough, and what curation adds to the quality of an answer.",
+        "lede": "RAG (retrieval-augmented generation) is the technique: find relevant passages in your documents and hand them to the model before it answers. A curated knowledge base is what feeds that technique. RAG decides how to search; curation decides what is worth finding.",
+        "sections": {
+          "s1": {
+            "h": "What RAG does",
+            "body": "A RAG system cuts documents into chunks, indexes them by meaning and, for each question, retrieves the most similar chunks and gives them to the model along with the question. The model answers from those chunks instead of only from memory.\n\nIt is the basis of almost every assistant that answers from your own documents, and it greatly reduces made-up answers. But RAG retrieves what it finds: if what it finds is outdated or contradictory, so is the answer."
+          },
+          "s2": {
+            "h": "Where RAG over uncurated documents fails",
+            "body": "Three failures keep coming back. First: versions. The index holds the 2023 policy and the 2025 one, and the system retrieves whichever looks most like the question, not the current one. Second: lost structure. A PDF table flattened to plain text mixes rows and columns, and the model reads figures that do not belong together. Third: noise. Drafts, emails and duplicates compete with the documents that matter.\n\nNone of these failures is fixed by a better model. They are fixed at the source."
+          },
+          "s3": {
+            "h": "What a curated knowledge base adds",
+            "body": "Curating means deciding what goes in, in what form and who answers for it. In practice: one current version of each document, tables that stay tables, relationships kept as a graph and a person who retires what is obsolete.\n\nOn top of that base, retrieval works with reliable material. Doctiling combines search by meaning and by keyword over blocks cut at headings, and every answer cites the exact block, so an error can be traced back to its source and fixed there."
+          },
+          "s4": {
+            "h": "Build your own RAG or use a managed base",
+            "body": "Running an in-house RAG takes a conversion pipeline, chunking, embeddings, a vector index, citation, permissions and someone to maintain it all. It makes sense when you need full control of every piece.\n\nFor most teams the value is elsewhere: in which sources go into each base, who has access and from which tools it is queried. A managed base like Doctiling ships that pipeline built and leaves those decisions in your hands. If everything must run on your infrastructure, there is a self-hosted version."
+          },
+          "s5": {
+            "h": "How to tell whether your system needs curation",
+            "body": "Ask ten real questions from your process and check the citations of each answer. If they point to expired documents, drafts or the wrong section, the problem is not retrieval: it is the base.\n\nStart with the process that gets the most repeated questions, keep only what is current in the base, give it an owner and ask the same ten questions again. The difference between the two rounds is what curation brings."
+          }
+        },
+        "faq": {
+          "q1": {
+            "q": "Does a curated knowledge base replace RAG?",
+            "a": "No, it complements it. RAG is the technique of retrieving passages before answering; the curated base is the material it works on. Doctiling runs retrieval over a base your team curates."
+          },
+          "q2": {
+            "q": "Why does my RAG assistant cite old documents?",
+            "a": "Because it retrieves the chunk that looks most like the question, not the most recent one. If the index holds several versions of a document, it can bring back any of them. The fix is to keep only the current version in the base."
+          },
+          "q3": {
+            "q": "Does curating a base take a lot of time?",
+            "a": "Less than correcting wrong answers. Start with a small base for one process, one owner and a periodic review of what goes in and out. The citations on every answer show where curation is needed."
+          }
+        },
+        "seo": {
+          "title": "RAG vs a curated knowledge base | Doctiling",
+          "description": "What RAG is, where it fails over uncurated documents and what a curated knowledge base adds to the quality and traceability of AI answers.",
+          "ogAlt": "Guide: RAG compared with a curated knowledge base",
+          "keywords": "RAG, what is RAG, retrieval augmented generation, RAG vs knowledge base, curated knowledge base, AI with citations, enterprise RAG"
         }
       }
     }

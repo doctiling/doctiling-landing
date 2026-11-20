@@ -25,6 +25,9 @@ import {
 import { USE_CASE_FAQ_KEYS, USE_CASE_SLUGS, USE_CASES } from '../src/use-cases';
 import { COMPARE, COMPARE_FAQ_KEYS, COMPARE_ROW_KEYS, COMPARE_SLUGS } from '../src/compare';
 import { LANDING_MESSAGES } from '../src/i18n';
+import { GUIDES, GUIDE_FAQ_KEYS, GUIDE_SECTION_KEYS, GUIDE_SLUGS, paragraphs } from '../src/guides';
+import { guideJsonLd } from '../src/seo';
+import { guidePath } from '../src/routes';
 import { FAQ_KEYS } from '../src/components/faq-keys';
 
 const SITE = 'https://www.doctiling.app';
@@ -33,7 +36,7 @@ const LOCALES = ['en', 'es'] as const;
 describe('routes', () => {
   it('exposes the home plus the three deep-dive pages', () => {
     expect(LANDING_SLUGS).toEqual(['landing', 'documents', 'connect', 'verticals']);
-    expect(LANDING_PUBLIC_SEGMENTS).toEqual(['/landing', '/documents', '/connect', '/verticals', '/use-cases', '/compare']);
+    expect(LANDING_PUBLIC_SEGMENTS).toEqual(['/landing', '/documents', '/connect', '/verticals', '/use-cases', '/compare', '/guides']);
   });
 
   it('generates one use-case page per catalogue entry', () => {
@@ -42,6 +45,7 @@ describe('routes', () => {
       ...LANDING_SLUGS,
       ...USE_CASE_SLUGS.map((s) => `use-cases/${s}`),
       ...COMPARE_SLUGS.map((s) => `compare/${s}`),
+      ...GUIDE_SLUGS.map((s) => `guides/${s}`),
     ]);
   });
 
@@ -200,12 +204,13 @@ describe('seo', () => {
 describe('package manifest', () => {
   it('mirrors the slugs for hosts that read package.json without a TS loader', async () => {
     const pkg = JSON.parse(readFileSync(resolve(process.cwd(), 'package.json'), 'utf8')) as {
-      doctiling: { slugs: string[]; segments: string[]; useCases: string[]; compare: string[] };
+      doctiling: { slugs: string[]; segments: string[]; useCases: string[]; compare: string[]; guides: string[] };
     };
     expect(pkg.doctiling.slugs).toEqual([...LANDING_SLUGS]);
     expect(pkg.doctiling.segments).toEqual([...LANDING_SEGMENTS]);
     expect(pkg.doctiling.useCases).toEqual([...USE_CASE_SLUGS]);
     expect(pkg.doctiling.compare).toEqual([...COMPARE_SLUGS]);
+    expect(pkg.doctiling.guides).toEqual([...GUIDE_SLUGS]);
   });
 });
 
@@ -252,5 +257,57 @@ describe('search basics of the home (SEO review 2026-11-20)', () => {
     const glean = a.find((e) => e.url === `${SITE}/en/compare/glean`)!;
     expect(glean.lastModified.toISOString().slice(0, 10)).toBe(LANDING_PAGE_UPDATED.compare);
     for (const date of Object.values(LANDING_PAGE_UPDATED)) expect(date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+  });
+});
+
+describe('guides (SEO review 2026-11-20, point 6)', () => {
+  it('publishes the three guides the review asked for', () => {
+    expect(GUIDE_SLUGS).toEqual(['ai-knowledge-base', 'what-is-mcp', 'rag-vs-curated-knowledge-base']);
+  });
+
+  it('keeps every guide title within 60 characters and description within 155', () => {
+    for (const slug of GUIDE_SLUGS) {
+      for (const locale of LOCALES) {
+        const copy = LANDING_SEO_COPY[guidePath(slug)][locale];
+        expect(copy.title.length, `${locale}/${slug} title`).toBeLessThanOrEqual(60);
+        expect(copy.description.length, `${locale}/${slug} description`).toBeLessThanOrEqual(155);
+        expect(copy.description.length).toBeGreaterThan(80);
+      }
+    }
+  });
+
+  it('gives every guide a quotable lede, real sections and its FAQ in both locales', () => {
+    for (const slug of GUIDE_SLUGS) {
+      for (const locale of LOCALES) {
+        const item = (LANDING_MESSAGES[locale] as any).guidesPage.items[slug];
+        expect(item.lede.length, `${locale}/${slug} lede`).toBeGreaterThan(150);
+        for (const key of GUIDE_SECTION_KEYS) {
+          expect(item.sections[key].h.length).toBeGreaterThan(5);
+          expect(paragraphs(item.sections[key].body).length, `${locale}/${slug}/${key}`).toBeGreaterThanOrEqual(2);
+        }
+        for (const q of GUIDE_FAQ_KEYS) expect(item.faq[q].a.length).toBeGreaterThan(40);
+      }
+    }
+  });
+
+  it('describes a guide as an Article with real dates, a breadcrumb and its FAQ', () => {
+    const ld = guideJsonLd('what-is-mcp', { siteUrl: SITE, locale: 'es' }) as { '@graph': Array<Record<string, any>> };
+    const article = ld['@graph'].find((n) => n['@type'] === 'Article')!;
+    expect(article.headline).toBe((LANDING_MESSAGES.es as any).guidesPage.items['what-is-mcp'].h1);
+    expect(article.datePublished).toBe(GUIDES['what-is-mcp'].published);
+    expect(article.dateModified).toBe(GUIDES['what-is-mcp'].updated);
+    expect(article.mainEntityOfPage).toBe(`${SITE}/es/guides/what-is-mcp`);
+    expect(article.inLanguage).toBe('es');
+    const faq = ld['@graph'].find((n) => n['@type'] === 'FAQPage')!;
+    expect(faq.mainEntity).toHaveLength(GUIDE_FAQ_KEYS.length);
+    const og = landingMetadata('guides/what-is-mcp', { siteUrl: SITE, locale: 'en' }).openGraph as Record<string, unknown>;
+    expect(og.type).toBe('article');
+  });
+
+  it('stamps each guide in the sitemap with its own updated date', () => {
+    const entries = landingSitemapEntries(SITE, LOCALES);
+    const rag = entries.find((e) => e.url === `${SITE}/en/guides/rag-vs-curated-knowledge-base`)!;
+    expect(rag.lastModified.toISOString().slice(0, 10)).toBe(GUIDES['rag-vs-curated-knowledge-base'].updated);
+    expect(rag.priority).toBe(0.7);
   });
 });

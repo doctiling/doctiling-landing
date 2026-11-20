@@ -1,5 +1,6 @@
 import { COMPARE_SLUGS, type CompareSlug } from './compare';
 import { USE_CASE_SLUGS, type UseCaseSlug } from './use-cases';
+import { GUIDES, GUIDE_SLUGS, type GuideSlug } from './guides';
 
 // The public pages this package renders, as locale-less paths. The host mounts
 // one route per slug plus one dynamic route per catalogue segment
@@ -18,22 +19,33 @@ export const LANDING_USE_CASES_SEGMENT = 'use-cases';
 /** Segment of the catalogue-generated comparison pages: `/{locale}/compare/{slug}`. */
 export const LANDING_COMPARE_SEGMENT = 'compare';
 
+/** Segment of the catalogue-generated guides: `/{locale}/guides/{slug}`. */
+export const LANDING_GUIDES_SEGMENT = 'guides';
+
 /** Every top-level path segment the package owns (static pages + catalogue segments). */
-export const LANDING_SEGMENTS = [...LANDING_SLUGS, LANDING_USE_CASES_SEGMENT, LANDING_COMPARE_SEGMENT] as const;
+export const LANDING_SEGMENTS = [
+  ...LANDING_SLUGS,
+  LANDING_USE_CASES_SEGMENT,
+  LANDING_COMPARE_SEGMENT,
+  LANDING_GUIDES_SEGMENT,
+] as const;
 
 export type UseCasePath = `use-cases/${UseCaseSlug}`;
 export type ComparePath = `compare/${CompareSlug}`;
+export type GuidePath = `guides/${GuideSlug}`;
 /** Any page this package renders, without the locale. */
-export type LandingPagePath = LandingSlug | UseCasePath | ComparePath;
+export type LandingPagePath = LandingSlug | UseCasePath | ComparePath | GuidePath;
 
 export const useCasePath = (slug: UseCaseSlug): UseCasePath => `${LANDING_USE_CASES_SEGMENT}/${slug}`;
 export const comparePath = (slug: CompareSlug): ComparePath => `${LANDING_COMPARE_SEGMENT}/${slug}`;
+export const guidePath = (slug: GuideSlug): GuidePath => `${LANDING_GUIDES_SEGMENT}/${slug}`;
 
 /** Every page, static ones first, then the catalogues. */
 export const LANDING_PAGE_PATHS: readonly LandingPagePath[] = [
   ...LANDING_SLUGS,
   ...USE_CASE_SLUGS.map(useCasePath),
   ...COMPARE_SLUGS.map(comparePath),
+  ...GUIDE_SLUGS.map(guidePath),
 ];
 
 /** Path segments the host must leave reachable without a session (prefixes). */
@@ -56,7 +68,8 @@ function priorityOf(path: LandingPagePath): number {
  * Day each page's content last changed (the sitemap's `lastmod`). A request
  * time here would change on every crawl and teach search engines to ignore the
  * field, so it is a real date: bump the entry of the page you edit, in the same
- * commit. Catalogue pages share their segment's date.
+ * commit. Use-case and comparison pages share their segment's date; a guide
+ * carries its own (`GUIDES[slug].updated`).
  */
 export const LANDING_PAGE_UPDATED: Record<LandingSlug | typeof LANDING_USE_CASES_SEGMENT | typeof LANDING_COMPARE_SEGMENT, string> = {
   landing: '2026-11-20',
@@ -68,6 +81,8 @@ export const LANDING_PAGE_UPDATED: Record<LandingSlug | typeof LANDING_USE_CASES
 };
 
 export function pageLastModified(path: LandingPagePath): Date {
+  const [segment, slug] = path.split('/');
+  if (segment === LANDING_GUIDES_SEGMENT) return new Date(`${GUIDES[slug as GuideSlug].updated}T00:00:00Z`);
   const key = path.split('/')[0] as keyof typeof LANDING_PAGE_UPDATED;
   return new Date(`${LANDING_PAGE_UPDATED[key]}T00:00:00Z`);
 }

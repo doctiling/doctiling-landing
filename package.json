@@ -1,7 +1,7 @@
 {
   "name": "@doctiling/landing",
-  "version": "0.14.0",
-  "description": "Doctiling marketing surface (landing + documents, connect, verticals, use-case and comparison pages) as a host-agnostic Next.js package",
+  "version": "0.15.0",
+  "description": "Doctiling marketing surface (landing + documents, connect, verticals, use-case, comparison and guide pages) as a host-agnostic Next.js package",
   "main": "src/index.ts",
   "types": "src/index.ts",
   "exports": {
@@ -66,7 +66,7 @@
     "vitest": "^4.1.5"
   },
   "doctiling": {
-    "$comment": "Mirror of src/routes.ts, src/use-cases.ts and src/compare.ts for hosts that read the package without a TS loader (plain-Node build scripts). `slugs` = one static route each; `segments` = every top-level path segment the package owns (the studio-edition leak check must scan these); `useCases` / `compare` = the pages under /{locale}/use-cases/ and /{locale}/compare/. tests/routes-seo.test.ts fails if they drift.",
+    "$comment": "Mirror of src/routes.ts, src/use-cases.ts, src/compare.ts and src/guides.ts for hosts that read the package without a TS loader (plain-Node build scripts). `slugs` = one static route each; `segments` = every top-level path segment the package owns (the studio-edition leak check must scan these); `useCases` / `compare` / `guides` = the pages under /{locale}/use-cases/, /{locale}/compare/ and /{locale}/guides/. tests/routes-seo.test.ts fails if they drift.",
     "slugs": [
       "landing",
       "documents",
@@ -79,7 +79,8 @@
       "connect",
       "verticals",
       "use-cases",
-      "compare"
+      "compare",
+      "guides"
     ],
     "useCases": [
       "legal",
@@ -93,6 +94,11 @@
       "notion-ai",
       "guru",
       "glean"
+    ],
+    "guides": [
+      "ai-knowledge-base",
+      "what-is-mcp",
+      "rag-vs-curated-knowledge-base"
     ]
   }
 }

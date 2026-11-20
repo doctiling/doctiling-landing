@@ -4,6 +4,7 @@ import { renderWithHost } from '../helpers/host';
 import userEvent from '@testing-library/user-event';
 import { USE_CASE_SLUGS } from '../../src/use-cases';
 import { COMPARE_SLUGS } from '../../src/compare';
+import { GUIDE_SLUGS } from '../../src/guides';
 
 class ResizeObserverMock {
   observe() {}
@@ -406,6 +407,12 @@ describe('LandingClient', () => {
       expect(screen.getByRole('link', { name: `comparePage.items.${slug}.h1` })).toHaveAttribute(
         'href',
         `/es/compare/${slug}`,
+      );
+    }
+    for (const slug of GUIDE_SLUGS) {
+      expect(screen.getByRole('link', { name: `guidesPage.items.${slug}.h1` })).toHaveAttribute(
+        'href',
+        `/es/guides/${slug}`,
       );
     }
   });

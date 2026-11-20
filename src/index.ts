@@ -27,6 +27,7 @@ export { default as ConnectPage } from './components/ConnectPageClient';
 export { default as VerticalsPage } from './components/VerticalsPageClient';
 export { default as UseCasePage, USE_CASE_CTA } from './components/UseCasePageClient';
 export { default as ComparePage, COMPARE_CTA } from './components/ComparePageClient';
+export { default as GuidePage, GUIDE_CTA } from './components/GuidePageClient';
 
 export {
   LANDING_HOME_SLUG,
@@ -36,7 +37,9 @@ export {
   LANDING_SEGMENTS,
   LANDING_USE_CASES_SEGMENT,
   LANDING_COMPARE_SEGMENT,
+  LANDING_GUIDES_SEGMENT,
   comparePath,
+  guidePath,
   LANDING_PAGE_PATHS,
   useCasePath,
   landingSitemapEntries,
@@ -45,14 +48,24 @@ export {
   type LandingPagePath,
   type UseCasePath,
   type ComparePath,
+  type GuidePath,
 } from './routes';
 
 export { USE_CASE_SLUGS, USE_CASES, isUseCaseSlug, type UseCaseSlug } from './use-cases';
 export { COMPARE_SLUGS, COMPARE, isCompareSlug, type CompareSlug } from './compare';
+export { GUIDE_SLUGS, GUIDES, isGuideSlug, type GuideSlug } from './guides';
 
 export { llmsTxt, llmsFullTxt, LLMS_SITE_URL } from './llms';
 
-export { landingMetadata, landingHomeJsonLd, verticalsJsonLd, useCaseJsonLd, compareJsonLd, LANDING_SEO_COPY } from './seo';
+export {
+  landingMetadata,
+  landingHomeJsonLd,
+  verticalsJsonLd,
+  useCaseJsonLd,
+  compareJsonLd,
+  guideJsonLd,
+  LANDING_SEO_COPY,
+} from './seo';
 
 export {
   LANDING_LOCALES,

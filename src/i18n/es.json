@@ -809,7 +809,8 @@
         "legal": "Legal",
         "contact": "Contacto",
         "useCases": "Casos de uso",
-        "compare": "Comparativas"
+        "compare": "Comparativas",
+        "guides": "Guías"
       },
       "useCases": {
         "legal": "IA para equipos legales",
@@ -2187,6 +2188,159 @@
             "q": "¿Hay una opción gratuita?",
             "a": "Sí. El puesto alojado es patrocinado y por invitación, con IA incluida y sin tarjeta."
           }
+        }
+      }
+    }
+  },
+  "guidesPage": {
+    "labels": {
+      "eyebrow": "guía",
+      "breadcrumb": "Guías",
+      "updated": "Actualizada el {date}",
+      "faq": "Preguntas frecuentes",
+      "useCases": "Casos de uso relacionados",
+      "related": "Otras guías"
+    },
+    "items": {
+      "ai-knowledge-base": {
+        "h1": "Cómo armar una base de conocimiento con IA para tu equipo",
+        "card": "Qué fuentes entran, cómo se estructuran, quién las cura y cómo se consultan con citas.",
+        "lede": "Una base de conocimiento con IA es el conjunto de fuentes que tu equipo decide confiar — contratos, manuales, informes, decisiones — organizado para que un agente de IA responda desde ellas y cite de dónde sale cada afirmación. Armarla bien depende menos de la tecnología que de cuatro decisiones: qué entra, cómo se estructura, quién la cura y desde dónde se consulta.",
+        "sections": {
+          "s1": {
+            "h": "Empieza por un proceso, no por todos los documentos",
+            "body": "El error más común es subir la carpeta compartida completa y esperar que la IA la entienda. Una base con todo responde con todo: versiones viejas, borradores y documentos que se contradicen.\n\nElige un proceso concreto — responder dudas de un contrato marco, preparar un comité, atender preguntas de soporte — y arma una base solo para él. En Doctiling cada base de conocimiento tiene sus propias fuentes, su propio system prompt, sus herramientas y sus permisos, así que un segundo proceso es una segunda base, no una carpeta más dentro de la primera."
+          },
+          "s2": {
+            "h": "Elige las fuentes que de verdad responden la pregunta",
+            "body": "Para cada base, haz una lista corta: qué documentos usaría una persona experta para responder las preguntas de ese proceso. Esa lista es la base. Lo demás se puede agregar después, cuando una pregunta real lo pida.\n\nPDF, Word, hojas de cálculo, páginas web y notas sirven. Lo que importa es que sean la versión vigente y que alguien pueda decir \"esto es correcto\". Si dos documentos se contradicen, decide cuál manda antes de subirlos, o retira el que quedó obsoleto."
+          },
+          "s3": {
+            "h": "Estructura: texto, tablas y grafos",
+            "body": "No todo el conocimiento es prosa. Un contrato se lee por cláusulas; una lista de precios o un estado financiero es una tabla; un mapa de sistemas o de partes interesadas es un grafo de relaciones.\n\nDoctiling guarda las tres formas como documentos de la misma base: el texto se corta en bloques por encabezado, las tablas de un PDF se reconstruyen como tablas consultables y los grafos se consultan por vecindad. Así el agente puede citar la cláusula exacta, sumar una columna o seguir una relación, en lugar de adivinar a partir de texto plano."
+          },
+          "s4": {
+            "h": "Curaduría: el paso que separa una base útil de un archivo",
+            "body": "Indexar documentos es la parte fácil. Lo que hace confiable una base es que alguien con criterio la mantenga: edita lo que quedó mal convertido, valida lo que se usa para decidir y retira lo que ya no aplica.\n\nAsigna una persona dueña por base y dale tiempo para esa tarea. Con roles (propietario, admin, colaborador, lector) decides quién puede cambiar el contenido y quién solo consulta. Cada respuesta del agente cita el bloque de donde salió, así los errores se ven y se corrigen en la fuente, no en la respuesta."
+          },
+          "s5": {
+            "h": "Consulta: en el estudio, en el chat del equipo o por MCP",
+            "body": "Una base sirve cuando la gente la usa donde ya trabaja. En el estudio de Doctiling se conversa con el agente, que responde con citas y produce tablas, gráficas, diagramas o documentos nuevos a partir de la base.\n\nFuera del estudio, la misma base se puede exponer por MCP con un token acotado, revocable y de solo lectura, para que una herramienta de IA de escritorio, un agente de código o un sistema interno la consulten como fuente de verdad. Empieza con una base y un grupo pequeño; amplía cuando las preguntas reales muestren qué falta."
+          }
+        },
+        "faq": {
+          "q1": {
+            "q": "¿Qué diferencia hay entre una base de conocimiento con IA y un chat de IA genérico?",
+            "a": "Un chat genérico responde con lo que aprendió en su entrenamiento y puede inventar. Una base de conocimiento con IA recupera primero los pasajes de tus propias fuentes y responde desde ellos, citando cada afirmación. Si la respuesta no está en tus fuentes, el agente lo dice."
+          },
+          "q2": {
+            "q": "¿Cuántos documentos necesito para empezar?",
+            "a": "Pocos. Una base útil puede empezar con los diez o veinte documentos que una persona experta usaría para responder las preguntas de un proceso. Es mejor una base pequeña y vigente que una grande y desordenada."
+          },
+          "q3": {
+            "q": "¿Necesito un equipo técnico para armarla?",
+            "a": "No. En Doctiling el troceado, el índice y la citación ya están construidos: subes las fuentes, las organizas y las curas desde el estudio. Lo que sí necesitas es una persona que conozca el tema y decida qué entra y qué sale."
+          }
+        },
+        "seo": {
+          "title": "Cómo armar una base de conocimiento con IA | Doctiling",
+          "description": "Guía para armar una base de conocimiento con IA para tu equipo: qué fuentes entran, cómo se estructuran, quién las cura y cómo se consultan con citas.",
+          "ogAlt": "Guía: cómo armar una base de conocimiento con IA para un equipo",
+          "keywords": "base de conocimiento con IA, cómo crear una base de conocimiento, gestión del conocimiento, base de conocimiento para equipos, IA con citas, curación de conocimiento"
+        }
+      },
+      "what-is-mcp": {
+        "h1": "Qué es MCP y cómo conectar tu base de conocimiento",
+        "card": "El protocolo que deja a herramientas de IA consultar tus fuentes, y cómo hacerlo con un token seguro.",
+        "lede": "MCP (Model Context Protocol) es un estándar abierto que permite a una herramienta de IA — un asistente de escritorio, un agente de código, un chat — conectarse a una fuente de datos externa y consultarla mientras trabaja. Conectar tu base de conocimiento por MCP hace que esas herramientas respondan con tus documentos, no con lo que recuerdan.",
+        "sections": {
+          "s1": {
+            "h": "El problema que resuelve MCP",
+            "body": "Cada herramienta de IA que usa tu equipo sabe mucho del mundo y nada de tu empresa: no conoce tus contratos, tus decisiones de arquitectura ni tus procedimientos. Hasta hace poco, darle ese contexto significaba copiar y pegar, o construir una integración a medida para cada herramienta.\n\nMCP define una forma común de hacerlo. Una fuente de datos se expone una vez como servidor MCP y cualquier cliente compatible puede consultarla, sin integraciones a medida."
+          },
+          "s2": {
+            "h": "Cómo funciona, en términos simples",
+            "body": "Hay dos piezas. El servidor MCP expone herramientas — por ejemplo, \"buscar en esta base\" o \"leer este documento\" — y describe qué hace cada una. El cliente MCP es la herramienta de IA: lee esas descripciones y decide cuándo llamarlas para responder lo que le preguntan.\n\nEl cliente no recibe una copia de tus datos. Pide lo que necesita para cada pregunta y el servidor decide qué devolver según los permisos del token con el que se conectó."
+          },
+          "s3": {
+            "h": "Qué cambia cuando la fuente es una base curada",
+            "body": "Conectar una carpeta de archivos por MCP le da a la herramienta acceso a todo, incluidos borradores y versiones viejas. Conectar una base de conocimiento curada le da acceso solo a lo que tu equipo validó.\n\nEn Doctiling, el endpoint MCP de una base devuelve pasajes con su cita: documento y sección de origen. La herramienta que pregunta puede mostrar esa cita, y quien lee la respuesta puede verificarla."
+          },
+          "s4": {
+            "h": "Seguridad: tokens acotados y revocables",
+            "body": "El acceso por MCP en Doctiling pasa por un token de solo lectura, acotado a una base de conocimiento y revocable en cualquier momento. Un token para el agente de código del equipo de ingeniería no abre la base del área legal.\n\nSi una herramienta deja de usarse o una persona sale del equipo, revocas su token y el acceso termina. Para organizaciones con requisitos estrictos, la versión self-hosted corre el mismo producto en su propia infraestructura."
+          },
+          "s5": {
+            "h": "Cómo conectarla, paso a paso",
+            "body": "Primero, arma y cura la base que quieres exponer: solo lo que debe ser fuente de verdad. Segundo, crea desde el estudio un token MCP para esa base. Tercero, agrega la URL del endpoint y el token en la configuración de la herramienta que lo va a consultar; la mayoría de los clientes compatibles tiene un apartado para servidores MCP.\n\nDesde ahí, cuando preguntes algo que la base responde, la herramienta la consultará y traerá la respuesta con su cita. Revisa cada cierto tiempo qué tokens siguen activos."
+          }
+        },
+        "faq": {
+          "q1": {
+            "q": "¿MCP es de un proveedor de IA en particular?",
+            "a": "No. Es un estándar abierto y lo implementan varias herramientas de IA de escritorio, agentes de código y plataformas. Una base expuesta por MCP sirve a cualquier cliente compatible."
+          },
+          "q2": {
+            "q": "¿La herramienta conectada puede modificar mi base?",
+            "a": "No. En Doctiling el token MCP es de solo lectura: la herramienta consulta y recibe respuestas citadas, pero no edita ni borra contenido."
+          },
+          "q3": {
+            "q": "¿Qué diferencia hay entre MCP y una API?",
+            "a": "Una API la llama un programa escrito para ella. MCP la usa una herramienta de IA que lee la descripción de cada operación y decide sola cuándo llamarla. Por eso conectar una base por MCP no exige escribir código en el cliente."
+          }
+        },
+        "seo": {
+          "title": "Qué es MCP (Model Context Protocol) | Doctiling",
+          "description": "Qué es MCP, cómo funciona y cómo conectar tu base de conocimiento para que tus herramientas de IA respondan con tus documentos, con citas y tokens seguros.",
+          "ogAlt": "Guía: qué es MCP y cómo conectar una base de conocimiento",
+          "keywords": "qué es MCP, Model Context Protocol, servidor MCP, conectar base de conocimiento, MCP base de conocimiento, integraciones IA"
+        }
+      },
+      "rag-vs-curated-knowledge-base": {
+        "h1": "RAG vs base de conocimiento curada: qué cambia en las respuestas",
+        "card": "Por qué recuperar pasajes no basta, y qué agrega la curaduría a la calidad de una respuesta.",
+        "lede": "RAG (generación aumentada por recuperación) es la técnica: buscar pasajes relevantes en tus documentos y dárselos al modelo antes de que responda. Una base de conocimiento curada es lo que alimenta esa técnica. RAG decide cómo se busca; la curaduría decide qué vale la pena encontrar.",
+        "sections": {
+          "s1": {
+            "h": "Qué hace RAG",
+            "body": "Un sistema RAG corta los documentos en fragmentos, los indexa por significado y, ante cada pregunta, recupera los fragmentos más parecidos y se los entrega al modelo junto con la pregunta. El modelo responde desde esos fragmentos en vez de solo desde su memoria.\n\nEs la base de casi cualquier asistente que responde con documentos propios, y reduce mucho las respuestas inventadas. Pero RAG recupera lo que encuentra: si lo que encuentra está desactualizado o es contradictorio, la respuesta también lo estará."
+          },
+          "s2": {
+            "h": "Dónde falla un RAG sobre documentos sin curar",
+            "body": "Tres fallas se repiten. La primera: versiones. El índice tiene la política de 2023 y la de 2025, y el sistema recupera la que más se parece a la pregunta, no la vigente. La segunda: estructura perdida. Una tabla de un PDF convertida a texto plano mezcla filas y columnas, y el modelo lee cifras que no van juntas. La tercera: ruido. Borradores, correos y duplicados compiten con los documentos que sí importan.\n\nNinguna de estas fallas se arregla con un mejor modelo. Se arreglan en la fuente."
+          },
+          "s3": {
+            "h": "Qué agrega una base de conocimiento curada",
+            "body": "Curar es decidir qué entra, en qué forma y quién responde por ello. En la práctica: una versión vigente de cada documento, tablas que siguen siendo tablas, relaciones guardadas como grafo y una persona que retira lo obsoleto.\n\nSobre esa base, la recuperación trabaja con material confiable. Doctiling combina búsqueda por significado y por palabras clave sobre bloques cortados por encabezado, y cada respuesta cita el bloque exacto, así un error se rastrea hasta su fuente y se corrige ahí."
+          },
+          "s4": {
+            "h": "Construir tu propio RAG o usar una base gestionada",
+            "body": "Montar un RAG interno exige un pipeline de conversión, troceado, embeddings, índice vectorial, citación, permisos y alguien que lo mantenga. Tiene sentido cuando necesitas control total de cada pieza.\n\nPara la mayoría de los equipos, el valor está en otra parte: en qué fuentes entran a cada base, quién tiene acceso y desde qué herramientas se consulta. Una base gestionada como Doctiling trae ese pipeline construido y deja en tus manos esas decisiones. Si necesitas que todo corra en tu infraestructura, existe la versión self-hosted."
+          },
+          "s5": {
+            "h": "Cómo saber si tu sistema necesita curaduría",
+            "body": "Haz diez preguntas reales de tu proceso y revisa las citas de cada respuesta. Si las citas apuntan a documentos vencidos, a borradores o a la sección equivocada, el problema no es la recuperación: es la base.\n\nEmpieza por el proceso con más preguntas repetidas, deja en la base solo lo vigente, asigna una persona dueña y vuelve a hacer las mismas diez preguntas. La diferencia entre las dos rondas es lo que aporta la curaduría."
+          }
+        },
+        "faq": {
+          "q1": {
+            "q": "¿Una base de conocimiento curada reemplaza a RAG?",
+            "a": "No, lo complementa. RAG es la técnica de recuperar pasajes antes de responder; la base curada es el material sobre el que trabaja. Doctiling usa recuperación sobre una base que tu equipo cura."
+          },
+          "q2": {
+            "q": "¿Por qué mi asistente con RAG cita documentos viejos?",
+            "a": "Porque recupera el fragmento que más se parece a la pregunta, no el más reciente. Si el índice tiene varias versiones de un documento, puede traer cualquiera. La solución es dejar en la base solo la versión vigente."
+          },
+          "q3": {
+            "q": "¿Curar una base toma mucho tiempo?",
+            "a": "Menos que corregir respuestas equivocadas. Empieza con una base pequeña para un proceso, una persona dueña y una revisión periódica de lo que entra y sale. Las citas de cada respuesta muestran dónde hace falta curar."
+          }
+        },
+        "seo": {
+          "title": "RAG vs base de conocimiento curada | Doctiling",
+          "description": "Qué es RAG, dónde falla sobre documentos sin curar y qué agrega una base de conocimiento curada a la calidad y la trazabilidad de las respuestas de IA.",
+          "ogAlt": "Guía: RAG frente a una base de conocimiento curada",
+          "keywords": "RAG, qué es RAG, generación aumentada por recuperación, RAG vs base de conocimiento, base de conocimiento curada, IA con citas, RAG empresarial"
         }
       }
     }

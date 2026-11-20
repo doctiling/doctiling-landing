@@ -52,16 +52,40 @@ function priorityOf(path: LandingPagePath): number {
   return path.includes('/') ? 0.7 : 0.8;
 }
 
-/** One sitemap entry per page and locale, with hreflang alternates. */
+/**
+ * Day each page's content last changed (the sitemap's `lastmod`). A request
+ * time here would change on every crawl and teach search engines to ignore the
+ * field, so it is a real date: bump the entry of the page you edit, in the same
+ * commit. Catalogue pages share their segment's date.
+ */
+export const LANDING_PAGE_UPDATED: Record<LandingSlug | typeof LANDING_USE_CASES_SEGMENT | typeof LANDING_COMPARE_SEGMENT, string> = {
+  landing: '2026-11-20',
+  documents: '2026-10-27',
+  connect: '2026-10-27',
+  verticals: '2026-11-12',
+  'use-cases': '2026-11-13',
+  compare: '2026-11-13',
+};
+
+export function pageLastModified(path: LandingPagePath): Date {
+  const key = path.split('/')[0] as keyof typeof LANDING_PAGE_UPDATED;
+  return new Date(`${LANDING_PAGE_UPDATED[key]}T00:00:00Z`);
+}
+
+/**
+ * One sitemap entry per page and locale, with hreflang alternates. The third
+ * argument is ignored (kept so hosts that still pass a request time compile);
+ * `lastModified` comes from {@link LANDING_PAGE_UPDATED}.
+ */
 export function landingSitemapEntries(
   siteUrl: string,
   locales: readonly string[],
-  now: Date,
+  _now?: Date,
 ): LandingSitemapEntry[] {
   return LANDING_PAGE_PATHS.flatMap((path) =>
     locales.map((locale) => ({
       url: `${siteUrl}/${locale}/${path}`,
-      lastModified: now,
+      lastModified: pageLastModified(path),
       changeFrequency: 'weekly' as const,
       priority: priorityOf(path),
       alternates: {

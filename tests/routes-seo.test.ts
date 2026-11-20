@@ -8,6 +8,7 @@ import {
   LANDING_SLUGS,
   landingRobotsAllow,
   landingSitemapEntries,
+  LANDING_PAGE_UPDATED,
   comparePath,
   useCasePath,
 } from '../src/routes';
@@ -18,6 +19,8 @@ import {
   compareJsonLd,
   verticalsJsonLd,
   LANDING_SEO_COPY,
+  OG_LOCALES,
+  ORG_PROFILES,
 } from '../src/seo';
 import { USE_CASE_FAQ_KEYS, USE_CASE_SLUGS, USE_CASES } from '../src/use-cases';
 import { COMPARE, COMPARE_FAQ_KEYS, COMPARE_ROW_KEYS, COMPARE_SLUGS } from '../src/compare';
@@ -203,5 +206,51 @@ describe('package manifest', () => {
     expect(pkg.doctiling.segments).toEqual([...LANDING_SEGMENTS]);
     expect(pkg.doctiling.useCases).toEqual([...USE_CASE_SLUGS]);
     expect(pkg.doctiling.compare).toEqual([...COMPARE_SLUGS]);
+  });
+});
+
+describe('search basics of the home (SEO review 2026-11-20)', () => {
+  it('leads the home title with the searched phrase and keeps title ≤ 60 and description ≤ 155', () => {
+    const lead = { es: 'Base de conocimiento con IA para equipos', en: 'AI knowledge base for teams' };
+    for (const locale of LOCALES) {
+      const copy = LANDING_SEO_COPY.landing[locale];
+      expect(copy.title.startsWith(lead[locale])).toBe(true);
+      expect(copy.title.length, `${locale} title`).toBeLessThanOrEqual(60);
+      expect(copy.description.length, `${locale} description`).toBeLessThanOrEqual(155);
+      expect(copy.description.startsWith(lead[locale])).toBe(true);
+    }
+  });
+
+  it('puts the searched phrase in the hero eyebrow, which sits inside the h1', () => {
+    expect((LANDING_MESSAGES.es as any).landing.hero.eyebrow.toLowerCase()).toContain('base de conocimiento con ia');
+    expect((LANDING_MESSAGES.en as any).landing.hero.eyebrow.toLowerCase()).toContain('ai knowledge base');
+  });
+
+  it('targets Latin American Spanish in Open Graph, with Spain and English as alternates', () => {
+    const og = landingMetadata('landing', { siteUrl: SITE, locale: 'es' }).openGraph as Record<string, unknown>;
+    expect(og.locale).toBe('es_419');
+    expect(og.alternateLocale).toEqual(['es_ES', 'en_US']);
+    expect(OG_LOCALES.en[0]).toBe('en_US');
+  });
+
+  it('lists only off-domain profiles in sameAs', () => {
+    const ld = landingHomeJsonLd({ siteUrl: SITE, locale: 'es' }) as { '@graph': Array<Record<string, unknown>> };
+    const org = ld['@graph'].find((n) => n['@type'] === 'Organization')!;
+    expect(org.sameAs).toEqual([...ORG_PROFILES]);
+    for (const url of ORG_PROFILES) {
+      expect(url.startsWith('https://')).toBe(true);
+      expect(url.startsWith(SITE)).toBe(false);
+    }
+  });
+
+  it('stamps the sitemap with the day each page changed, never the request time', () => {
+    const a = landingSitemapEntries(SITE, LOCALES, new Date('2030-01-01T00:00:00Z'));
+    const b = landingSitemapEntries(SITE, LOCALES, new Date('2031-06-15T12:00:00Z'));
+    expect(a.map((e) => e.lastModified.toISOString())).toEqual(b.map((e) => e.lastModified.toISOString()));
+    const home = a.find((e) => e.url === `${SITE}/es/landing`)!;
+    expect(home.lastModified.toISOString().slice(0, 10)).toBe(LANDING_PAGE_UPDATED.landing);
+    const glean = a.find((e) => e.url === `${SITE}/en/compare/glean`)!;
+    expect(glean.lastModified.toISOString().slice(0, 10)).toBe(LANDING_PAGE_UPDATED.compare);
+    for (const date of Object.values(LANDING_PAGE_UPDATED)) expect(date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });
 });

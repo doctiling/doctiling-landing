@@ -22,10 +22,10 @@ type LocalizedCopy = Record<LandingLocale, PageCopy>;
 const STATIC_SEO_COPY: Record<LandingSlug, LocalizedCopy> = {
   landing: {
     en: {
-      title: 'Doctiling — Knowledge curated by experts, worked by AI agents',
+      title: 'AI knowledge base for teams | Doctiling',
       description:
-        'More than document storage or vector search: Doctiling is where your team gathers sources, structures them into documents, tables and graphs, curates them with domain experts and works them with AI agents that produce cited analyses, charts, diagrams and code. Share it or connect it over MCP. Free to start, no credit card.',
-      ogAlt: 'Doctiling — knowledge curated by experts, worked by AI agents',
+        'AI knowledge base for teams, free to start with no credit card. Experts curate your sources; AI agents answer from them and cite every claim.',
+      ogAlt: 'Doctiling — AI knowledge base for teams, curated by experts',
       keywords: [
         'knowledge base AI',
         'knowledge base management',
@@ -46,10 +46,10 @@ const STATIC_SEO_COPY: Record<LandingSlug, LocalizedCopy> = {
       ],
     },
     es: {
-      title: 'Doctiling — Conocimiento curado por expertos, trabajado por agentes de IA',
+      title: 'Base de conocimiento con IA para equipos | Doctiling',
       description:
-        'Más que guardar documentos o buscar vectores: Doctiling es donde tu equipo reúne sus fuentes, las estructura en documentos, tablas y grafos, las cura con expertos del dominio y las trabaja con agentes de IA que producen análisis citados, gráficas, diagramas y código. Compártela o conéctala por MCP. Gratis para empezar, sin tarjeta.',
-      ogAlt: 'Doctiling — conocimiento curado por expertos, trabajado por agentes de IA',
+        'Base de conocimiento con IA para equipos, gratis para empezar y sin tarjeta. Expertos curan tus fuentes; agentes de IA responden desde ellas y citan todo.',
+      ogAlt: 'Doctiling — base de conocimiento con IA para equipos, curada por expertos',
       keywords: [
         'base de conocimiento IA',
         'gestión de bases de conocimiento',
@@ -233,6 +233,19 @@ export interface LandingSeoContext {
   locale: string;
 }
 
+/** Open Graph locales per page language: the first is `og:locale`, the rest `og:locale:alternate`. */
+export const OG_LOCALES: Record<LandingLocale, readonly string[]> = {
+  es: ['es_419', 'es_ES', 'en_US'],
+  en: ['en_US', 'es_419'],
+};
+
+/**
+ * The organization's profiles on other sites (schema.org `sameAs`). Only real,
+ * public profiles go here — each one tells search engines the brand exists off
+ * its own domain. Add LinkedIn, Product Hunt, G2… as they are created.
+ */
+export const ORG_PROFILES: readonly string[] = ['https://github.com/doctiling'];
+
 const ogImage = (siteUrl: string, locale: LandingLocale) => `${siteUrl}/og/og-${locale}.png`;
 const pageUrl = (siteUrl: string, locale: string, path: LandingPagePath) => `${siteUrl}/${locale}/${path}`;
 
@@ -261,7 +274,9 @@ export function landingMetadata(slug: LandingPagePath, { siteUrl, locale }: Land
       description: copy.description,
       url: canonical,
       siteName: 'Doctiling',
-      locale: lang === 'es' ? 'es_ES' : 'en_US',
+      // Spanish targets Latin America first (es_419), Spain stays an alternate.
+      locale: OG_LOCALES[lang][0],
+      alternateLocale: [...OG_LOCALES[lang].slice(1)],
       images: [{ url: image, width: 1200, height: 630, alt: copy.ogAlt }],
     },
     twitter: {
@@ -294,7 +309,7 @@ export function landingHomeJsonLd({ siteUrl, locale }: LandingSeoContext): Recor
         name: 'Doctiling',
         url: siteUrl,
         logo: `${siteUrl}/icon.svg`,
-        sameAs: [siteUrl],
+        sameAs: [...ORG_PROFILES],
         contactPoint: [
           {
             '@type': 'ContactPoint',

@@ -1,9 +1,17 @@
 import type { Metadata } from 'next';
 import { FAQ_KEYS } from './components/faq-keys';
 import { LANDING_MESSAGES, toLandingLocale, type LandingLocale } from './i18n';
-import { LANDING_HOME_SLUG, comparePath, useCasePath, type LandingPagePath, type LandingSlug } from './routes';
+import {
+  LANDING_HOME_SLUG,
+  comparePath,
+  guidePath,
+  useCasePath,
+  type LandingPagePath,
+  type LandingSlug,
+} from './routes';
 import { COMPARE_FAQ_KEYS, COMPARE_SLUGS, type CompareSlug } from './compare';
 import { USE_CASE_FAQ_KEYS, USE_CASE_SLUGS, type UseCaseSlug } from './use-cases';
+import { GUIDES, GUIDE_FAQ_KEYS, GUIDE_SLUGS, type GuideSlug } from './guides';
 
 // Search-engine surface of every landing page: metadata (title, description,
 // canonical + hreflang, Open Graph, Twitter) and the JSON-LD graphs. Server
@@ -189,7 +197,7 @@ interface CatalogueCopy {
   faq: Record<string, { q: string; a: string }>;
 }
 
-type CatalogueNamespace = 'useCasesPage' | 'comparePage';
+type CatalogueNamespace = 'useCasesPage' | 'comparePage' | 'guidesPage';
 
 function catalogueCopy(namespace: CatalogueNamespace, slug: string, locale: LandingLocale): CatalogueCopy {
   const page = (LANDING_MESSAGES[locale] as unknown as Record<CatalogueNamespace, { items: Record<string, CatalogueCopy> }>)[
@@ -202,6 +210,8 @@ function catalogueCopy(namespace: CatalogueNamespace, slug: string, locale: Land
 export const useCaseCopy = (slug: UseCaseSlug, locale: LandingLocale) => catalogueCopy('useCasesPage', slug, locale);
 /** The `comparePage.items.{slug}` block of a dictionary — the copy the page renders. */
 export const compareCopy = (slug: CompareSlug, locale: LandingLocale) => catalogueCopy('comparePage', slug, locale);
+/** The `guidesPage.items.{slug}` block of a dictionary — the copy the page renders. */
+export const guideCopy = (slug: GuideSlug, locale: LandingLocale) => catalogueCopy('guidesPage', slug, locale);
 
 function catalogueSeoCopy(namespace: CatalogueNamespace, slug: string): LocalizedCopy {
   const of = (locale: LandingLocale): PageCopy => {
@@ -218,13 +228,14 @@ function catalogueSeoCopy(namespace: CatalogueNamespace, slug: string): Localize
 
 /**
  * Search copy of every page. Static pages keep theirs here; catalogue pages
- * read it from the dictionaries (`{useCasesPage,comparePage}.items.{slug}.seo`),
+ * read it from the dictionaries (`{useCasesPage,comparePage,guidesPage}.items.{slug}.seo`),
  * so the page and its metadata can never disagree.
  */
 export const LANDING_SEO_COPY = {
   ...STATIC_SEO_COPY,
   ...Object.fromEntries(USE_CASE_SLUGS.map((slug) => [useCasePath(slug), catalogueSeoCopy('useCasesPage', slug)])),
   ...Object.fromEntries(COMPARE_SLUGS.map((slug) => [comparePath(slug), catalogueSeoCopy('comparePage', slug)])),
+  ...Object.fromEntries(GUIDE_SLUGS.map((slug) => [guidePath(slug), catalogueSeoCopy('guidesPage', slug)])),
 } as Record<LandingPagePath, LocalizedCopy>;
 
 export interface LandingSeoContext {
@@ -269,7 +280,7 @@ export function landingMetadata(slug: LandingPagePath, { siteUrl, locale }: Land
       },
     },
     openGraph: {
-      type: 'website',
+      type: slug.startsWith('guides/') ? 'article' : 'website',
       title: copy.title,
       description: copy.description,
       url: canonical,
@@ -454,4 +465,52 @@ export function useCaseJsonLd(slug: UseCaseSlug, ctx: LandingSeoContext): Record
 export function compareJsonLd(slug: CompareSlug, ctx: LandingSeoContext): Record<string, unknown> {
   const lang = toLandingLocale(ctx.locale);
   return catalogueJsonLd(comparePath(slug), compareCopy(slug, lang), COMPARE_FAQ_KEYS, [], ctx);
+}
+
+/** Guide page: Doctiling › Guides › the guide, as an Article with its FAQ. */
+export function guideJsonLd(slug: GuideSlug, { siteUrl, locale }: LandingSeoContext): Record<string, unknown> {
+  const lang = toLandingLocale(locale);
+  const path = guidePath(slug);
+  const url = pageUrl(siteUrl, lang, path);
+  const copy = guideCopy(slug, lang);
+  const entry = GUIDES[slug];
+  const breadcrumb = (LANDING_MESSAGES[lang] as unknown as { guidesPage: { labels: { breadcrumb: string } } }).guidesPage
+    .labels.breadcrumb;
+  const org = { '@type': 'Organization', '@id': `${siteUrl}#org`, name: 'Doctiling', url: siteUrl };
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Doctiling', item: pageUrl(siteUrl, lang, LANDING_HOME_SLUG) },
+          { '@type': 'ListItem', position: 2, name: breadcrumb },
+          { '@type': 'ListItem', position: 3, name: copy.h1, item: url },
+        ],
+      },
+      {
+        '@type': 'Article',
+        '@id': `${url}#article`,
+        headline: copy.h1,
+        description: LANDING_SEO_COPY[path][lang].description,
+        inLanguage: lang,
+        datePublished: entry.published,
+        dateModified: entry.updated,
+        author: org,
+        publisher: { ...org, logo: { '@type': 'ImageObject', url: `${siteUrl}/icon.svg` } },
+        image: ogImage(siteUrl, lang),
+        mainEntityOfPage: url,
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${url}#faq`,
+        inLanguage: lang,
+        mainEntity: GUIDE_FAQ_KEYS.map((key) => ({
+          '@type': 'Question',
+          name: copy.faq[key].q,
+          acceptedAnswer: { '@type': 'Answer', text: copy.faq[key].a },
+        })),
+      },
+    ],
+  };
 }

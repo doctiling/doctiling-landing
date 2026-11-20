@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { Mail } from 'lucide-react';
 import { useLandingHost } from '../host';
 import { COMPARE_SLUGS } from '../compare';
-import { comparePath, useCasePath } from '../routes';
+import { comparePath, guidePath, useCasePath } from '../routes';
+import { GUIDE_SLUGS } from '../guides';
 import { USE_CASE_SLUGS } from '../use-cases';
 
 const LINK = 'text-foreground/80 hover:text-foreground';
@@ -28,7 +29,7 @@ export function LandingFooter({
 
   return (
     <footer id="site-footer" className="border-t border-border">
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-10 px-5 py-14 sm:px-6 md:grid-cols-3 lg:grid-cols-6 lg:px-10">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-10 px-5 py-14 sm:px-6 md:grid-cols-3 lg:grid-cols-7 lg:px-10">
         <div className="col-span-2 flex flex-col gap-3 md:col-span-3 lg:col-span-1">
           <span className="font-display text-xl">{t('landing.nav.brand')}</span>
           <span className="max-w-[16rem] text-sm leading-relaxed text-muted-foreground">
@@ -70,6 +71,14 @@ export function LandingFooter({
           {COMPARE_SLUGS.map((slug) => (
             <Link key={slug} href={`/${locale}/${comparePath(slug)}`} className={LINK}>
               {t(`comparePage.items.${slug}.h1`)}
+            </Link>
+          ))}
+        </nav>
+        <nav aria-label={t('landing.footer.columns.guides')} className="flex flex-col gap-2.5 text-sm">
+          <span className={HEADING}>{t('landing.footer.columns.guides')}</span>
+          {GUIDE_SLUGS.map((slug) => (
+            <Link key={slug} href={`/${locale}/${guidePath(slug)}`} className={LINK}>
+              {t(`guidesPage.items.${slug}.h1`)}
             </Link>
           ))}
         </nav>

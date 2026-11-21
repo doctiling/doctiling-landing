@@ -366,7 +366,7 @@
           "body": "Acceso gratis patrocinado, por invitación. Solicita una demo y activamos tu cupo en el estudio compartido con un presupuesto de IA patrocinado — sin tarjeta. Tus datos quedan aislados lógicamente por usuario.",
           "bullets": {
             "p1": "Por invitación — solicita una demo para activar tu cupo.",
-            "p2": "Presupuesto de IA patrocinado · 25 llamadas IA/día · 100/semana.",
+            "p2": "Presupuesto de IA patrocinado · 50 llamadas IA/día · 200/semana.",
             "p3": "Todos los topes Free se aplican del lado del servidor."
           },
           "cta": "Solicitar acceso"
@@ -754,7 +754,7 @@
         },
         "free": {
           "q": "¿Cómo obtengo el acceso gratis?",
-          "a": "El acceso gratis es patrocinado y por invitación. Solicita una demo con tu correo; cuando lo aprobemos podrás iniciar sesión y usar el estudio completo — bases de conocimiento, editor de documentos, agente IA con citas, vista espejo, herramientas propias — con un presupuesto de IA patrocinado y una cuota de 25 llamadas IA al día. Sin tarjeta, sin reloj de prueba. Pasa a un plan pago solo si necesitas aislamiento o más volumen."
+          "a": "El acceso gratis es patrocinado y por invitación. Solicita una demo con tu correo; cuando lo aprobemos podrás iniciar sesión y usar el estudio completo — bases de conocimiento, editor de documentos, agente IA con citas, vista espejo, herramientas propias — con un presupuesto de IA patrocinado y una cuota de 50 llamadas IA al día. Sin tarjeta, sin reloj de prueba. Pasa a un plan pago solo si necesitas aislamiento o más volumen."
         },
         "mcp": {
           "q": "¿Qué es MCP y por qué debería importarme?",
@@ -2048,7 +2048,7 @@
       "sources": "Subida de archivos y motores SQL de solo lectura. Sin sincronización nativa con Google Drive, Slack o Confluence.",
       "mcp": "Sí: cada base de conocimiento se puede exponer con un token acotado, revocable y de solo lectura.",
       "selfHost": "Sí: el mismo producto en tu infraestructura, con licencia de uso e instaladores públicos (el código es privado).",
-      "freePlan": "Sí: puesto patrocinado por invitación con IA incluida (25 llamadas de IA por día), sin tarjeta.",
+      "freePlan": "Sí: puesto patrocinado por invitación con IA incluida (50 llamadas de IA por día), sin tarjeta.",
       "pricing": "Gratis por invitación y self-hosted con licencia de uso. Una persona, desde $91.000 COP al mes todo incluido; una empresa, desde $49.000 COP al mes por su estudio privado más el plan de cada persona, desde $77.900 COP con IA incluida o $9.800 COP con su propia IA."
     },
     "items": {

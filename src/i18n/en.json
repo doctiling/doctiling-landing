@@ -366,7 +366,7 @@
           "body": "Sponsored free access, by invitation. Request a demo and we activate your seat in the shared studio with a sponsored AI budget — no credit card. Your data stays logically scoped per user.",
           "bullets": {
             "p1": "By invitation — request a demo to activate your seat.",
-            "p2": "Sponsored AI budget · 25 AI calls/day · 100/week.",
+            "p2": "Sponsored AI budget · 50 AI calls/day · 200/week.",
             "p3": "All Free-tier limits enforced server-side."
           },
           "cta": "Request access"
@@ -754,7 +754,7 @@
         },
         "free": {
           "q": "How do I get free access?",
-          "a": "Free access is sponsored and invitation-only. Request a demo with your email; once we approve it you can sign in and use the full studio — knowledge bases, document editor, AI agent with citations, mirror view, custom tools — with a sponsored AI budget and a quota of 25 AI calls per day. No credit card, no trial clock. Upgrade only if you need isolation or higher volume."
+          "a": "Free access is sponsored and invitation-only. Request a demo with your email; once we approve it you can sign in and use the full studio — knowledge bases, document editor, AI agent with citations, mirror view, custom tools — with a sponsored AI budget and a quota of 50 AI calls per day. No credit card, no trial clock. Upgrade only if you need isolation or higher volume."
         },
         "mcp": {
           "q": "What is MCP and why should I care?",
@@ -2048,7 +2048,7 @@
       "sources": "File uploads and read-only SQL engines. No native sync with Google Drive, Slack or Confluence.",
       "mcp": "Yes: each knowledge base can be exposed with a scoped, revocable, read-only token.",
       "selfHost": "Yes: the same product on your infrastructure, under a usage license with public installers (the code is private).",
-      "freePlan": "Yes: sponsored seat by invitation with AI included (25 AI calls per day), no credit card.",
+      "freePlan": "Yes: sponsored seat by invitation with AI included (50 AI calls per day), no credit card.",
       "pricing": "Free by invitation and self-hosted under a usage license. One person, from about USD 28 a month all included (COP 91,000); a company, from about USD 15 a month (COP 49,000) for its private studio plus each person’s plan, from about USD 24 (COP 77,900) with AI included or USD 3 (COP 9,800) with its own AI. Charged in Colombian pesos."
     },
     "items": {

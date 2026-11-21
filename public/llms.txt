@@ -6,7 +6,7 @@ What Doctiling is: A knowledge management system. Your information lives in know
 
 Who it is for: AI for legal teams that cites the exact clause; An AI knowledge base for consulting firms; Healthcare AI that answers from your own sources; AI for finance teams where every figure is cited; AI for literature reviews with citations you can verify; A shared knowledge base for engineering teams and their coding agents.
 
-Access: Free access is sponsored and invitation-only. Request a demo with your email; once we approve it you can sign in and use the full studio — knowledge bases, document editor, AI agent with citations, mirror view, custom tools — with a sponsored AI budget and a quota of 25 AI calls per day. No credit card, no trial clock. Upgrade only if you need isolation or higher volume. Self-hosting: With a usage license, one command installs the full studio on your infrastructure. Point it at a local model and work without third parties.
+Access: Free access is sponsored and invitation-only. Request a demo with your email; once we approve it you can sign in and use the full studio — knowledge bases, document editor, AI agent with citations, mirror view, custom tools — with a sponsored AI budget and a quota of 50 AI calls per day. No credit card, no trial clock. Upgrade only if you need isolation or higher volume. Self-hosting: With a usage license, one command installs the full studio on your infrastructure. Point it at a local model and work without third parties.
 
 Every page exists in English (/en/) and Spanish (/es/).
 

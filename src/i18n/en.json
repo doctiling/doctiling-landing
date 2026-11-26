@@ -1234,7 +1234,12 @@
       "studio": {
         "tab": "Studio",
         "alt": "Real capture of the studio: the Nortera Logística base with the Q3 quarterly report open and its summary citing each block in the mirror view.",
-        "body": "The studio: your documents, tables and graphs on the left; the document in the middle; and the agent's analyses on the right, each citing the exact block."
+        "body": "The studio: your documents, tables and graphs on the left; the document in the middle; and the agent's analyses on the right, each citing the exact block.",
+        "tour": {
+          "files": "Your documents, tables and graphs, in a base with its permissions.",
+          "doc": "The document, split into blocks that can each be cited.",
+          "analysis": "The agent’s analysis: every claim links the exact block."
+        }
       },
       "chat": {
         "tab": "Chat",
@@ -1430,35 +1435,25 @@
     },
     "differentiator": {
       "eyebrow": "the differentiator",
-      "title": "A process no longer needs a system. It needs a knowledge base and an agent.",
-      "lede": "Today every internal process (leave, certificates, appointments, orders) means building a system: data model, screens, permissions, integrations and maintenance. Or it lives in email and spreadsheets. Doctiling changes the starting point: the information is already organised in knowledge bases with their own access hierarchy. The tenant is the agentic semantic layer that queries and manages them. A small agent, connected to the right base, is the process.",
+      "title": "A new process should not mean a new system.",
+      "lede": "Requesting leave, issuing a certificate, booking an appointment: today each process asks for its own system, with screens, permissions and integrations. With Doctiling your documents already live in a base with its permissions, and an agent runs the process in a conversation.",
       "before": {
-        "title": "A system of screens",
-        "tag": "per process",
-        "nav": {
-          "home": "Home",
-          "vac": "Leave",
-          "cert": "Certificates",
-          "appt": "Appointments",
-          "reports": "Reports"
+        "title": "Building a system",
+        "tag": "for every process",
+        "week": "week {n}",
+        "steps": {
+          "s1": "Data model",
+          "s2": "Screens and forms",
+          "s3": "Permissions and approvals",
+          "s4": "Integrations",
+          "s5": "Testing and go-live"
         },
-        "form": {
-          "type": "Request type",
-          "typeVal": "Leave ▾",
-          "start": "Start date",
-          "end": "End date",
-          "dateHint": "dd/mm/yyyy",
-          "approver": "Approver",
-          "approverVal": "Select… ▾",
-          "cancel": "Cancel",
-          "submit": "Submit request"
-        },
-        "step": "data model · forms · states · approvals · integrations",
-        "cost": "months of work · permanent maintenance · one more system to learn"
+        "unit": "weeks",
+        "tail": "…and then, maintaining it"
       },
       "after": {
-        "title": "An agent over the base",
-        "tag": "doctiling",
+        "title": "Asking the agent",
+        "tag": "with Doctiling",
         "chat": {
           "u": "I want 5 days of leave starting November 18.",
           "t": "search_knowledge_base(Policy) · aggregate_rows(Leave) · append_table_rows",
@@ -1467,8 +1462,8 @@
           "c2": "Leave · row 12",
           "x": "✓ row added · People / Leave · trail #a41f"
         },
-        "step": "the base already exists, with its permissions · the agent connects over MCP with a scoped token",
-        "win": "Hours, not months. No new data model, no new screen, no hand-written query."
+        "unit": "seconds",
+        "win": "The base already exists with its permissions: connecting the agent takes hours, not months."
       },
       "tree": {
         "label": "Architecture: agents and systems connect over MCP to the tenant, the company's agentic semantic layer. Below the tenant sit the knowledge bases. Each base has its own hierarchy: owner, admin, collaborator and reader roles, and per document who can see and who can write.",
@@ -1615,7 +1610,24 @@
         "caption": "The tenant stores no data: it is the semantic layer that understands, applies permissions and acts. The hierarchy starts in each knowledge base: its own roles (owner, admin, collaborator, reader) and, per document, who sees and who writes, plus the classification (public, internal, restricted, private) the server enforces. Adding a process is adding a base; the agent only connects to it.",
         "legend1": "Bases the leave agent touches.",
         "legend2": "The certificates agent reaches Employees and Certificates with an admin-role token and hands over only the asker's certificate."
-      }
+      },
+      "note": "Custom-build timelines are illustrative. The agent’s answer is the demo’s.",
+      "replay": "Replay",
+      "steps": {
+        "s1": {
+          "title": "Organize",
+          "body": "Upload documents, tables and graphs to a knowledge base. Each base has its roles and each document says who sees it and who writes it."
+        },
+        "s2": {
+          "title": "Connect",
+          "body": "An agent, your team chat or your own system connects to the base with a scoped, revocable permission."
+        },
+        "s3": {
+          "title": "Operate",
+          "body": "The agent looks up, cross-checks, records and creates documents in plain language, cites the exact block and leaves a trail of every action."
+        }
+      },
+      "treeToggle": "See the inside view: the semantic layer and each base’s permissions"
     },
     "cookies": {
       "title": "Cookie preferences",
@@ -1665,6 +1677,13 @@
         "step3": "We create your company’s space and write to you to activate it.",
         "spam": "Not there in 10 minutes? Check spam or promotions, or write to us.",
         "again": "Ask for another quote"
+      }
+    },
+    "contact": {
+      "tablistLabel": "How you want to start",
+      "tabs": {
+        "demo": "For me or my team",
+        "quote": "For my company"
       }
     }
   },

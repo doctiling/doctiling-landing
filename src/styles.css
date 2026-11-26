@@ -452,3 +452,33 @@
     display: none;
   }
 }
+
+/* Surfaces showcase: the panel cross-fades between surfaces, the phone floats,
+   the MCP transcript lines arrive one after the other (landing-pop). */
+@keyframes landing-swap {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes landing-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .landing-swap {
+    animation: landing-swap 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .landing-float {
+    animation: landing-float 5s ease-in-out infinite;
+  }
+}

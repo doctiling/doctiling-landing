@@ -413,6 +413,12 @@ describe('LandingClient', () => {
     expect(screen.queryByText('landing.verticals.edgeLabel')).not.toBeInTheDocument();
   });
 
+  it('folds the fine print under its title', () => {
+    renderWithHost(<LandingClient />);
+    const title = screen.getByText('landing.tiers.disclaimers.title');
+    expect(title.closest('details')).not.toHaveAttribute('open');
+  });
+
   it('lists pricing in the resources menu and the footer', () => {
     renderWithHost(<LandingClient />);
     const links = screen.getAllByRole('link', { name: 'landing.nav.links.pricing' });

@@ -1234,7 +1234,12 @@
       "studio": {
         "tab": "Estudio",
         "alt": "Captura real del estudio: la base Nortera Logística con el informe trimestral Q3 abierto y su resumen con citas a cada bloque en la vista espejo.",
-        "body": "El estudio: tus documentos, tablas y grafos a la izquierda; el documento al centro; y a la derecha los análisis del agente, cada uno citando el bloque exacto."
+        "body": "El estudio: tus documentos, tablas y grafos a la izquierda; el documento al centro; y a la derecha los análisis del agente, cada uno citando el bloque exacto.",
+        "tour": {
+          "files": "Tus documentos, tablas y grafos, en una base con sus permisos.",
+          "doc": "El documento, dividido en bloques que se pueden citar uno por uno.",
+          "analysis": "El análisis del agente: cada afirmación enlaza el bloque exacto."
+        }
       },
       "chat": {
         "tab": "Chat",
@@ -1430,35 +1435,25 @@
     },
     "differentiator": {
       "eyebrow": "el diferenciador",
-      "title": "Un proceso ya no necesita un sistema. Necesita una base de conocimiento y un agente.",
-      "lede": "Hoy cada proceso interno (vacaciones, certificados, citas, pedidos) exige construir un sistema: modelo de datos, pantallas, permisos, integraciones y mantenimiento. O vive en correos y hojas de cálculo. Doctiling cambia el punto de partida: la información ya está organizada en bases de conocimiento con su propia jerarquía de acceso. El tenant es la capa semántica agéntica que las consulta y gestiona. Un agente pequeño, conectado a la base correcta, es el proceso.",
+      "title": "Un proceso nuevo no debería ser un sistema nuevo.",
+      "lede": "Pedir vacaciones, emitir un certificado, registrar una cita: hoy cada proceso pide su propio sistema, con pantallas, permisos e integraciones. Con Doctiling tus documentos ya viven en una base con sus permisos, y un agente hace el proceso conversando.",
       "before": {
-        "title": "Un sistema con pantallas",
+        "title": "Construir un sistema",
         "tag": "por cada proceso",
-        "nav": {
-          "home": "Inicio",
-          "vac": "Vacaciones",
-          "cert": "Certificados",
-          "appt": "Citas",
-          "reports": "Reportes"
+        "week": "semana {n}",
+        "steps": {
+          "s1": "Modelo de datos",
+          "s2": "Pantallas y formularios",
+          "s3": "Permisos y aprobaciones",
+          "s4": "Integraciones",
+          "s5": "Pruebas y salida a producción"
         },
-        "form": {
-          "type": "Tipo de solicitud",
-          "typeVal": "Vacaciones ▾",
-          "start": "Fecha inicio",
-          "end": "Fecha fin",
-          "dateHint": "dd/mm/aaaa",
-          "approver": "Aprobador",
-          "approverVal": "Seleccionar… ▾",
-          "cancel": "Cancelar",
-          "submit": "Enviar solicitud"
-        },
-        "step": "modelo de datos · formularios · estados · aprobaciones · integraciones",
-        "cost": "meses de trabajo · mantenimiento permanente · un sistema más que aprender"
+        "unit": "semanas",
+        "tail": "…y después, mantenerlo"
       },
       "after": {
-        "title": "Un agente sobre la base",
-        "tag": "doctiling",
+        "title": "Pedírselo al agente",
+        "tag": "con Doctiling",
         "chat": {
           "u": "Quiero 5 días de vacaciones desde el 18 de noviembre.",
           "t": "search_knowledge_base(Política) · aggregate_rows(Vacaciones) · append_table_rows",
@@ -1467,8 +1462,8 @@
           "c2": "Vacaciones · fila 12",
           "x": "✓ fila agregada · Gestión humana / Vacaciones · rastro #a41f"
         },
-        "step": "la base ya existe, con sus permisos · el agente entra por MCP con token acotado",
-        "win": "Horas, no meses. Sin modelo de datos nuevo, sin pantalla nueva, sin consulta escrita."
+        "unit": "segundos",
+        "win": "La base ya existe con sus permisos: conectar el agente toma horas, no meses."
       },
       "tree": {
         "label": "Arquitectura: agentes y sistemas se conectan por MCP al tenant, que es la capa semántica agéntica de la empresa. Debajo del tenant están las bases de conocimiento. Cada base tiene su propia jerarquía: roles propietario, administrador, colaborador y lector, y por documento quién puede ver y quién puede escribir.",
@@ -1615,7 +1610,24 @@
         "caption": "El tenant no guarda datos: es la capa semántica que entiende, aplica permisos y actúa. La jerarquía empieza en cada base de conocimiento: roles propios (propietario, administrador, colaborador, lector) y, por documento, quién ve y quién escribe, más la clasificación (público, interno, restringido, privado) que el servidor hace cumplir. Agregar un proceso es agregar una base; el agente sólo se conecta a ella.",
         "legend1": "Bases que toca el agente de vacaciones.",
         "legend2": "El de certificados entra a Empleados y Certificados con un token de rol admin y entrega sólo el certificado de quien pregunta."
-      }
+      },
+      "note": "Plazos de un desarrollo a medida, ilustrativos. La respuesta del agente es la de la demo.",
+      "replay": "Repetir",
+      "steps": {
+        "s1": {
+          "title": "Organiza",
+          "body": "Sube documentos, tablas y grafos a una base de conocimiento. Cada base tiene sus roles y cada documento dice quién lo ve y quién lo escribe."
+        },
+        "s2": {
+          "title": "Conecta",
+          "body": "Un agente, el chat de tu equipo o tu propio sistema se conectan a la base con un permiso acotado y revocable."
+        },
+        "s3": {
+          "title": "Opera",
+          "body": "El agente consulta, cruza, registra y crea documentos en lenguaje natural, cita el bloque exacto y deja rastro de cada acción."
+        }
+      },
+      "treeToggle": "Ver la arquitectura por dentro: la capa semántica y los permisos de cada base"
     },
     "cookies": {
       "title": "Preferencias de cookies",
@@ -1665,6 +1677,13 @@
         "step3": "Creamos el espacio de tu empresa y te escribimos para activarlo.",
         "spam": "¿No llega en 10 minutos? Revisa spam o promociones, o escríbenos.",
         "again": "Pedir otra cotización"
+      }
+    },
+    "contact": {
+      "tablistLabel": "Cómo quieres empezar",
+      "tabs": {
+        "demo": "Para mí o mi equipo",
+        "quote": "Para mi empresa"
       }
     }
   },

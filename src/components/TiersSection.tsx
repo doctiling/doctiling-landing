@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, Check } from 'lucide-react';
+import { ArrowUpRight, Check, ChevronDown } from 'lucide-react';
 import { useLandingHost, useLandingText } from '../host';
 import { Button } from '@doctiling/ui/atoms/button';
 import { H2, MiniTitle } from '@doctiling/ui/atoms/typography';
@@ -340,16 +340,20 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
         </Reveal>
 
         <Reveal className="mx-auto mt-20 max-w-4xl">
-          <h3 className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-            {t('landing.tiers.disclaimers.title')}
-          </h3>
-          <ul className="mt-4 space-y-2 text-xs leading-relaxed text-muted-foreground">
-            {DISCLAIMER_KEYS.map((d) => (
-              <li key={d} data-disclaimer={d}>
-                {t(`landing.tiers.disclaimers.items.${d}`)}
-              </li>
-            ))}
-          </ul>
+          {/* Fine print folds away: it is there for whoever wants it, not in everyone's way. */}
+          <details className="group border-t border-border pt-4">
+            <summary className="flex cursor-pointer list-none items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-muted-foreground hover:text-foreground [&::-webkit-details-marker]:hidden">
+              <ChevronDown className="size-3.5 transition-transform group-open:rotate-180" aria-hidden="true" />
+              {t('landing.tiers.disclaimers.title')}
+            </summary>
+            <ul className="mt-4 space-y-2 text-xs leading-relaxed text-muted-foreground">
+              {DISCLAIMER_KEYS.map((d) => (
+                <li key={d} data-disclaimer={d}>
+                  {t(`landing.tiers.disclaimers.items.${d}`)}
+                </li>
+              ))}
+            </ul>
+          </details>
         </Reveal>
       </div>
     </section>

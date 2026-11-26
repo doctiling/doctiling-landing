@@ -117,13 +117,6 @@ describe('LandingClient', () => {
     expect(container.querySelector('[data-audience="gold"] [data-plan="basic"]')).toHaveTextContent(
       /≈ USD 21 of AI balance a month \(COP 68,100\)/,
     );
-    for (const pack of ['p50', 'p200', 'p500', 'p1000']) {
-      expect(container.querySelector(`[data-pack="${pack}"]`)).toHaveTextContent(/≈ USD \d+.*[\d,]+ queries/);
-    }
-    // The table stays in one currency; the peso charge of the four amounts sits in its note.
-    expect(container.querySelector('section#stack table + p')).toHaveTextContent(
-      /COP 20,000, COP 90,000, COP 225,000 or COP 450,000/,
-    );
     // The reference rate is stated once, in the fine print.
     expect(container.querySelector('[data-disclaimer="d1"]')).toHaveTextContent(/USD.*COP 3,270/);
   });
@@ -136,7 +129,6 @@ describe('LandingClient', () => {
     expect(section!.querySelectorAll('[data-billed]')).toHaveLength(0);
     expect(section!.querySelector('[data-audience="gold"] [data-plan="basic"] [data-price]')).toHaveTextContent('$77.900');
     expect(section!.querySelector('[data-audience="gold"] [data-plan="basic"]')).toHaveTextContent('$68.100 de saldo de IA al mes');
-    expect(section!.querySelector('[data-pack="p50"]')).toHaveTextContent('$20.000');
   });
 
   it('opens on the person tab and keeps the other panel in the document, hidden', () => {
@@ -189,28 +181,14 @@ describe('LandingClient', () => {
     }
   });
 
-  it('explains top-ups in four steps and lists the four amounts, the minimum first', () => {
+  it('keeps top-ups off the home page: one line under the plans points to /pricing', () => {
     const { container } = renderWithHost(<LandingClient />);
-    expect(screen.getByText('landing.tiers.topups.title')).toBeInTheDocument();
-    for (const step of ['s1', 's2', 's3', 's4']) {
-      expect(screen.getByText(`landing.tiers.topups.steps.${step}.title`)).toBeInTheDocument();
-    }
-    for (const col of ['pack', 'price', 'each']) {
-      expect(screen.getByRole('columnheader', { name: `landing.tiers.topups.cols.${col}` })).toBeInTheDocument();
-    }
-    expect(Array.from(container.querySelectorAll('[data-pack]')).map((r) => r.getAttribute('data-pack'))).toEqual([
-      'p50',
-      'p200',
-      'p500',
-      'p1000',
-    ]);
-    for (const pack of ['p50', 'p200', 'p500', 'p1000']) {
-      const row = container.querySelector(`[data-pack="${pack}"]`);
-      for (const cell of ['name', 'price', 'each']) {
-        expect(row).toHaveTextContent(`landing.tiers.topups.packs.${pack}.${cell}`);
-      }
-    }
-    expect(screen.getByText('landing.tiers.topups.note')).toBeInTheDocument();
+    expect(container.querySelector('[data-pack]')).toBeNull();
+    expect(screen.getByText('landing.tiers.topups.teaser')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /landing\.tiers\.topups\.teaserLink/ })).toHaveAttribute(
+      'href',
+      '/es/pricing#top-ups',
+    );
   });
 
   it('says what the price is made of and how billing works, top-ups out of the billing facts', () => {
@@ -347,12 +325,15 @@ describe('LandingClient', () => {
     expect(order.map((id) => ids.indexOf(id))).toEqual([...order.map((id) => ids.indexOf(id))].sort((a, b) => a - b));
   });
 
-  it('shows measured outcomes, not a logo wall, right under the hero', () => {
+  it('proves with three measured claims that link to the method, and no strip of numbers under the hero', () => {
     renderWithHost(<LandingClient />);
-    for (const key of ['recall', 'tasks', 'language', 'latency']) {
-      expect(screen.getByText(`landing.proof.items.${key}.value`)).toBeInTheDocument();
+    expect(screen.queryByText('landing.proof.label')).not.toBeInTheDocument();
+    for (const key of ['cites', 'small', 'edit']) {
+      expect(screen.getByText(`landing.proof.items.${key}.text`)).toBeInTheDocument();
     }
-    expect(screen.getByRole('link', { name: /landing\.proof\.link/ })).toHaveAttribute('href', '#benchmarks');
+    const method = screen.getAllByRole('link', { name: /landing\.proof\.link/ });
+    expect(method).toHaveLength(3);
+    for (const link of method) expect(link).toHaveAttribute('href', '/es/documents#benchmarks');
   });
 
   it('keeps the header to the brand name so the tagline never collides with the nav links', () => {
@@ -417,15 +398,26 @@ describe('LandingClient', () => {
     }
   });
 
-  it('links each sector card that has a use case to its page', () => {
-    renderWithHost(<LandingClient />);
-    const links = screen.getAllByRole('link', { name: /landing\.verticals\.useCase/ });
-    expect(links.map((l) => l.getAttribute('href'))).toEqual([
+  it('keeps sectors to one line of chips: each to its use case, and the way to /verticals', () => {
+    const { container } = renderWithHost(<LandingClient />);
+    const chips = Array.from(container.querySelectorAll('section#verticals li a')).map((l) => l.getAttribute('href'));
+    expect(chips).toEqual([
       '/es/use-cases/legal',
       '/es/use-cases/healthcare',
       '/es/use-cases/finance',
+      '/es/verticals#accounting',
       '/es/use-cases/research',
       '/es/use-cases/consulting',
     ]);
+    expect(screen.getByRole('link', { name: /landing\.verticals\.stripMore/ })).toHaveAttribute('href', '/es/verticals');
+    expect(screen.queryByText('landing.verticals.edgeLabel')).not.toBeInTheDocument();
   });
+
+  it('lists pricing in the resources menu and the footer', () => {
+    renderWithHost(<LandingClient />);
+    const links = screen.getAllByRole('link', { name: 'landing.nav.links.pricing' });
+    expect(links.length).toBe(2);
+    for (const l of links) expect(l).toHaveAttribute('href', '/es/pricing');
+  });
+
 });

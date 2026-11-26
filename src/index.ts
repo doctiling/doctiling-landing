@@ -25,6 +25,7 @@ export { default as LandingPage } from './components/LandingClient';
 export { default as DocumentsPage } from './components/DocumentsPageClient';
 export { default as ConnectPage } from './components/ConnectPageClient';
 export { default as VerticalsPage } from './components/VerticalsPageClient';
+export { default as PricingPage } from './components/PricingPageClient';
 export { default as UseCasePage, USE_CASE_CTA } from './components/UseCasePageClient';
 export { default as ComparePage, COMPARE_CTA } from './components/ComparePageClient';
 export { default as GuidePage, GUIDE_CTA } from './components/GuidePageClient';

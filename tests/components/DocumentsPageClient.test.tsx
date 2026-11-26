@@ -17,6 +17,8 @@ describe('DocumentsPageClient', () => {
     expect(container.querySelector('section#doc-types')).not.toBeNull();
     expect(container.querySelector('section#agent-output')).not.toBeNull();
     expect(container.querySelector('section#cycle')).not.toBeNull();
+    // The method behind the home page's three claims.
+    expect(container.querySelector('section#benchmarks')).not.toBeNull();
   });
 
   it('states its own promise and offers a way back to the landing', () => {

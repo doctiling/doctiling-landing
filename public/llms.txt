@@ -16,6 +16,7 @@ Every page exists in English (/en/) and Spanish (/es/).
 - [Document types in Doctiling — text, tables and graphs](https://www.doctiling.app/en/documents): Text, table and graph documents in one knowledge base: blocks cut at headings, PDF tables rebuilt by geometry, graphs queried by neighbourhood — and charts, diagrams and mind maps the agent draws from them.
 - [Connect Doctiling over MCP — apps, chats and coding agents](https://www.doctiling.app/en/connect): Expose a knowledge base as an MCP endpoint with a scoped, revocable token: the mobile app, a team chat, a terminal agent or an internal system query it and get cited answers. Roles, security and self-hosting included.
 - [Doctiling for your field — solutions by sector with cited answers](https://www.doctiling.app/en/verticals): How Doctiling grounds AI in your own documents for legal, healthcare, finance, accounting, research and consulting teams. Every answer cites the source — never guesses.
+- [Doctiling pricing — AI balance and top-ups](https://www.doctiling.app/en/pricing): Every Doctiling plan comes with a monthly AI balance in pesos. How it is spent, what happens when it runs out (AI pauses, everything else keeps working) and how far each top-up goes — never a charge you did not decide.
 
 ## Use cases (English)
 
@@ -44,6 +45,7 @@ Every page exists in English (/en/) and Spanish (/es/).
 - [Tipos de documento en Doctiling — texto, tablas y grafos](https://www.doctiling.app/es/documents): Documentos de texto, tabla y grafo en una sola base de conocimiento: bloques por encabezado, tablas de PDF reconstruidas por geometría, grafos consultados por vecindad — y los gráficos, diagramas y mapas mentales que el agente dibuja con ellos.
 - [Conecta Doctiling por MCP — apps, chats y agentes de código](https://www.doctiling.app/es/connect): Expón una base de conocimiento como endpoint MCP con token acotado y revocable: la app móvil, un chat de equipo, un agente de terminal o un sistema interno la consultan y reciben respuestas citadas. Roles, seguridad y self-hosting incluidos.
 - [Doctiling para tu sector — soluciones con respuestas citadas](https://www.doctiling.app/es/verticals): Cómo Doctiling fundamenta la IA en tus propios documentos para equipos legales, de salud, finanzas, contabilidad, investigación y consultoría. Cada respuesta cita la fuente — nunca conjetura.
+- [Precios de Doctiling — saldo de IA y recargas](https://www.doctiling.app/es/pricing): Cada plan de Doctiling trae un saldo de IA mensual en pesos. Cómo se gasta, qué pasa si se acaba (la IA se pausa y todo lo demás sigue) y cuánto rinde cada recarga — nunca un cobro que no hayas decidido.
 
 ## Casos de uso (Español)
 

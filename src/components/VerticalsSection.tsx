@@ -5,7 +5,6 @@ import { ArrowUpRight, Briefcase, Calculator, GraduationCap, Landmark, Scale, St
 import { useLandingText } from '../host';
 import { useCasePath } from '../routes';
 import { useCaseForVertical } from '../use-cases';
-import { H2, MiniTitle } from '@doctiling/ui/atoms/typography';
 import { Reveal } from './Reveal';
 
 const VERTICALS = [
@@ -17,64 +16,42 @@ const VERTICALS = [
   { key: 'consulting', Icon: Briefcase },
 ] as const;
 
+// The home page keeps one line about sectors: a chip per field, straight to its
+// use case (or its section of /verticals), and the way to the full page. The
+// cards with each field's edge live on /verticals.
 export function VerticalsSection() {
   const { t, locale } = useLandingText();
 
   return (
-    <section id="verticals" className="border-t border-border">
-      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-        <Reveal className="flex max-w-3xl flex-col gap-4">
-          <MiniTitle>{t('landing.verticals.eyebrow')}</MiniTitle>
-          <H2 className="text-balance text-4xl not-italic leading-tight sm:text-5xl">
-            {t('landing.verticals.title')}
-          </H2>
-          <p className="mt-2 text-base leading-relaxed text-muted-foreground">
-            {t('landing.verticals.lede')}
-          </p>
-        </Reveal>
-        <div className="mt-16 grid grid-cols-1 gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
-          {VERTICALS.map(({ key, Icon }, i) => (
-            <Reveal key={key} delay={(i % 3) * 120} className="bg-background">
-              <article className="group flex h-full flex-col gap-4 p-8 transition-colors hover:bg-card/60">
-                <Icon aria-hidden="true" className="size-7 text-accent/70" />
-                <h3 className="font-display text-2xl leading-snug">
+    <section id="verticals" aria-labelledby="verticals-strip" className="border-t border-border">
+      <Reveal className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-4 gap-y-3 px-5 py-10 sm:px-6 lg:px-10">
+        <h2 id="verticals-strip" className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+          {t('landing.verticals.stripLabel')}
+        </h2>
+        <ul className="flex flex-wrap gap-2">
+          {VERTICALS.map(({ key, Icon }) => {
+            const useCase = useCaseForVertical(key);
+            return (
+              <li key={key}>
+                <Link
+                  href={useCase ? `/${locale}/${useCasePath(useCase)}` : `/${locale}/verticals#${key}`}
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-sm text-foreground/85 transition-colors hover:border-primary hover:bg-primary/10 hover:text-foreground"
+                >
+                  <Icon className="size-3.5 text-accent/70" aria-hidden="true" />
                   {t(`landing.verticals.items.${key}.title`)}
-                </h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {t(`landing.verticals.items.${key}.body`)}
-                </p>
-                <div className="mt-auto border-t border-border pt-4">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-accent/70">
-                    {t('landing.verticals.edgeLabel')}
-                  </span>
-                  <p className="mt-2 text-sm leading-relaxed text-foreground/80">
-                    {t(`landing.verticals.items.${key}.edge`)}
-                  </p>
-                  {useCaseForVertical(key) && (
-                    <Link
-                      href={`/${locale}/${useCasePath(useCaseForVertical(key)!)}`}
-                      className="mt-4 inline-flex items-center gap-1.5 text-sm text-accent transition-colors hover:text-foreground"
-                    >
-                      {t('landing.verticals.useCase')}
-                      <span className="sr-only">: {t(`landing.verticals.items.${key}.title`)}</span>
-                      <ArrowUpRight className="size-3.5" aria-hidden="true" />
-                    </Link>
-                  )}
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal className="mt-10">
-          <Link
-            href={`/${locale}/verticals`}
-            className="inline-flex items-center gap-2 font-display text-lg text-accent transition-colors hover:text-foreground"
-          >
-            {t('landing.verticals.more')}
-            <ArrowUpRight className="size-4" aria-hidden="true" />
-          </Link>
-        </Reveal>
-      </div>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+        <Link
+          href={`/${locale}/verticals`}
+          className="ml-auto inline-flex items-center gap-1.5 text-sm font-medium text-accent underline-offset-4 hover:underline"
+        >
+          {t('landing.verticals.stripMore')}
+          <ArrowUpRight className="size-3.5" aria-hidden="true" />
+        </Link>
+      </Reveal>
     </section>
   );
 }

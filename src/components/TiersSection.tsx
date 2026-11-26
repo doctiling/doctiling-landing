@@ -25,8 +25,6 @@ const PLAN_KEYS = ['basic', 'advanced', 'max'] as const;
 const BILLING_PLAN = { basic: 'basico', advanced: 'avanzado', max: 'maximo' } as const;
 const BENEFIT_KEYS = ['b1', 'b2', 'b3', 'b4', 'b5'] as const;
 const USE_KEYS = ['s1', 's2', 's3'] as const;
-const TOPUP_STEP_KEYS = ['s1', 's2', 's3', 's4'] as const;
-const PACK_KEYS = ['p50', 'p200', 'p500', 'p1000'] as const;
 const PART_KEYS = ['compute', 'studio', 'info', 'ai'] as const;
 const BILLING_KEYS = ['fixed', 'monthly', 'annual', 'ownAi', 'overdue', 'cancel'] as const;
 // d9 (external chat) reads before d8, which closes the list: what is still being switched on.
@@ -35,7 +33,7 @@ const DISCLAIMER_KEYS = ['d1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7', 'd9', 'd8'] a
 const BYO_KEYS = ['ai', 'db'] as const;
 
 export function TiersSection({ requestAccessHref }: { requestAccessHref: string }) {
-  const { t } = useLandingText();
+  const { t, locale } = useLandingText();
   const { plansHref, submitQuoteRequest } = useLandingHost();
   // A company asks for a quote where the host takes one; otherwise, the demo request (as before).
   const companyHref = submitQuoteRequest ? '#cotizar' : '#demo';
@@ -262,59 +260,17 @@ export function TiersSection({ requestAccessHref }: { requestAccessHref: string 
           <SelfHostSection variant="panel" />
         </div>
 
-        <Reveal className="mt-24">
-          <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
-            <h3 className="font-display text-3xl leading-tight sm:text-4xl">{t('landing.tiers.topups.title')}</h3>
-            <p className="text-base leading-relaxed text-muted-foreground">{t('landing.tiers.topups.body')}</p>
-          </div>
-          <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
-            <ol className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-              {TOPUP_STEP_KEYS.map((s, i) => (
-                <li key={s} className="border-t border-border pt-4">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{i + 1}</span>
-                  <p className="mt-1 font-display text-xl leading-snug">{t(`landing.tiers.topups.steps.${s}.title`)}</p>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {t(`landing.tiers.topups.steps.${s}.body`)}
-                  </p>
-                </li>
-              ))}
-            </ol>
-            <div className="landing-card overflow-hidden">
-              <table className="w-full text-sm">
-                <thead className="bg-secondary text-left">
-                  <tr>
-                    <th scope="col" className="px-6 py-3 font-medium">
-                      {t('landing.tiers.topups.cols.pack')}
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-right font-medium">
-                      {t('landing.tiers.topups.cols.price')}
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-right font-medium">
-                      {t('landing.tiers.topups.cols.each')}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {PACK_KEYS.map((pack) => (
-                    <tr key={pack} data-pack={pack} className="border-t border-border">
-                      <th scope="row" className="px-6 py-4 text-left font-normal">
-                        {t(`landing.tiers.topups.packs.${pack}.name`)}
-                      </th>
-                      <td className="px-6 py-4 text-right font-display text-xl tracking-tight">
-                        {t(`landing.tiers.topups.packs.${pack}.price`)}
-                      </td>
-                      <td className="px-6 py-4 text-right text-muted-foreground">
-                        {t(`landing.tiers.topups.packs.${pack}.each`)}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              <p className="border-t border-border px-6 py-4 text-xs leading-relaxed text-muted-foreground">
-                {t('landing.tiers.topups.note')}
-              </p>
-            </div>
-          </div>
+        {/* Top-ups live on /pricing; the plans only say the balance exists and where to read more. */}
+        <Reveal className="mt-16">
+          <p className="mx-auto flex max-w-4xl flex-col gap-3 rounded-2xl bg-secondary px-6 py-4 text-sm leading-relaxed text-foreground/85 sm:flex-row sm:items-center sm:gap-6">
+            <span className="flex-1">{t('landing.tiers.topups.teaser')}</span>
+            <Link
+              href={`/${locale}/pricing#top-ups`}
+              className="inline-flex shrink-0 items-center gap-1 font-medium text-accent underline-offset-4 hover:underline"
+            >
+              {t('landing.tiers.topups.teaserLink')} <ArrowUpRight className="size-3.5" aria-hidden="true" />
+            </Link>
+          </p>
         </Reveal>
 
         <Reveal className="mt-24">

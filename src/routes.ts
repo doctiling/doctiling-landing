@@ -8,7 +8,7 @@ import { GUIDES, GUIDE_SLUGS, type GuideSlug } from './guides';
 // so adding a page here (or an entry to a catalogue) is the only place the surface grows.
 
 export const LANDING_HOME_SLUG = 'landing';
-export const LANDING_SUBPAGE_SLUGS = ['documents', 'connect', 'verticals'] as const;
+export const LANDING_SUBPAGE_SLUGS = ['documents', 'connect', 'verticals', 'pricing'] as const;
 export const LANDING_SLUGS = [LANDING_HOME_SLUG, ...LANDING_SUBPAGE_SLUGS] as const;
 
 export type LandingSlug = (typeof LANDING_SLUGS)[number];
@@ -72,10 +72,11 @@ function priorityOf(path: LandingPagePath): number {
  * carries its own (`GUIDES[slug].updated`).
  */
 export const LANDING_PAGE_UPDATED: Record<LandingSlug | typeof LANDING_USE_CASES_SEGMENT | typeof LANDING_COMPARE_SEGMENT, string> = {
-  landing: '2026-11-20',
-  documents: '2026-10-27',
+  landing: '2026-11-26',
+  documents: '2026-11-26',
   connect: '2026-10-27',
   verticals: '2026-11-12',
+  pricing: '2026-11-26',
   'use-cases': '2026-11-13',
   compare: '2026-11-13',
 };

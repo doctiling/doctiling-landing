@@ -4,7 +4,7 @@ Marketing surface of Doctiling as a host-agnostic package (`@doctiling/landing`,
 - **Host contract** is `src/host.tsx`: the landing never imports product code. Auth, the lead action, the
   toaster, consent copy and nav slots arrive through `LandingHostProvider`; product routes go through
   `href()`. Tests render with `tests/helpers/host.tsx` (`renderWithHost`, `t` echoes the key).
-- **Copy** lives in `src/i18n/{en,es}.json` (namespaces `landing`, `verticalsPage`, `documentsPage`,
+- **Copy** lives in `src/i18n/{en,es}.json` (namespaces `landing`, `verticalsPage`, `documentsPage`, `pricingPage`,
   `connectPage`), both locales in the same commit. Vendor names never reach copy
   (`scripts/white-label-guard.mjs`, BLOCKING in the gate).
 - **Design system**: `@doctiling/ui` is a peer from the private doctiling-web checkout, resolved through the

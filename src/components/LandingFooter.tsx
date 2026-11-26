@@ -50,6 +50,9 @@ export function LandingFooter({
           <Link href={`/${locale}/verticals`} className={LINK}>
             {t('landing.nav.links.verticals')}
           </Link>
+          <Link href={`/${locale}/pricing`} className={LINK}>
+            {t('landing.nav.links.pricing')}
+          </Link>
           <a href="#workflow" className={LINK}>
             {t('landing.footer.links.workflow')}
           </a>

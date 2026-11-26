@@ -12,6 +12,7 @@ import {
 import { COMPARE_FAQ_KEYS, COMPARE_SLUGS, type CompareSlug } from './compare';
 import { USE_CASE_FAQ_KEYS, USE_CASE_SLUGS, type UseCaseSlug } from './use-cases';
 import { GUIDES, GUIDE_FAQ_KEYS, GUIDE_SLUGS, type GuideSlug } from './guides';
+import { SOCIAL_PROFILES } from './social';
 
 // Search-engine surface of every landing page: metadata (title, description,
 // canonical + hreflang, Open Graph, Twitter) and the JSON-LD graphs. Server
@@ -283,9 +284,13 @@ export const OG_LOCALES: Record<LandingLocale, readonly string[]> = {
 /**
  * The organization's profiles on other sites (schema.org `sameAs`). Only real,
  * public profiles go here — each one tells search engines the brand exists off
- * its own domain. Add LinkedIn, Product Hunt, G2… as they are created.
+ * its own domain. Brand social channels live in ./social (also shown in the
+ * footer); add LinkedIn, Product Hunt, G2… as they are created.
  */
-export const ORG_PROFILES: readonly string[] = ['https://github.com/doctiling'];
+export const ORG_PROFILES: readonly string[] = [
+  'https://github.com/doctiling',
+  ...SOCIAL_PROFILES.map((p) => p.url),
+];
 
 const ogImage = (siteUrl: string, locale: LandingLocale) => `${siteUrl}/og/og-${locale}.png`;
 const pageUrl = (siteUrl: string, locale: string, path: LandingPagePath) => `${siteUrl}/${locale}/${path}`;

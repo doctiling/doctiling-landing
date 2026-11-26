@@ -7,6 +7,7 @@ import { COMPARE_SLUGS } from '../compare';
 import { comparePath, guidePath, useCasePath } from '../routes';
 import { GUIDE_SLUGS } from '../guides';
 import { USE_CASE_SLUGS } from '../use-cases';
+import { SOCIAL_PROFILES } from '../social';
 
 const LINK = 'text-foreground/80 hover:text-foreground';
 const HEADING = 'text-[11px] font-semibold uppercase tracking-widest text-muted-foreground';
@@ -112,6 +113,11 @@ export function LandingFooter({
           <a href="#demo" className={LINK}>
             {t('landing.nav.links.demo')}
           </a>
+          {SOCIAL_PROFILES.map(({ label, url }) => (
+            <a key={url} href={url} target="_blank" rel="me noopener noreferrer" className={LINK}>
+              {label}
+            </a>
+          ))}
         </div>
       </div>
       <div className="border-t border-border">

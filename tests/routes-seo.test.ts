@@ -22,6 +22,7 @@ import {
   OG_LOCALES,
   ORG_PROFILES,
 } from '../src/seo';
+import { SOCIAL_PROFILES } from '../src/social';
 import { USE_CASE_FAQ_KEYS, USE_CASE_SLUGS, USE_CASES } from '../src/use-cases';
 import { COMPARE, COMPARE_FAQ_KEYS, COMPARE_ROW_KEYS, COMPARE_SLUGS } from '../src/compare';
 import { LANDING_MESSAGES } from '../src/i18n';
@@ -242,6 +243,7 @@ describe('search basics of the home (SEO review 2026-11-20)', () => {
     const ld = landingHomeJsonLd({ siteUrl: SITE, locale: 'es' }) as { '@graph': Array<Record<string, unknown>> };
     const org = ld['@graph'].find((n) => n['@type'] === 'Organization')!;
     expect(org.sameAs).toEqual([...ORG_PROFILES]);
+    for (const { url } of SOCIAL_PROFILES) expect(ORG_PROFILES).toContain(url);
     for (const url of ORG_PROFILES) {
       expect(url.startsWith('https://')).toBe(true);
       expect(url.startsWith(SITE)).toBe(false);

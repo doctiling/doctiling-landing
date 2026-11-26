@@ -225,7 +225,8 @@
         "knowledge": "Qué es",
         "evidence": "En acción",
         "benchmarks": "Benchmarks",
-        "control": "Tus datos"
+        "control": "Tus datos",
+        "pricing": "Precios y recargas"
       },
       "signin": "Iniciar sesión",
       "openApp": "Abrir estudio",
@@ -309,44 +310,28 @@
       "footnote": "Y además: resumen, entidades, contradicciones, preguntas, crítica y tarjetas de estudio — doce lentes de un clic, sin escribir prompts."
     },
     "verticals": {
-      "eyebrow": "para tu campo",
-      "title": "Tu sector ya vive entre documentos. Doctiling los pone a responder.",
-      "lede": "No es un chat genérico que adivina: cada base de conocimiento se fundamenta en tus propias fuentes y responde con la cita exacta. Activamos tu espacio con bases de conocimiento, habilidades y documentos pensados para tu especialidad.",
-      "edgeLabel": "tu ventaja",
-      "more": "Ver soluciones por sector en detalle",
+      "stripLabel": "Para tu sector",
+      "stripMore": "Ver por sector",
       "items": {
         "legal": {
-          "title": "Equipos legales",
-          "body": "Revisa contratos y arma memos de un caso sin perder la cláusula exacta. Cada conclusión cita documento y página.",
-          "edge": "Respuestas defendibles ante cliente o juez. En Gold tus expedientes viven en una base de datos dedicada — nunca se mezclan con otro tenant."
+          "title": "Equipos legales"
         },
         "health": {
-          "title": "Salud",
-          "body": "Reúne historia clínica, guías y literatura en una base de conocimiento. Sugiere diagnósticos diferenciales y resume seguimientos citando la fuente.",
-          "edge": "Nunca inventa una dosis ni un hallazgo: si no está en tus fuentes, lo dice. Trazabilidad clínica de punta a punta."
+          "title": "Salud"
         },
         "finance": {
-          "title": "Finanzas",
-          "body": "Análisis de ratios, resúmenes de reportes y seguimiento de portafolio sobre tus propios filings y estados.",
-          "edge": "Cada cifra apunta al estado financiero de donde salió — lista para auditar, sin números fabricados."
+          "title": "Finanzas"
         },
         "accounting": {
-          "title": "Contabilidad",
-          "body": "Clasifica transacciones, concilia y consulta el libro mayor preguntando en lenguaje natural.",
-          "edge": "Trazabilidad total: cada respuesta enlaza al asiento original. El cierre deja de ser una caza de comprobantes."
+          "title": "Contabilidad"
         },
         "research": {
-          "title": "Investigación y posgrado",
-          "body": "Convierte una pila de papers en una revisión de literatura: sintetiza entre fuentes, detecta contradicciones y redacta.",
-          "edge": "Citas verificables, nunca referencias inventadas. Estudio bilingüe ES · EN para publicar en cualquier idioma."
+          "title": "Investigación y posgrado"
         },
         "consulting": {
-          "title": "Consultoría",
-          "body": "Transforma data rooms y entrevistas en entregables con fundamento. La vista espejo apila resúmenes, entidades y correlaciones junto al documento.",
-          "edge": "Guardas cada hallazgo como variante y lo expones a tu chat de equipo vía MCP — el cliente ve el rastro, no una caja negra."
+          "title": "Consultoría"
         }
-      },
-      "useCase": "Ver el caso de uso"
+      }
     },
     "tiers": {
       "eyebrow": "planes y precios",
@@ -549,7 +534,9 @@
             "each": "1.000 consultas"
           }
         },
-        "note": "La recarga es opcional: sin recarga, la IA vuelve el día 1. En una empresa la compra el responsable de pago y sirve para todo el equipo. No hay recargas con una cuenta en mora ni cuando la empresa usa su propia IA."
+        "note": "La recarga es opcional: sin recarga, la IA vuelve el día 1. En una empresa la compra el responsable de pago y sirve para todo el equipo. No hay recargas con una cuenta en mora ni cuando la empresa usa su propia IA.",
+        "teaser": "Tu plan trae un saldo de IA en pesos. Si se acaba, la IA se pausa y lo demás sigue: nunca hay cobros que no hayas decidido.",
+        "teaserLink": "Ver recargas"
       },
       "parts": {
         "title": "Qué estás pagando",
@@ -951,24 +938,32 @@
       }
     },
     "proof": {
-      "label": "Medido con nuestro propio harness de evaluación — sin clientes que citar todavía, preferimos mostrar números.",
-      "link": "Ver metodología",
+      "eyebrow": "pruebas",
+      "title": "Lo medimos antes de decirlo.",
+      "link": "Ver cómo lo medimos",
       "items": {
-        "recall": {
-          "value": "100 %",
-          "label": "recall de búsqueda en el set de evaluación (antes 87,5 %)"
+        "cites": {
+          "label": "Respuestas que enlazan el bloque exacto",
+          "text": "de las respuestas **enlazan el bloque exacto** de donde sale cada dato. Antes, ninguna."
         },
-        "tasks": {
-          "value": "60 %",
-          "label": "de tareas resueltas por el agente con un modelo local de 4B (antes 22 %)"
+        "small": {
+          "label": "Tareas resueltas con un modelo pequeño",
+          "text": "de **tareas resueltas** por el agente con un **modelo pequeño en tu propia máquina**."
         },
-        "language": {
-          "value": "100 %",
-          "label": "de respuestas en el idioma de quien pregunta, con modelo local (antes 32 %)"
-        },
-        "latency": {
-          "value": "~3 ms",
-          "label": "por consulta en la fusión híbrida léxica + semántica, sin GPU"
+        "edit": {
+          "label": "Costo por edición lograda",
+          "text": "**más barato por edición lograda** y 3× más rápido cuando el agente **edita el documento** en vez de responder en el chat."
+        }
+      },
+      "guarantees": {
+        "label": "Lo que viene con cada respuesta",
+        "items": {
+          "g1": "Cita en cada respuesta",
+          "g2": "Permisos por rol",
+          "g3": "Rastro de auditoría",
+          "g4": "Base de datos dedicada",
+          "g5": "Tu propia IA o modelos locales",
+          "g6": "Self-host"
         }
       }
     },
@@ -1103,7 +1098,7 @@
     "benchmarks": {
       "eyebrow": "benchmarks",
       "title": "Números medidos, no promesas.",
-      "lede": "Cada cambio de calidad entra con su medición antes y después. Estos son los dos que más afectan lo que ves: encontrar el pasaje correcto y que el agente complete la tarea.",
+      "lede": "Cada cambio de calidad entra con su medición antes y después: encontrar el pasaje correcto, completar la tarea con un modelo pequeño y citar, dibujar y editar bien.",
       "before": "antes",
       "after": "ahora",
       "retrieval": {
@@ -1127,7 +1122,18 @@
         }
       },
       "latency": "por consulta en la fusión híbrida, solo CPU (50 + 50 candidatos).",
-      "footnote": "Medido con nuestro harness interno de evaluación. Los conjuntos son pequeños y propios: los publicamos como evidencia de mejora, no como un ranking frente a terceros. Volvemos a medir con cada cambio de búsqueda o de agente."
+      "footnote": "Medido con nuestro harness interno de evaluación. Los conjuntos son pequeños y propios: los publicamos como evidencia de mejora, no como un ranking frente a terceros. Volvemos a medir con cada cambio de búsqueda o de agente.",
+      "more": {
+        "title": "Agente: citar, dibujar y editar",
+        "set": "mismo modelo antes y después · conjuntos propios",
+        "body": "Cambios del agente medidos antes y después, cada uno con su propio conjunto de preguntas o tareas.",
+        "metrics": {
+          "blocks": "Respuestas con enlace al bloque correcto",
+          "diagrams": "Diagramas pedidos que se dibujan",
+          "retry": "Reintenta tras un error al escribir",
+          "edit": "Ediciones correctas en el documento"
+        }
+      }
     },
     "control": {
       "eyebrow": "tus datos, tu frontera",
@@ -1228,7 +1234,12 @@
       "studio": {
         "tab": "Estudio",
         "alt": "Captura real del estudio: la base Nortera Logística con el informe trimestral Q3 abierto y su resumen con citas a cada bloque en la vista espejo.",
-        "body": "El estudio: tus documentos, tablas y grafos a la izquierda; el documento al centro; y a la derecha los análisis del agente, cada uno citando el bloque exacto."
+        "body": "El estudio: tus documentos, tablas y grafos a la izquierda; el documento al centro; y a la derecha los análisis del agente, cada uno citando el bloque exacto.",
+        "tour": {
+          "files": "Tus documentos, tablas y grafos, en una base con sus permisos.",
+          "doc": "El documento, dividido en bloques que se pueden citar uno por uno.",
+          "analysis": "El análisis del agente: cada afirmación enlaza el bloque exacto."
+        }
       },
       "chat": {
         "tab": "Chat",
@@ -1290,6 +1301,16 @@
             "cites": {
               "c1": "Procesos · filas 4, 9, 12",
               "c2": "Agenda · nov"
+            },
+            "sources": {
+              "c1": {
+                "doc": "Tabla Procesos",
+                "quote": "Andina Retail · **pendiente** · audiencia 14 nov"
+              },
+              "c2": {
+                "doc": "Agenda del despacho",
+                "quote": "**21 nov** · Inmobiliaria Sur · audiencia"
+              }
             }
           },
           "u2": "Prepárame el resumen del de Andina para la audiencia.",
@@ -1297,7 +1318,8 @@
           "a2": {
             "text": "Listo. Creé «Resumen audiencia · Andina Retail» con hechos, pretensiones y las 6 pruebas citadas por bloque. Solo lo ven quienes tienen rol en Legal."
           },
-          "x1": "✓ documento creado · Legal / Audiencias · rastro #c21e"
+          "x1": "✓ documento creado · Legal / Audiencias · rastro #c21e",
+          "x1Title": "Resumen audiencia · Andina Retail"
         },
         "clinic": {
           "u1": "Registra una cita para el paciente Juan Pedro el jueves a las 9, control de hipertensión.",
@@ -1307,6 +1329,16 @@
             "cites": {
               "c1": "Historia · 3 oct",
               "c2": "Agenda · fila 18"
+            },
+            "sources": {
+              "c1": {
+                "doc": "Historia clínica · Juan Pedro",
+                "quote": "Control 3 oct: PA 152/94 → **ajuste de dosis**"
+              },
+              "c2": {
+                "doc": "Tabla Agenda",
+                "quote": "Fila 18 · **jue 30 oct 09:00** · control de hipertensión"
+              }
             }
           },
           "x1": "✓ fila agregada · Agenda · rastro #9b02",
@@ -1316,8 +1348,15 @@
             "text": "Meta < 140/90 en mayores de 65 sin fragilidad; individualizar si hay fragilidad. Si no estuviera en tus fuentes, te lo diría.",
             "cites": {
               "c1": "GPC 2024 · §6.3"
+            },
+            "sources": {
+              "c1": {
+                "doc": "GPC hipertensión 2024",
+                "quote": "§6.3 En mayores de 65 sin fragilidad, meta **< 140/90 mmHg**"
+              }
             }
-          }
+          },
+          "x1Title": "Juan Pedro · jue 30 oct 09:00 · control"
         },
         "ops": {
           "u1": "¿Qué referencias están bajo mínimo y quién es el proveedor aprobado?",
@@ -1327,6 +1366,16 @@
             "cites": {
               "c1": "Inventario · filas 1, 3",
               "c2": "Proveedores · §2"
+            },
+            "sources": {
+              "c1": {
+                "doc": "Tabla Inventario",
+                "quote": "Válvula 2\" · stock **14** · mínimo 20"
+              },
+              "c2": {
+                "doc": "Manual de compras",
+                "quote": "§2 Proveedor aprobado para hidráulica: **Hidrotec**"
+              }
             }
           },
           "u2": "Cada lunes a las 6 arma el pedido de lo que esté bajo mínimo y avísale a compras.",
@@ -1334,7 +1383,8 @@
           "a2": {
             "text": "Job creado. Cada lunes a las 6 genera «Pedido semanal» citando el inventario y llama al webhook de compras. Puedes verlo y pausarlo en Jobs."
           },
-          "x1": "✓ job programado · lun 06:00 · rastro #f1a7"
+          "x1": "✓ job programado · lun 06:00 · rastro #f1a7",
+          "x1Title": "Pedido semanal · lun 06:00 → compras"
         },
         "research": {
           "u1": "Consulta los papers sobre el efecto en adultos mayores, sintetiza todo y crea un documento con el análisis.",
@@ -1344,6 +1394,16 @@
             "cites": {
               "c1": "Ortega · §4.2",
               "c2": "Lin & Park · tabla 3"
+            },
+            "sources": {
+              "c1": {
+                "doc": "Ortega et al. 2023",
+                "quote": "§4.2 Diferencia **significativa** en mayores de 65 años"
+              },
+              "c2": {
+                "doc": "Lin & Park 2022",
+                "quote": "Tabla 3 · mayores de 70: **sin efecto**"
+              }
             }
           },
           "x1": "✓ documento creado · Investigación / Síntesis · 14 citas",
@@ -1353,42 +1413,47 @@
             "text": "Listo: Baier 2021 incluido como revisión narrativa. Entra en la próxima síntesis y en la lista de referencias.",
             "cites": {
               "c1": "Papers · fila 38"
+            },
+            "sources": {
+              "c1": {
+                "doc": "Tabla Papers",
+                "quote": "Fila 38 · Baier 2021 · **revisión narrativa**"
+              }
             }
-          }
+          },
+          "x1Title": "Análisis · efecto en adultos mayores"
         }
-      }
+      },
+      "composer": "Pregúntale a la base…",
+      "pause": "Pausar",
+      "resume": "Seguir",
+      "running": "ejecutando herramientas…",
+      "toolsDone": "{n} herramientas · {s} s",
+      "toolDone": "1 herramienta · {s} s",
+      "sourceLabel": "Fuente",
+      "agent": "agente"
     },
     "differentiator": {
       "eyebrow": "el diferenciador",
-      "title": "Un proceso ya no necesita un sistema. Necesita una base de conocimiento y un agente.",
-      "lede": "Hoy cada proceso interno (vacaciones, certificados, citas, pedidos) exige construir un sistema: modelo de datos, pantallas, permisos, integraciones y mantenimiento. O vive en correos y hojas de cálculo. Doctiling cambia el punto de partida: la información ya está organizada en bases de conocimiento con su propia jerarquía de acceso. El tenant es la capa semántica agéntica que las consulta y gestiona. Un agente pequeño, conectado a la base correcta, es el proceso.",
+      "title": "Un proceso nuevo no debería ser un sistema nuevo.",
+      "lede": "Pedir vacaciones, emitir un certificado, registrar una cita: hoy cada proceso pide su propio sistema, con pantallas, permisos e integraciones. Con Doctiling tus documentos ya viven en una base con sus permisos, y un agente hace el proceso conversando.",
       "before": {
-        "title": "Un sistema con pantallas",
+        "title": "Construir un sistema",
         "tag": "por cada proceso",
-        "nav": {
-          "home": "Inicio",
-          "vac": "Vacaciones",
-          "cert": "Certificados",
-          "appt": "Citas",
-          "reports": "Reportes"
+        "week": "semana {n}",
+        "steps": {
+          "s1": "Modelo de datos",
+          "s2": "Pantallas y formularios",
+          "s3": "Permisos y aprobaciones",
+          "s4": "Integraciones",
+          "s5": "Pruebas y salida a producción"
         },
-        "form": {
-          "type": "Tipo de solicitud",
-          "typeVal": "Vacaciones ▾",
-          "start": "Fecha inicio",
-          "end": "Fecha fin",
-          "dateHint": "dd/mm/aaaa",
-          "approver": "Aprobador",
-          "approverVal": "Seleccionar… ▾",
-          "cancel": "Cancelar",
-          "submit": "Enviar solicitud"
-        },
-        "step": "modelo de datos · formularios · estados · aprobaciones · integraciones",
-        "cost": "meses de trabajo · mantenimiento permanente · un sistema más que aprender"
+        "unit": "semanas",
+        "tail": "…y después, mantenerlo"
       },
       "after": {
-        "title": "Un agente sobre la base",
-        "tag": "doctiling",
+        "title": "Pedírselo al agente",
+        "tag": "con Doctiling",
         "chat": {
           "u": "Quiero 5 días de vacaciones desde el 18 de noviembre.",
           "t": "search_knowledge_base(Política) · aggregate_rows(Vacaciones) · append_table_rows",
@@ -1397,8 +1462,8 @@
           "c2": "Vacaciones · fila 12",
           "x": "✓ fila agregada · Gestión humana / Vacaciones · rastro #a41f"
         },
-        "step": "la base ya existe, con sus permisos · el agente entra por MCP con token acotado",
-        "win": "Horas, no meses. Sin modelo de datos nuevo, sin pantalla nueva, sin consulta escrita."
+        "unit": "segundos",
+        "win": "La base ya existe con sus permisos: conectar el agente toma horas, no meses."
       },
       "tree": {
         "label": "Arquitectura: agentes y sistemas se conectan por MCP al tenant, que es la capa semántica agéntica de la empresa. Debajo del tenant están las bases de conocimiento. Cada base tiene su propia jerarquía: roles propietario, administrador, colaborador y lector, y por documento quién puede ver y quién puede escribir.",
@@ -1545,7 +1610,24 @@
         "caption": "El tenant no guarda datos: es la capa semántica que entiende, aplica permisos y actúa. La jerarquía empieza en cada base de conocimiento: roles propios (propietario, administrador, colaborador, lector) y, por documento, quién ve y quién escribe, más la clasificación (público, interno, restringido, privado) que el servidor hace cumplir. Agregar un proceso es agregar una base; el agente sólo se conecta a ella.",
         "legend1": "Bases que toca el agente de vacaciones.",
         "legend2": "El de certificados entra a Empleados y Certificados con un token de rol admin y entrega sólo el certificado de quien pregunta."
-      }
+      },
+      "note": "Plazos de un desarrollo a medida, ilustrativos. La respuesta del agente es la de la demo.",
+      "replay": "Repetir",
+      "steps": {
+        "s1": {
+          "title": "Organiza",
+          "body": "Sube documentos, tablas y grafos a una base de conocimiento. Cada base tiene sus roles y cada documento dice quién lo ve y quién lo escribe."
+        },
+        "s2": {
+          "title": "Conecta",
+          "body": "Un agente, el chat de tu equipo o tu propio sistema se conectan a la base con un permiso acotado y revocable."
+        },
+        "s3": {
+          "title": "Opera",
+          "body": "El agente consulta, cruza, registra y crea documentos en lenguaje natural, cita el bloque exacto y deja rastro de cada acción."
+        }
+      },
+      "treeToggle": "Ver la arquitectura por dentro: la capa semántica y los permisos de cada base"
     },
     "cookies": {
       "title": "Preferencias de cookies",
@@ -1595,6 +1677,13 @@
         "step3": "Creamos el espacio de tu empresa y te escribimos para activarlo.",
         "spam": "¿No llega en 10 minutos? Revisa spam o promociones, o escríbenos.",
         "again": "Pedir otra cotización"
+      }
+    },
+    "contact": {
+      "tablistLabel": "Cómo quieres empezar",
+      "tabs": {
+        "demo": "Para mí o mi equipo",
+        "quote": "Para mi empresa"
       }
     }
   },
@@ -2344,5 +2433,13 @@
         }
       }
     }
+  },
+  "pricingPage": {
+    "hero": {
+      "eyebrow": "precios",
+      "title": "Saldo de IA y recargas.",
+      "lede": "Cada plan trae un saldo de IA mensual en pesos. Aquí ves cómo se gasta, qué pasa si se acaba y cuánto rinde una recarga."
+    },
+    "plansLink": "Ver los planes"
   }
 }

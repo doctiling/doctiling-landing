@@ -323,3 +323,162 @@
     animation-delay: 0.4s;
   }
 }
+
+/* Hero chat demo, live replay: a spinner per running tool, a pulse on the
+   "agent" dot, the caret in the composer, the card of what the agent wrote
+   dropping in and its skeleton lines growing. All still under reduced motion
+   (the demo then renders the whole script at once). */
+@keyframes landing-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes landing-live {
+  0% {
+    box-shadow: 0 0 0 0 rgb(110 231 183 / 0.7);
+  }
+  80%,
+  100% {
+    box-shadow: 0 0 0 7px rgb(110 231 183 / 0);
+  }
+}
+@keyframes landing-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) rotate(-1deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes landing-done-glow {
+  from {
+    box-shadow: 0 0 0 0 rgb(5 150 105 / 0.35);
+  }
+  to {
+    box-shadow: 0 0 0 12px rgb(5 150 105 / 0);
+  }
+}
+@keyframes landing-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes landing-cite-in {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .landing-spin {
+    animation: landing-spin 0.7s linear infinite;
+  }
+  .landing-live {
+    animation: landing-live 1.8s ease-out infinite;
+  }
+  .landing-caret {
+    animation: landing-blink 1s steps(1) infinite;
+  }
+  .landing-drop {
+    animation:
+      landing-drop 0.6s cubic-bezier(0.2, 1.1, 0.3, 1) both,
+      landing-done-glow 1.4s 0.6s ease-out;
+  }
+  .landing-grow {
+    transform-origin: left;
+    animation: landing-grow 0.5s ease-out both;
+  }
+  .landing-cite {
+    animation: landing-cite-in 0.4s cubic-bezier(0.2, 1.6, 0.4, 1) both;
+  }
+}
+
+/* Proof section: three measured claims on the accent ground, each card with a
+   hairline gradient border; under them a slow band of what every answer
+   carries. The band stops (and wraps) under reduced motion. */
+.landing-proof-card {
+  position: relative;
+  border-radius: 1.4rem;
+  background: hsl(var(--accent-foreground) / 0.05);
+}
+.landing-proof-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(
+    135deg,
+    hsl(var(--primary) / 0.9),
+    hsl(var(--accent-foreground) / 0.18) 45%,
+    hsl(var(--destructive) / 0.6)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+@keyframes landing-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.landing-marquee {
+  display: flex;
+  width: max-content;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .landing-marquee {
+    animation: landing-marquee 40s linear infinite;
+  }
+  .landing-marquee:hover {
+    animation-play-state: paused;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-marquee {
+    flex-wrap: wrap;
+    width: auto;
+  }
+  .landing-marquee [data-copy] {
+    display: none;
+  }
+}
+
+/* Surfaces showcase: the panel cross-fades between surfaces, the phone floats,
+   the MCP transcript lines arrive one after the other (landing-pop). */
+@keyframes landing-swap {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes landing-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .landing-swap {
+    animation: landing-swap 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .landing-float {
+    animation: landing-float 5s ease-in-out infinite;
+  }
+}

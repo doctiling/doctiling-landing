@@ -225,7 +225,8 @@
         "knowledge": "What it is",
         "evidence": "In action",
         "benchmarks": "Benchmarks",
-        "control": "Your data"
+        "control": "Your data",
+        "pricing": "Pricing and top-ups"
       },
       "signin": "Sign in",
       "openApp": "Open studio",
@@ -309,44 +310,28 @@
       "footnote": "Plus summary, entities, contradictions, questions, critique and study cards — twelve one-click lenses, no prompt writing."
     },
     "verticals": {
-      "eyebrow": "for your field",
-      "title": "Your field already lives in documents. Doctiling makes them answer.",
-      "lede": "Not a generic chat that guesses: every knowledge base is grounded in your own sources and answers with the exact citation. We set up your space with knowledge bases, skills and starter documents tuned to your specialty.",
-      "edgeLabel": "your edge",
-      "more": "See solutions by field in detail",
+      "stripLabel": "For your field",
+      "stripMore": "See by field",
       "items": {
         "legal": {
-          "title": "Legal teams",
-          "body": "Review contracts and draft matter briefs without losing the exact clause. Every conclusion cites the document and page.",
-          "edge": "Answers you can defend to a client or a judge. On Gold your matters live in a dedicated database — never mixed with another tenant."
+          "title": "Legal teams"
         },
         "health": {
-          "title": "Healthcare",
-          "body": "Bring patient history, guidelines and literature into one knowledge base. Suggest differentials and summarize follow-ups, all cited.",
-          "edge": "Never invents a dose or a finding: if it isn't in your sources, it says so. End-to-end clinical traceability."
+          "title": "Healthcare"
         },
         "finance": {
-          "title": "Finance",
-          "body": "Ratio analysis, filing summaries and portfolio tracking over your own filings and statements.",
-          "edge": "Every figure points to the statement it came from — audit-ready, with no fabricated numbers."
+          "title": "Finance"
         },
         "accounting": {
-          "title": "Accounting",
-          "body": "Classify transactions, reconcile and query the general ledger by asking in plain language.",
-          "edge": "Full traceability: every answer links back to the original entry. Close stops being a hunt for receipts."
+          "title": "Accounting"
         },
         "research": {
-          "title": "Research & grad school",
-          "body": "Turn a stack of papers into a literature review: synthesize across sources, surface contradictions and draft.",
-          "edge": "Verifiable citations, never invented references. A bilingual studio (EN · ES) so you can publish in either language."
+          "title": "Research & grad school"
         },
         "consulting": {
-          "title": "Consulting",
-          "body": "Turn data rooms and interviews into grounded deliverables. Mirror view stacks summaries, entities and correlations beside the document.",
-          "edge": "Save each finding as a variant and expose it to your team chat over MCP — the client sees the trail, not a black box."
+          "title": "Consulting"
         }
-      },
-      "useCase": "See the use case"
+      }
     },
     "tiers": {
       "eyebrow": "plans and pricing",
@@ -549,7 +534,9 @@
             "each": "1,000 queries"
           }
         },
-        "note": "You pay COP 20,000, COP 90,000, COP 225,000 or COP 450,000 and get that same amount as balance. A top-up is optional: without one, AI comes back on the 1st. In a company the person in charge of payment buys it and it serves the whole team. There are no top-ups for an overdue account or when the company uses its own AI."
+        "note": "You pay COP 20,000, COP 90,000, COP 225,000 or COP 450,000 and get that same amount as balance. A top-up is optional: without one, AI comes back on the 1st. In a company the person in charge of payment buys it and it serves the whole team. There are no top-ups for an overdue account or when the company uses its own AI.",
+        "teaser": "Your plan comes with an AI balance in pesos. If it runs out, AI pauses and everything else keeps working: never a charge you did not decide.",
+        "teaserLink": "See top-ups"
       },
       "parts": {
         "title": "What you are paying for",
@@ -951,24 +938,32 @@
       }
     },
     "proof": {
-      "label": "Measured with our own evaluation harness — no customers to quote yet, so we show numbers.",
-      "link": "See the method",
+      "eyebrow": "proof",
+      "title": "We measure it before we say it.",
+      "link": "See how we measured it",
       "items": {
-        "recall": {
-          "value": "100%",
-          "label": "search recall on the evaluation set (was 87.5%)"
+        "cites": {
+          "label": "Answers that link the exact block",
+          "text": "of answers **link the exact block** each fact comes from. Before, none did."
         },
-        "tasks": {
-          "value": "60%",
-          "label": "of tasks completed by the agent on a local 4B model (was 22%)"
+        "small": {
+          "label": "Tasks completed on a small model",
+          "text": "of **tasks completed** by the agent on a **small model on your own machine**."
         },
-        "language": {
-          "value": "100%",
-          "label": "of answers in the asker's language on a local model (was 32%)"
-        },
-        "latency": {
-          "value": "~3 ms",
-          "label": "per query for hybrid keyword + semantic fusion, no GPU"
+        "edit": {
+          "label": "Cost per successful edit",
+          "text": "**cheaper per successful edit** and 3× faster when the agent **edits the document** instead of answering in chat."
+        }
+      },
+      "guarantees": {
+        "label": "What comes with every answer",
+        "items": {
+          "g1": "A citation in every answer",
+          "g2": "Role-based permissions",
+          "g3": "Audit trail",
+          "g4": "Dedicated database",
+          "g5": "Your own AI or local models",
+          "g6": "Self-host"
         }
       }
     },
@@ -1103,7 +1098,7 @@
     "benchmarks": {
       "eyebrow": "benchmarks",
       "title": "Measured numbers, not promises.",
-      "lede": "Every quality change ships with a before-and-after measurement. These are the two that shape what you see most: finding the right passage, and the agent finishing the task.",
+      "lede": "Every quality change ships with a before-and-after measurement: finding the right passage, finishing the task on a small model, and citing, drawing and editing well.",
       "before": "before",
       "after": "now",
       "retrieval": {
@@ -1127,7 +1122,18 @@
         }
       },
       "latency": "per query for hybrid fusion, CPU only (50 + 50 candidates).",
-      "footnote": "Measured with our internal evaluation harness. The sets are small and our own: we publish them as evidence of improvement, not as a ranking against third parties. We re-measure with every search or agent change."
+      "footnote": "Measured with our internal evaluation harness. The sets are small and our own: we publish them as evidence of improvement, not as a ranking against third parties. We re-measure with every search or agent change.",
+      "more": {
+        "title": "Agent: citing, drawing and editing",
+        "set": "same model before and after · our own sets",
+        "body": "Agent changes measured before and after, each on its own set of questions or tasks.",
+        "metrics": {
+          "blocks": "Answers linking the right block",
+          "diagrams": "Requested diagrams that render",
+          "retry": "Retries after a write error",
+          "edit": "Correct edits in the document"
+        }
+      }
     },
     "control": {
       "eyebrow": "your data, your boundary",
@@ -1228,7 +1234,12 @@
       "studio": {
         "tab": "Studio",
         "alt": "Real capture of the studio: the Nortera Logística base with the Q3 quarterly report open and its summary citing each block in the mirror view.",
-        "body": "The studio: your documents, tables and graphs on the left; the document in the middle; and the agent's analyses on the right, each citing the exact block."
+        "body": "The studio: your documents, tables and graphs on the left; the document in the middle; and the agent's analyses on the right, each citing the exact block.",
+        "tour": {
+          "files": "Your documents, tables and graphs, in a base with its permissions.",
+          "doc": "The document, split into blocks that can each be cited.",
+          "analysis": "The agent’s analysis: every claim links the exact block."
+        }
       },
       "chat": {
         "tab": "Chat",
@@ -1290,6 +1301,16 @@
             "cites": {
               "c1": "Cases · rows 4, 9, 12",
               "c2": "Agenda · Nov"
+            },
+            "sources": {
+              "c1": {
+                "doc": "Cases table",
+                "quote": "Andina Retail · **pending** · hearing Nov 14"
+              },
+              "c2": {
+                "doc": "Firm agenda",
+                "quote": "**Nov 21** · Inmobiliaria Sur · hearing"
+              }
             }
           },
           "u2": "Prepare the hearing brief for the Andina case.",
@@ -1297,7 +1318,8 @@
           "a2": {
             "text": "Done. I created “Hearing brief · Andina Retail” with the facts, the claims and the 6 exhibits cited by block. Only people with a role in Legal can see it."
           },
-          "x1": "✓ document created · Legal / Hearings · trail #c21e"
+          "x1": "✓ document created · Legal / Hearings · trail #c21e",
+          "x1Title": "Hearing brief · Andina Retail"
         },
         "clinic": {
           "u1": "Book an appointment for patient Juan Pedro on Thursday at 9, hypertension follow-up.",
@@ -1307,6 +1329,16 @@
             "cites": {
               "c1": "Record · Oct 3",
               "c2": "Agenda · row 18"
+            },
+            "sources": {
+              "c1": {
+                "doc": "Medical record · Juan Pedro",
+                "quote": "Oct 3 check-up: BP 152/94 → **dose adjusted**"
+              },
+              "c2": {
+                "doc": "Agenda table",
+                "quote": "Row 18 · **Thu Oct 30 09:00** · hypertension check-up"
+              }
             }
           },
           "x1": "✓ row added · Agenda · trail #9b02",
@@ -1316,8 +1348,15 @@
             "text": "Target < 140/90 over 65 without frailty; individualise if frail. If it were not in your sources, I would say so.",
             "cites": {
               "c1": "Guideline 2024 · §6.3"
+            },
+            "sources": {
+              "c1": {
+                "doc": "Hypertension guideline 2024",
+                "quote": "§6.3 Over 65 without frailty, target **< 140/90 mmHg**"
+              }
             }
-          }
+          },
+          "x1Title": "Juan Pedro · Thu Oct 30 09:00 · check-up"
         },
         "ops": {
           "u1": "Which items are below minimum stock and who is the approved supplier?",
@@ -1327,6 +1366,16 @@
             "cites": {
               "c1": "Inventory · rows 1, 3",
               "c2": "Suppliers · §2"
+            },
+            "sources": {
+              "c1": {
+                "doc": "Inventory table",
+                "quote": "2\" valve · stock **14** · minimum 20"
+              },
+              "c2": {
+                "doc": "Purchasing manual",
+                "quote": "§2 Approved hydraulics supplier: **Hidrotec**"
+              }
             }
           },
           "u2": "Every Monday at 6, build the order for whatever is below minimum and notify purchasing.",
@@ -1334,7 +1383,8 @@
           "a2": {
             "text": "Job created. Every Monday at 6 it generates “Weekly order” citing the inventory and calls the purchasing webhook. You can see and pause it under Jobs."
           },
-          "x1": "✓ job scheduled · Mon 06:00 · trail #f1a7"
+          "x1": "✓ job scheduled · Mon 06:00 · trail #f1a7",
+          "x1Title": "Weekly order · Mon 06:00 → purchasing"
         },
         "research": {
           "u1": "Go through the papers on the effect in older adults, synthesise everything and create a document with the analysis.",
@@ -1344,6 +1394,16 @@
             "cites": {
               "c1": "Ortega · §4.2",
               "c2": "Lin & Park · table 3"
+            },
+            "sources": {
+              "c1": {
+                "doc": "Ortega et al. 2023",
+                "quote": "§4.2 **Significant** difference in adults over 65"
+              },
+              "c2": {
+                "doc": "Lin & Park 2022",
+                "quote": "Table 3 · over 70: **no effect**"
+              }
             }
           },
           "x1": "✓ document created · Research / Syntheses · 14 citations",
@@ -1353,42 +1413,47 @@
             "text": "Done: Baier 2021 included as a narrative review. It joins the next synthesis and the reference list.",
             "cites": {
               "c1": "Papers · row 38"
+            },
+            "sources": {
+              "c1": {
+                "doc": "Papers table",
+                "quote": "Row 38 · Baier 2021 · **narrative review**"
+              }
             }
-          }
+          },
+          "x1Title": "Analysis · effect in older adults"
         }
-      }
+      },
+      "composer": "Ask the knowledge base…",
+      "pause": "Pause",
+      "resume": "Resume",
+      "running": "running tools…",
+      "toolsDone": "{n} tools · {s} s",
+      "toolDone": "1 tool · {s} s",
+      "sourceLabel": "Source",
+      "agent": "agent"
     },
     "differentiator": {
       "eyebrow": "the differentiator",
-      "title": "A process no longer needs a system. It needs a knowledge base and an agent.",
-      "lede": "Today every internal process (leave, certificates, appointments, orders) means building a system: data model, screens, permissions, integrations and maintenance. Or it lives in email and spreadsheets. Doctiling changes the starting point: the information is already organised in knowledge bases with their own access hierarchy. The tenant is the agentic semantic layer that queries and manages them. A small agent, connected to the right base, is the process.",
+      "title": "A new process should not mean a new system.",
+      "lede": "Requesting leave, issuing a certificate, booking an appointment: today each process asks for its own system, with screens, permissions and integrations. With Doctiling your documents already live in a base with its permissions, and an agent runs the process in a conversation.",
       "before": {
-        "title": "A system of screens",
-        "tag": "per process",
-        "nav": {
-          "home": "Home",
-          "vac": "Leave",
-          "cert": "Certificates",
-          "appt": "Appointments",
-          "reports": "Reports"
+        "title": "Building a system",
+        "tag": "for every process",
+        "week": "week {n}",
+        "steps": {
+          "s1": "Data model",
+          "s2": "Screens and forms",
+          "s3": "Permissions and approvals",
+          "s4": "Integrations",
+          "s5": "Testing and go-live"
         },
-        "form": {
-          "type": "Request type",
-          "typeVal": "Leave ▾",
-          "start": "Start date",
-          "end": "End date",
-          "dateHint": "dd/mm/yyyy",
-          "approver": "Approver",
-          "approverVal": "Select… ▾",
-          "cancel": "Cancel",
-          "submit": "Submit request"
-        },
-        "step": "data model · forms · states · approvals · integrations",
-        "cost": "months of work · permanent maintenance · one more system to learn"
+        "unit": "weeks",
+        "tail": "…and then, maintaining it"
       },
       "after": {
-        "title": "An agent over the base",
-        "tag": "doctiling",
+        "title": "Asking the agent",
+        "tag": "with Doctiling",
         "chat": {
           "u": "I want 5 days of leave starting November 18.",
           "t": "search_knowledge_base(Policy) · aggregate_rows(Leave) · append_table_rows",
@@ -1397,8 +1462,8 @@
           "c2": "Leave · row 12",
           "x": "✓ row added · People / Leave · trail #a41f"
         },
-        "step": "the base already exists, with its permissions · the agent connects over MCP with a scoped token",
-        "win": "Hours, not months. No new data model, no new screen, no hand-written query."
+        "unit": "seconds",
+        "win": "The base already exists with its permissions: connecting the agent takes hours, not months."
       },
       "tree": {
         "label": "Architecture: agents and systems connect over MCP to the tenant, the company's agentic semantic layer. Below the tenant sit the knowledge bases. Each base has its own hierarchy: owner, admin, collaborator and reader roles, and per document who can see and who can write.",
@@ -1545,7 +1610,24 @@
         "caption": "The tenant stores no data: it is the semantic layer that understands, applies permissions and acts. The hierarchy starts in each knowledge base: its own roles (owner, admin, collaborator, reader) and, per document, who sees and who writes, plus the classification (public, internal, restricted, private) the server enforces. Adding a process is adding a base; the agent only connects to it.",
         "legend1": "Bases the leave agent touches.",
         "legend2": "The certificates agent reaches Employees and Certificates with an admin-role token and hands over only the asker's certificate."
-      }
+      },
+      "note": "Custom-build timelines are illustrative. The agent’s answer is the demo’s.",
+      "replay": "Replay",
+      "steps": {
+        "s1": {
+          "title": "Organize",
+          "body": "Upload documents, tables and graphs to a knowledge base. Each base has its roles and each document says who sees it and who writes it."
+        },
+        "s2": {
+          "title": "Connect",
+          "body": "An agent, your team chat or your own system connects to the base with a scoped, revocable permission."
+        },
+        "s3": {
+          "title": "Operate",
+          "body": "The agent looks up, cross-checks, records and creates documents in plain language, cites the exact block and leaves a trail of every action."
+        }
+      },
+      "treeToggle": "See the inside view: the semantic layer and each base’s permissions"
     },
     "cookies": {
       "title": "Cookie preferences",
@@ -1595,6 +1677,13 @@
         "step3": "We create your company’s space and write to you to activate it.",
         "spam": "Not there in 10 minutes? Check spam or promotions, or write to us.",
         "again": "Ask for another quote"
+      }
+    },
+    "contact": {
+      "tablistLabel": "How you want to start",
+      "tabs": {
+        "demo": "For me or my team",
+        "quote": "For my company"
       }
     }
   },
@@ -2344,5 +2433,13 @@
         }
       }
     }
+  },
+  "pricingPage": {
+    "hero": {
+      "eyebrow": "pricing",
+      "title": "AI balance and top-ups.",
+      "lede": "Every plan comes with a monthly AI balance in pesos. Here is how it is spent, what happens if it runs out and how far a top-up goes."
+    },
+    "plansLink": "See the plans"
   }
 }

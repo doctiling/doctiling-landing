@@ -1,18 +1,19 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import { Check, ChevronDown, Database, MessagesSquare, RotateCcw, Workflow } from 'lucide-react';
 import { H2, MiniTitle } from '@doctiling/ui/atoms/typography';
+import { useInView } from '@doctiling/ui/hooks/use-in-view';
 import { cn } from '@doctiling/ui/cn';
 import { useLandingText } from '../host';
 import { Reveal } from './Reveal';
-import { ChatMock } from './ChatMock';
 
-// The differentiator: a process no longer needs a system of screens, it needs a
-// knowledge base and an agent. Left, the system you would have to build (menu,
-// form, buttons). Right, the same request as a chat over a base that already
-// has its permissions. Below, where the hierarchy actually lives: the tenant is
-// the semantic layer (no data, only judgement); each knowledge base below it
-// carries its own roles and, per document, who sees and who writes.
-const NAV = ['home', 'vac', 'cert', 'appt', 'reports'] as const;
+// The differentiator, in one picture: a new process should not mean a new
+// system. A race plays when the section comes into view — left, building a
+// system ticks through the weeks (illustrative); right, the same request asked
+// to the agent over a base that already exists finishes in seconds. Three plain
+// steps follow; the architecture (tenant as the semantic layer, hierarchy per
+// base) is folded below for whoever wants the inside view.
 const AGENTS = [
   { key: 'vac', x: 60 },
   { key: 'cert', x: 350 },
@@ -27,15 +28,6 @@ const BASES = [
 const ROLES = ['owner', 'admin', 'collab', 'reader'] as const;
 
 const PRIMARY = 'hsl(var(--primary))';
-
-function Field({ label, value, hint }: { label: string; value: string; hint?: boolean }) {
-  return (
-    <>
-      <span className="text-muted-foreground">{label}</span>
-      <span className={cn('rounded border border-border bg-card px-2 py-1', hint && 'text-muted-foreground')}>{value}</span>
-    </>
-  );
-}
 
 export function KnowledgeTree() {
   const { t } = useLandingText();
@@ -164,9 +156,60 @@ export function KnowledgeTree() {
   );
 }
 
+const BUILD_STEPS = ['s1', 's2', 's3', 's4', 's5'] as const;
+const WEEKS = [1, 3, 6, 9, 12] as const;
+const PLAIN_STEPS = [
+  { key: 's1', Icon: Database },
+  { key: 's2', Icon: Workflow },
+  { key: 's3', Icon: MessagesSquare },
+] as const;
+const AGENT_SECONDS = 4;
+// When each beat lands (ms after the race starts).
+const BUILD_AT = [400, 1300, 2300, 3300, 4300] as const;
+const CHAT_AT = { u: 300, t: 900, a: 1900, x: 2900 } as const;
+const RACE_MS = 5200;
+
+function prefersReducedMotion() {
+  return typeof window === 'undefined' || typeof window.matchMedia !== 'function'
+    ? true
+    : window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+/** Milliseconds since the race started; the end value without motion. */
+function useRace(play: boolean, run: number) {
+  const [ms, setMs] = useState(RACE_MS);
+  useEffect(() => {
+    if (!play || prefersReducedMotion()) {
+      setMs(RACE_MS);
+      return;
+    }
+    let raf = 0;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const elapsed = Math.min(RACE_MS, now - start);
+      setMs(elapsed);
+      if (elapsed < RACE_MS) raf = requestAnimationFrame(tick);
+    };
+    setMs(0);
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [play, run]);
+  return ms;
+}
+
 export function DifferentiatorSection() {
   const { t } = useLandingText();
   const d = 'landing.differentiator';
+  const { ref, inView } = useInView<HTMLDivElement>();
+  const [run, setRun] = useState(0);
+  const ms = useRace(inView, run);
+
+  const builtSteps = BUILD_AT.filter((at) => ms >= at).length;
+  const weeks = builtSteps ? WEEKS[builtSteps - 1] : 0;
+  const shown = (at: number) => ms >= at;
+  const seconds = Math.min(AGENT_SECONDS, Math.floor((Math.min(ms, CHAT_AT.x) / CHAT_AT.x) * AGENT_SECONDS));
+  const agentDone = ms >= CHAT_AT.x;
+  const pop = 'landing-pop';
 
   return (
     <section id="differentiator" className="border-t border-border">
@@ -174,64 +217,162 @@ export function DifferentiatorSection() {
         <Reveal className="flex max-w-3xl flex-col gap-4">
           <MiniTitle>{t(`${d}.eyebrow`)}</MiniTitle>
           <H2 className="text-balance text-4xl not-italic leading-tight sm:text-5xl">{t(`${d}.title`)}</H2>
-          <p className="text-base leading-relaxed text-muted-foreground">{t(`${d}.lede`)}</p>
+          <p className="text-lg leading-relaxed text-muted-foreground">{t(`${d}.lede`)}</p>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-2">
-          {/* The system you would build: one screen per process */}
-          <Reveal>
-            <article className="landing-card flex h-full flex-col p-6" data-testid="before">
-              <header className="flex items-baseline justify-between gap-3">
-                <h3 className="font-display text-xl leading-snug">{t(`${d}.before.title`)}</h3>
-                <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{t(`${d}.before.tag`)}</span>
-              </header>
-              <div className="mt-5 overflow-hidden rounded-xl border border-border bg-background text-xs" aria-hidden="true">
-                <div className="flex gap-4 overflow-x-auto whitespace-nowrap border-b border-border px-3 py-2 text-muted-foreground">
-                  {NAV.map((n) => (
-                    <span key={n} className={cn(n === 'vac' && 'border-b-2 border-muted-foreground font-semibold text-foreground')}>
-                      {t(`${d}.before.nav.${n}`)}
+        <div ref={ref} className="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-2">
+          {/* Building a system for the process: weeks tick by */}
+          <article className="landing-card flex h-full flex-col p-6 sm:p-7" data-testid="before">
+            <header className="flex items-baseline justify-between gap-3">
+              <h3 className="font-display text-2xl leading-snug">{t(`${d}.before.title`)}</h3>
+              <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{t(`${d}.before.tag`)}</span>
+            </header>
+            <ol className="mt-6 flex flex-col gap-3">
+              {BUILD_STEPS.map((s, i) => {
+                const done = i < builtSteps;
+                return (
+                  <li
+                    key={s}
+                    className={cn(
+                      'grid grid-cols-[4.5rem_1fr] items-center gap-3 text-sm transition-opacity duration-300',
+                      done ? 'opacity-100' : 'opacity-30',
+                    )}
+                  >
+                    <span className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+                      {t(`${d}.before.week`, { n: WEEKS[i] })}
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <span
+                        className={cn(
+                          'grid size-4 shrink-0 place-items-center rounded-full border',
+                          done ? 'border-muted-foreground bg-muted-foreground text-background' : 'border-border',
+                        )}
+                        aria-hidden="true"
+                      >
+                        {done && <Check className="size-2.5" />}
+                      </span>
+                      {t(`${d}.before.steps.${s}`)}
+                    </span>
+                  </li>
+                );
+              })}
+            </ol>
+            <div className="mt-6 h-1.5 overflow-hidden rounded-full bg-secondary" aria-hidden="true">
+              <span
+                className="block h-full rounded-full bg-muted-foreground/60 transition-[width] duration-500"
+                style={{ width: `${(weeks / WEEKS[WEEKS.length - 1]) * 100}%` }}
+              />
+            </div>
+            <div className="mt-auto flex items-end justify-between gap-4 pt-6">
+              <p className="flex items-baseline gap-2">
+                <span className="font-display text-5xl tabular-nums tracking-tight text-muted-foreground" data-weeks={weeks}>
+                  {weeks}
+                </span>
+                <span className="text-sm text-muted-foreground">{t(`${d}.before.unit`)}</span>
+              </p>
+              <p
+                className={cn(
+                  'text-right font-mono text-xs text-destructive transition-opacity duration-500',
+                  builtSteps === BUILD_STEPS.length ? 'opacity-100' : 'opacity-0',
+                )}
+              >
+                {t(`${d}.before.tail`)}
+              </p>
+            </div>
+          </article>
+
+          {/* Asking the agent over a base that already exists: seconds */}
+          <article className="landing-card flex h-full flex-col p-6 !border-accent/40 sm:p-7" data-testid="after">
+            <header className="flex items-baseline justify-between gap-3">
+              <h3 className="font-display text-2xl leading-snug">{t(`${d}.after.title`)}</h3>
+              <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{t(`${d}.after.tag`)}</span>
+            </header>
+            <div className="mt-6 flex min-h-[15rem] flex-col gap-2.5 rounded-xl border border-border bg-background p-3 sm:p-4">
+              {shown(CHAT_AT.u) && (
+                <p className={cn(pop, 'max-w-[92%] self-end rounded-2xl rounded-br-md bg-accent px-3.5 py-2.5 text-sm leading-snug text-accent-foreground')}>
+                  {t(`${d}.after.chat.u`)}
+                </p>
+              )}
+              {shown(CHAT_AT.t) && (
+                <p className={cn(pop, 'max-w-full truncate rounded-lg bg-secondary/60 px-3 py-2 font-mono text-[11px] text-muted-foreground')}>
+                  {t(`${d}.after.chat.t`)}
+                </p>
+              )}
+              {shown(CHAT_AT.a) && (
+                <div className={cn(pop, 'max-w-[92%] self-start rounded-2xl rounded-bl-md bg-secondary/60 px-3.5 py-2.5 text-sm leading-relaxed')}>
+                  {t(`${d}.after.chat.a`)}{' '}
+                  {(['c1', 'c2'] as const).map((c) => (
+                    <span
+                      key={c}
+                      className="mx-0.5 inline-block rounded border border-primary/60 bg-card px-1 align-middle font-mono text-[10px] text-primary"
+                    >
+                      {t(`${d}.after.chat.${c}`)}
                     </span>
                   ))}
                 </div>
-                <div className="grid grid-cols-[auto_1fr] items-center gap-x-3 gap-y-2 p-3">
-                  <Field label={t(`${d}.before.form.type`)} value={t(`${d}.before.form.typeVal`)} />
-                  <Field label={t(`${d}.before.form.start`)} value={t(`${d}.before.form.dateHint`)} hint />
-                  <Field label={t(`${d}.before.form.end`)} value={t(`${d}.before.form.dateHint`)} hint />
-                  <Field label={t(`${d}.before.form.approver`)} value={t(`${d}.before.form.approverVal`)} hint />
-                  <div className="col-span-2 mt-1 flex justify-end gap-2">
-                    <span className="rounded border border-border bg-card px-2.5 py-1">{t(`${d}.before.form.cancel`)}</span>
-                    <span className="rounded bg-muted-foreground px-2.5 py-1 text-background">{t(`${d}.before.form.submit`)}</span>
-                  </div>
-                </div>
-              </div>
-              <p className="mt-4 font-mono text-xs text-muted-foreground">{t(`${d}.before.step`)}</p>
-              <p className="mt-2 font-mono text-xs text-destructive">{t(`${d}.before.cost`)}</p>
-            </article>
-          </Reveal>
-
-          {/* The agent over a base that already exists */}
-          <Reveal delay={120}>
-            <article className="landing-card flex h-full flex-col p-6 !border-accent/40" data-testid="after">
-              <header className="flex items-baseline justify-between gap-3">
-                <h3 className="font-display text-xl leading-snug">{t(`${d}.after.title`)}</h3>
-                <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{t(`${d}.after.tag`)}</span>
-              </header>
-              <ChatMock
-                className="mt-5"
-                lines={[
-                  { kind: 'u', text: t(`${d}.after.chat.u`) },
-                  { kind: 't', text: t(`${d}.after.chat.t`) },
-                  { kind: 'a', text: t(`${d}.after.chat.a`), cites: [t(`${d}.after.chat.c1`), t(`${d}.after.chat.c2`)] },
-                  { kind: 'x', text: t(`${d}.after.chat.x`) },
-                ]}
-              />
-              <p className="mt-4 font-mono text-xs text-muted-foreground">{t(`${d}.after.step`)}</p>
-              <p className="mt-2 border-l-[3px] border-l-emerald-500 pl-3 text-sm leading-relaxed">{t(`${d}.after.win`)}</p>
-            </article>
-          </Reveal>
+              )}
+              {shown(CHAT_AT.x) && (
+                <p className="landing-drop self-start rounded-md border border-emerald-600/50 bg-emerald-50 px-2.5 py-1.5 font-mono text-[11px] text-emerald-800">
+                  {t(`${d}.after.chat.x`)}
+                </p>
+              )}
+            </div>
+            <div className="mt-auto flex items-end justify-between gap-4 pt-6">
+              <p className="flex items-baseline gap-2">
+                <span className="font-display text-5xl tabular-nums tracking-tight text-accent" data-seconds={seconds}>
+                  {seconds}
+                </span>
+                <span className="text-sm text-muted-foreground">{t(`${d}.after.unit`)}</span>
+              </p>
+              <p
+                className={cn(
+                  'max-w-[16rem] border-l-[3px] border-l-emerald-500 pl-3 text-sm leading-snug transition-opacity duration-500',
+                  agentDone ? 'opacity-100' : 'opacity-0',
+                )}
+              >
+                {t(`${d}.after.win`)}
+              </p>
+            </div>
+          </article>
+        </div>
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
+          <span>{t(`${d}.note`)}</span>
+          <button
+            type="button"
+            onClick={() => setRun((n) => n + 1)}
+            className="inline-flex items-center gap-1 rounded-full border border-border bg-card px-2.5 py-1 font-medium text-foreground/80 hover:text-foreground"
+          >
+            <RotateCcw className="size-3" aria-hidden="true" />
+            {t(`${d}.replay`)}
+          </button>
         </div>
 
-        <KnowledgeTree />
+        {/* How it works, in three plain steps */}
+        <ol className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
+          {PLAIN_STEPS.map(({ key, Icon }, i) => (
+            <li key={key}>
+              <Reveal delay={i * 120} className="flex flex-col gap-3 border-t-2 border-primary pt-5">
+                <span className="flex items-center gap-3">
+                  <span className="grid size-9 place-items-center rounded-full bg-accent text-accent-foreground">
+                    <Icon className="size-4" aria-hidden="true" />
+                  </span>
+                  <span className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">{i + 1}</span>
+                </span>
+                <h3 className="font-display text-2xl leading-snug">{t(`${d}.steps.${key}.title`)}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{t(`${d}.steps.${key}.body`)}</p>
+              </Reveal>
+            </li>
+          ))}
+        </ol>
+
+        {/* The inside view, folded */}
+        <details className="group mt-14 rounded-2xl border border-border bg-card/60 px-5 py-4 sm:px-6">
+          <summary className="flex cursor-pointer list-none items-center gap-2 text-sm font-medium text-foreground/85 hover:text-foreground [&::-webkit-details-marker]:hidden">
+            <ChevronDown className="size-4 transition-transform group-open:rotate-180" aria-hidden="true" />
+            {t(`${d}.treeToggle`)}
+          </summary>
+          <KnowledgeTree />
+        </details>
       </div>
     </section>
   );

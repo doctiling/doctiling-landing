@@ -186,6 +186,36 @@ const STATIC_SEO_COPY: Record<LandingSlug, LocalizedCopy> = {
       ],
     },
   },
+  pricing: {
+    en: {
+      title: 'Doctiling pricing — AI balance and top-ups',
+      description:
+        'Every Doctiling plan comes with a monthly AI balance in pesos. How it is spent, what happens when it runs out (AI pauses, everything else keeps working) and how far each top-up goes — never a charge you did not decide.',
+      ogAlt: 'Doctiling pricing — monthly AI balance and top-ups',
+      keywords: [
+        'Doctiling pricing',
+        'AI knowledge base pricing',
+        'AI credits top-up',
+        'AI usage balance',
+        'pay as you go AI',
+        'knowledge base plans',
+      ],
+    },
+    es: {
+      title: 'Precios de Doctiling — saldo de IA y recargas',
+      description:
+        'Cada plan de Doctiling trae un saldo de IA mensual en pesos. Cómo se gasta, qué pasa si se acaba (la IA se pausa y todo lo demás sigue) y cuánto rinde cada recarga — nunca un cobro que no hayas decidido.',
+      ogAlt: 'Precios de Doctiling — saldo de IA mensual y recargas',
+      keywords: [
+        'precios Doctiling',
+        'precio base de conocimiento IA',
+        'recargas de IA',
+        'saldo de IA',
+        'IA por consumo',
+        'planes base de conocimiento',
+      ],
+    },
+  },
 };
 
 export const VERTICAL_KEYS = ['legal', 'health', 'finance', 'accounting', 'research', 'consulting'] as const;

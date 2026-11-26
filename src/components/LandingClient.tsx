@@ -11,12 +11,11 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from '@doctiling/ui/molecules/dropdown-menu';
-import { DemoRequestForm } from './DemoRequestForm';
-import { QuoteRequestForm } from './QuoteRequestForm';
+import { ContactSection } from './ContactSection';
 import { HeroAccessForm } from './HeroAccessForm';
 import { StickyCta } from './StickyCta';
 import { FaqSection } from './FaqSection';
-import { BenchmarkSection } from './BenchmarkSection';
+import { ProofSection } from './ProofSection';
 import { SecuritySection } from './SecuritySection';
 import { PlatformSection } from './PlatformSection';
 import { InterfacesSection } from './InterfacesSection';
@@ -28,15 +27,13 @@ import { HeroChatDemo } from './HeroChatDemo';
 import { DifferentiatorSection } from './DifferentiatorSection';
 
 const INTEGRATION_KEYS = ['corp', 'enterprise', 'agents'] as const;
-// Outcome numbers, all measured — the benchmarks section carries the method.
-const PROOF_KEYS = ['recall', 'tasks', 'language', 'latency'] as const;
 
 const SECTION = 'mx-auto max-w-7xl px-5 sm:px-6 lg:px-10';
 const NAV_LINK =
   'whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium text-foreground/75 transition-colors hover:bg-card hover:text-foreground';
 
 export default function LandingClient() {
-  const { t, locale, isAuthenticated: isAuthed, features, href, submitQuoteRequest } = useLandingHost();
+  const { t, locale, isAuthenticated: isAuthed, features, href } = useLandingHost();
   const INTEGRATIONS_ENABLED = features.integrations;
   const signinHref = href('signin');
   const appHref = href('app');
@@ -114,6 +111,9 @@ export default function LandingClient() {
                   <a href={deckHref} download>
                     {t('landing.hero.ctaDeck')}
                   </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href={`/${locale}/pricing`}>{t('landing.nav.links.pricing')}</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <a href="#faq">{t('landing.nav.links.faq')}</a>
@@ -268,40 +268,9 @@ export default function LandingClient() {
         </div>
       </section>
 
-      {/* PROOF STRIP — measured outcomes instead of a logo wall (no public customers yet) */}
-      <section aria-labelledby="proof-label" className="border-y border-border bg-card/60">
-        <div className={`${SECTION} py-8`}>
-          <div className="flex flex-wrap items-baseline justify-between gap-3">
-            <p id="proof-label" className="text-sm text-muted-foreground">
-              {t('landing.proof.label')}
-            </p>
-            <a
-              href="#benchmarks"
-              className="inline-flex items-center gap-1 text-sm font-medium text-accent underline-offset-4 hover:underline"
-            >
-              {t('landing.proof.link')} <ArrowRight className="size-3.5" />
-            </a>
-          </div>
-          <div className="mt-6 grid grid-cols-2 gap-y-6 md:grid-cols-4 md:divide-x md:divide-border">
-            {PROOF_KEYS.map((key, i) => (
-              <Reveal key={key} delay={i * 90}>
-                <div className="flex h-full flex-col gap-1.5 pr-4 md:px-6">
-                  <span className="font-display text-4xl tracking-tight text-accent sm:text-5xl">
-                    {t(`landing.proof.items.${key}.value`)}
-                  </span>
-                  <span className="max-w-[16rem] text-sm leading-relaxed text-muted-foreground">
-                    {t(`landing.proof.items.${key}.label`)}
-                  </span>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <DifferentiatorSection />
 
-      <BenchmarkSection />
+      <ProofSection />
 
       <SecuritySection />
 
@@ -348,51 +317,8 @@ export default function LandingClient() {
         </section>
       )}
 
-      {/* QUOTE REQUEST — a company's plan (doctiling-billing US13); only where the host can take it. */}
-      {submitQuoteRequest && (
-        <section id="cotizar" className="border-t border-border">
-          <div className={`${SECTION} py-24`}>
-            <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-              <Reveal className="lg:col-span-5">
-                <MiniTitle className="mb-6">{t('landing.quote.eyebrow')}</MiniTitle>
-                <H2 className="max-w-md text-balance text-4xl not-italic leading-tight sm:text-5xl">{t('landing.quote.title')}</H2>
-                <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">{t('landing.quote.body')}</p>
-              </Reveal>
-              <Reveal delay={140} className="lg:col-span-7">
-                <div className="landing-card p-6 sm:p-8">
-                  <QuoteRequestForm />
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* DEMO REQUEST */}
-      <section id="demo" className="border-t border-border">
-        <div className={`${SECTION} py-24`}>
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-            <Reveal className="lg:col-span-5">
-              <MiniTitle className="mb-6">{t('landing.demo.eyebrow')}</MiniTitle>
-              <H2 className="max-w-md text-balance text-4xl not-italic leading-tight sm:text-5xl">
-                {t('landing.demo.title')}
-              </H2>
-              <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
-                {t('landing.demo.body')}
-              </p>
-              <p className="mt-6 flex items-start gap-2 text-sm font-medium text-foreground/80">
-                <Check className="mt-0.5 size-4 shrink-0 text-emerald-600" aria-hidden="true" />
-                {t('landing.hero.freeBadge')}
-              </p>
-            </Reveal>
-            <Reveal delay={140} className="lg:col-span-7">
-              <div className="landing-card p-6 sm:p-8">
-                <DemoRequestForm />
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
+      {/* CONTACT — access for a person, a quote for a company: one section, two tabs */}
+      <ContactSection />
 
       {/* FAQ */}
       <FaqSection />

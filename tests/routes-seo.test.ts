@@ -34,9 +34,9 @@ const SITE = 'https://www.doctiling.app';
 const LOCALES = ['en', 'es'] as const;
 
 describe('routes', () => {
-  it('exposes the home plus the three deep-dive pages', () => {
-    expect(LANDING_SLUGS).toEqual(['landing', 'documents', 'connect', 'verticals']);
-    expect(LANDING_PUBLIC_SEGMENTS).toEqual(['/landing', '/documents', '/connect', '/verticals', '/use-cases', '/compare', '/guides']);
+  it('exposes the home plus the four deep-dive pages', () => {
+    expect(LANDING_SLUGS).toEqual(['landing', 'documents', 'connect', 'verticals', 'pricing']);
+    expect(LANDING_PUBLIC_SEGMENTS).toEqual(['/landing', '/documents', '/connect', '/verticals', '/pricing', '/use-cases', '/compare', '/guides']);
   });
 
   it('generates one use-case page per catalogue entry', () => {

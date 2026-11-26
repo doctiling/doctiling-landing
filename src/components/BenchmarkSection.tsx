@@ -10,7 +10,10 @@ import { Reveal } from './Reveal';
 // set (12 questions), before spec 050 vs. the production configuration
 // (weighted fusion + vector threshold 0.6) — docs/ai/retrieval.md in web.
 // Agent: notebook 80, N=10 runs per task on a local 4B open model — shipped in
-// web v0.24.1. Change a value here only with a new measurement behind it.
+// web v0.24.1. More: block citations nb/86 (0/36 → 35/36), diagrams nb/88
+// (0/30 → 30/30), write-error retry nb/83 (0/5 → 5/5), in-document edits spec 086
+// A/B (5/15 → 15/15), each with the same model before and after.
+// Change a value here only with a new measurement behind it.
 export const RETRIEVAL_METRICS = [
   { key: 'recall', before: 0.875, after: 1 },
   { key: 'ndcg', before: 0.878, after: 0.939 },
@@ -21,6 +24,13 @@ export const RETRIEVAL_METRICS = [
 export const AGENT_METRICS = [
   { key: 'tasks', before: 22, after: 60 },
   { key: 'language', before: 32, after: 100 },
+] as const;
+
+export const MORE_METRICS = [
+  { key: 'blocks', before: 0, after: 97, max: 100, unit: '%' },
+  { key: 'diagrams', before: 0, after: 100, max: 100, unit: '%' },
+  { key: 'retry', before: 0, after: 5, max: 5, unit: '/5' },
+  { key: 'edit', before: 5, after: 15, max: 15, unit: '/15' },
 ] as const;
 
 function Bars({
@@ -75,6 +85,7 @@ function Bars({
 
 const formatScore = (n: number) => n.toFixed(3);
 const formatPercent = (n: number) => `${n} %`;
+const formatUnit = (unit: string) => (n: number) => (unit === '%' ? formatPercent(n) : `${n}${unit}`);
 
 export function BenchmarkSection() {
   const { t } = useLandingText();
@@ -139,6 +150,29 @@ export function BenchmarkSection() {
             <div className="mt-auto flex items-baseline gap-3 border-t border-border pt-5">
               <span className="font-display text-4xl tracking-tight text-accent whitespace-nowrap">~3 ms</span>
               <span className="text-sm leading-relaxed text-muted-foreground">{t('landing.benchmarks.latency')}</span>
+            </div>
+          </article>
+
+          <article className="landing-card flex flex-col gap-6 p-6 sm:p-8 lg:col-span-2">
+            <header className="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 className="font-display text-2xl leading-snug">{t('landing.benchmarks.more.title')}</h3>
+              <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                {t('landing.benchmarks.more.set')}
+              </span>
+            </header>
+            <p className="text-sm leading-relaxed text-muted-foreground">{t('landing.benchmarks.more.body')}</p>
+            <div className="grid grid-cols-1 gap-x-10 gap-y-5 md:grid-cols-2">
+              {MORE_METRICS.map((m) => (
+                <Bars
+                  key={m.key}
+                  label={t(`landing.benchmarks.more.metrics.${m.key}`)}
+                  before={m.before}
+                  after={m.after}
+                  format={formatUnit(m.unit)}
+                  max={m.max}
+                  play={inView}
+                />
+              ))}
             </div>
           </article>
         </div>

@@ -14,7 +14,7 @@ describe('landing dictionaries', () => {
 
   it('own exactly the marketing namespaces', () => {
     expect(Object.keys(LANDING_MESSAGES.en).sort()).toEqual(
-      ['comparePage', 'connectPage', 'documentsPage', 'guidesPage', 'landing', 'useCasesPage', 'verticalsPage'].sort(),
+      ['comparePage', 'connectPage', 'documentsPage', 'guidesPage', 'landing', 'pricingPage', 'useCasesPage', 'verticalsPage'].sort(),
     );
   });
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { H2, MiniTitle } from '@doctiling/ui/atoms/typography';
 import { BrowserFrame } from '@doctiling/ui/molecules/browser-frame';
 import { cn } from '@doctiling/ui/cn';
@@ -21,6 +21,57 @@ const SURFACES = [
 
 type SurfaceKey = (typeof SURFACES)[number]['key'];
 
+// Autoplay: each surface stays this long (the studio longer: it runs a tour),
+// hover holds it, a click on a tab stops it.
+const DWELL_MS: Record<SurfaceKey, number> = { studio: 9600, chat: 6000, mcp: 6000, mobile: 6000 };
+// The studio tour: three regions of the capture (percent of the framed image,
+// window chrome included), lit one after the other with what each one is.
+const TOUR = [
+  { key: 'files', left: 0.6, top: 8.6, width: 20.4, height: 90.6 },
+  { key: 'doc', left: 21.4, top: 8.6, width: 46.8, height: 90.6 },
+  { key: 'analysis', left: 68.6, top: 8.6, width: 30.8, height: 90.6 },
+] as const;
+
+function prefersReducedMotion() {
+  return typeof window === 'undefined' || typeof window.matchMedia !== 'function'
+    ? true
+    : window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+function StudioTour({ src, alt, step }: { src: string; alt: string; step: number }) {
+  const { t } = useLandingText();
+  const region = step >= 0 ? TOUR[step % TOUR.length] : null;
+  return (
+    <div className="relative w-full">
+      <BrowserFrame src={src} alt={alt} width={1440} height={900} />
+      {region && (
+        <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl" aria-hidden="true">
+          <div
+            className="absolute rounded-xl ring-2 ring-primary transition-all duration-700 ease-out"
+            style={{
+              left: `${region.left}%`,
+              top: `${region.top}%`,
+              width: `${region.width}%`,
+              height: `${region.height}%`,
+              boxShadow: '0 0 0 9999px rgb(20 26 33 / 0.38)',
+            }}
+          >
+            <span
+              key={region.key}
+              className="landing-pop absolute left-3 top-3 max-w-[16rem] rounded-lg bg-accent px-3 py-2 text-left text-xs leading-snug text-accent-foreground shadow-lg sm:text-sm"
+            >
+              <span className="block font-mono text-[10px] uppercase tracking-widest text-accent-foreground/70">
+                {step % TOUR.length + 1} / {TOUR.length}
+              </span>
+              {t(`landing.anywhere.studio.tour.${region.key}`)}
+            </span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 const HUB_CHANNELS = ['app', 'chat', 'code', 'system'] as const;
 const HUB_STORES = ['text', 'table', 'graph'] as const;
 
@@ -35,16 +86,16 @@ function McpTranscript() {
         <span className="ml-2">{t('landing.anywhere.mcp.window')}</span>
       </div>
       <div className="flex flex-col gap-3 p-5">
-        <p>
+        <p className="landing-pop">
           <span className="text-emerald-400">›</span> {t('landing.anywhere.mcp.prompt')}
         </p>
-        <div className="rounded-lg border border-white/10 bg-white/5 p-3">
+        <div className="landing-pop rounded-lg border border-white/10 bg-white/5 p-3" style={{ animationDelay: '600ms' }}>
           <span className="text-sky-300">search_knowledge_base</span>
           <span className="text-slate-500"> · {t('landing.anywhere.mcp.toolCall')}</span>
           <pre className="mt-1.5 whitespace-pre-wrap text-slate-400">{`{ "query": "${t('landing.anywhere.mcp.query')}", "mode": "hybrid" }`}</pre>
           <p className="mt-1.5 text-emerald-400">{t('landing.anywhere.mcp.result')}</p>
         </div>
-        <div className="border-l-2 border-emerald-500 pl-3">
+        <div className="landing-pop border-l-2 border-emerald-500 pl-3" style={{ animationDelay: '1500ms' }}>
           <p className="text-slate-100">{t('landing.anywhere.mcp.answer')}</p>
           <p className="mt-1 text-slate-500">{t('landing.anywhere.mcp.citations')}</p>
         </div>
@@ -56,7 +107,47 @@ function McpTranscript() {
 export function InterfacesSection() {
   const { t } = useLandingText();
   const [active, setActive] = useState<SurfaceKey>('studio');
+  const [autoplay, setAutoplay] = useState(true);
+  const [elapsed, setElapsed] = useState(0);
+  const [tourStep, setTourStep] = useState(-1);
+  const hovering = useRef(false);
+  const panel = useRef<HTMLDivElement>(null);
   const surface = SURFACES.find((s) => s.key === active) ?? SURFACES[0];
+
+  // One clock drives the tab progress, the autoplay and the studio tour; it
+  // only runs while the section is on screen and nobody is hovering it.
+  useEffect(() => {
+    if (prefersReducedMotion()) return;
+    let visible = false;
+    const io = new IntersectionObserver(([e]) => (visible = e.isIntersecting), { threshold: 0.3 });
+    if (panel.current) io.observe(panel.current);
+    const step = 100;
+    const id = setInterval(() => {
+      if (!visible || hovering.current) return;
+      setElapsed((ms) => ms + step);
+    }, step);
+    return () => {
+      clearInterval(id);
+      io.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    const dwell = DWELL_MS[active];
+    if (active === 'studio') setTourStep(elapsed < 600 ? -1 : Math.min(TOUR.length - 1, Math.floor((elapsed - 600) / 3000)));
+    if (autoplay && elapsed >= dwell) {
+      const next = SURFACES[(SURFACES.findIndex((s) => s.key === active) + 1) % SURFACES.length].key;
+      setActive(next);
+      setElapsed(0);
+    }
+  }, [elapsed, active, autoplay]);
+
+  const pick = (key: SurfaceKey) => {
+    setAutoplay(false);
+    setActive(key);
+    setElapsed(0);
+    setTourStep(-1);
+  };
 
   return (
     <section id="anywhere" className="border-t border-border">
@@ -86,39 +177,15 @@ export function InterfacesSection() {
           </div>
         </Reveal>
 
-        <div className="mx-auto mt-12 max-w-5xl">
-          <div
-            id="anywhere-panel"
-            role="tabpanel"
-            aria-labelledby={`anywhere-tab-${surface.key}`}
-            className="flex min-h-[20rem] items-center justify-center"
-          >
-            {surface.key === 'mcp' ? (
-              <div className="w-full max-w-2xl">
-                <McpTranscript />
-              </div>
-            ) : surface.key === 'mobile' ? (
-              <div className="landing-shot w-64 overflow-hidden rounded-[2.75rem] border-[10px] border-[#141a21] bg-[#141a21] sm:w-72">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={surface.shot}
-                  alt={t('landing.anywhere.mobile.alt')}
-                  loading="lazy"
-                  className="block h-auto w-full rounded-[2rem]"
-                />
-              </div>
-            ) : (
-              <BrowserFrame src={surface.shot} alt={t(`landing.anywhere.${surface.key}.alt`)} width={1440} height={900} />
-            )}
-          </div>
-          <p className="mx-auto mt-6 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">
-            {t(`landing.anywhere.${surface.key}.body`)}
-          </p>
-
+        <div
+          className="mx-auto mt-12 max-w-5xl"
+          onMouseEnter={() => (hovering.current = true)}
+          onMouseLeave={() => (hovering.current = false)}
+        >
           <div
             role="tablist"
             aria-label={t('landing.anywhere.tablistLabel')}
-            className="mx-auto mt-8 flex w-fit max-w-full gap-1 overflow-x-auto rounded-full border border-border bg-card p-1"
+            className="mx-auto mb-8 flex w-fit max-w-full gap-1 overflow-x-auto rounded-full border border-border bg-card p-1"
           >
             {SURFACES.map(({ key }) => {
               const selected = key === surface.key;
@@ -130,17 +197,57 @@ export function InterfacesSection() {
                   id={`anywhere-tab-${key}`}
                   aria-selected={selected}
                   aria-controls="anywhere-panel"
-                  onClick={() => setActive(key)}
+                  onClick={() => pick(key)}
                   className={cn(
-                    'shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-colors',
+                    'relative shrink-0 overflow-hidden whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-colors',
                     selected ? 'bg-accent text-accent-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground',
                   )}
                 >
                   {t(`landing.anywhere.${key}.tab`)}
+                  {selected && autoplay && (
+                    <span
+                      className="absolute inset-x-3 bottom-1 h-0.5 rounded-full bg-accent-foreground/70"
+                      style={{ transform: `scaleX(${Math.min(1, elapsed / DWELL_MS[key])})`, transformOrigin: 'left' }}
+                      aria-hidden="true"
+                    />
+                  )}
                 </button>
               );
             })}
           </div>
+
+          <div
+            ref={panel}
+            id="anywhere-panel"
+            role="tabpanel"
+            aria-labelledby={`anywhere-tab-${surface.key}`}
+            className="flex min-h-[20rem] items-center justify-center"
+          >
+            <div key={surface.key} className="landing-swap flex w-full items-center justify-center">
+              {surface.key === 'mcp' ? (
+                <div className="w-full max-w-2xl">
+                  <McpTranscript />
+                </div>
+              ) : surface.key === 'mobile' ? (
+                <div className="landing-float landing-shot w-64 overflow-hidden rounded-[2.75rem] border-[10px] border-[#141a21] bg-[#141a21] sm:w-72">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={surface.shot}
+                    alt={t('landing.anywhere.mobile.alt')}
+                    loading="lazy"
+                    className="block h-auto w-full rounded-[2rem]"
+                  />
+                </div>
+              ) : surface.key === 'studio' ? (
+                <StudioTour src={surface.shot} alt={t('landing.anywhere.studio.alt')} step={tourStep} />
+              ) : (
+                <BrowserFrame src={surface.shot} alt={t(`landing.anywhere.${surface.key}.alt`)} width={1440} height={900} />
+              )}
+            </div>
+          </div>
+          <p className="mx-auto mt-6 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">
+            {t(`landing.anywhere.${surface.key}.body`)}
+          </p>
         </div>
       </div>
     </section>

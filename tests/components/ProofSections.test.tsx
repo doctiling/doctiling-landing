@@ -11,7 +11,7 @@ class IntersectionObserverMock {
 vi.stubGlobal('IntersectionObserver', IntersectionObserverMock);
 
 import { CompareSection } from '../../src/components/CompareSection';
-import { BenchmarkSection, RETRIEVAL_METRICS, AGENT_METRICS } from '../../src/components/BenchmarkSection';
+import { BenchmarkSection, RETRIEVAL_METRICS, AGENT_METRICS, MORE_METRICS } from '../../src/components/BenchmarkSection';
 import { ControlSection } from '../../src/components/ControlSection';
 import { InterfacesSection } from '../../src/components/InterfacesSection';
 
@@ -37,6 +37,11 @@ describe('BenchmarkSection', () => {
     for (const m of AGENT_METRICS) {
       expect(screen.getAllByText(`${m.after} %`).length).toBeGreaterThan(0);
       expect(screen.getAllByText(`${m.before} %`).length).toBeGreaterThan(0);
+    }
+    for (const m of MORE_METRICS) {
+      const fmt = (n: number) => (m.unit === '%' ? `${n} %` : `${n}${m.unit}`);
+      expect(screen.getAllByText(fmt(m.after)).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(fmt(m.before)).length).toBeGreaterThan(0);
     }
     expect(screen.getByText('landing.benchmarks.footnote')).toBeInTheDocument();
   });
